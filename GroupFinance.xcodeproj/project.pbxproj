@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
+		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
+		E4400D781CCB5845000DFB1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D771CCB5845000DFB1A /* ViewController.m */; };
+		E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D791CCB5845000DFB1A /* Main.storyboard */; };
+		E4400D7D1CCB5845000DFB1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7C1CCB5845000DFB1A /* Assets.xcassets */; };
+		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
+		E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */; };
+		E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E4400D871CCB5845000DFB1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4400D651CCB5845000DFB1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4400D6C1CCB5845000DFB1A;
+			remoteInfo = GroupFinance;
+		};
+		E4400D921CCB5845000DFB1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E4400D651CCB5845000DFB1A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E4400D6C1CCB5845000DFB1A;
+			remoteInfo = GroupFinance;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E4400D741CCB5845000DFB1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E4400D761CCB5845000DFB1A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		E4400D771CCB5845000DFB1A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		E4400D7A1CCB5845000DFB1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E4400D7C1CCB5845000DFB1A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4400D7F1CCB5845000DFB1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E4400D811CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4400D861CCB5845000DFB1A /* GroupFinanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceTests.m; sourceTree = "<group>"; };
+		E4400D8C1CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceUITests.m; sourceTree = "<group>"; };
+		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E4400D6A1CCB5845000DFB1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4400D831CCB5845000DFB1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4400D8E1CCB5845000DFB1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E4400D641CCB5845000DFB1A = {
+			isa = PBXGroup;
+			children = (
+				E4400D6F1CCB5845000DFB1A /* GroupFinance */,
+				E4400D891CCB5845000DFB1A /* GroupFinanceTests */,
+				E4400D941CCB5845000DFB1A /* GroupFinanceUITests */,
+				E4400D6E1CCB5845000DFB1A /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E4400D6E1CCB5845000DFB1A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E4400D6D1CCB5845000DFB1A /* GroupFinance.app */,
+				E4400D861CCB5845000DFB1A /* GroupFinanceTests.xctest */,
+				E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E4400D6F1CCB5845000DFB1A /* GroupFinance */ = {
+			isa = PBXGroup;
+			children = (
+				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
+				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
+				E4400D761CCB5845000DFB1A /* ViewController.h */,
+				E4400D771CCB5845000DFB1A /* ViewController.m */,
+				E4400D791CCB5845000DFB1A /* Main.storyboard */,
+				E4400D7C1CCB5845000DFB1A /* Assets.xcassets */,
+				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
+				E4400D811CCB5845000DFB1A /* Info.plist */,
+				E4400D701CCB5845000DFB1A /* Supporting Files */,
+			);
+			path = GroupFinance;
+			sourceTree = "<group>";
+		};
+		E4400D701CCB5845000DFB1A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E4400D711CCB5845000DFB1A /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E4400D891CCB5845000DFB1A /* GroupFinanceTests */ = {
+			isa = PBXGroup;
+			children = (
+				E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */,
+				E4400D8C1CCB5845000DFB1A /* Info.plist */,
+			);
+			path = GroupFinanceTests;
+			sourceTree = "<group>";
+		};
+		E4400D941CCB5845000DFB1A /* GroupFinanceUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */,
+				E4400D971CCB5845000DFB1A /* Info.plist */,
+			);
+			path = GroupFinanceUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E4400D6C1CCB5845000DFB1A /* GroupFinance */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinance" */;
+			buildPhases = (
+				E4400D691CCB5845000DFB1A /* Sources */,
+				E4400D6A1CCB5845000DFB1A /* Frameworks */,
+				E4400D6B1CCB5845000DFB1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GroupFinance;
+			productName = GroupFinance;
+			productReference = E4400D6D1CCB5845000DFB1A /* GroupFinance.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E4400D851CCB5845000DFB1A /* GroupFinanceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceTests" */;
+			buildPhases = (
+				E4400D821CCB5845000DFB1A /* Sources */,
+				E4400D831CCB5845000DFB1A /* Frameworks */,
+				E4400D841CCB5845000DFB1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4400D881CCB5845000DFB1A /* PBXTargetDependency */,
+			);
+			name = GroupFinanceTests;
+			productName = GroupFinanceTests;
+			productReference = E4400D861CCB5845000DFB1A /* GroupFinanceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E4400D901CCB5845000DFB1A /* GroupFinanceUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceUITests" */;
+			buildPhases = (
+				E4400D8D1CCB5845000DFB1A /* Sources */,
+				E4400D8E1CCB5845000DFB1A /* Frameworks */,
+				E4400D8F1CCB5845000DFB1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E4400D931CCB5845000DFB1A /* PBXTargetDependency */,
+			);
+			name = GroupFinanceUITests;
+			productName = GroupFinanceUITests;
+			productReference = E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E4400D651CCB5845000DFB1A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = limeng;
+				TargetAttributes = {
+					E4400D6C1CCB5845000DFB1A = {
+						CreatedOnToolsVersion = 7.3;
+					};
+					E4400D851CCB5845000DFB1A = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = E4400D6C1CCB5845000DFB1A;
+					};
+					E4400D901CCB5845000DFB1A = {
+						CreatedOnToolsVersion = 7.3;
+						TestTargetID = E4400D6C1CCB5845000DFB1A;
+					};
+				};
+			};
+			buildConfigurationList = E4400D681CCB5845000DFB1A /* Build configuration list for PBXProject "GroupFinance" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E4400D641CCB5845000DFB1A;
+			productRefGroup = E4400D6E1CCB5845000DFB1A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E4400D6C1CCB5845000DFB1A /* GroupFinance */,
+				E4400D851CCB5845000DFB1A /* GroupFinanceTests */,
+				E4400D901CCB5845000DFB1A /* GroupFinanceUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E4400D6B1CCB5845000DFB1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
+				E4400D7D1CCB5845000DFB1A /* Assets.xcassets in Resources */,
+				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4400D841CCB5845000DFB1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4400D8F1CCB5845000DFB1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E4400D691CCB5845000DFB1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
+				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
+				E4400D721CCB5845000DFB1A /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4400D821CCB5845000DFB1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4400D8D1CCB5845000DFB1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E4400D881CCB5845000DFB1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E4400D6C1CCB5845000DFB1A /* GroupFinance */;
+			targetProxy = E4400D871CCB5845000DFB1A /* PBXContainerItemProxy */;
+		};
+		E4400D931CCB5845000DFB1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E4400D6C1CCB5845000DFB1A /* GroupFinance */;
+			targetProxy = E4400D921CCB5845000DFB1A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E4400D791CCB5845000DFB1A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4400D7A1CCB5845000DFB1A /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4400D7F1CCB5845000DFB1A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E4400D981CCB5845000DFB1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E4400D991CCB5845000DFB1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E4400D9B1CCB5845000DFB1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GroupFinance/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E4400D9C1CCB5845000DFB1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = GroupFinance/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinance;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E4400D9E1CCB5845000DFB1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GroupFinanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroupFinance.app/GroupFinance";
+			};
+			name = Debug;
+		};
+		E4400D9F1CCB5845000DFB1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = GroupFinanceTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroupFinance.app/GroupFinance";
+			};
+			name = Release;
+		};
+		E4400DA11CCB5845000DFB1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GroupFinanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GroupFinance;
+			};
+			name = Debug;
+		};
+		E4400DA21CCB5845000DFB1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = GroupFinanceUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = GroupFinance;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E4400D681CCB5845000DFB1A /* Build configuration list for PBXProject "GroupFinance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4400D981CCB5845000DFB1A /* Debug */,
+				E4400D991CCB5845000DFB1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinance" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4400D9B1CCB5845000DFB1A /* Debug */,
+				E4400D9C1CCB5845000DFB1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4400D9E1CCB5845000DFB1A /* Debug */,
+				E4400D9F1CCB5845000DFB1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E4400DA11CCB5845000DFB1A /* Debug */,
+				E4400DA21CCB5845000DFB1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E4400D651CCB5845000DFB1A /* Project object */;
+}
