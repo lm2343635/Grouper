@@ -7,16 +7,32 @@
 //
 
 #import "AppDelegate.h"
+#import <CoreData/CoreData.h>
+#import "SyncManager.h"
 
 @interface AppDelegate ()
 
+@property (nonatomic, readonly) NSURL *storeDirectoryURL;
+@property (nonatomic, readonly) NSURL *storeURL;
+
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    NSManagedObjectContext *managedObjectContext;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //Setup CoreData Stack
+    [[NSFileManager defaultManager] createDirectoryAtURL:self.storeDirectoryURL
+                             withIntermediateDirectories:YES
+                                              attributes:nil
+                                                   error:NULL];
+    [self setupContext];
+    
+    //Setup Sync Manager
+
     return YES;
 }
 
@@ -40,6 +56,48 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - CoreDate Stack
+- (void)setupContext {
+    NSError *error;
+    NSURL *modelURL=[[NSBundle mainBundle] URLForResource:@"Model"
+                                            withExtension:@"momd"];
+    NSManagedObjectModel *model=[[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    NSPersistentStoreCoordinator *coordinator=[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+    NSDictionary *options=@{
+                            NSMigratePersistentStoresAutomaticallyOption: @YES,
+                            NSInferMappingModelAutomaticallyOption: @YES
+                            };
+    [coordinator addPersistentStoreWithType:NSSQLiteStoreType
+                              configuration:nil
+                                        URL:self.storeURL
+                                    options:options
+                                      error:&error];
+    if(error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        return;
+    }
+    managedObjectContext=[[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    managedObjectContext.persistentStoreCoordinator=coordinator;
+    managedObjectContext.mergePolicy=NSMergeByPropertyObjectTrumpMergePolicy;
+}
+
+#pragma mark - Setters
+- (NSURL *)storeDirectoryURL {
+    NSURL *directoryURL=[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                               inDomain:NSUserDomainMask
+                                                      appropriateForURL:nil
+                                                                 create:YES
+                                                                  error:NULL];
+    directoryURL=[directoryURL URLByAppendingPathComponent:NSBundle.mainBundle.bundleIdentifier isDirectory:YES];
+    return directoryURL;
+    
+}
+
+- (NSURL *)storeURL {
+    NSURL *storeURL=[self.storeDirectoryURL URLByAppendingPathComponent:@"store.sqlite"];
+    return storeURL;
 }
 
 @end

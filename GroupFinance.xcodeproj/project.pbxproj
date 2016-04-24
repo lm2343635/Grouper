@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E43669061CCCB38600C151F6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E43669041CCCB38600C151F6 /* Model.xcdatamodeld */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D781CCB5845000DFB1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D771CCB5845000DFB1A /* ViewController.m */; };
@@ -15,6 +16,10 @@
 		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
 		E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */; };
 		E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */; };
+		E4400DA51CCB5A55000DFB1A /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA41CCB5A55000DFB1A /* SyncManager.m */; };
+		E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA71CCB6477000DFB1A /* MultipeerManager.m */; };
+		E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */; };
+		EF485D4D03ED7FB275BE882E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C182167A926B3A47593EC28 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +40,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9C182167A926B3A47593EC28 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA3EEE8BD0777875CD9B69B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E43669051CCCB38600C151F6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +59,13 @@
 		E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceUITests.m; sourceTree = "<group>"; };
 		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4400DA31CCB5A55000DFB1A /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
+		E4400DA41CCB5A55000DFB1A /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
+		E4400DA61CCB6477000DFB1A /* MultipeerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerManager.h; sourceTree = "<group>"; };
+		E4400DA71CCB6477000DFB1A /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
+		E4400DAA1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEMultipeerCloudFileSystem.h; sourceTree = "<group>"; };
+		E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEMultipeerCloudFileSystem.m; sourceTree = "<group>"; };
+		F73F6814A4277F2813BAD844 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF485D4D03ED7FB275BE882E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,13 +94,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A96C9409F0E310C101BF950 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9C182167A926B3A47593EC28 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3020742623F2046F388944ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F73F6814A4277F2813BAD844 /* Pods.debug.xcconfig */,
+				BA3EEE8BD0777875CD9B69B0 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E43669031CCCB37400C151F6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E43669041CCCB38600C151F6 /* Model.xcdatamodeld */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
+				E43669031CCCB37400C151F6 /* Model */,
+				E4400DA91CCB659B000DFB1A /* Shared */,
 				E4400D6F1CCB5845000DFB1A /* GroupFinance */,
 				E4400D891CCB5845000DFB1A /* GroupFinanceTests */,
 				E4400D941CCB5845000DFB1A /* GroupFinanceUITests */,
 				E4400D6E1CCB5845000DFB1A /* Products */,
+				3020742623F2046F388944ED /* Pods */,
+				0A96C9409F0E310C101BF950 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +155,10 @@
 				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
 				E4400D811CCB5845000DFB1A /* Info.plist */,
 				E4400D701CCB5845000DFB1A /* Supporting Files */,
+				E4400DA31CCB5A55000DFB1A /* SyncManager.h */,
+				E4400DA41CCB5A55000DFB1A /* SyncManager.m */,
+				E4400DA61CCB6477000DFB1A /* MultipeerManager.h */,
+				E4400DA71CCB6477000DFB1A /* MultipeerManager.m */,
 			);
 			path = GroupFinance;
 			sourceTree = "<group>";
@@ -140,6 +189,15 @@
 			path = GroupFinanceUITests;
 			sourceTree = "<group>";
 		};
+		E4400DA91CCB659B000DFB1A /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				E4400DAA1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.h */,
+				E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +205,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinance" */;
 			buildPhases = (
+				F750F5E403ADEA24A47D5E8A /* Check Pods Manifest.lock */,
 				E4400D691CCB5845000DFB1A /* Sources */,
 				E4400D6A1CCB5845000DFB1A /* Frameworks */,
 				E4400D6B1CCB5845000DFB1A /* Resources */,
+				3269BEF9A949DB11494B787E /* Embed Pods Frameworks */,
+				E5EAF9E4BADEAF2A75A9AED0 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -265,14 +326,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		3269BEF9A949DB11494B787E /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E5EAF9E4BADEAF2A75A9AED0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F750F5E403ADEA24A47D5E8A /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E4400D691CCB5845000DFB1A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4400DA51CCB5A55000DFB1A /* SyncManager.m in Sources */,
+				E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
+				E43669061CCCB38600C151F6 /* Model.xcdatamodeld in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
+				E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +524,7 @@
 		};
 		E4400D9B1CCB5845000DFB1A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F73F6814A4277F2813BAD844 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GroupFinance/Info.plist;
@@ -422,6 +536,7 @@
 		};
 		E4400D9C1CCB5845000DFB1A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA3EEE8BD0777875CD9B69B0 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GroupFinance/Info.plist;
@@ -496,6 +611,7 @@
 				E4400D9C1CCB5845000DFB1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +620,7 @@
 				E4400D9F1CCB5845000DFB1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,8 +629,22 @@
 				E4400DA21CCB5845000DFB1A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E43669041CCCB38600C151F6 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E43669051CCCB38600C151F6 /* Model.xcdatamodel */,
+			);
+			currentVersion = E43669051CCCB38600C151F6 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E4400D651CCB5845000DFB1A /* Project object */;
 }
