@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E40C440F1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C440C1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m */; };
+		E40C44101CCF1EE30006D208 /* AccountBook.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C440E1CCF1EE30006D208 /* AccountBook.m */; };
+		E40C44171CCF25870006D208 /* AddAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C44161CCF25870006D208 /* AddAccountBookViewController.m */; };
+		E40C441A1CCF28E90006D208 /* AccountBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */; };
 		E43669061CCCB38600C151F6 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E43669041CCCB38600C151F6 /* Model.xcdatamodeld */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
@@ -42,6 +46,14 @@
 /* Begin PBXFileReference section */
 		9C182167A926B3A47593EC28 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA3EEE8BD0777875CD9B69B0 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		E40C440B1CCF1EE30006D208 /* AccountBook+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AccountBook+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E40C440C1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AccountBook+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E40C440D1CCF1EE30006D208 /* AccountBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBook.h; sourceTree = "<group>"; };
+		E40C440E1CCF1EE30006D208 /* AccountBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBook.m; sourceTree = "<group>"; };
+		E40C44151CCF25870006D208 /* AddAccountBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountBookViewController.h; sourceTree = "<group>"; };
+		E40C44161CCF25870006D208 /* AddAccountBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountBookViewController.m; sourceTree = "<group>"; };
+		E40C44181CCF28E90006D208 /* AccountBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBooksTableViewController.h; sourceTree = "<group>"; };
+		E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBooksTableViewController.m; sourceTree = "<group>"; };
 		E43669051CCCB38600C151F6 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -111,19 +123,33 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E40C44141CCF25640006D208 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				E40C44151CCF25870006D208 /* AddAccountBookViewController.h */,
+				E40C44161CCF25870006D208 /* AddAccountBookViewController.m */,
+				E40C44181CCF28E90006D208 /* AccountBooksTableViewController.h */,
+				E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		E43669031CCCB37400C151F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E40C440B1CCF1EE30006D208 /* AccountBook+CoreDataProperties.h */,
+				E40C440C1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m */,
+				E40C440D1CCF1EE30006D208 /* AccountBook.h */,
+				E40C440E1CCF1EE30006D208 /* AccountBook.m */,
 				E43669041CCCB38600C151F6 /* Model.xcdatamodeld */,
 			);
 			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
-				E43669031CCCB37400C151F6 /* Model */,
-				E4400DA91CCB659B000DFB1A /* Shared */,
 				E4400D6F1CCB5845000DFB1A /* GroupFinance */,
 				E4400D891CCB5845000DFB1A /* GroupFinanceTests */,
 				E4400D941CCB5845000DFB1A /* GroupFinanceUITests */,
@@ -146,6 +172,9 @@
 		E4400D6F1CCB5845000DFB1A /* GroupFinance */ = {
 			isa = PBXGroup;
 			children = (
+				E43669031CCCB37400C151F6 /* Model */,
+				E40C44141CCF25640006D208 /* Settings */,
+				E4400DA91CCB659B000DFB1A /* Shared */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
 				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
 				E4400D761CCB5845000DFB1A /* ViewController.h */,
@@ -196,6 +225,7 @@
 				E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */,
 			);
 			name = Shared;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,9 +413,13 @@
 				E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
 				E43669061CCCB38600C151F6 /* Model.xcdatamodeld in Sources */,
+				E40C440F1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
+				E40C441A1CCF28E90006D208 /* AccountBooksTableViewController.m in Sources */,
+				E40C44171CCF25870006D208 /* AddAccountBookViewController.m in Sources */,
 				E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */,
+				E40C44101CCF1EE30006D208 /* AccountBook.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

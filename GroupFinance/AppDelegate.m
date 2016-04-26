@@ -17,10 +17,9 @@
 
 @end
 
-@implementation AppDelegate {
-    NSManagedObjectContext *managedObjectContext;
-}
+@implementation AppDelegate
 
+@synthesize managedObjectContext = managedObjectContext;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
