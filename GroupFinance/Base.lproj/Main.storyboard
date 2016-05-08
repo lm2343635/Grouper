@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ptS-aK-aUC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ptS-aK-aUC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -47,7 +47,7 @@
         <scene sceneID="Ovj-bu-ryd">
             <objects>
                 <navigationController id="bsb-Xr-SWC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="zcX-GR-QiE"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="tab_setting" selectedImage="tab_setting_selected" id="zcX-GR-QiE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="deA-10-ndB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -83,7 +83,7 @@
                             <outlet property="delegate" destination="quL-ly-1qs" id="t7Y-t6-vb5"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" id="Vdd-vR-9vN"/>
+                    <tabBarItem key="tabBarItem" title="List" image="tab_list" selectedImage="tab_list_selected" id="Vdd-vR-9vN"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o04-ta-P55" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -102,7 +102,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Main" id="dNh-tS-agR"/>
+                    <tabBarItem key="tabBarItem" title="Main" image="tab_main" selectedImage="tab_main_selected" id="dNh-tS-agR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN0-96-qx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,8 +312,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sychronization" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDy-Us-CV2">
-                                                    <rect key="frame" x="56" y="11" width="114" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Synchronization" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDy-Us-CV2">
+                                                    <rect key="frame" x="56" y="11" width="123" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -323,6 +323,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="B9z-cU-ImL" kind="push" id="lc5-po-73n"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -367,6 +370,79 @@
             </objects>
             <point key="canvasLocation" x="57" y="2261"/>
         </scene>
+        <!--Synchronization-->
+        <scene sceneID="Qrf-al-f6L">
+            <objects>
+                <tableViewController id="B9z-cU-ImL" customClass="SynchronizationTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lnk-BV-aW6">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="hnd-90-gg9">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Hkd-gE-6qy">
+                                        <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hkd-gE-6qy" id="KNM-Nh-nXh">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zyb-w6-lhH">
+                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enable Sync" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWG-6f-95H">
+                                                    <rect key="frame" x="14" y="11" width="94" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Zyb-w6-lhH" secondAttribute="trailing" id="pdP-rj-zew"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ozc-nU-nrX">
+                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ozc-nU-nrX" id="0AB-dI-s6f">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BfD-So-Lbk">
+                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BfD-So-Lbk" id="Hb2-pX-h9c">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="B9z-cU-ImL" id="wzF-KG-5Ef"/>
+                            <outlet property="delegate" destination="B9z-cU-ImL" id="TCN-3x-LAQ"/>
+                        </connections>
+                    </tableView>
+                    <toolbarItems>
+                        <barButtonItem style="plain" systemItem="flexibleSpace" id="E7N-vM-jGH"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Synchronization" id="D5y-N6-Zff">
+                        <barButtonItem key="rightBarButtonItem" title="Sync" id="hBO-mv-FIv">
+                            <connections>
+                                <action selector="synchronize:" destination="B9z-cU-ImL" id="Ql8-Hh-nQL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g6X-QT-RoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="57" y="3123"/>
+        </scene>
         <!--Account Books-->
         <scene sceneID="pvr-ov-VSb">
             <objects>
@@ -386,7 +462,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VK-pk-F2X">
                                             <rect key="frame" x="16" y="11" width="287" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -408,7 +484,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jom-VX-WOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="2948"/>
+            <point key="canvasLocation" x="-455" y="3123"/>
         </scene>
         <!--Add an Account Book-->
         <scene sceneID="pN9-uK-uuG">
@@ -448,7 +524,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfR-1B-HBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="3628"/>
+            <point key="canvasLocation" x="-455" y="3886"/>
         </scene>
     </scenes>
     <resources>
@@ -461,5 +537,11 @@
         <image name="setting_synchronization" width="27" height="27"/>
         <image name="setting_template" width="27" height="27"/>
         <image name="setting_user" width="27" height="27"/>
+        <image name="tab_list" width="24" height="24"/>
+        <image name="tab_list_selected" width="24" height="24"/>
+        <image name="tab_main" width="24" height="24"/>
+        <image name="tab_main_selected" width="24" height="24"/>
+        <image name="tab_setting" width="24" height="24"/>
+        <image name="tab_setting_selected" width="24" height="24"/>
     </resources>
 </document>

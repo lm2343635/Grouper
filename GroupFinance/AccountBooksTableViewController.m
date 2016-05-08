@@ -24,15 +24,16 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [super viewWillAppear:animated];
     accountBooks=[AccountBook findAllinMangedObjectContext:delegate.managedObjectContext];
-    NSLog(@"%@", accountBooks);
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

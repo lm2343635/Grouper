@@ -28,7 +28,11 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 @synthesize managedObjectContext = managedObjectContext;
 
 
-+ (instancetype)shareSyncManager {
++ (instancetype)sharedSyncManager {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
     static id shareInstance=nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -38,16 +42,27 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 }
 
 - (instancetype) init {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
     self=[super init];
     return self;
 }
 
 #pragma mark - Setting up and resetting
 - (void)setup {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [self setupEnsemble];
 }
 
 - (void)reset {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
     [multipeerManager stop];
     [multipeerManager.multipeerCloudFileSystem removeAllFiles];
     multipeerManager=nil;
@@ -58,11 +73,19 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 
 #pragma mark - Connecting to a Backend Service
 - (void)connectToSyncService:(NSString *)serviceId withCompletion:(CDECompletionBlock)completion {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
     [self setupEnsemble];
     [self synchronizeWithCompletion:completion];
 }
 
 - (void)disconnectFromSyncServiceWithCompletion:(CDECodeBlock)completion {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
     [ensemble deleechPersistentStoreWithCompletion:^(NSError *error) {
         [self reset];
         if (completion) {
@@ -74,6 +97,10 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 
 #pragma mark - Persistent Store Ensemble
 - (void) setupEnsemble {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
     cloudFileSystem=[self makeCloudFileSystem];
     if(!cloudFileSystem) {
         return;
@@ -89,6 +116,9 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 }
 
 - (id<CDECloudFileSystem>)makeCloudFileSystem {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     id <CDECloudFileSystem> newSystem = nil;
     multipeerManager=[[MultipeerManager alloc] init];
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
@@ -106,13 +136,21 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 }
 
 #pragma mark - SyncMethods
+//Sync Method for Group Finance App
 - (void)synchronizeWithCompletion:(CDECompletionBlock)completion {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    //Increase merge count
     [self incrementMergeCount];
     if(!ensemble.isLeeched) {
+        //Bind Core Date Persistent Store to Ensemble
         [ensemble leechPersistentStoreWithCompletion:^(NSError *error) {
+            //If bind failed, decrease merge count
             [self decrementMergeCount];
             if(error&&!ensemble.isLeeched) {
                 NSLog(@"Could not leech to ensemble: %@", error);
+                //Disconnect synchronization service
                 [self disconnectFromSyncServiceWithCompletion:^{
                     if(completion) {
                         completion(error);
@@ -121,8 +159,10 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
             }
         }];
     } else {
+        //Merge with Ensemble
         [ensemble mergeWithCompletion:^(NSError *error) {
             [self decrementMergeCount];
+            //Use Multipeer Connectivity Framework to transfer data
             [multipeerManager syncFileWithAllPeers];
             if(error) {
                 NSLog(@"Error mergeing: %@", error);
@@ -135,6 +175,9 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 }
 
 - (void)decrementMergeCount {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     activeMergeCount--;
     if(activeMergeCount==0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:SyncActivityDidEndNotification
@@ -144,6 +187,9 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 }
 
 - (void)incrementMergeCount {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     activeMergeCount++;
     if(activeMergeCount==1) {
         [[NSNotificationCenter defaultCenter] postNotificationName:SyncActivityDidBeginNotification
@@ -154,16 +200,25 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 
 #pragma mark - Persistent Store Ensemble Delegate
 - (void)persistentStoreEnsemble:(CDEPersistentStoreEnsemble *)ensemble didSaveMergeChangesWithNotification:(NSNotification *)notification {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [managedObjectContext performBlock:^{
         [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
     }];
 }
 
 - (NSArray *)persistentStoreEnsemble:(CDEPersistentStoreEnsemble *)ensemble globalIdentifiersForManagedObjects:(NSArray *)objects {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     return [objects valueForKey:@"uniqueIdentifier"];
 }
 
 -(void)persistentStoreEnsemble:(CDEPersistentStoreEnsemble *)ensemble didDeleechWithError:(NSError *)error {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSLog(@"Store did deleech with error: %@", error);
     [self reset];
 }
@@ -171,6 +226,9 @@ NSString * const SyncActivityDidEndNotification = @"SyncActivityDidEnd";
 
 #pragma mark - CDEMultipeerCloudFileSystem
 - (void)didImportFiles {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [self synchronizeWithCompletion: nil];
 }
 

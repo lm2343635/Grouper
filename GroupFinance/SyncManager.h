@@ -15,8 +15,10 @@
 @property (nonatomic, readwrite, strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, readwrite, copy) NSString *storePath;
 
-+ (instancetype)shareSyncManager;
++ (instancetype)sharedSyncManager;
 
+- (void)synchronizeWithCompletion:(CDECompletionBlock)completion;
 
-
+- (void)setup;
+- (void)reset;
 @end

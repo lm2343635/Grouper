@@ -24,6 +24,9 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 @implementation MultipeerManager
 
 - (instancetype)init {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     self=[super init];
     if(self) {
         uniqueIdentifer=[[NSProcessInfo processInfo] globallyUniqueString];
@@ -36,11 +39,17 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)dealloc {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Start and stop connecting
 - (void)start {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     if(peerSession&&peerAdvertiser&&peerBrowser) {
         return;
     }
@@ -64,6 +73,9 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)stop {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     peerSession.delegate=nil;
     [peerSession disconnect];
     peerSession=nil;
@@ -78,12 +90,18 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)stopAndStart {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [self stop];
     [self start];
 }
 
 #pragma mark - Syncing Files
 - (void)syncFileWithAllPeers {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     if (peerSession.connectedPeers.count == 0 && (!peerBrowser || !peerAdvertiser) ) {
         [self start];
         return;
@@ -95,6 +113,9 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (BOOL)sendAndDiscardFileAtURL:(NSURL *)url toPeerWithID:(id<NSObject,NSCopying,NSCoding>)peerID {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSProgress *progress=[peerSession sendResourceAtURL:url
                                                withName:[url lastPathComponent]
                                                  toPeer:(id)peerID
@@ -106,6 +127,9 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (BOOL)sendData:(NSData *)data toPeerWithID:(id<NSObject,NSCopying,NSCoding>)peerID {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSError *error;
     BOOL success=[peerSession sendData:data
                                toPeers:@[peerID]
@@ -118,11 +142,17 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [self.multipeerCloudFileSystem receiveData:data
                                 fromPeerWithID:peerID];
 }
 
 - (void)session:(MCSession *)session didFinishReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID atURL:(NSURL *)localURL withError:(NSError *)error {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     if(localURL==nil) {
         return;
     }
@@ -131,14 +161,21 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)session:(MCSession *)session didStartReceivingResourceWithName:(NSString *)resourceName fromPeer:(MCPeerID *)peerID withProgress:(NSProgress *)progress {
-    
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
 }
 
 - (void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID {
-    
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
 }
 
 - (void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     if(state==MCSessionStateNotConnected) {
         [peerBrowser startBrowsingForPeers];
         [peerAdvertiser startAdvertisingPeer];
@@ -151,6 +188,9 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 
 #pragma mark - MCNearbyServiceBrowserDelegate
 - (void)browser:(MCNearbyServiceBrowser *)browser foundPeer:(MCPeerID *)peerID withDiscoveryInfo:(NSDictionary<NSString *,NSString *> *)info {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     if([peerID isEqual:peerSession.myPeerID]) {
         return;
     }
@@ -158,7 +198,7 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
         return;
     }
     NSString *otherPeerUniqueIdentifer=info[kDiscoveryInfoUniqueIdentifer];
-    BOOL shouldAccept=([otherPeerUniqueIdentifer dataUsingEncoding:NSUTF8StringEncoding]);
+    BOOL shouldAccept=([otherPeerUniqueIdentifer compare:uniqueIdentifer]!=NSOrderedDescending);
     if(!shouldAccept) {
         return;
     }
@@ -171,15 +211,23 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser lostPeer:(MCPeerID *)peerID {
-    
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
 }
 
 - (void)browser:(MCNearbyServiceBrowser *)browser didNotStartBrowsingForPeers:(NSError *)error {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     peerSession=nil;
 }
 
 #pragma mark - MCNearbyServiceAdvertiserDelegate 
 -(void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(NSData *)context invitationHandler:(void (^)(BOOL, MCSession * _Nonnull))invitationHandler {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSString *otherPeerUniqueIdentifer=[NSString stringWithUTF8String:context.bytes];
     BOOL shouldInvite=([otherPeerUniqueIdentifer compare:uniqueIdentifer]==NSOrderedDescending);
     if(![peerSession.connectedPeers containsObject:peerID]&&shouldInvite) {
@@ -192,6 +240,9 @@ NSString *const kDiscoveryInfoUniqueIdentifer = @"DiscoveryInfoUniqueIdentifer";
 }
 
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didNotStartAdvertisingPeer:(NSError *)error {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     peerAdvertiser=nil;
 }
 @end
