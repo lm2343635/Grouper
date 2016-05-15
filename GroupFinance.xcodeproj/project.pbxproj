@@ -23,6 +23,8 @@
 		E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA71CCB6477000DFB1A /* MultipeerManager.m */; };
 		E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
+		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
+		E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		EF485D4D03ED7FB275BE882E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C182167A926B3A47593EC28 /* Pods.framework */; };
 /* End PBXBuildFile section */
@@ -79,6 +81,9 @@
 		E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEMultipeerCloudFileSystem.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
+		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
+		E48E2FAA1CE84FA900E727FD /* EditAccountBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountBookViewController.h; sourceTree = "<group>"; };
+		E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountBookViewController.m; sourceTree = "<group>"; };
 		E497059D1CDF22B20092B164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F73F6814A4277F2813BAD844 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +140,8 @@
 				E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */,
 				E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */,
 				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
+				E48E2FAA1CE84FA900E727FD /* EditAccountBookViewController.h */,
+				E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -200,6 +207,7 @@
 		E4400D701CCB5845000DFB1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E48E2FA81CE846E000E727FD /* main_head.jpg */,
 				E4400D711CCB5845000DFB1A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -303,7 +311,7 @@
 				TargetAttributes = {
 					E4400D6C1CCB5845000DFB1A = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 5EE3Z46PC9;
+						DevelopmentTeam = 94DS5KS578;
 					};
 					E4400D851CCB5845000DFB1A = {
 						CreatedOnToolsVersion = 7.3;
@@ -342,6 +350,7 @@
 			files = (
 				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
+				E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -420,6 +429,7 @@
 				E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
 				E43669061CCCB38600C151F6 /* Model.xcdatamodeld in Sources */,
+				E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */,
 				E40C440F1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
@@ -572,7 +582,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GroupFinance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -587,7 +597,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = GroupFinance/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
