@@ -7,14 +7,14 @@
 //
 
 #import "EditAccountBookViewController.h"
-#import "AppDelegate.h"
+#import "AlertTool.h"
 
 @interface EditAccountBookViewController ()
 
 @end
 
 @implementation EditAccountBookViewController {
-    AppDelegate *delegate;
+    DaoManager *dao;
 }
 
 - (void)viewDidLoad {
@@ -22,7 +22,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    dao=[[DaoManager alloc] init];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -52,8 +52,17 @@
                          completion:nil];
     } else {
         _accountBook.abname=accountBookName;
-        [delegate.managedObjectContext save:nil];
+        [dao saveContext];
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (IBAction)setAsUsing:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [dao.accountBookDao setUsingAccountBook:_accountBook];
+    NSLog(@"%@", _accountBook.using);
+    [AlertTool showAlert:[NSString stringWithFormat:@"%@ is using account book now!", _accountBook.abname]];
 }
 @end

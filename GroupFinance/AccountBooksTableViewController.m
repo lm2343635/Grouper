@@ -7,16 +7,14 @@
 //
 
 #import "AccountBooksTableViewController.h"
-#import "EditAccountBookViewController.h"
-#import "AppDelegate.h"
-#import "AccountBook.h"
+#import "DaoManager.h"
 
 @interface AccountBooksTableViewController ()
 
 @end
 
 @implementation AccountBooksTableViewController {
-    AppDelegate *delegate;
+    DaoManager *dao;
     NSMutableArray *accountBooks;
     AccountBook *selectedAccountBook;
 }
@@ -26,14 +24,15 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];}
+    dao=[[DaoManager alloc] init];
+}
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
-    accountBooks=[NSMutableArray arrayWithArray:[AccountBook findAllinMangedObjectContext:delegate.managedObjectContext]];
+    accountBooks=[NSMutableArray arrayWithArray:[dao.accountBookDao findAllWithEntityName:AccountBookEntityName]];
     [self.tableView reloadData];
 }
 
@@ -50,11 +49,10 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountBookCellIndentifer"
-                                                            forIndexPath:indexPath];
-    
-    UILabel *abnameLabel=(UILabel *)[cell viewWithTag:0];
     AccountBook *accountBook=[accountBooks objectAtIndex:indexPath.row];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: accountBook.using.intValue==1? @"usingAccountBookIndentifer": @"accountBookIndentifer"
+                                                            forIndexPath:indexPath];
+    UILabel *abnameLabel=(UILabel *)[cell viewWithTag:1];
     abnameLabel.text=accountBook.abname;
     return cell;
 }
@@ -72,8 +70,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if(editingStyle==UITableViewCellEditingStyleDelete) {
-        [delegate.managedObjectContext deleteObject:[accountBooks objectAtIndex:indexPath.row]];
-        [delegate.managedObjectContext save:nil];
+        [dao.context deleteObject:[accountBooks objectAtIndex:indexPath.row]];
+        [dao saveContext];
         [accountBooks removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
@@ -87,8 +85,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if([segue.identifier isEqualToString:@"editAccountBookSegue"]) {
-        EditAccountBookViewController *controller=(UIVideoEditorController *)[segue destinationViewController];
-        controller.accountBook=selectedAccountBook;
+        UIViewController *controller=[segue destinationViewController];
+        [controller setValue:selectedAccountBook forKey:@"accountBook"];
     }
 }
 

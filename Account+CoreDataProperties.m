@@ -1,5 +1,5 @@
 //
-//  AccountBook+CoreDataProperties.m
+//  Account+CoreDataProperties.m
 //  GroupFinance
 //
 //  Created by lidaye on 5/22/16.
@@ -9,15 +9,14 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "AccountBook+CoreDataProperties.h"
+#import "Account+CoreDataProperties.h"
 
-@implementation AccountBook (CoreDataProperties)
+@implementation Account (CoreDataProperties)
 
-@dynamic abname;
+@dynamic aname;
 @dynamic uniqueIdentifier;
-@dynamic using;
-@dynamic classifications;
-@dynamic shops;
-@dynamic accounts;
+@dynamic ain;
+@dynamic aout;
+@dynamic accountBook;
 
 @end

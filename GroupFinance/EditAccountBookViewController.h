@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AccountBook.h"
+#import "DaoManager.h"
 
 @interface EditAccountBookViewController : UIViewController
 
@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *accountBookNameTextField;
 
 - (IBAction)saveEidt:(id)sender;
+- (IBAction)setAsUsing:(id)sender;
 
 @end

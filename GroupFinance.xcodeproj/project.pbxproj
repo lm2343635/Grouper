@@ -22,6 +22,28 @@
 		E4400DA51CCB5A55000DFB1A /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA41CCB5A55000DFB1A /* SyncManager.m */; };
 		E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA71CCB6477000DFB1A /* MultipeerManager.m */; };
 		E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */; };
+		E457B4051CF198BD00139C4C /* Classification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B3FA1CF198BD00139C4C /* Classification+CoreDataProperties.m */; };
+		E457B4061CF198BD00139C4C /* Classification.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B3FC1CF198BD00139C4C /* Classification.m */; };
+		E457B4071CF198BD00139C4C /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B3FE1CF198BD00139C4C /* Shop+CoreDataProperties.m */; };
+		E457B4081CF198BD00139C4C /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4001CF198BD00139C4C /* Shop.m */; };
+		E457B4091CF198BD00139C4C /* Account+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4021CF198BD00139C4C /* Account+CoreDataProperties.m */; };
+		E457B40A1CF198BD00139C4C /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4041CF198BD00139C4C /* Account.m */; };
+		E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */; };
+		E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */; };
+		E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4121CF19E2000139C4C /* AddShopViewController.m */; };
+		E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4151CF19E2A00139C4C /* EditShopViewController.m */; };
+		E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4181CF19E3500139C4C /* AddAccountViewController.m */; };
+		E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B41B1CF19E4100139C4C /* EditAccountViewController.m */; };
+		E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B41E1CF19E5300139C4C /* ClassificationsTableViewController.m */; };
+		E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4211CF19E5D00139C4C /* ShopsTableViewController.m */; };
+		E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4241CF19E6700139C4C /* AccountsTableViewController.m */; };
+		E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4281CF1A26A00139C4C /* DaoTemplate.m */; };
+		E457B42C1CF1A40100139C4C /* AccountBookDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B42B1CF1A40100139C4C /* AccountBookDao.m */; };
+		E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B42E1CF1A40D00139C4C /* AccountDao.m */; };
+		E457B4321CF1A41800139C4C /* ShopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4311CF1A41800139C4C /* ShopDao.m */; };
+		E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4341CF1A42900139C4C /* ClassificationDao.m */; };
+		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
+		E457B43B1CF1AF3200139C4C /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B43A1CF1AF3200139C4C /* AlertTool.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
 		E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */; };
@@ -79,6 +101,50 @@
 		E4400DA71CCB6477000DFB1A /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
 		E4400DAA1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEMultipeerCloudFileSystem.h; sourceTree = "<group>"; };
 		E4400DAB1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEMultipeerCloudFileSystem.m; sourceTree = "<group>"; };
+		E457B3F91CF198BD00139C4C /* Classification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Classification+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E457B3FA1CF198BD00139C4C /* Classification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Classification+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E457B3FB1CF198BD00139C4C /* Classification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Classification.h; sourceTree = "<group>"; };
+		E457B3FC1CF198BD00139C4C /* Classification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Classification.m; sourceTree = "<group>"; };
+		E457B3FD1CF198BD00139C4C /* Shop+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shop+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E457B3FE1CF198BD00139C4C /* Shop+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shop+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E457B3FF1CF198BD00139C4C /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
+		E457B4001CF198BD00139C4C /* Shop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shop.m; sourceTree = "<group>"; };
+		E457B4011CF198BD00139C4C /* Account+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Account+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E457B4021CF198BD00139C4C /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E457B4031CF198BD00139C4C /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
+		E457B4041CF198BD00139C4C /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
+		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
+		E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditClassificationViewController.h; sourceTree = "<group>"; };
+		E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditClassificationViewController.m; sourceTree = "<group>"; };
+		E457B4111CF19E2000139C4C /* AddShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddShopViewController.h; sourceTree = "<group>"; };
+		E457B4121CF19E2000139C4C /* AddShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddShopViewController.m; sourceTree = "<group>"; };
+		E457B4141CF19E2A00139C4C /* EditShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditShopViewController.h; sourceTree = "<group>"; };
+		E457B4151CF19E2A00139C4C /* EditShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditShopViewController.m; sourceTree = "<group>"; };
+		E457B4171CF19E3500139C4C /* AddAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountViewController.h; sourceTree = "<group>"; };
+		E457B4181CF19E3500139C4C /* AddAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountViewController.m; sourceTree = "<group>"; };
+		E457B41A1CF19E4100139C4C /* EditAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountViewController.h; sourceTree = "<group>"; };
+		E457B41B1CF19E4100139C4C /* EditAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountViewController.m; sourceTree = "<group>"; };
+		E457B41D1CF19E5300139C4C /* ClassificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationsTableViewController.h; sourceTree = "<group>"; };
+		E457B41E1CF19E5300139C4C /* ClassificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationsTableViewController.m; sourceTree = "<group>"; };
+		E457B4201CF19E5D00139C4C /* ShopsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopsTableViewController.h; sourceTree = "<group>"; };
+		E457B4211CF19E5D00139C4C /* ShopsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopsTableViewController.m; sourceTree = "<group>"; };
+		E457B4231CF19E6700139C4C /* AccountsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountsTableViewController.h; sourceTree = "<group>"; };
+		E457B4241CF19E6700139C4C /* AccountsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsTableViewController.m; sourceTree = "<group>"; };
+		E457B4271CF1A26A00139C4C /* DaoTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoTemplate.h; sourceTree = "<group>"; };
+		E457B4281CF1A26A00139C4C /* DaoTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoTemplate.m; sourceTree = "<group>"; };
+		E457B42A1CF1A40100139C4C /* AccountBookDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBookDao.h; sourceTree = "<group>"; };
+		E457B42B1CF1A40100139C4C /* AccountBookDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBookDao.m; sourceTree = "<group>"; };
+		E457B42D1CF1A40D00139C4C /* AccountDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDao.h; sourceTree = "<group>"; };
+		E457B42E1CF1A40D00139C4C /* AccountDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDao.m; sourceTree = "<group>"; };
+		E457B4301CF1A41800139C4C /* ShopDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDao.h; sourceTree = "<group>"; };
+		E457B4311CF1A41800139C4C /* ShopDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopDao.m; sourceTree = "<group>"; };
+		E457B4331CF1A42900139C4C /* ClassificationDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassificationDao.h; sourceTree = "<group>"; };
+		E457B4341CF1A42900139C4C /* ClassificationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationDao.m; sourceTree = "<group>"; };
+		E457B4361CF1AA6E00139C4C /* DaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoManager.h; sourceTree = "<group>"; };
+		E457B4371CF1AA6E00139C4C /* DaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoManager.m; sourceTree = "<group>"; };
+		E457B4391CF1AF3200139C4C /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
+		E457B43A1CF1AF3200139C4C /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
 		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
@@ -134,14 +200,32 @@
 		E40C44141CCF25640006D208 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				E40C44151CCF25870006D208 /* AddAccountBookViewController.h */,
-				E40C44161CCF25870006D208 /* AddAccountBookViewController.m */,
 				E40C44181CCF28E90006D208 /* AccountBooksTableViewController.h */,
 				E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */,
-				E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */,
-				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
+				E457B4231CF19E6700139C4C /* AccountsTableViewController.h */,
+				E457B4241CF19E6700139C4C /* AccountsTableViewController.m */,
+				E40C44151CCF25870006D208 /* AddAccountBookViewController.h */,
+				E40C44161CCF25870006D208 /* AddAccountBookViewController.m */,
+				E457B4171CF19E3500139C4C /* AddAccountViewController.h */,
+				E457B4181CF19E3500139C4C /* AddAccountViewController.m */,
+				E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */,
+				E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */,
+				E457B4111CF19E2000139C4C /* AddShopViewController.h */,
+				E457B4121CF19E2000139C4C /* AddShopViewController.m */,
+				E457B41D1CF19E5300139C4C /* ClassificationsTableViewController.h */,
+				E457B41E1CF19E5300139C4C /* ClassificationsTableViewController.m */,
 				E48E2FAA1CE84FA900E727FD /* EditAccountBookViewController.h */,
 				E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */,
+				E457B41A1CF19E4100139C4C /* EditAccountViewController.h */,
+				E457B41B1CF19E4100139C4C /* EditAccountViewController.m */,
+				E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */,
+				E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */,
+				E457B4141CF19E2A00139C4C /* EditShopViewController.h */,
+				E457B4151CF19E2A00139C4C /* EditShopViewController.m */,
+				E457B4201CF19E5D00139C4C /* ShopsTableViewController.h */,
+				E457B4211CF19E5D00139C4C /* ShopsTableViewController.m */,
+				E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */,
+				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -149,11 +233,23 @@
 		E43669031CCCB37400C151F6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E40C440B1CCF1EE30006D208 /* AccountBook+CoreDataProperties.h */,
-				E40C440C1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m */,
+				E457B4031CF198BD00139C4C /* Account.h */,
+				E457B4041CF198BD00139C4C /* Account.m */,
+				E457B4011CF198BD00139C4C /* Account+CoreDataProperties.h */,
+				E457B4021CF198BD00139C4C /* Account+CoreDataProperties.m */,
 				E40C440D1CCF1EE30006D208 /* AccountBook.h */,
 				E40C440E1CCF1EE30006D208 /* AccountBook.m */,
+				E40C440B1CCF1EE30006D208 /* AccountBook+CoreDataProperties.h */,
+				E40C440C1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m */,
+				E457B3FB1CF198BD00139C4C /* Classification.h */,
+				E457B3FC1CF198BD00139C4C /* Classification.m */,
+				E457B3F91CF198BD00139C4C /* Classification+CoreDataProperties.h */,
+				E457B3FA1CF198BD00139C4C /* Classification+CoreDataProperties.m */,
 				E43669041CCCB38600C151F6 /* Model.xcdatamodeld */,
+				E457B3FF1CF198BD00139C4C /* Shop.h */,
+				E457B4001CF198BD00139C4C /* Shop.m */,
+				E457B3FD1CF198BD00139C4C /* Shop+CoreDataProperties.h */,
+				E457B3FE1CF198BD00139C4C /* Shop+CoreDataProperties.m */,
 			);
 			name = Model;
 			path = ..;
@@ -185,6 +281,7 @@
 			isa = PBXGroup;
 			children = (
 				E43669031CCCB37400C151F6 /* Model */,
+				E457B4261CF1A22A00139C4C /* Dao */,
 				E40C44141CCF25640006D208 /* Settings */,
 				E4400DA91CCB659B000DFB1A /* Shared */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
@@ -200,6 +297,8 @@
 				E4400DA41CCB5A55000DFB1A /* SyncManager.m */,
 				E4400DA61CCB6477000DFB1A /* MultipeerManager.h */,
 				E4400DA71CCB6477000DFB1A /* MultipeerManager.m */,
+				E457B4391CF1AF3200139C4C /* AlertTool.h */,
+				E457B43A1CF1AF3200139C4C /* AlertTool.m */,
 			);
 			path = GroupFinance;
 			sourceTree = "<group>";
@@ -239,6 +338,25 @@
 			);
 			name = Shared;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		E457B4261CF1A22A00139C4C /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				E457B42A1CF1A40100139C4C /* AccountBookDao.h */,
+				E457B42B1CF1A40100139C4C /* AccountBookDao.m */,
+				E457B42D1CF1A40D00139C4C /* AccountDao.h */,
+				E457B42E1CF1A40D00139C4C /* AccountDao.m */,
+				E457B4331CF1A42900139C4C /* ClassificationDao.h */,
+				E457B4341CF1A42900139C4C /* ClassificationDao.m */,
+				E457B4361CF1AA6E00139C4C /* DaoManager.h */,
+				E457B4371CF1AA6E00139C4C /* DaoManager.m */,
+				E457B4271CF1A26A00139C4C /* DaoTemplate.h */,
+				E457B4281CF1A26A00139C4C /* DaoTemplate.m */,
+				E457B4301CF1A41800139C4C /* ShopDao.h */,
+				E457B4311CF1A41800139C4C /* ShopDao.m */,
+			);
+			name = Dao;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,19 +542,41 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */,
 				E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */,
 				E4400DA51CCB5A55000DFB1A /* SyncManager.m in Sources */,
 				E4400DAC1CCB65AA000DFB1A /* CDEMultipeerCloudFileSystem.m in Sources */,
+				E457B40A1CF198BD00139C4C /* Account.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
 				E43669061CCCB38600C151F6 /* Model.xcdatamodeld in Sources */,
 				E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */,
 				E40C440F1CCF1EE30006D208 /* AccountBook+CoreDataProperties.m in Sources */,
+				E457B4091CF198BD00139C4C /* Account+CoreDataProperties.m in Sources */,
+				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
+				E457B4061CF198BD00139C4C /* Classification.m in Sources */,
+				E457B4071CF198BD00139C4C /* Shop+CoreDataProperties.m in Sources */,
+				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
+				E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
+				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
+				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
+				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
+				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
 				E40C441A1CCF28E90006D208 /* AccountBooksTableViewController.m in Sources */,
 				E40C44171CCF25870006D208 /* AddAccountBookViewController.m in Sources */,
+				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
+				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
+				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
+				E457B4051CF198BD00139C4C /* Classification+CoreDataProperties.m in Sources */,
+				E457B43B1CF1AF3200139C4C /* AlertTool.m in Sources */,
+				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */,
+				E457B4081CF198BD00139C4C /* Shop.m in Sources */,
+				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E40C44101CCF1EE30006D208 /* AccountBook.m in Sources */,
+				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
+				E457B42C1CF1A40100139C4C /* AccountBookDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -326,7 +326,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="LEa-5p-kqt" kind="push" id="aFX-4u-MeX"/>
+                                            <segue destination="Ith-3F-b1M" kind="push" id="RTM-GC-aEM"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="afU-0h-s7M">
@@ -347,6 +347,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hnr-fv-zxm" kind="push" id="GGV-90-g82"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Z1Q-aS-rav">
                                         <rect key="frame" x="0.0" y="284" width="320" height="44"/>
@@ -366,6 +369,9 @@
                                                 </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="LLy-ZK-VDu" kind="push" id="8ks-c9-nKs"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="zeF-Wx-Je2">
                                         <rect key="frame" x="0.0" y="328" width="320" height="44"/>
@@ -467,35 +473,6 @@
             </objects>
             <point key="canvasLocation" x="-455" y="2261"/>
         </scene>
-        <!--Classifications-->
-        <scene sceneID="n8u-Jp-aW0">
-            <objects>
-                <tableViewController id="LEa-5p-kqt" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="PaR-2R-AV5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vRu-ue-CqU">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vRu-ue-CqU" id="HcD-S5-MEy">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="LEa-5p-kqt" id="nuV-Vi-iTb"/>
-                            <outlet property="delegate" destination="LEa-5p-kqt" id="x3S-uF-1DV"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Classifications" id="z4W-ey-fVO"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NR8-I3-KE7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="57" y="2261"/>
-        </scene>
         <!--Synchronization-->
         <scene sceneID="Qrf-al-f6L">
             <objects>
@@ -567,7 +544,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6X-QT-RoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="57" y="3123"/>
+            <point key="canvasLocation" x="57" y="2261"/>
         </scene>
         <!--Account Books-->
         <scene sceneID="pvr-ov-VSb">
@@ -578,17 +555,39 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="accountBookCellIndentifer" id="TTU-h3-hnk">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="accountBookIndentifer" id="TTU-h3-hnk">
                                 <rect key="frame" x="0.0" y="92" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TTU-h3-hnk" id="3gI-Gl-cWr">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VK-pk-F2X">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VK-pk-F2X">
                                             <rect key="frame" x="16" y="11" width="287" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="usingAccountBookIndentifer" id="r06-j2-yXp">
+                                <rect key="frame" x="0.0" y="136" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r06-j2-yXp" id="Jie-78-5Yv">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wk-f9-zTy">
+                                            <rect key="frame" x="64" y="11" width="239" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Using" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oI-6f-CF0">
+                                            <rect key="frame" x="16" y="11" width="45" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -613,7 +612,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jom-VX-WOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-800" y="4531"/>
+            <point key="canvasLocation" x="812" y="3653"/>
         </scene>
         <!--Edit Account Book-->
         <scene sceneID="lhN-nL-tLJ">
@@ -633,10 +632,20 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-Y5-Man">
+                                <rect key="frame" x="20" y="481" width="280" height="30"/>
+                                <state key="normal" title="Set as using account book"/>
+                                <connections>
+                                    <action selector="setAsUsing:" destination="Axg-af-UpB" eventType="touchUpInside" id="UHX-iE-Ck3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="xdK-Y5-Man" secondAttribute="trailing" id="0oV-FK-jBu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zz9-G0-O6I" secondAttribute="trailing" constant="-20" id="FGg-C8-JH3"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="xdK-Y5-Man" secondAttribute="leading" id="U6Q-rg-gQ5"/>
+                            <constraint firstItem="Q6D-od-spZ" firstAttribute="top" secondItem="xdK-Y5-Man" secondAttribute="bottom" constant="8" id="UbT-lC-wcn"/>
                             <constraint firstItem="Zz9-G0-O6I" firstAttribute="leading" secondItem="s5H-Ki-oRg" secondAttribute="leadingMargin" constant="-20" id="szs-Ri-VYF"/>
                         </constraints>
                     </view>
@@ -653,7 +662,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lu-c6-rgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-349" y="4531"/>
+            <point key="canvasLocation" x="812" y="4381"/>
         </scene>
         <!--Add an Account Book-->
         <scene sceneID="pN9-uK-uuG">
@@ -693,7 +702,422 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfR-1B-HBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-800" y="5225"/>
+            <point key="canvasLocation" x="1250" y="3653"/>
+        </scene>
+        <!--Classifications-->
+        <scene sceneID="iOP-Vy-JTE">
+            <objects>
+                <tableViewController id="Ith-3F-b1M" customClass="ClassificationsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="H5f-Yd-hCT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="classificationIndentifer" id="sVY-w1-Ip9">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sVY-w1-Ip9" id="67F-x0-vfe">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Classification Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Stg-Ie-PPd">
+                                            <rect key="frame" x="16" y="11" width="287" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ith-3F-b1M" id="ktn-10-1Dh"/>
+                            <outlet property="delegate" destination="Ith-3F-b1M" id="ipi-ke-Rpp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Classifications" id="lw1-NG-4t1">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="BEO-l0-o5Y">
+                            <connections>
+                                <segue destination="7AL-q1-I14" kind="push" id="AWE-d8-SIc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="xdd-Th-4G4" kind="push" identifier="editClassificationSegue" id="Pfj-ve-9Dr"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7IS-Gp-4A4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1738" y="3653"/>
+        </scene>
+        <!--Accounts-->
+        <scene sceneID="sU3-M9-mcr">
+            <objects>
+                <tableViewController id="hnr-fv-zxm" customClass="AccountsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cTG-bn-HQv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="accountIndentifer" id="vGT-5y-ZoZ">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vGT-5y-ZoZ" id="ycR-cB-ouD">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrB-ub-g7i">
+                                            <rect key="frame" x="16" y="11" width="287" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hnr-fv-zxm" id="Nm1-mu-rBx"/>
+                            <outlet property="delegate" destination="hnr-fv-zxm" id="whN-67-uv9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Accounts" id="HCF-cd-Ofq">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="BDx-Aq-rvQ">
+                            <connections>
+                                <segue destination="j9J-oD-dUi" kind="push" id="cw9-85-UOC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="fVC-Hp-FHq" kind="push" id="m0B-E5-G8e"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rr0-e9-U1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-902" y="3653"/>
+        </scene>
+        <!--Shops-->
+        <scene sceneID="k68-SF-rFm">
+            <objects>
+                <tableViewController id="LLy-ZK-VDu" customClass="ShopsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="jeq-dl-mzP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="shopIndentifer" id="uje-IW-DOb">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uje-IW-DOb" id="jIg-6L-deP">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Shop Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zfQ-2X-qSz">
+                                            <rect key="frame" x="16" y="11" width="287" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="LLy-ZK-VDu" id="c5k-wo-2AZ"/>
+                            <outlet property="delegate" destination="LLy-ZK-VDu" id="6g6-fB-Wfh"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Shops" id="eCv-qW-J6u">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="URl-Mp-WPZ">
+                            <connections>
+                                <segue destination="l6I-Ug-Ii8" kind="push" id="kE3-Zj-Yt9"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="HqR-y7-uat" kind="push" id="q3F-bo-PBf"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Frs-bF-Z6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-61" y="3653"/>
+        </scene>
+        <!--Add a Shop-->
+        <scene sceneID="F2c-DT-5A3">
+            <objects>
+                <viewController id="l6I-Ug-Ii8" customClass="AddShopViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4iZ-yf-X6D"/>
+                        <viewControllerLayoutGuide type="bottom" id="TKb-97-DHp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oAn-bM-kdE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iav-Ot-hZ7">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Iav-Ot-hZ7" secondAttribute="trailing" constant="-20" id="Lsw-mX-s3c"/>
+                            <constraint firstItem="Iav-Ot-hZ7" firstAttribute="leading" secondItem="oAn-bM-kdE" secondAttribute="leadingMargin" constant="-20" id="NIF-6h-aBM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add a Shop" id="bHm-gd-0I0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="40n-fx-qeg">
+                            <connections>
+                                <action selector="save:" destination="l6I-Ug-Ii8" id="iBP-1s-V3D"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="snameTextField" destination="Iav-Ot-hZ7" id="pXu-bB-0JB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gSH-OQ-k0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="392" y="3653"/>
+        </scene>
+        <!--Add an Account-->
+        <scene sceneID="yB9-RY-Due">
+            <objects>
+                <viewController id="j9J-oD-dUi" customClass="AddAccountViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="F0g-eU-1hj"/>
+                        <viewControllerLayoutGuide type="bottom" id="qfd-SR-30X"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z8r-cp-lvZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dq-1Z-lfu">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3dq-1Z-lfu" firstAttribute="leading" secondItem="z8r-cp-lvZ" secondAttribute="leadingMargin" constant="-20" id="arX-aP-zPy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="3dq-1Z-lfu" secondAttribute="trailing" constant="-20" id="eTT-vr-Oyv"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add an Account" id="1zj-zD-2KU">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="20C-0Q-LjU">
+                            <connections>
+                                <action selector="save:" destination="j9J-oD-dUi" id="Pxq-vb-PDS"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4v-5V-IY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-471" y="3653"/>
+        </scene>
+        <!--Add a Classification-->
+        <scene sceneID="psp-rH-5Zm">
+            <objects>
+                <viewController id="7AL-q1-I14" customClass="AddClassificationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6p4-Q8-b7N"/>
+                        <viewControllerLayoutGuide type="bottom" id="bXA-Z3-c7Q"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tD2-JT-F4D">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TBa-Bs-kMy">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="TBa-Bs-kMy" secondAttribute="trailing" constant="-20" id="D7d-gi-TTf"/>
+                            <constraint firstItem="TBa-Bs-kMy" firstAttribute="leading" secondItem="tD2-JT-F4D" secondAttribute="leadingMargin" constant="-20" id="cbY-6a-RWh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add a Classification" id="9Qa-z6-F3Q">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lKU-9O-rAA">
+                            <connections>
+                                <action selector="save:" destination="7AL-q1-I14" id="rPf-ee-ese"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cnameTextField" destination="TBa-Bs-kMy" id="0Lc-kG-QD9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6jf-U9-Mba" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1312" y="3653"/>
+        </scene>
+        <!--Edit Account Book-->
+        <scene sceneID="go8-hE-7Qs">
+            <objects>
+                <viewController id="ay0-D5-Xca" customClass="EditAccountBookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="K4u-dk-H2Y"/>
+                        <viewControllerLayoutGuide type="bottom" id="f0U-CX-KH3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="I1X-mw-B4S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Book Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMd-dS-dMs">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tMd-dS-dMs" firstAttribute="leading" secondItem="I1X-mw-B4S" secondAttribute="leadingMargin" constant="-20" id="E3q-m6-n9a"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tMd-dS-dMs" secondAttribute="trailing" constant="-20" id="eOQ-Lv-aBc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Account Book" id="XXr-qR-xbK">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3Cx-ea-Uj2">
+                            <connections>
+                                <action selector="saveEidt:" destination="ay0-D5-Xca" id="NVK-Tg-tYp"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="accountBookNameTextField" destination="tMd-dS-dMs" id="YE0-Gh-45U"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N1h-o4-qqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-61" y="4381"/>
+        </scene>
+        <!--Edit Account-->
+        <scene sceneID="6gw-z7-gNa">
+            <objects>
+                <viewController id="fVC-Hp-FHq" customClass="EditAccountViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vn2-OL-bVu"/>
+                        <viewControllerLayoutGuide type="bottom" id="473-Rc-J1v"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="znm-Uw-gmR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGs-yw-htE">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IGs-yw-htE" firstAttribute="leading" secondItem="znm-Uw-gmR" secondAttribute="leadingMargin" constant="-20" id="HzC-fs-zhN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IGs-yw-htE" secondAttribute="trailing" constant="-20" id="srY-iH-wwt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Account" id="8wM-vB-yhM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sAN-Tf-RFx">
+                            <connections>
+                                <action selector="saveEidt:" destination="fVC-Hp-FHq" id="VPK-BM-DA6"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="accountBookNameTextField" destination="IGs-yw-htE" id="cmG-vN-MNE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yt8-HH-cp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-902" y="4381"/>
+        </scene>
+        <!--Edit Shop-->
+        <scene sceneID="j0H-Ve-Yey">
+            <objects>
+                <viewController id="HqR-y7-uat" customClass="EditAccountBookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ENP-Br-Xi4"/>
+                        <viewControllerLayoutGuide type="bottom" id="XDr-Z9-x8H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H6A-lE-0dj">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3c-UO-HPg">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="T3c-UO-HPg" firstAttribute="leading" secondItem="H6A-lE-0dj" secondAttribute="leadingMargin" constant="-20" id="0gc-hU-PBu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T3c-UO-HPg" secondAttribute="trailing" constant="-20" id="wHI-Ut-NuN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Shop" id="bir-ON-MpY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4sg-dC-pMZ">
+                            <connections>
+                                <action selector="saveEidt:" destination="HqR-y7-uat" id="a98-RJ-TYf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="accountBookNameTextField" destination="T3c-UO-HPg" id="aDR-hl-eB0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uto-zg-WWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-61" y="4381"/>
+        </scene>
+        <!--Edit Classification-->
+        <scene sceneID="8PC-gb-kMV">
+            <objects>
+                <viewController id="xdd-Th-4G4" customClass="EditClassificationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RsC-fJ-cnz"/>
+                        <viewControllerLayoutGuide type="bottom" id="7mO-fB-5Pr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="knP-iF-BOX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Classification Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BBi-vo-03J">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="BBi-vo-03J" secondAttribute="trailing" constant="-20" id="GIP-CC-Hhv"/>
+                            <constraint firstItem="BBi-vo-03J" firstAttribute="leading" secondItem="knP-iF-BOX" secondAttribute="leadingMargin" constant="-20" id="xzU-G1-DZW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Classification" id="g8L-7K-P8n">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="fPS-9m-QjH">
+                            <connections>
+                                <action selector="save:" destination="xdd-Th-4G4" id="fmC-Nj-2vO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="cnameTextField" destination="BBi-vo-03J" id="uBT-vK-TYx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Lzm-EC-iCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1738" y="4381"/>
         </scene>
     </scenes>
     <resources>

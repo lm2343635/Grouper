@@ -19,6 +19,7 @@
     [super awakeFromInsert];
     if(!self.uniqueIdentifier) {
         self.uniqueIdentifier=[[NSUUID UUID] UUIDString];
+        self.using=[NSNumber numberWithBool:NO];
     }
 }
 
