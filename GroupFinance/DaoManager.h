@@ -11,6 +11,8 @@
 #import "ClassificationDao.h"
 #import "AccountDao.h"
 #import "ShopDao.h"
+#import "RecordDao.h"
+#import "PhotoDao.h"
 
 @interface DaoManager : NSObject
 
@@ -20,6 +22,8 @@
 @property (strong,nonatomic) AccountDao *accountDao;
 @property (strong,nonatomic) ClassificationDao *classificationDao;
 @property (strong,nonatomic) ShopDao *shopDao;
+@property (strong,nonatomic) RecordDao *recordDao;
+@property (strong,nonatomic) PhotoDao *photoDao;
 
 -(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
 

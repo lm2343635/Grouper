@@ -1,5 +1,5 @@
 //
-//  Classification+CoreDataProperties.m
+//  Photo+CoreDataProperties.m
 //  GroupFinance
 //
 //  Created by lidaye on 5/29/16.
@@ -9,13 +9,12 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Classification+CoreDataProperties.h"
+#import "Photo+CoreDataProperties.h"
 
-@implementation Classification (CoreDataProperties)
+@implementation Photo (CoreDataProperties)
 
-@dynamic cin;
-@dynamic cname;
-@dynamic cout;
+@dynamic data;
+@dynamic createDate;
 @dynamic uniqueIdentifier;
 @dynamic accountBook;
 

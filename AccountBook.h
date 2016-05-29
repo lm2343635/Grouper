@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @class Classification;
 @class Account;
 @class Shop;
+@class Record;
+@class Photo;
 
 @interface AccountBook : NSManagedObject
 

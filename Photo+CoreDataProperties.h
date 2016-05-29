@@ -1,5 +1,5 @@
 //
-//  Account+CoreDataProperties.h
+//  Photo+CoreDataProperties.h
 //  GroupFinance
 //
 //  Created by lidaye on 5/29/16.
@@ -9,15 +9,14 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Account.h"
+#import "Photo.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Account (CoreDataProperties)
+@interface Photo (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSNumber *ain;
-@property (nullable, nonatomic, retain) NSString *aname;
-@property (nullable, nonatomic, retain) NSNumber *aout;
+@property (nullable, nonatomic, retain) NSData *data;
+@property (nullable, nonatomic, retain) NSDate *createDate;
 @property (nullable, nonatomic, retain) NSString *uniqueIdentifier;
 @property (nullable, nonatomic, retain) AccountBook *accountBook;
 

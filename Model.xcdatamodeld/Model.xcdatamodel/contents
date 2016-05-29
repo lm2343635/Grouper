@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15E65" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="ain" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="aname" optional="YES" attributeType="String" syncable="YES"/>
@@ -13,6 +13,8 @@
         <attribute name="using" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBook" inverseEntity="Account" syncable="YES"/>
         <relationship name="classifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classification" inverseName="accountBook" inverseEntity="Classification" syncable="YES"/>
+        <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="accountBook" inverseEntity="Photo" syncable="YES"/>
+        <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="accountBook" inverseEntity="Record" syncable="YES"/>
         <relationship name="shops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Shop" inverseName="accountBook" inverseEntity="Shop" syncable="YES"/>
     </entity>
     <entity name="Classification" representedClassName="Classification" syncable="YES">
@@ -22,6 +24,23 @@
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="classifications" inverseEntity="AccountBook" syncable="YES"/>
     </entity>
+    <entity name="Photo" representedClassName="Photo" syncable="YES">
+        <attribute name="createDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="photos" inverseEntity="AccountBook" syncable="YES"/>
+    </entity>
+    <entity name="Record" representedClassName="Record" syncable="YES">
+        <attribute name="money" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
+        <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="records" inverseEntity="AccountBook" syncable="YES"/>
+        <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" syncable="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" syncable="YES"/>
+        <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" syncable="YES"/>
+    </entity>
     <entity name="Shop" representedClassName="Shop" syncable="YES">
         <attribute name="sin" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="sname" optional="YES" attributeType="String" syncable="YES"/>
@@ -30,9 +49,11 @@
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="shops" inverseEntity="AccountBook" syncable="YES"/>
     </entity>
     <elements>
-        <element name="AccountBook" positionX="-12996" positionY="-4696" width="128" height="133"/>
-        <element name="Classification" positionX="-13275" positionY="-4707" width="128" height="118"/>
-        <element name="Shop" positionX="-13239" positionY="-4383" width="128" height="118"/>
-        <element name="Account" positionX="-13113" positionY="-4482" width="128" height="120"/>
+        <element name="Account" positionX="-13439" positionY="-4404" width="128" height="120"/>
+        <element name="AccountBook" positionX="-12755" positionY="-4824" width="128" height="163"/>
+        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="118"/>
+        <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="118"/>
+        <element name="Record" positionX="-12924" positionY="-4608" width="128" height="180"/>
+        <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="105"/>
     </elements>
 </model>

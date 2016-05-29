@@ -22,6 +22,8 @@
         _accountDao=[[AccountDao alloc] initWithManagedObjectContext:_context];
         _classificationDao=[[ClassificationDao alloc] initWithManagedObjectContext:_context];
         _shopDao=[[ShopDao alloc] initWithManagedObjectContext:_context];
+        _recordDao=[[RecordDao alloc] initWithManagedObjectContext:_context];
+        _photoDao=[[PhotoDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
 }
@@ -30,7 +32,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    return [self.accountBookDao.context existingObjectWithID:objectID error:nil];
+    return [_context existingObjectWithID:objectID error:nil];
 }
 
 - (void)saveContext{

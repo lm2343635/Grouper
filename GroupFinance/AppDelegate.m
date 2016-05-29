@@ -126,6 +126,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSURL *storeURL=[self.storeDirectoryURL URLByAppendingPathComponent:@"store.sqlite"];
+    NSLog(@"Database file stores at %@", storeURL);
     return storeURL;
 }
 
