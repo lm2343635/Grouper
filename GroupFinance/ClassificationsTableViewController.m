@@ -16,8 +16,8 @@
 @implementation ClassificationsTableViewController {
     DaoManager *dao;
     AccountBook *usingAccountBook;
-    NSMutableArray *classificatios;
-    Classification *seletedClassification;
+    NSMutableArray *classifications;
+    Classification *selectedClassification;
 }
 
 - (void)viewDidLoad {
@@ -33,7 +33,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    classificatios=[NSMutableArray arrayWithArray:[dao.classificationDao findWithAccountBook:usingAccountBook]];
+    classifications=[NSMutableArray arrayWithArray:[dao.classificationDao findWithAccountBook:usingAccountBook]];
     [self.tableView reloadData];
 }
 
@@ -42,14 +42,14 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return classificatios.count;
+    return classifications.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Classification *classification=[classificatios objectAtIndex:indexPath.row];
+    Classification *classification=[classifications objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"classificationIndentifer"
                                                                 forIndexPath:indexPath];
     UILabel *cnameLabel=(UILabel *)[cell viewWithTag:0];
@@ -61,21 +61,32 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    seletedClassification=[classificatios objectAtIndex:indexPath.row];
+    selectedClassification=[classifications objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"editClassificationSegue" sender:self];
 }
 
-#pragma mark - Navigation
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if(editingStyle==UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:[classifications objectAtIndex:indexPath.row]];
+        [dao saveContext];
+        [classifications removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 
+#pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if([segue.identifier isEqualToString:@"editClassificationSegue"]) {
         UIViewController *controller=[segue destinationViewController];
-        [controller setValue:seletedClassification forKey:@"classification"];
+        [controller setValue:selectedClassification forKey:@"classification"];
     }
 }
-
 
 @end

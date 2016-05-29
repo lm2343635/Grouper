@@ -32,6 +32,7 @@
     [_cnameTextField setText:_classification.cname];
 }
 
+#pragma mark - Action
 - (IBAction)save:(id)sender {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -45,4 +46,5 @@
     [dao saveContext];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddShopViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITextField *snameTextField;
+
+- (IBAction)save:(id)sender;
 
 @end

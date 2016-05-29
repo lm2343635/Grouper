@@ -7,31 +7,44 @@
 //
 
 #import "EditAccountViewController.h"
+#import "AlertTool.h"
 
 @interface EditAccountViewController ()
 
 @end
 
-@implementation EditAccountViewController
+@implementation EditAccountViewController {
+    DaoManager *dao;
+}
 
 - (void)viewDidLoad {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    dao=[[DaoManager alloc] init];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [_anameTextField setText:_account.aname];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Action
+- (IBAction)save:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSString *aname=_anameTextField.text;
+    if([aname isEqualToString:@""]) {
+        [AlertTool showAlert:@"Account name is empty!"];
+        return;
+    }
+    _account.aname=aname;
+    [dao saveContext];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-*/
 
 @end

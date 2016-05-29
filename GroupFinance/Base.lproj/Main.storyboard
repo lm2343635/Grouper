@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ptS-aK-aUC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="ptS-aK-aUC">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -789,7 +789,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="fVC-Hp-FHq" kind="push" id="m0B-E5-G8e"/>
+                        <segue destination="fVC-Hp-FHq" kind="push" identifier="editAccountSegue" id="m0B-E5-G8e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rr0-e9-U1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -835,7 +835,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="HqR-y7-uat" kind="push" id="q3F-bo-PBf"/>
+                        <segue destination="8A4-wV-3Hb" kind="push" identifier="editShopSegue" id="XiX-Di-u9q"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frs-bF-Z6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -870,7 +870,7 @@
                     <navigationItem key="navigationItem" title="Add a Shop" id="bHm-gd-0I0">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="40n-fx-qeg">
                             <connections>
-                                <action selector="save:" destination="l6I-Ug-Ii8" id="iBP-1s-V3D"/>
+                                <action selector="save:" destination="l6I-Ug-Ii8" id="lt6-Pz-8qT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -910,10 +910,13 @@
                     <navigationItem key="navigationItem" title="Add an Account" id="1zj-zD-2KU">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="20C-0Q-LjU">
                             <connections>
-                                <action selector="save:" destination="j9J-oD-dUi" id="Pxq-vb-PDS"/>
+                                <action selector="save:" destination="j9J-oD-dUi" id="LmA-ua-Gsz"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="anameTextField" destination="3dq-1Z-lfu" id="8cH-Y9-mG2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4v-5V-IY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -959,46 +962,6 @@
             </objects>
             <point key="canvasLocation" x="-1312" y="3653"/>
         </scene>
-        <!--Edit Account Book-->
-        <scene sceneID="go8-hE-7Qs">
-            <objects>
-                <viewController id="ay0-D5-Xca" customClass="EditAccountBookViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="K4u-dk-H2Y"/>
-                        <viewControllerLayoutGuide type="bottom" id="f0U-CX-KH3"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="I1X-mw-B4S">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Book Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tMd-dS-dMs">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="tMd-dS-dMs" firstAttribute="leading" secondItem="I1X-mw-B4S" secondAttribute="leadingMargin" constant="-20" id="E3q-m6-n9a"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="tMd-dS-dMs" secondAttribute="trailing" constant="-20" id="eOQ-Lv-aBc"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Account Book" id="XXr-qR-xbK">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="3Cx-ea-Uj2">
-                            <connections>
-                                <action selector="saveEidt:" destination="ay0-D5-Xca" id="NVK-Tg-tYp"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="accountBookNameTextField" destination="tMd-dS-dMs" id="YE0-Gh-45U"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N1h-o4-qqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-61" y="4381"/>
-        </scene>
         <!--Edit Account-->
         <scene sceneID="6gw-z7-gNa">
             <objects>
@@ -1027,57 +990,17 @@
                     <navigationItem key="navigationItem" title="Edit Account" id="8wM-vB-yhM">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="sAN-Tf-RFx">
                             <connections>
-                                <action selector="saveEidt:" destination="fVC-Hp-FHq" id="VPK-BM-DA6"/>
+                                <action selector="save:" destination="fVC-Hp-FHq" id="pH7-eR-1of"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="accountBookNameTextField" destination="IGs-yw-htE" id="cmG-vN-MNE"/>
+                        <outlet property="anameTextField" destination="IGs-yw-htE" id="TI0-Ko-XKM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yt8-HH-cp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-902" y="4381"/>
-        </scene>
-        <!--Edit Shop-->
-        <scene sceneID="j0H-Ve-Yey">
-            <objects>
-                <viewController id="HqR-y7-uat" customClass="EditAccountBookViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="ENP-Br-Xi4"/>
-                        <viewControllerLayoutGuide type="bottom" id="XDr-Z9-x8H"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="H6A-lE-0dj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T3c-UO-HPg">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="T3c-UO-HPg" firstAttribute="leading" secondItem="H6A-lE-0dj" secondAttribute="leadingMargin" constant="-20" id="0gc-hU-PBu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="T3c-UO-HPg" secondAttribute="trailing" constant="-20" id="wHI-Ut-NuN"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Shop" id="bir-ON-MpY">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="4sg-dC-pMZ">
-                            <connections>
-                                <action selector="saveEidt:" destination="HqR-y7-uat" id="a98-RJ-TYf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="accountBookNameTextField" destination="T3c-UO-HPg" id="aDR-hl-eB0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uto-zg-WWn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-61" y="4381"/>
         </scene>
         <!--Edit Classification-->
         <scene sceneID="8PC-gb-kMV">
@@ -1118,6 +1041,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lzm-EC-iCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1738" y="4381"/>
+        </scene>
+        <!--Edit Shop-->
+        <scene sceneID="sHk-Fr-iuE">
+            <objects>
+                <viewController id="8A4-wV-3Hb" customClass="EditShopViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jf3-ou-JCB"/>
+                        <viewControllerLayoutGuide type="bottom" id="xaf-ri-gHH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ugG-LH-HON">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zXv-et-Tcs">
+                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
+                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zXv-et-Tcs" firstAttribute="leading" secondItem="ugG-LH-HON" secondAttribute="leadingMargin" constant="-20" id="Nv8-yK-RSt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zXv-et-Tcs" secondAttribute="trailing" constant="-20" id="hbB-lz-kt5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Edit Shop" id="KyG-px-eRu">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="mAz-kf-FgD">
+                            <connections>
+                                <action selector="save:" destination="8A4-wV-3Hb" id="PY2-vZ-STG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="snameTextField" destination="zXv-et-Tcs" id="Gqo-Ij-9Am"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EpR-Z6-TGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-61" y="4381"/>
         </scene>
     </scenes>
     <resources>

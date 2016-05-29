@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DaoManager.h"
 
 @interface EditShopViewController : UIViewController
+
+@property (nonatomic, strong) Shop *shop;
+
+@property (weak, nonatomic) IBOutlet UITextField *snameTextField;
+
+- (IBAction)save:(id)sender;
 
 @end

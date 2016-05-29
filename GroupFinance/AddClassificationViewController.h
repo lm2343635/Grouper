@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface AddClassificationViewController : UIViewController
+
 @property (weak, nonatomic) IBOutlet UITextField *cnameTextField;
+
 - (IBAction)save:(id)sender;
 
 @end

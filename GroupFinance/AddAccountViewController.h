@@ -10,4 +10,8 @@
 
 @interface AddAccountViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextField *anameTextField;
+
+- (IBAction)save:(id)sender;
+
 @end

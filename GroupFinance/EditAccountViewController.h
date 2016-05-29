@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DaoManager.h"
 
 @interface EditAccountViewController : UIViewController
+
+@property (nonatomic, strong) Account *account;
+
+@property (weak, nonatomic) IBOutlet UITextField *anameTextField;
+
+- (IBAction)save:(id)sender;
 
 @end
