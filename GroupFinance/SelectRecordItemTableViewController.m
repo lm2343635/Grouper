@@ -7,8 +7,7 @@
 //
 
 #import "SelectRecordItemTableViewController.h"
-#import "AddRecordViewController.h"
-
+#import "DaoManager.h"
 
 @interface SelectRecordItemTableViewController ()
 
@@ -78,8 +77,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    AddRecordViewController *controller=[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
-    controller.item=[items objectAtIndex:indexPath.row];
+    UIViewController *controller=[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-2];
+    [controller setValue:[items objectAtIndex:indexPath.row] forKey:@"item"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

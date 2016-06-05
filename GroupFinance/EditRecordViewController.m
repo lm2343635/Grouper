@@ -1,27 +1,25 @@
 //
-//  AddRecordViewController.m
+//  EditRecordViewController.m
 //  GroupFinance
 //
-//  Created by lidaye on 5/29/16.
+//  Created by lidaye on 6/5/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "AddRecordViewController.h"
+#import "EditRecordViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
 #import "DateTool.h"
 
-@interface AddRecordViewController ()
+@interface EditRecordViewController ()
 
 @end
 
-@implementation AddRecordViewController {
+@implementation EditRecordViewController {
     DaoManager *dao;
     NSUInteger selectItemType;
     UIImagePickerController *imagePickerController;
-    BOOL saveRecordType;
-    AccountBook *usingAccountBook;
 }
 
 - (void)viewDidLoad {
@@ -30,11 +28,25 @@
     }
     [super viewDidLoad];
     dao=[[DaoManager alloc] init];
-    usingAccountBook=[dao.accountBookDao getUsingAccountBook];
     imagePickerController=[[UIImagePickerController alloc] init];
     imagePickerController.delegate=self;
-    saveRecordType=NO;
-    [self setTime:[[NSDate alloc] init]];
+    if(_record.photo!=nil) {
+        [_takePhotoButton setImage:[UIImage imageWithData:_record.photo.data]
+                          forState:UIControlStateNormal];
+    }
+    [_moneyTextFeild setText:[NSString stringWithFormat:@"%@", _record.money]];
+    [_saveTypeSwitch setOn:_record.money.intValue>=0];
+    [_saveTypeLabel setText:_record.money.intValue>=0? @"Save as Earn": @"Save as Spend"];
+    [_selectClassificationButton setTitle:_record.classification.cname
+                                 forState:UIControlStateNormal];
+    [_selectAccountButton setTitle:_record.account.aname
+                          forState:UIControlStateNormal];
+    [_selectShopButton setTitle:_record.shop.sname
+                       forState:UIControlStateNormal];
+    [_selectTimeButton setTitle:[DateTool formateDate:_record.time withFormat:DateFormatYearMonthDayHourMinutes]
+                       forState:UIControlStateNormal];
+    [_remarkTextView setText:_record.remark];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -87,51 +99,44 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if([segue.identifier isEqualToString:@"selectRecordItemSegue"]) {
+    if([segue.identifier isEqualToString:@"editRecordItemSegue"]) {
         UIViewController *controller=[segue destinationViewController];
         [controller setValue:[NSNumber numberWithInteger:selectItemType] forKey:@"selectItemType"];
     }
 }
 
 #pragma mark - Action
-- (IBAction)save:(id)sender {
+-(void)save:(id)sender {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_selectedAccount==nil||
-       _selectedClassification==nil||
-       _selectedShop==nil||
-       [_moneyTextFeild.text isEqualToString:@""]) {
-        [AlertTool showAlert:@"Please select classification, account and shop before you save the record."];
-        return;
-    }
-    int moneyInt=(int)_moneyTextFeild.text.doubleValue;
-    NSNumber *money=[NSNumber numberWithInt: saveRecordType==YES ? moneyInt: -moneyInt];
-    Photo *photo=nil;
-    //如果用户拍过照就要新建Photo对象
-    if(_photoImage!=nil) {
-        NSManagedObjectID *pid=[dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)
-                                            inAccountBook:usingAccountBook];
-        if(DEBUG) {
-            NSLog(@"Create photo(pid=%@) in accountBook %@", pid, usingAccountBook.abname);
+    if(_photoImage) {
+        if(_record.photo==nil) {
+            NSManagedObjectID *pid=[dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)
+                                                inAccountBook:[dao.accountBookDao getUsingAccountBook]];
+            _record.photo=(Photo *)[dao getObjectById:pid];
+        } else {
+            _record.photo.data=UIImageJPEGRepresentation(_photoImage, 1.0);
         }
-        photo=(Photo *)[dao getObjectById:pid];
     }
-    
-    NSManagedObjectID *rid=[dao.recordDao saveWithMoney:money
-                                              andRemark:_remarkTextView.text
-                                                andTime:_selectedTime
-                                      andClassification:_selectedClassification
-                                             andAccount:_selectedAccount
-                                                andShop:_selectedShop
-                                               andPhoto:photo
-                                          inAccountBook:usingAccountBook];
-    if(DEBUG) {
-        NSLog(@"Create record(rid=%@) in accountBook %@", rid, usingAccountBook.abname);
+    if(![_remarkTextView.text isEqualToString:@""]) {
+        _record.remark=_remarkTextView.text;
     }
-    if(rid) {
-        [self.navigationController popViewControllerAnimated:YES];
+    _record.money=[NSNumber numberWithInt:_moneyTextFeild.text.intValue];
+    if(_selectedClassification) {
+        _record.classification=_selectedClassification;
     }
+    if(_selectedAccount) {
+        _record.account=_selectedAccount;
+    }
+    if(_selectedShop) {
+        _record.shop=_selectedShop;
+    }
+    if(_selectedTime) {
+        _record.time=_selectedTime;
+    }
+    [dao saveContext];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)selectClassification:(id)sender {
@@ -140,7 +145,7 @@
     }
     _item=nil;
     selectItemType=SELECT_ITEM_TYPE_CLASSIFICATION;
-    [self performSegueWithIdentifier:@"selectRecordItemSegue" sender:self];
+    [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
 
 - (IBAction)selectAccount:(id)sender {
@@ -149,7 +154,7 @@
     }
     _item=nil;
     selectItemType=SELECT_ITEM_TYPE_ACCOUNT;
-    [self performSegueWithIdentifier:@"selectRecordItemSegue" sender:self];
+    [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
 
 - (IBAction)selectShop:(id)sender {
@@ -158,7 +163,7 @@
     }
     _item=nil;
     selectItemType=SELECT_ITEM_TYPE_SHOP;
-    [self performSegueWithIdentifier:@"selectRecordItemSegue" sender:self];
+    [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
 
 - (IBAction)selectTime:(id)sender {
@@ -170,6 +175,7 @@
         [self setTime:(NSDate *)object];
     }];
 }
+
 
 - (IBAction)takePhoto:(id)sender {
     if(DEBUG) {
@@ -215,17 +221,18 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (IBAction)changeSaveType:(id)sender {
+- (void)changeSaveType:(id)sender {
     if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     if([sender isOn]) {
-        saveRecordType=YES;
+        _record.money=[NSNumber numberWithInt:abs(_record.money.intValue)];
         _saveTypeLabel.text=@"Save as Earn";
     } else {
-        saveRecordType=NO;
+        _record.money=[NSNumber numberWithInt:-abs(_record.money.intValue)];
         _saveTypeLabel.text=@"Save as Spend";
     }
+    [_moneyTextFeild setText:[NSString stringWithFormat:@"%@", _record.money]];
 }
 
 #pragma mark - Service

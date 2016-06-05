@@ -19,6 +19,7 @@
     DaoManager *dao;
     NSMutableArray *records;
     AccountBook *usingAccountBook;
+    Record *selectedRecord;
 }
 
 - (void)viewDidLoad {
@@ -70,7 +71,32 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    selectedRecord=[records objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"recordSegue" sender:self];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if(editingStyle==UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:[records objectAtIndex:indexPath.row]];
+        [dao saveContext];
+        [records removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                         withRowAnimation:YES];
+    }
+}
+
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if([segue.identifier isEqualToString:@"recordSegue"]) {
+        UIViewController *controller=[segue destinationViewController];
+        [controller setValue:selectedRecord forKey:@"record"];
+    }
 }
 
 @end
