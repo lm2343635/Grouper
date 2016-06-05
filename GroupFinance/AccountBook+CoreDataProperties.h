@@ -2,7 +2,7 @@
 //  AccountBook+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 5/29/16.
+//  Created by lidaye on 6/5/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -20,9 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *using;
 @property (nullable, nonatomic, retain) NSSet<Account *> *accounts;
 @property (nullable, nonatomic, retain) NSSet<Classification *> *classifications;
-@property (nullable, nonatomic, retain) NSSet<Shop *> *shops;
 @property (nullable, nonatomic, retain) NSSet<Photo *> *photos;
 @property (nullable, nonatomic, retain) NSSet<Record *> *records;
+@property (nullable, nonatomic, retain) NSSet<Shop *> *shops;
+@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *templates;
 
 @end
 
@@ -38,11 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addClassifications:(NSSet<Classification *> *)values;
 - (void)removeClassifications:(NSSet<Classification *> *)values;
 
-- (void)addShopsObject:(Shop *)value;
-- (void)removeShopsObject:(Shop *)value;
-- (void)addShops:(NSSet<Shop *> *)values;
-- (void)removeShops:(NSSet<Shop *> *)values;
-
 - (void)addPhotosObject:(Photo *)value;
 - (void)removePhotosObject:(Photo *)value;
 - (void)addPhotos:(NSSet<Photo *> *)values;
@@ -52,6 +48,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeRecordsObject:(Record *)value;
 - (void)addRecords:(NSSet<Record *> *)values;
 - (void)removeRecords:(NSSet<Record *> *)values;
+
+- (void)addShopsObject:(Shop *)value;
+- (void)removeShopsObject:(Shop *)value;
+- (void)addShops:(NSSet<Shop *> *)values;
+- (void)removeShops:(NSSet<Shop *> *)values;
+
+- (void)addTemplatesObject:(NSManagedObject *)value;
+- (void)removeTemplatesObject:(NSManagedObject *)value;
+- (void)addTemplates:(NSSet<NSManagedObject *> *)values;
+- (void)removeTemplates:(NSSet<NSManagedObject *> *)values;
 
 @end
 

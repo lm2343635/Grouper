@@ -13,11 +13,9 @@
 #define TakePhotoActionSheetCameraIndex 0
 #define TakePhotoActionSheetPhtotLibraryIndex 1
 
-#define SELECT_ITEM_TYPE_CLASSIFICATION 1
-#define SELECT_ITEM_TYPE_ACCOUNT 2
-#define SELECT_ITEM_TYPE_SHOP 3
+#define KeyboardHeight 290.0
 
-@interface AddRecordViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface AddRecordViewController : UIViewController <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) NSObject *item;
 @property (strong, nonatomic) Classification *selectedClassification;
@@ -25,6 +23,7 @@
 @property (strong, nonatomic) Shop *selectedShop;
 @property (strong, nonatomic) NSDate *selectedTime;
 @property (strong, nonatomic) UIImage *photoImage;
+@property (strong, nonatomic) Template *template;
 
 @property (weak, nonatomic) IBOutlet DateSelectorView *timeSelectorView;
 
@@ -37,6 +36,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *selectShopButton;
 @property (weak, nonatomic) IBOutlet UIButton *selectTimeButton;
 @property (weak, nonatomic) IBOutlet UITextView *remarkTextView;
+@property (weak, nonatomic) IBOutlet UIButton *remarkOK;
 
 - (IBAction)save:(id)sender;
 - (IBAction)selectClassification:(id)sender;
@@ -45,5 +45,7 @@
 - (IBAction)selectTime:(id)sender;
 - (IBAction)takePhoto:(id)sender;
 - (IBAction)changeSaveType:(id)sender;
+- (IBAction)finishEditRemark:(id)sender;
+- (IBAction)saveAsTemplate:(id)sender;
 
 @end

@@ -8,6 +8,7 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "EditRecordViewController.h"
+#import "SelectRecordItemTableViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
 #import "DateTool.h"
@@ -77,6 +78,33 @@
     }
 }
 
+#pragma mark - UITextViewDelegate
+-(void)textViewDidBeginEditing:(UITextView *)textView {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
+    }
+    if(textView==_remarkTextView) {
+        CGRect frame = textView.frame;
+        int offset=frame.origin.y+textView.frame.size.height-(self.view.frame.size.height-KeyboardHeight);
+        NSTimeInterval animationDuration = 0.30f;
+        [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+        if(offset > 0) {
+            self.view.frame=CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
+        }
+        [UIView commitAnimations];
+        _remarkOK.hidden=NO;
+    }
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
+    }
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+}
+
 #pragma mark - UIImagePickerControllerDelegate
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     if(DEBUG) {
@@ -99,9 +127,11 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    UIViewController *controller=[segue destinationViewController];
     if([segue.identifier isEqualToString:@"editRecordItemSegue"]) {
-        UIViewController *controller=[segue destinationViewController];
         [controller setValue:[NSNumber numberWithInteger:selectItemType] forKey:@"selectItemType"];
+    } else if([segue.identifier isEqualToString:@"showPhotoSegue"]) {
+        [controller setValue:[UIImage imageWithData:_record.photo.data] forKey:@"image"];
     }
 }
 
@@ -218,6 +248,15 @@
     [alertController addAction:cancelAction];
     [alertController addAction:cameraAction];
     [alertController addAction:libraryAction];
+    if(_record.photo) {
+        UIAlertAction *showAction=[UIAlertAction actionWithTitle:@"Show"
+                                                           style:UIAlertActionStyleDestructive
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             [self performSegueWithIdentifier:@"showPhotoSegue" sender:self];
+                                                         }];
+        
+        [alertController addAction:showAction];
+    }
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
@@ -233,6 +272,14 @@
         _saveTypeLabel.text=@"Save as Spend";
     }
     [_moneyTextFeild setText:[NSString stringWithFormat:@"%@", _record.money]];
+}
+
+- (IBAction)finishEditRemark:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    [_remarkTextView resignFirstResponder];
+    _remarkOK.hidden=YES;
 }
 
 #pragma mark - Service

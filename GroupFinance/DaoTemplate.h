@@ -14,6 +14,7 @@
 #import "Account.h"
 #import "Record.h"
 #import "Photo.h"
+#import "Template.h"
 
 @interface DaoTemplate : NSObject
 

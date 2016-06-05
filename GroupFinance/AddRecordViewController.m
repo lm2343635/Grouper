@@ -8,6 +8,7 @@
 
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AddRecordViewController.h"
+#import "SelectRecordItemTableViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
 #import "DateTool.h"
@@ -41,28 +42,68 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_item==nil) {
-        return;
+    if(_item!=nil) {
+        switch (selectItemType) {
+            case SELECT_ITEM_TYPE_CLASSIFICATION:
+                _selectedClassification=(Classification *)_item;
+                [_selectClassificationButton setTitle:_selectedClassification.cname
+                                             forState:UIControlStateNormal];
+                break;
+            case SELECT_ITEM_TYPE_ACCOUNT:
+                _selectedAccount=(Account *)_item;
+                [_selectAccountButton setTitle:_selectedAccount.aname
+                                      forState:UIControlStateNormal];
+                break;
+            case SELECT_ITEM_TYPE_SHOP:
+                _selectedShop=(Shop *)_item;
+                [_selectShopButton setTitle:_selectedShop.sname
+                                   forState:UIControlStateNormal];
+                break;
+            default:
+                break;
+        }
     }
-    switch (selectItemType) {
-        case SELECT_ITEM_TYPE_CLASSIFICATION:
-            _selectedClassification=(Classification *)_item;
-            [_selectClassificationButton setTitle:_selectedClassification.cname
-                                         forState:UIControlStateNormal];
-            break;
-        case SELECT_ITEM_TYPE_ACCOUNT:
-            _selectedAccount=(Account *)_item;
-            [_selectAccountButton setTitle:_selectedAccount.aname
-                                  forState:UIControlStateNormal];
-            break;
-        case SELECT_ITEM_TYPE_SHOP:
-            _selectedShop=(Shop *)_item;
-            [_selectShopButton setTitle:_selectedShop.sname
-                               forState:UIControlStateNormal];
-            break;
-        default:
-            break;
+    if(_template!=nil) {
+        saveRecordType=_template.saveRecordType.boolValue;
+        [_saveTypeSwitch setOn:saveRecordType];
+        _saveTypeLabel.text=saveRecordType? @"Save as Earn": @"Save as Spend";
+        _selectedClassification=_template.classification;
+        [_selectClassificationButton setTitle:_selectedClassification.cname
+                                     forState:UIControlStateNormal];
+        _selectedAccount=_template.account;
+        [_selectAccountButton setTitle:_selectedAccount.aname
+                              forState:UIControlStateNormal];
+        _selectedShop=_template.shop;
+        [_selectShopButton setTitle:_selectedShop.sname
+                           forState:UIControlStateNormal];
     }
+}
+
+#pragma mark - UITextViewDelegate
+-(void)textViewDidBeginEditing:(UITextView *)textView {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
+    }
+    if(textView==_remarkTextView) {
+        CGRect frame = textView.frame;
+        int offset=frame.origin.y+textView.frame.size.height-(self.view.frame.size.height-KeyboardHeight);
+        NSTimeInterval animationDuration = 0.30f;
+        [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+        if(offset > 0) {
+            self.view.frame=CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
+        }
+        [UIView commitAnimations];
+        _remarkOK.hidden=NO;
+    }
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
+    }
+    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -87,9 +128,14 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    UIViewController *controller=[segue destinationViewController];
     if([segue.identifier isEqualToString:@"selectRecordItemSegue"]) {
-        UIViewController *controller=[segue destinationViewController];
         [controller setValue:[NSNumber numberWithInteger:selectItemType] forKey:@"selectItemType"];
+    } else if ([segue.identifier isEqualToString:@"saveAsTemplateSegue"]) {
+        [controller setValue:[NSNumber numberWithBool:saveRecordType] forKey:@"recordType"];
+        [controller setValue:_selectedClassification forKey:@"selectedClassification"];
+        [controller setValue:_selectedAccount forKey:@"selectedAccount"];
+        [controller setValue:_selectedShop forKey:@"selectedShop"];
     }
 }
 
@@ -102,7 +148,7 @@
        _selectedClassification==nil||
        _selectedShop==nil||
        [_moneyTextFeild.text isEqualToString:@""]) {
-        [AlertTool showAlert:@"Please select classification, account and shop before you save the record."];
+        [AlertTool showAlert:@"Money, classification, account or shop is empty."];
         return;
     }
     int moneyInt=(int)_moneyTextFeild.text.doubleValue;
@@ -226,6 +272,25 @@
         saveRecordType=NO;
         _saveTypeLabel.text=@"Save as Spend";
     }
+}
+
+- (IBAction)finishEditRemark:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    [_remarkTextView resignFirstResponder];
+    _remarkOK.hidden=YES;
+}
+
+- (IBAction)saveAsTemplate:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    if(_selectedAccount==nil||_selectedClassification==nil||_selectedShop==nil) {
+        [AlertTool showAlert:@"Classification, account or shop is empty!"];
+        return;
+    }
+    [self performSegueWithIdentifier:@"saveAsTemplateSegue" sender:self];
 }
 
 #pragma mark - Service

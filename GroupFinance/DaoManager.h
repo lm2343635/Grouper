@@ -13,6 +13,7 @@
 #import "ShopDao.h"
 #import "RecordDao.h"
 #import "PhotoDao.h"
+#import "TemplateDao.h"
 
 @interface DaoManager : NSObject
 
@@ -24,6 +25,7 @@
 @property (strong,nonatomic) ShopDao *shopDao;
 @property (strong,nonatomic) RecordDao *recordDao;
 @property (strong,nonatomic) PhotoDao *photoDao;
+@property (strong, nonatomic) TemplateDao *templateDao;
 
 -(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
 

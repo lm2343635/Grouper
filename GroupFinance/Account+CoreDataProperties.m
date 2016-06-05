@@ -1,26 +1,22 @@
 //
-//  Record+CoreDataProperties.m
+//  Account+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 5/29/16.
+//  Created by lidaye on 6/5/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Record+CoreDataProperties.h"
+#import "Account+CoreDataProperties.h"
 
-@implementation Record (CoreDataProperties)
+@implementation Account (CoreDataProperties)
 
-@dynamic money;
-@dynamic remark;
-@dynamic time;
+@dynamic ain;
+@dynamic aname;
+@dynamic aout;
 @dynamic uniqueIdentifier;
-@dynamic account;
-@dynamic shop;
-@dynamic classification;
-@dynamic photo;
 @dynamic accountBook;
 
 @end
