@@ -45,6 +45,7 @@
 		E4B0FF501D0C24C5000F0421 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */; };
 		E4B0FF521D0C24D4000F0421 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF511D0C24D4000F0421 /* Security.framework */; };
 		E4B0FF541D0C24E0000F0421 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */; };
+		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
 		E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */; };
@@ -165,6 +166,8 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
 		E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordViewController.m; sourceTree = "<group>"; };
 		E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecordItemTableViewController.h; sourceTree = "<group>"; };
@@ -289,10 +292,10 @@
 				E457B4241CF19E6700139C4C /* AccountsTableViewController.m */,
 				E40C44151CCF25870006D208 /* AddAccountBookViewController.h */,
 				E40C44161CCF25870006D208 /* AddAccountBookViewController.m */,
+				E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */,
 				E457B4171CF19E3500139C4C /* AddAccountViewController.h */,
 				E457B4181CF19E3500139C4C /* AddAccountViewController.m */,
 				E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */,
-				E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */,
 				E457B4111CF19E2000139C4C /* AddShopViewController.h */,
 				E457B4121CF19E2000139C4C /* AddShopViewController.m */,
 				E457B41D1CF19E5300139C4C /* ClassificationsTableViewController.h */,
@@ -313,6 +316,8 @@
 				E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */,
 				E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */,
 				E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */,
+				E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */,
+				E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
+				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */,
 				E4F60ABD1D041235006F5DF2 /* Record+CoreDataProperties.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
@@ -880,7 +886,7 @@
 					"\"SSZipArchive\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -907,7 +913,7 @@
 					"\"SSZipArchive\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

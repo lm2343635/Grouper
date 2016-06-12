@@ -16,7 +16,7 @@
 // This is the URL of the remote database to sync with. This value assumes there is a Couchbase
 // Sync Gateway running on your development machine with a database named "recipes" that has guest
 // access enabled. You'll need to customize this to point to where your actual server is deployed.
-#define COUCHBASE_SYNC_URL @"http://127.0.0.1:4984/recipes"
+#define COUCHBASE_SYNC_URL @"http://100.102.1.156:4984/group"
 
 #define DB_NAME @"store"
 
@@ -73,10 +73,8 @@
         [managedObjectContext setPersistentStoreCoordinator: coordinator];
     }
     
-#if USE_COUCHBASE
     CBLIncrementalStore *store = (CBLIncrementalStore*)[coordinator persistentStores][0];
     [store addObservingManagedObjectContext:managedObjectContext];
-#endif
     
     return managedObjectContext;
 }
@@ -95,10 +93,8 @@
     }
     managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
-#if USE_COUCHBASE
     [CBLIncrementalStore updateManagedObjectModel:managedObjectModel];
-#endif
-    
+
     return managedObjectModel;
 }
 
@@ -117,55 +113,12 @@
     
     NSError *error;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    
-#if USE_COUCHBASE
-    NSURL *storeUrl = [NSURL URLWithString:DB_NAME];
-    
-    CBLIncrementalStore *store;
-    if ([[CBLManager sharedInstance] existingDatabaseNamed:DB_NAME error:&error]) {
-        store = (CBLIncrementalStore*)[persistentStoreCoordinator addPersistentStoreWithType:[CBLIncrementalStore type]
-                                                                               configuration:nil
-                                                                                         URL:storeUrl options:nil error:&error];
-    }
-    /*
-    else {
-        NSURL *defaultStoreURL = [[NSBundle mainBundle] URLForResource:DB_NAME withExtension:@"sqlite"];
-        NSDictionary *options = @{
-                                  NSMigratePersistentStoresAutomaticallyOption : @YES,
-                                  NSInferMappingModelAutomaticallyOption : @YES
-                                  };
-        NSPersistentStore *importStore = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                                                  configuration:nil
-                                                                                            URL:defaultStoreURL
-                                                                                        options:options
-                                                                                          error:&error];
-        
-        store = (CBLIncrementalStore*)[persistentStoreCoordinator migratePersistentStore:importStore toURL:storeUrl
-                                                                                 options:nil
-                                                                                withType:[CBLIncrementalStore type]
-                                                                                   error:&error];
-    }
-     */
-#else
-    NSString *storePath = [[self applicationDocumentsDirectory] stringByAppendingPathComponent: [NSString stringWithFotmat:@"%@.sqlite", DB_NAME]];
-    /*
-     Set up the store.
-     For the sake of illustration, provide a pre-populated default store.
-     */
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    // If the expected store doesn't exist, copy the default store.
-    if (![fileManager fileExistsAtPath:storePath]) {
-        NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:DB_NAME ofType:@"sqlite"];
-        if (defaultStorePath) {
-            [fileManager copyItemAtPath:defaultStorePath toPath:storePath error:NULL];
-        }
-    }
-    
-    NSURL *storeUrl = [NSURL fileURLWithPath:storePath];
-    
-    NSPersistentStore *store = [persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeUrl options:nil error:&error];
-    
-#endif
+    CBLIncrementalStore *store = (CBLIncrementalStore*)[persistentStoreCoordinator addPersistentStoreWithType:[CBLIncrementalStore type]
+                                                                                                configuration:nil
+                                                                                                          URL:[NSURL URLWithString:DB_NAME]
+                                                                                                      options:nil
+                                                                                                        error:&error];
+
     if (!store) {
         /*
          Replace this implementation with code to handle the error appropriately.
@@ -181,17 +134,13 @@
         abort();
     }
     
-#if USE_COUCHBASE
     NSURL *remoteDbURL = [NSURL URLWithString:COUCHBASE_SYNC_URL];
     [self startReplication:[store.database createPullReplication:remoteDbURL]];
     [self startReplication:[store.database createPushReplication:remoteDbURL]];
-#endif
-    
+
     return persistentStoreCoordinator;
 }
 
-
-#if USE_COUCHBASE
 /**
  * Utility method to configure, start and observe a replication.
  */
@@ -200,8 +149,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     repl.continuous = YES;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(replicationProgress:)
-                                                 name:kCBLReplicationChangeNotification object:repl];
+//    repl.authenticator=[CBLAuthenticator basicAuthenticatorWithName:@"root" password:@"123"];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector: @selector(replicationProgress:)
+                                                 name:kCBLReplicationChangeNotification
+                                               object:repl];
     [repl start];
 }
 
@@ -226,10 +178,6 @@ static BOOL sReplicationAlertShowing;
     }
 }
 
-#endif
-
-
-#pragma mark -
 #pragma mark Application's documents directory
 
 /**

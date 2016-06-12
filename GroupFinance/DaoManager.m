@@ -11,7 +11,7 @@
 
 @implementation DaoManager
 
--(id)init {
+- (id)init {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
@@ -29,7 +29,7 @@
     return self;
 }
 
--(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {
+- (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }

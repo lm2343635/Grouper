@@ -21,7 +21,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEx-Rp-fM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="1488"/>
+            <point key="canvasLocation" x="-455" y="3316"/>
         </scene>
         <!--Records-->
         <scene sceneID="21Q-Q4-iDp">
@@ -380,6 +380,45 @@
             </objects>
             <point key="canvasLocation" x="1955" y="1859"/>
         </scene>
+        <!--Login-->
+        <scene sceneID="bKm-Ka-48f">
+            <objects>
+                <viewController id="iH4-6c-Cd6" customClass="LoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l6H-BN-weo"/>
+                        <viewControllerLayoutGuide type="bottom" id="nfN-up-Cmq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FCt-5U-bEz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MB8-Zb-3jF">
+                                <rect key="frame" x="16" y="80" width="288" height="44"/>
+                                <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Kzd-ey-ftf"/>
+                                </constraints>
+                                <state key="normal" title="Login with Facebook">
+                                    <color key="titleColor" red="0.96422809099999995" green="0.96422809099999995" blue="0.96422809099999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="facebookLogin:" destination="iH4-6c-Cd6" eventType="touchUpInside" id="xvi-bq-8tC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MB8-Zb-3jF" firstAttribute="leading" secondItem="FCt-5U-bEz" secondAttribute="leadingMargin" constant="-4" id="GDp-eH-bmD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MB8-Zb-3jF" secondAttribute="trailing" constant="-4" id="pTx-bJ-jLZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Login" id="LOB-fs-7vy"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LJP-HG-UmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1284" y="2609"/>
+        </scene>
         <!--Settings-->
         <scene sceneID="WMc-Yt-FWM">
             <objects>
@@ -401,7 +440,7 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting_user" translatesAutoresizingMaskIntoConstraints="NO" id="rOM-ER-t5g">
                                                     <rect key="frame" x="21" y="8" width="27" height="27"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-qk-Pvw">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adu-qk-Pvw">
                                                     <rect key="frame" x="56" y="11" width="223" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -409,6 +448,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="iH4-6c-Cd6" kind="push" id="JDE-wM-g0b"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="6Cb-sn-PhM">
                                         <rect key="frame" x="0.0" y="130" width="320" height="44"/>
@@ -600,7 +642,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcs-jF-PIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="2261"/>
+            <point key="canvasLocation" x="353" y="3316"/>
         </scene>
         <!--Synchronization-->
         <scene sceneID="Qrf-al-f6L">
@@ -673,7 +715,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g6X-QT-RoB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="2718"/>
+            <point key="canvasLocation" x="1284" y="3365"/>
         </scene>
         <!--Account Books-->
         <scene sceneID="pvr-ov-VSb">
@@ -741,7 +783,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jom-VX-WOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="3653"/>
+            <point key="canvasLocation" x="1572" y="4371"/>
         </scene>
         <!--Edit Account Book-->
         <scene sceneID="lhN-nL-tLJ">
@@ -791,7 +833,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lu-c6-rgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="812" y="4381"/>
+            <point key="canvasLocation" x="1572" y="5099"/>
         </scene>
         <!--Add an Account Book-->
         <scene sceneID="pN9-uK-uuG">
@@ -831,7 +873,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfR-1B-HBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1250" y="3653"/>
+            <point key="canvasLocation" x="2010" y="4371"/>
         </scene>
         <!--Classifications-->
         <scene sceneID="iOP-Vy-JTE">
@@ -877,7 +919,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7IS-Gp-4A4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1738" y="3653"/>
+            <point key="canvasLocation" x="-185" y="4371"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="sU3-M9-mcr">
@@ -923,7 +965,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rr0-e9-U1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-902" y="3653"/>
+            <point key="canvasLocation" x="-1047" y="4371"/>
         </scene>
         <!--Shops-->
         <scene sceneID="k68-SF-rFm">
@@ -969,7 +1011,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frs-bF-Z6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-61" y="3653"/>
+            <point key="canvasLocation" x="699" y="4371"/>
         </scene>
         <!--Add a Shop-->
         <scene sceneID="F2c-DT-5A3">
@@ -1009,7 +1051,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSH-OQ-k0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="392" y="3653"/>
+            <point key="canvasLocation" x="1152" y="4371"/>
         </scene>
         <!--Add an Account-->
         <scene sceneID="yB9-RY-Due">
@@ -1049,7 +1091,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4v-5V-IY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-471" y="3653"/>
+            <point key="canvasLocation" x="-616" y="4371"/>
         </scene>
         <!--Add a Classification-->
         <scene sceneID="psp-rH-5Zm">
@@ -1089,7 +1131,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jf-U9-Mba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1312" y="3653"/>
+            <point key="canvasLocation" x="241" y="4371"/>
         </scene>
         <!--Edit Account-->
         <scene sceneID="6gw-z7-gNa">
@@ -1129,7 +1171,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yt8-HH-cp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-902" y="4381"/>
+            <point key="canvasLocation" x="-1047" y="5099"/>
         </scene>
         <!--Edit Classification-->
         <scene sceneID="8PC-gb-kMV">
@@ -1169,7 +1211,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lzm-EC-iCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1738" y="4381"/>
+            <point key="canvasLocation" x="-185" y="5099"/>
         </scene>
         <!--Edit Shop-->
         <scene sceneID="sHk-Fr-iuE">
@@ -1209,7 +1251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpR-Z6-TGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-61" y="4381"/>
+            <point key="canvasLocation" x="699" y="5099"/>
         </scene>
         <!--Group Finance-->
         <scene sceneID="oO9-wz-npv">
@@ -2029,7 +2071,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Ixm-zh-deC"/>
         <segue reference="NXB-gM-EX7"/>
-        <segue reference="qFG-EE-h7r"/>
+        <segue reference="Mvk-fY-K6M"/>
         <segue reference="ZpU-pa-Pd9"/>
     </inferredMetricsTieBreakers>
 </document>
