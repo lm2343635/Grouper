@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface LoginViewController : UIViewController
-
-- (IBAction)facebookLogin:(id)sender;
+@interface LoginViewController : UIViewController <FBSDKLoginButtonDelegate>
 
 @end

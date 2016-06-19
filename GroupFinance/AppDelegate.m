@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "CBLIncrementalStore.h"
 #import <CouchbaseLite/CouchbaseLite.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 // The changes from the original sample app are inside #if USE_COUCHBASE blocks
 #define USE_COUCHBASE 1
@@ -20,7 +21,23 @@
 
 #define DB_NAME @"store"
 
+// Enable/disable WebSocket in pull replication:
+#define kSyncGatewayWebSocketSupport NO
+
+// Guest DB Name:
+#define kGuestDBName @"guest"
+
+// Storage Type: kCBLSQLiteStorage or kCBLForestDBStorage
+#define kStorageType kCBLSQLiteStorage
+
+// Enable or disable logging:
+#define kLoggingEnabled NO
+
 @interface AppDelegate ()
+
+@property (nonatomic) CBLReplication *push;
+@property (nonatomic) CBLReplication *pull;
+@property (nonatomic) NSError *lastSyncError;
 
 @end
 
@@ -34,7 +51,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-  
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
     
     
     return YES;
@@ -53,6 +71,26 @@
         }];
     });
 }
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation
+            ];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [FBSDKAppEvents activateApp];
+}
+
+
 #pragma mark Core Data stack
 
 /**
@@ -120,51 +158,77 @@
                                                                                                         error:&error];
 
     if (!store) {
-        /*
-         Replace this implementation with code to handle the error appropriately.
-         
-         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-         
-         Typical reasons for an error here include:
-         * The persistent store is not accessible
-         * The schema for the persistent store is incompatible with current managed object model
-         Check the error message to determine what the actual problem was.
-         */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
     
-    NSURL *remoteDbURL = [NSURL URLWithString:COUCHBASE_SYNC_URL];
-    [self startReplication:[store.database createPullReplication:remoteDbURL]];
-    [self startReplication:[store.database createPushReplication:remoteDbURL]];
+    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    [self startReplicationWithAuthenticator:[CBLAuthenticator facebookAuthenticatorWithToken:[defaults objectForKey:@"token"]]
+                                 inDatabase:store.database];
 
     return persistentStoreCoordinator;
 }
 
-/**
- * Utility method to configure, start and observe a replication.
- */
-- (void)startReplication:(CBLReplication *)repl {
+- (void)startReplicationWithAuthenticator:(id <CBLAuthenticator>)authenticator inDatabase:(CBLDatabase *)database {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    repl.continuous = YES;
-//    repl.authenticator=[CBLAuthenticator basicAuthenticatorWithName:@"root" password:@"123"];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector: @selector(replicationProgress:)
-                                                 name:kCBLReplicationChangeNotification
-                                               object:repl];
-    [repl start];
+//     NSURL *syncUrl = [NSURL URLWithString:COUCHBASE_SYNC_URL];
+//    _pull = [database createPullReplication:syncUrl];
+//    _push = [database createPushReplication:syncUrl];
+//    _pull.continuous  = YES;
+//    _push.continuous = YES;
+//    _pull.authenticator = authenticator;
+//    _push.authenticator = authenticator;
+//    [_push start];
+//    [_pull start];
+    
+    if (!_pull) {
+        NSURL *syncUrl = [NSURL URLWithString:COUCHBASE_SYNC_URL];
+        _pull = [database createPullReplication:syncUrl];
+        _pull.continuous  = YES;
+        if (!kSyncGatewayWebSocketSupport)
+            _pull.customProperties = @{@"websocket": @NO};
+        
+        _push = [database createPushReplication:syncUrl];
+        _push.continuous = YES;
+        
+        // Observe replication progress changes, in both directions:
+        NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+        [notificationCenter addObserver:self selector: @selector(replicationProgress:)
+                                   name:kCBLReplicationChangeNotification object:_pull];
+        [notificationCenter addObserver: self selector: @selector(replicationProgress:)
+                                   name:kCBLReplicationChangeNotification object:_push];
+    }
+    
+    _pull.authenticator = authenticator;
+    _push.authenticator = authenticator;
+    
+    if (_push.running) {
+        [_push stop];
+    }
+    [_push start];
+    
+    if (_pull.running) {
+        [_pull stop];
+    }
+    [_pull start];
+    
+    CBLQuery *query = [database createAllDocumentsQuery];
+    CBLQueryEnumerator* result = [query run: nil];
+    for (CBLQueryRow* row in result) {
+        NSLog(@"!!! Conflict in document %@", row.document);
+    }
 }
 
-static BOOL sReplicationAlertShowing;
-
-/**
- Observer method called when the push or pull replication's progress or status changes.
- */
 - (void)replicationProgress:(NSNotification *)notification {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if (_pull.status == kCBLReplicationActive || _push.status == kCBLReplicationActive) {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    } else {
+        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
     }
     CBLReplication *repl = notification.object;
     NSError* error = repl.lastError;
@@ -172,17 +236,16 @@ static BOOL sReplicationAlertShowing;
           (repl.pull ? @"Pull" : @"Push"), repl.status, repl.changesCount, repl.completedChangesCount,
           error.localizedDescription);
     
-    if (error && !sReplicationAlertShowing) {
+    if (error) {
         NSLog(@"Sync failed with an error: %@", error.localizedDescription);
-        sReplicationAlertShowing = YES;
     }
+    
+    
+
 }
 
 #pragma mark Application's documents directory
 
-/**
- Returns the path to the application's documents directory.
- */
 - (NSString *)applicationDocumentsDirectory {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));

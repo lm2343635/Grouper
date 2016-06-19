@@ -391,27 +391,7 @@
                     <view key="view" contentMode="scaleToFill" id="FCt-5U-bEz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MB8-Zb-3jF">
-                                <rect key="frame" x="16" y="80" width="288" height="44"/>
-                                <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Kzd-ey-ftf"/>
-                                </constraints>
-                                <state key="normal" title="Login with Facebook">
-                                    <color key="titleColor" red="0.96422809099999995" green="0.96422809099999995" blue="0.96422809099999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="facebookLogin:" destination="iH4-6c-Cd6" eventType="touchUpInside" id="xvi-bq-8tC"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MB8-Zb-3jF" firstAttribute="leading" secondItem="FCt-5U-bEz" secondAttribute="leadingMargin" constant="-4" id="GDp-eH-bmD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="MB8-Zb-3jF" secondAttribute="trailing" constant="-4" id="pTx-bJ-jLZ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="LOB-fs-7vy"/>
                 </viewController>
