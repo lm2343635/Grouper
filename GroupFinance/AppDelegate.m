@@ -17,7 +17,7 @@
 // This is the URL of the remote database to sync with. This value assumes there is a Couchbase
 // Sync Gateway running on your development machine with a database named "recipes" that has guest
 // access enabled. You'll need to customize this to point to where your actual server is deployed.
-#define COUCHBASE_SYNC_URL @"http://100.102.1.156:4984/group"
+#define COUCHBASE_SYNC_URL @"http://group.softlab.cs.tsukuba.ac.jp:4984/group"
 
 #define DB_NAME @"store"
 
@@ -162,9 +162,13 @@
         abort();
     }
     
-    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    [self startReplicationWithAuthenticator:[CBLAuthenticator facebookAuthenticatorWithToken:[defaults objectForKey:@"token"]]
+    NSString *token=[[NSUserDefaults standardUserDefaults] objectForKey:@"token"];
+    [self startReplicationWithAuthenticator:[CBLAuthenticator facebookAuthenticatorWithToken:token]
                                  inDatabase:store.database];
+
+    if(DEBUG) {
+        NSLog(@"Sync with facebook token %@", token);
+    }
 
     return persistentStoreCoordinator;
 }
@@ -173,16 +177,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-//     NSURL *syncUrl = [NSURL URLWithString:COUCHBASE_SYNC_URL];
-//    _pull = [database createPullReplication:syncUrl];
-//    _push = [database createPushReplication:syncUrl];
-//    _pull.continuous  = YES;
-//    _push.continuous = YES;
-//    _pull.authenticator = authenticator;
-//    _push.authenticator = authenticator;
-//    [_push start];
-//    [_pull start];
-    
+
     if (!_pull) {
         NSURL *syncUrl = [NSURL URLWithString:COUCHBASE_SYNC_URL];
         _pull = [database createPullReplication:syncUrl];

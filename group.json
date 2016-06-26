@@ -1,0 +1,25 @@
+{
+  "log": ["CRUD", "REST+", "Access"],
+  "facebook": { "register": true },
+  "databases": {
+    "group": {
+      "server": "walrus:",
+      "users": {
+        "GUEST": {"disabled": true}
+      },
+      "sync": `
+        function (doc, oldDoc) {
+          for(var name in doc) {
+            console.log("doc."+name+" = "+doc[name]);
+          }
+          for(var name in doc._revisions) {
+            console.log("doc._revisions."+name+" = "+doc._revisions[name]);
+          }
+          channel("group");
+          requireUser("1809472385950210");
+          access("1809472385950210", "group");
+        }
+      `
+    }
+  }
+}
