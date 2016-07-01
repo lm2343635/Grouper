@@ -7,19 +7,22 @@
 //
 
 #import "LoginViewController.h"
+#import "DaoManager.h"
 
 @interface LoginViewController ()
 
 @end
 
-@implementation LoginViewController
+@implementation LoginViewController {
+    DaoManager *dao;
+}
 
 - (void)viewDidLoad {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-
+    
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
     // Optional: Place the button in the center of your view.
     loginButton.center=self.view.center;
@@ -37,6 +40,10 @@
     }
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     [defaults setObject:result.token.tokenString forKey:@"token"];
+    dao=[[DaoManager alloc] init];
+    [dao.userDao saveWithToken:result.token.tokenString
+                        andUid:result.token.userID];
+    
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {

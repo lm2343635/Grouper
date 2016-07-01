@@ -15,6 +15,7 @@
 #import "Record.h"
 #import "Photo.h"
 #import "Template.h"
+#import "User.h"
 
 @interface DaoTemplate : NSObject
 

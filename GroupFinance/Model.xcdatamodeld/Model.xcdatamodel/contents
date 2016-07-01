@@ -13,6 +13,8 @@
         <attribute name="using" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBook" inverseEntity="Account" syncable="YES"/>
         <relationship name="classifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classification" inverseName="accountBook" inverseEntity="Classification" syncable="YES"/>
+        <relationship name="cooperaters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="groupAccountBooks" inverseEntity="User" syncable="YES"/>
+        <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="myAccountBooks" inverseEntity="User" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="accountBook" inverseEntity="Photo" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="accountBook" inverseEntity="Record" syncable="YES"/>
         <relationship name="shops" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Shop" inverseName="accountBook" inverseEntity="Shop" syncable="YES"/>
@@ -58,13 +60,20 @@
         <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" syncable="YES"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" syncable="YES"/>
     </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="groupAccountBooks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="cooperaters" inverseEntity="AccountBook" syncable="YES"/>
+        <relationship name="myAccountBooks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="owner" inverseEntity="AccountBook" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="120"/>
-        <element name="AccountBook" positionX="-12755" positionY="-4824" width="128" height="178"/>
+        <element name="AccountBook" positionX="-12674" positionY="-4833" width="128" height="208"/>
         <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="118"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="105"/>
-        <element name="Record" positionX="-12924" positionY="-4608" width="128" height="180"/>
+        <element name="Record" positionX="-12719" positionY="-4347" width="128" height="180"/>
         <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="118"/>
-        <element name="Template" positionX="-13095" positionY="-4455" width="128" height="150"/>
+        <element name="Template" positionX="-12908" positionY="-4500" width="128" height="150"/>
+        <element name="User" positionX="-12395" positionY="-4581" width="128" height="105"/>
     </elements>
 </model>

@@ -25,6 +25,7 @@
         _recordDao=[[RecordDao alloc] initWithManagedObjectContext:_context];
         _photoDao=[[PhotoDao alloc] initWithManagedObjectContext:_context];
         _templateDao=[[TemplateDao alloc] initWithManagedObjectContext:_context];
+        _userDao=[[UserDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
 }

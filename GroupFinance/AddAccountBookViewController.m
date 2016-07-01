@@ -7,30 +7,30 @@
 //
 
 #import "AddAccountBookViewController.h"
-#import "AppDelegate.h"
-#import "AccountBook.h"
+#import "DaoManager.h"
 
 @interface AddAccountBookViewController ()
 
 @end
 
 @implementation AddAccountBookViewController {
-    NSManagedObjectContext *context;
+    DaoManager *dao;
 }
 
 - (void)viewDidLoad {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    AppDelegate *delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
-    context=delegate.managedObjectContext;
+    dao=[[DaoManager alloc] init];
 }
 
 - (IBAction)save:(id)sender {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [AccountBook saveWithName:_abnameTextField.text
-        inMangedObjectContext:context];
+    [dao.accountBookDao saveWithName:_abnameTextField.text
+                            forOwner:[dao.userDao getUsingUser]];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

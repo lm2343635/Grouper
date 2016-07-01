@@ -12,7 +12,7 @@
 
 @interface AccountBookDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)abname;
+- (NSManagedObjectID *)saveWithName:(NSString *)abname forOwner:(User *)user;
 
 - (AccountBook *)getUsingAccountBook;
 

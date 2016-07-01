@@ -2,7 +2,7 @@
 //  AccountBook+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 6/5/16.
+//  Created by lidaye on 7/1/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -23,7 +23,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSSet<Photo *> *photos;
 @property (nullable, nonatomic, retain) NSSet<Record *> *records;
 @property (nullable, nonatomic, retain) NSSet<Shop *> *shops;
-@property (nullable, nonatomic, retain) NSSet<NSManagedObject *> *templates;
+@property (nullable, nonatomic, retain) NSSet<Template *> *templates;
+@property (nullable, nonatomic, retain) NSManagedObject *owner;
+@property (nullable, nonatomic, retain) NSManagedObject *cooperaters;
 
 @end
 
@@ -54,10 +56,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addShops:(NSSet<Shop *> *)values;
 - (void)removeShops:(NSSet<Shop *> *)values;
 
-- (void)addTemplatesObject:(NSManagedObject *)value;
-- (void)removeTemplatesObject:(NSManagedObject *)value;
-- (void)addTemplates:(NSSet<NSManagedObject *> *)values;
-- (void)removeTemplates:(NSSet<NSManagedObject *> *)values;
+- (void)addTemplatesObject:(Template *)value;
+- (void)removeTemplatesObject:(Template *)value;
+- (void)addTemplates:(NSSet<Template *> *)values;
+- (void)removeTemplates:(NSSet<Template *> *)values;
 
 @end
 

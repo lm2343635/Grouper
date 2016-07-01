@@ -16,14 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @class Shop;
 @class Record;
 @class Photo;
+@class Template;
 
 @interface AccountBook : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
-+ (instancetype)saveWithName:(NSString *)abname
-              inMangedObjectContext:(NSManagedObjectContext *)context;
-
-+ (NSArray *)findAllinMangedObjectContext:(NSManagedObjectContext *)context;
 
 @end
 

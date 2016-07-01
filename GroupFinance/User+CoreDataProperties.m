@@ -1,5 +1,5 @@
 //
-//  Template+CoreDataProperties.m
+//  User+CoreDataProperties.m
 //  GroupFinance
 //
 //  Created by lidaye on 7/1/16.
@@ -9,16 +9,13 @@
 //  to delete and recreate this implementation file for your updated model.
 //
 
-#import "Template+CoreDataProperties.h"
+#import "User+CoreDataProperties.h"
 
-@implementation Template (CoreDataProperties)
+@implementation User (CoreDataProperties)
 
-@dynamic saveRecordType;
-@dynamic tname;
-@dynamic uniqueIdentifier;
-@dynamic account;
-@dynamic accountBook;
-@dynamic classification;
-@dynamic shop;
+@dynamic uid;
+@dynamic token;
+@dynamic myAccountBooks;
+@dynamic groupAccountBooks;
 
 @end
