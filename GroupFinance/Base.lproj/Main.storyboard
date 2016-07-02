@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Settings-->
@@ -751,11 +752,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Account Books" id="nIp-kz-VJg">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hg0-0A-Icg">
-                            <connections>
-                                <segue destination="doX-YI-BDv" kind="push" id="hbv-nH-Jtg"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="hg0-0A-Icg">
+                                <connections>
+                                    <segue destination="doX-YI-BDv" kind="push" id="hbv-nH-Jtg"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="reply" id="36X-hn-Yc3"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="Axg-af-UpB" kind="push" identifier="editAccountBookSegue" id="oG8-dx-K59"/>

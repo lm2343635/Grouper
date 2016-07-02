@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class Record;
 @class Photo;
 @class Template;
+@class User;
 
 @interface AccountBook : NSManagedObject
 

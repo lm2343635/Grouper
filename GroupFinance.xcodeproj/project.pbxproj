@@ -16,8 +16,6 @@
 		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
 		E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */; };
 		E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */; };
-		E4400DA51CCB5A55000DFB1A /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA41CCB5A55000DFB1A /* SyncManager.m */; };
-		E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400DA71CCB6477000DFB1A /* MultipeerManager.m */; };
 		E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */; };
 		E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */; };
 		E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4121CF19E2000139C4C /* AddShopViewController.m */; };
@@ -71,7 +69,6 @@
 		E4F60ABF1D041235006F5DF2 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB11D041235006F5DF2 /* Shop.m */; };
 		E4F60AC01D041235006F5DF2 /* Classification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB41D041235006F5DF2 /* Classification+CoreDataProperties.m */; };
 		E4F60AC11D041235006F5DF2 /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB51D041235006F5DF2 /* Shop+CoreDataProperties.m */; };
-		E4F60AC41D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AC31D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.m */; };
 		E4F60AC91D0413BA006F5DF2 /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AC61D0413BA006F5DF2 /* Template+CoreDataProperties.m */; };
 		E4F60ACA1D0413BA006F5DF2 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AC81D0413BA006F5DF2 /* Template.m */; };
 		E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */; };
@@ -118,10 +115,6 @@
 		E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceUITests.m; sourceTree = "<group>"; };
 		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4400DA31CCB5A55000DFB1A /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
-		E4400DA41CCB5A55000DFB1A /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
-		E4400DA61CCB6477000DFB1A /* MultipeerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerManager.h; sourceTree = "<group>"; };
-		E4400DA71CCB6477000DFB1A /* MultipeerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerManager.m; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
 		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
 		E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditClassificationViewController.h; sourceTree = "<group>"; };
@@ -221,8 +214,6 @@
 		E4F60AB31D041235006F5DF2 /* Shop+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shop+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E4F60AB41D041235006F5DF2 /* Classification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Classification+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E4F60AB51D041235006F5DF2 /* Shop+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shop+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AC21D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDEMultipeerCloudFileSystem.h; sourceTree = "<group>"; };
-		E4F60AC31D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDEMultipeerCloudFileSystem.m; sourceTree = "<group>"; };
 		E4F60AC51D0413BA006F5DF2 /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E4F60AC61D0413BA006F5DF2 /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E4F60AC71D0413BA006F5DF2 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
@@ -448,16 +439,10 @@
 				E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */,
 				E457B4391CF1AF3200139C4C /* AlertTool.h */,
 				E457B43A1CF1AF3200139C4C /* AlertTool.m */,
-				E4F60AC21D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.h */,
-				E4F60AC31D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.m */,
 				E4F1CB301CFAF2D100461B3F /* DateSelectorView.h */,
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
-				E4400DA61CCB6477000DFB1A /* MultipeerManager.h */,
-				E4400DA71CCB6477000DFB1A /* MultipeerManager.m */,
-				E4400DA31CCB5A55000DFB1A /* SyncManager.h */,
-				E4400DA41CCB5A55000DFB1A /* SyncManager.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -689,8 +674,6 @@
 				E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */,
 				E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */,
 				E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */,
-				E4400DA51CCB5A55000DFB1A /* SyncManager.m in Sources */,
-				E4F60AC41D0412A9006F5DF2 /* CDEMultipeerCloudFileSystem.m in Sources */,
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
@@ -737,7 +720,6 @@
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E4F60ABB1D041235006F5DF2 /* Record.m in Sources */,
 				E4F60AC11D041235006F5DF2 /* Shop+CoreDataProperties.m in Sources */,
-				E4400DA81CCB6477000DFB1A /* MultipeerManager.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E4D6ED7C1D2671D000C16364 /* User.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,

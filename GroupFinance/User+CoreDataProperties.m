@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 7/1/16.
+//  Created by lidaye on 7/2/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -13,9 +13,9 @@
 
 @implementation User (CoreDataProperties)
 
-@dynamic uid;
 @dynamic token;
-@dynamic myAccountBooks;
+@dynamic userId;
 @dynamic groupAccountBooks;
+@dynamic myAccountBooks;
 
 @end

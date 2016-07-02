@@ -17,7 +17,7 @@
     User *user=[NSEntityDescription insertNewObjectForEntityForName:UserEntityName
                                              inManagedObjectContext:self.context];
     user.token=token;
-    user.uid=uid;
+    user.userId=uid;
     [self saveContext];
     return user.objectID;
 }

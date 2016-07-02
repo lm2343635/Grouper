@@ -17,7 +17,7 @@
 // This is the URL of the remote database to sync with. This value assumes there is a Couchbase
 // Sync Gateway running on your development machine with a database named "recipes" that has guest
 // access enabled. You'll need to customize this to point to where your actual server is deployed.
-#define COUCHBASE_SYNC_URL @"http://group.softlab.cs.tsukuba.ac.jp:4984/group"
+#define COUCHBASE_SYNC_URL @"http://group.softlab.cs.tsukuba.ac.jp:4984/group_finance"
 
 #define DB_NAME @"store"
 

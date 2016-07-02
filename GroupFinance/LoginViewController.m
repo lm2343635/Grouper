@@ -24,7 +24,7 @@
     [super viewDidLoad];
     
     FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    // Optional: Place the button in the center of your view.
+    loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
     loginButton.center=self.view.center;
     loginButton.delegate=self;
     [self.view addSubview:loginButton];
@@ -40,6 +40,7 @@
     }
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     [defaults setObject:result.token.tokenString forKey:@"token"];
+    [defaults setObject:result.token.userID forKey:@"userId"];
     dao=[[DaoManager alloc] init];
     [dao.userDao saveWithToken:result.token.tokenString
                         andUid:result.token.userID];

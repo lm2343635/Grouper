@@ -15,9 +15,9 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super awakeFromInsert];
-    if(!self.uniqueIdentifier) {
-        self.uniqueIdentifier=[[NSUUID UUID] UUIDString];
-        self.using=[NSNumber numberWithBool:NO];
+    if(!self.userId) {
+        NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+        self.userId=[defaults valueForKey:@"userId"];
     }
 }
 

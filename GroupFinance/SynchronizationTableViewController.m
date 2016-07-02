@@ -7,7 +7,6 @@
 //
 
 #import "SynchronizationTableViewController.h"
-#import "SyncManager.h"
 
 @interface SynchronizationTableViewController ()
 
@@ -35,7 +34,6 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    SyncManager *syncManager=[SyncManager sharedSyncManager];
-    [syncManager synchronizeWithCompletion:nil];
+
 }
 @end
