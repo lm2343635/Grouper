@@ -2,22 +2,33 @@
   "log": ["CRUD", "REST+", "Access"],
   "facebook": { "register": true },
   "databases": {
-    "group": {
+    "group_finance": {
       "server": "walrus:",
       "users": {
         "GUEST": {"disabled": true}
       },
       "sync": `
         function (doc, oldDoc) {
+          //show all atrribute
           for(var name in doc) {
             console.log("doc."+name+" = "+doc[name]);
           }
+          //show info about revisions
           for(var name in doc._revisions) {
             console.log("doc._revisions."+name+" = "+doc._revisions[name]);
           }
-          channel("group");
-          requireUser("1809472385950210");
-          access("1809472385950210", "group");
+
+          if(doc.type=="User") {
+            // channel(doc._id);
+            // requireUser(doc.userId);
+            // access(doc.userId, doc._id);
+          } else if(doc.type=="AccountBook") {
+
+            channel(doc._id);
+            requireUser(doc.userId);
+            access(doc.userId, doc._id);
+          }
+
         }
       `
     }

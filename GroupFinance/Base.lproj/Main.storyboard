@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
@@ -22,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEx-Rp-fM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="3316"/>
+            <point key="canvasLocation" x="-455" y="3830"/>
         </scene>
         <!--Records-->
         <scene sceneID="21Q-Q4-iDp">
@@ -239,7 +240,7 @@
             </objects>
             <point key="canvasLocation" x="1284" y="1859"/>
         </scene>
-        <!--Add a Template-->
+        <!--Add Template-->
         <scene sceneID="ct3-iz-hA3">
             <objects>
                 <viewController id="14C-RG-zN3" customClass="AddTemplateViewController" sceneMemberID="viewController">
@@ -360,7 +361,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="mmh-ce-cS5" secondAttribute="trailing" constant="-4" id="sBz-aC-Wf7"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add a Template" id="zw5-Hc-Gg6">
+                    <navigationItem key="navigationItem" title="Add Template" id="zw5-Hc-Gg6">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="wX2-OK-QCG">
                             <connections>
                                 <action selector="save:" destination="14C-RG-zN3" id="JaH-Gp-T7c"/>
@@ -570,8 +571,30 @@
                             </tableViewSection>
                             <tableViewSection headerTitle=" " id="Adj-ql-w9a">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="aYq-MG-3OG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="1xE-lf-hT4">
                                         <rect key="frame" x="0.0" y="438" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1xE-lf-hT4" id="aiZ-DH-pcH">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Scan QR Code" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GLQ-IJ-2eo">
+                                                    <rect key="frame" x="56" y="11" width="112" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting_scan_qrcode" translatesAutoresizingMaskIntoConstraints="NO" id="d4o-lc-Hon">
+                                                    <rect key="frame" x="21" y="8" width="27" height="27"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Mpw-fA-3LG" kind="push" id="pBl-UW-S5m"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="aYq-MG-3OG">
+                                        <rect key="frame" x="0.0" y="482" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aYq-MG-3OG" id="fr0-cT-uDP">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -590,7 +613,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="8Xg-cY-a7e">
-                                        <rect key="frame" x="0.0" y="482" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="526" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Xg-cY-a7e" id="IiC-HH-sOn">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -623,7 +646,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pcs-jF-PIc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="353" y="3316"/>
+            <point key="canvasLocation" x="353" y="3830"/>
         </scene>
         <!--Synchronization-->
         <scene sceneID="Qrf-al-f6L">
@@ -698,6 +721,71 @@
             </objects>
             <point key="canvasLocation" x="1284" y="3365"/>
         </scene>
+        <!--Scan QR Code-->
+        <scene sceneID="6U6-62-ZXF">
+            <objects>
+                <viewController id="Mpw-fA-3LG" customClass="ScanQRCodeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yyz-J4-CnU"/>
+                        <viewControllerLayoutGuide type="bottom" id="hdw-Sx-fuu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DYw-Va-nVz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Scan QR Code" id="mvm-yY-1sY">
+                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="vUi-N7-bxz">
+                            <connections>
+                                <action selector="pickFromPhotos:" destination="Mpw-fA-3LG" id="koE-5e-0ej"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="y6e-8V-qTh" kind="push" identifier="jionAccountBookSegue" id="0s2-2E-ZnU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Y9r-f6-zw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1284" y="4148"/>
+        </scene>
+        <!--Jion Account Book-->
+        <scene sceneID="8pD-Ph-gzl">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kvg-uN-HAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController id="y6e-8V-qTh" customClass="JoinAccountBookTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eaM-Jh-Zgn">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Va-Co-Qpe">
+                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Va-Co-Qpe" id="9Lp-KK-1O7">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NO6-7I-Hv0">
+                                            <rect key="frame" x="8" y="11" width="304" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="y6e-8V-qTh" id="ajB-aa-0e0"/>
+                            <outlet property="delegate" destination="y6e-8V-qTh" id="i9s-c1-gXi"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Jion Account Book" id="omZ-Ek-tZV"/>
+                </tableViewController>
+            </objects>
+            <point key="canvasLocation" x="1927" y="4148"/>
+        </scene>
         <!--Account Books-->
         <scene sceneID="pvr-ov-VSb">
             <objects>
@@ -758,7 +846,11 @@
                                     <segue destination="doX-YI-BDv" kind="push" id="hbv-nH-Jtg"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="reply" id="36X-hn-Yc3"/>
+                            <barButtonItem systemItem="reply" id="36X-hn-Yc3">
+                                <connections>
+                                    <segue destination="TqZ-wK-fFP" kind="push" id="05h-bc-vae"/>
+                                </connections>
+                            </barButtonItem>
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
@@ -767,7 +859,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jom-VX-WOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="4371"/>
+            <point key="canvasLocation" x="1538" y="5383"/>
         </scene>
         <!--Edit Account Book-->
         <scene sceneID="lhN-nL-tLJ">
@@ -787,21 +879,38 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-Y5-Man">
-                                <rect key="frame" x="20" y="481" width="280" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-Y5-Man">
+                                <rect key="frame" x="20" y="121" width="280" height="30"/>
                                 <state key="normal" title="Set as using account book"/>
                                 <connections>
                                     <action selector="setAsUsing:" destination="Axg-af-UpB" eventType="touchUpInside" id="UHX-iE-Ck3"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGX-Lu-6xz">
+                                <rect key="frame" x="20" y="159" width="280" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zGX-Lu-6xz" secondAttribute="height" multiplier="1:1" id="eaD-vJ-NBm"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Share this account book to other users by scanning this QR code." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jcv-ce-y9i">
+                                <rect key="frame" x="20" y="447" width="280" height="64"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="xdK-Y5-Man" secondAttribute="trailing" id="0oV-FK-jBu"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zz9-G0-O6I" secondAttribute="trailing" constant="-20" id="FGg-C8-JH3"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="xdK-Y5-Man" secondAttribute="leading" id="U6Q-rg-gQ5"/>
-                            <constraint firstItem="Q6D-od-spZ" firstAttribute="top" secondItem="xdK-Y5-Man" secondAttribute="bottom" constant="8" id="UbT-lC-wcn"/>
-                            <constraint firstItem="Zz9-G0-O6I" firstAttribute="leading" secondItem="s5H-Ki-oRg" secondAttribute="leadingMargin" constant="-20" id="szs-Ri-VYF"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="zGX-Lu-6xz" secondAttribute="leading" id="FQv-eX-UiR"/>
+                            <constraint firstItem="jcv-ce-y9i" firstAttribute="top" secondItem="zGX-Lu-6xz" secondAttribute="bottom" constant="8" id="FyE-at-yfH"/>
+                            <constraint firstItem="zGX-Lu-6xz" firstAttribute="top" secondItem="xdK-Y5-Man" secondAttribute="bottom" constant="8" id="KAH-HP-H8U"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="jcv-ce-y9i" secondAttribute="trailing" id="SYp-JM-FzU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="jcv-ce-y9i" secondAttribute="leading" id="edN-7Z-aVl"/>
+                            <constraint firstItem="xdK-Y5-Man" firstAttribute="centerX" secondItem="s5H-Ki-oRg" secondAttribute="centerX" id="liG-j5-hX6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zGX-Lu-6xz" secondAttribute="trailing" id="otQ-DH-Tcy"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zz9-G0-O6I" secondAttribute="trailing" constant="-20" id="qpM-V1-TZ0"/>
+                            <constraint firstItem="Zz9-G0-O6I" firstAttribute="leading" secondItem="s5H-Ki-oRg" secondAttribute="leadingMargin" constant="-20" id="uS1-Yn-8YY"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Account Book" id="zJz-GV-Yvw">
@@ -813,13 +922,33 @@
                     </navigationItem>
                     <connections>
                         <outlet property="accountBookNameTextField" destination="Zz9-G0-O6I" id="GBd-va-33M"/>
+                        <outlet property="qrCodeImageView" destination="zGX-Lu-6xz" id="hLr-ez-fgN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lu-c6-rgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1572" y="5099"/>
+            <point key="canvasLocation" x="1538" y="6111"/>
         </scene>
-        <!--Add an Account Book-->
+        <!--Join Account Book-->
+        <scene sceneID="afR-kN-Xpk">
+            <objects>
+                <viewController id="TqZ-wK-fFP" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5vM-pX-hJF"/>
+                        <viewControllerLayoutGuide type="bottom" id="72j-bw-uaW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pJO-j8-Uv3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Join Account Book" id="uK0-JQ-IqS"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1pZ-gv-Kx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2066" y="5106"/>
+        </scene>
+        <!--Add Account Book-->
         <scene sceneID="pN9-uK-uuG">
             <objects>
                 <viewController id="doX-YI-BDv" customClass="AddAccountBookViewController" sceneMemberID="viewController">
@@ -844,7 +973,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="Fgf-sb-6dG" secondAttribute="trailing" constant="-20" id="hpR-IM-OZ9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add an Account Book" id="Cwl-wc-gMo">
+                    <navigationItem key="navigationItem" title="Add Account Book" id="Cwl-wc-gMo">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="PgE-ZX-lNh">
                             <connections>
                                 <action selector="save:" destination="doX-YI-BDv" id="oAX-Jg-ABZ"/>
@@ -857,7 +986,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vfR-1B-HBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2010" y="4371"/>
+            <point key="canvasLocation" x="2066" y="5761"/>
         </scene>
         <!--Classifications-->
         <scene sceneID="iOP-Vy-JTE">
@@ -903,7 +1032,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7IS-Gp-4A4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-185" y="4371"/>
+            <point key="canvasLocation" x="-219" y="5383"/>
         </scene>
         <!--Accounts-->
         <scene sceneID="sU3-M9-mcr">
@@ -949,7 +1078,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rr0-e9-U1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1047" y="4371"/>
+            <point key="canvasLocation" x="-1081" y="5383"/>
         </scene>
         <!--Shops-->
         <scene sceneID="k68-SF-rFm">
@@ -995,9 +1124,9 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frs-bF-Z6a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="4371"/>
+            <point key="canvasLocation" x="665" y="5383"/>
         </scene>
-        <!--Add a Shop-->
+        <!--Add Shop-->
         <scene sceneID="F2c-DT-5A3">
             <objects>
                 <viewController id="l6I-Ug-Ii8" customClass="AddShopViewController" sceneMemberID="viewController">
@@ -1022,7 +1151,7 @@
                             <constraint firstItem="Iav-Ot-hZ7" firstAttribute="leading" secondItem="oAn-bM-kdE" secondAttribute="leadingMargin" constant="-20" id="NIF-6h-aBM"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add a Shop" id="bHm-gd-0I0">
+                    <navigationItem key="navigationItem" title="Add Shop" id="bHm-gd-0I0">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="40n-fx-qeg">
                             <connections>
                                 <action selector="save:" destination="l6I-Ug-Ii8" id="lt6-Pz-8qT"/>
@@ -1035,9 +1164,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gSH-OQ-k0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1152" y="4371"/>
+            <point key="canvasLocation" x="1118" y="5383"/>
         </scene>
-        <!--Add an Account-->
+        <!--Add  Account-->
         <scene sceneID="yB9-RY-Due">
             <objects>
                 <viewController id="j9J-oD-dUi" customClass="AddAccountViewController" sceneMemberID="viewController">
@@ -1062,7 +1191,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="3dq-1Z-lfu" secondAttribute="trailing" constant="-20" id="eTT-vr-Oyv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add an Account" id="1zj-zD-2KU">
+                    <navigationItem key="navigationItem" title="Add  Account" id="1zj-zD-2KU">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="20C-0Q-LjU">
                             <connections>
                                 <action selector="save:" destination="j9J-oD-dUi" id="LmA-ua-Gsz"/>
@@ -1075,9 +1204,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4v-5V-IY9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-616" y="4371"/>
+            <point key="canvasLocation" x="-650" y="5383"/>
         </scene>
-        <!--Add a Classification-->
+        <!--Add Classification-->
         <scene sceneID="psp-rH-5Zm">
             <objects>
                 <viewController id="7AL-q1-I14" customClass="AddClassificationViewController" sceneMemberID="viewController">
@@ -1102,7 +1231,7 @@
                             <constraint firstItem="TBa-Bs-kMy" firstAttribute="leading" secondItem="tD2-JT-F4D" secondAttribute="leadingMargin" constant="-20" id="cbY-6a-RWh"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add a Classification" id="9Qa-z6-F3Q">
+                    <navigationItem key="navigationItem" title="Add Classification" id="9Qa-z6-F3Q">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="lKU-9O-rAA">
                             <connections>
                                 <action selector="save:" destination="7AL-q1-I14" id="rPf-ee-ese"/>
@@ -1115,7 +1244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6jf-U9-Mba" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="241" y="4371"/>
+            <point key="canvasLocation" x="207" y="5383"/>
         </scene>
         <!--Edit Account-->
         <scene sceneID="6gw-z7-gNa">
@@ -1155,7 +1284,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yt8-HH-cp1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1047" y="5099"/>
+            <point key="canvasLocation" x="-1081" y="6111"/>
         </scene>
         <!--Edit Classification-->
         <scene sceneID="8PC-gb-kMV">
@@ -1195,7 +1324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lzm-EC-iCW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-185" y="5099"/>
+            <point key="canvasLocation" x="-219" y="6111"/>
         </scene>
         <!--Edit Shop-->
         <scene sceneID="sHk-Fr-iuE">
@@ -1235,7 +1364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EpR-Z6-TGa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="699" y="5099"/>
+            <point key="canvasLocation" x="665" y="6111"/>
         </scene>
         <!--Group Finance-->
         <scene sceneID="oO9-wz-npv">
@@ -1390,7 +1519,7 @@
             </objects>
             <point key="canvasLocation" x="956" y="997"/>
         </scene>
-        <!--Add a Record-->
+        <!--Add Record-->
         <scene sceneID="Lzy-Bv-Fpu">
             <objects>
                 <viewController id="nKr-Bt-vdH" customClass="AddRecordViewController" sceneMemberID="viewController">
@@ -1658,7 +1787,7 @@
                             <constraint firstItem="uUF-2D-u92" firstAttribute="leading" secondItem="laS-dP-ah2" secondAttribute="leadingMargin" constant="-4" id="zj8-kg-npJ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add a Record" id="No0-pX-xKb">
+                    <navigationItem key="navigationItem" title="Add Record" id="No0-pX-xKb">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="tyb-b8-D3U">
                             <connections>
                                 <action selector="save:" destination="nKr-Bt-vdH" id="Dil-i3-htV"/>
@@ -1724,7 +1853,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hUa-hP-YxZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2677" y="1179"/>
+            <point key="canvasLocation" x="2641" y="1457"/>
         </scene>
         <!--Record-->
         <scene sceneID="u7h-Ke-UC5">
@@ -2042,6 +2171,7 @@
         <image name="setting_account_book" width="27" height="27"/>
         <image name="setting_classification" width="27" height="27"/>
         <image name="setting_clear_data" width="27" height="27"/>
+        <image name="setting_scan_qrcode" width="27" height="27"/>
         <image name="setting_security" width="27" height="27"/>
         <image name="setting_shop" width="27" height="27"/>
         <image name="setting_synchronization" width="27" height="27"/>
@@ -2054,8 +2184,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ixm-zh-deC"/>
+        <segue reference="PNN-dy-Nmd"/>
         <segue reference="NXB-gM-EX7"/>
         <segue reference="Mvk-fY-K6M"/>
-        <segue reference="ZpU-pa-Pd9"/>
     </inferredMetricsTieBreakers>
 </document>

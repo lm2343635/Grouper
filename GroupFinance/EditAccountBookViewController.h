@@ -14,6 +14,7 @@
 @property (nonatomic, strong) AccountBook *accountBook;
 
 @property (weak, nonatomic) IBOutlet UITextField *accountBookNameTextField;
+@property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
 
 - (IBAction)saveEidt:(id)sender;
 - (IBAction)setAsUsing:(id)sender;
