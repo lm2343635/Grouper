@@ -752,7 +752,6 @@
         <!--Jion Account Book-->
         <scene sceneID="8pD-Ph-gzl">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="kvg-uN-HAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="y6e-8V-qTh" customClass="JoinAccountBookTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="eaM-Jh-Zgn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -783,6 +782,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Jion Account Book" id="omZ-Ek-tZV"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kvg-uN-HAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1927" y="4148"/>
         </scene>

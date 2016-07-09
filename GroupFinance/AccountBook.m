@@ -19,6 +19,9 @@
         NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
         self.userId=[defaults valueForKey:@"userId"];
     }
+    if(!self.uniqueIdentifier) {
+        self.uniqueIdentifier=[[NSUUID UUID] UUIDString];
+    }
 }
 
 @end

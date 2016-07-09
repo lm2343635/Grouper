@@ -44,7 +44,6 @@
     dao=[[DaoManager alloc] init];
     [dao.userDao saveWithToken:result.token.tokenString
                         andUid:result.token.userID];
-    
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {

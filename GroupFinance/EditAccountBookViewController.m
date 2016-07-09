@@ -42,8 +42,8 @@
     NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
     NSData *data=[NSJSONSerialization dataWithJSONObject:@{
                                                            @"task": @"joinAccountBook",
-                                                           @"userId": [defaults valueForKey:@"userId"]
-                                                           
+                                                           @"userId": [defaults valueForKey:@"userId"],
+                                                           @"uniqueIdentifier": _accountBook.uniqueIdentifier
                                                            }
                                                  options:NSJSONWritingPrettyPrinted
                                                    error:nil];
