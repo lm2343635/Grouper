@@ -16,11 +16,14 @@
     }
     [super awakeFromInsert];
     if(!self.userId) {
-        NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.userId=[defaults valueForKey:@"userId"];
     }
     if(!self.uniqueIdentifier) {
-        self.uniqueIdentifier=[[NSUUID UUID] UUIDString];
+        self.uniqueIdentifier = [[NSUUID UUID] UUIDString];
+    }
+    if(!self.cooperaters) {
+        self.cooperaters = @"[]";
     }
 }
 

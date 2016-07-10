@@ -19,14 +19,17 @@
           }
 
           if(doc.type=="User") {
-            // channel(doc._id);
-            // requireUser(doc.userId);
-            // access(doc.userId, doc._id);
+            
           } else if(doc.type=="AccountBook") {
-
+            //transfer doc.cooperaters to access users json array
+            var users = eval(doc.cooperaters);
+            //add user myself to access user array
+            users[users.length] = doc.userId;
+            //use doc id as channel name
             channel(doc._id);
-            requireUser(doc.userId);
-            access(doc.userId, doc._id);
+            //allow user and cooperaters to access to channel
+            requireUser(users);
+            access(users, doc._id);
           }
 
         }

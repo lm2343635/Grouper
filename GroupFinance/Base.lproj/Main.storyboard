@@ -382,7 +382,7 @@
             </objects>
             <point key="canvasLocation" x="1955" y="1859"/>
         </scene>
-        <!--Login-->
+        <!--Delegate-->
         <scene sceneID="bKm-Ka-48f">
             <objects>
                 <viewController id="iH4-6c-Cd6" customClass="LoginViewController" sceneMemberID="viewController">
@@ -393,9 +393,34 @@
                     <view key="view" contentMode="scaleToFill" id="FCt-5U-bEz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cG2-0C-bOu" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="20" y="72" width="280" height="30"/>
+                                <state key="normal" title="Facebook Login Button"/>
+                                <connections>
+                                    <outlet property="delegate" destination="iH4-6c-Cd6" id="Vpw-EH-mui"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jch-PP-haX">
+                                <rect key="frame" x="20" y="110" width="280" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Jch-PP-haX" secondAttribute="height" multiplier="1:1" id="LgC-YL-B7z"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="cG2-0C-bOu" secondAttribute="trailing" id="16N-xg-0OS"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="cG2-0C-bOu" secondAttribute="leading" id="3NY-QR-0be"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jch-PP-haX" secondAttribute="trailing" id="UgV-rm-2al"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Jch-PP-haX" secondAttribute="leading" id="meD-8n-kgR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="LOB-fs-7vy"/>
+                    <connections>
+                        <outlet property="loginButton" destination="cG2-0C-bOu" id="4Iy-c1-tLZ"/>
+                        <outlet property="qrCodeImageView" destination="Jch-PP-haX" id="nyz-ik-XHu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LJP-HG-UmQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -749,7 +774,7 @@
             </objects>
             <point key="canvasLocation" x="1284" y="4148"/>
         </scene>
-        <!--Jion Account Book-->
+        <!--Scan Result-->
         <scene sceneID="8pD-Ph-gzl">
             <objects>
                 <tableViewController id="y6e-8V-qTh" customClass="JoinAccountBookTableViewController" sceneMemberID="viewController">
@@ -757,16 +782,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="H24-fP-mjt">
+                            <rect key="frame" x="0.0" y="64" width="320" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Invite this user to an account book." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="TW9-Hs-hTo">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="8Va-Co-Qpe">
-                                <rect key="frame" x="0.0" y="92" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="accountBookIdentifier" id="8Va-Co-Qpe" customClass="accountBookIdentifier">
+                                <rect key="frame" x="0.0" y="127" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Va-Co-Qpe" id="9Lp-KK-1O7">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NO6-7I-Hv0">
-                                            <rect key="frame" x="8" y="11" width="304" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="AccountBookName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NO6-7I-Hv0">
+                                            <rect key="frame" x="17" y="11" width="295" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -780,7 +819,7 @@
                             <outlet property="delegate" destination="y6e-8V-qTh" id="i9s-c1-gXi"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Jion Account Book" id="omZ-Ek-tZV"/>
+                    <navigationItem key="navigationItem" title="Scan Result" id="omZ-Ek-tZV"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kvg-uN-HAB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -932,7 +971,7 @@
         <!--Join Account Book-->
         <scene sceneID="afR-kN-Xpk">
             <objects>
-                <viewController id="TqZ-wK-fFP" sceneMemberID="viewController">
+                <viewController id="TqZ-wK-fFP" customClass="JionAccountBookViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5vM-pX-hJF"/>
                         <viewControllerLayoutGuide type="bottom" id="72j-bw-uaW"/>
@@ -940,9 +979,31 @@
                     <view key="view" contentMode="scaleToFill" id="pJO-j8-Uv3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jf-gd-WFm">
+                                <rect key="frame" x="112" y="79" width="97" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-Oc-9m7">
+                                <rect key="frame" x="20" y="108" width="280" height="280"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HNZ-Oc-9m7" secondAttribute="height" multiplier="1:1" id="plN-Zd-Fo7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="HNZ-Oc-9m7" secondAttribute="leading" id="8Ke-p9-Iyp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HNZ-Oc-9m7" secondAttribute="trailing" id="TI7-4u-0pw"/>
+                            <constraint firstItem="1jf-gd-WFm" firstAttribute="centerX" secondItem="pJO-j8-Uv3" secondAttribute="centerX" id="UGT-2l-NvZ"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Join Account Book" id="uK0-JQ-IqS"/>
+                    <connections>
+                        <outlet property="qrCodeImageView" destination="HNZ-Oc-9m7" id="cEs-js-ndH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pZ-gv-Kx3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

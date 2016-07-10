@@ -2,7 +2,7 @@
 //  Classification+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 7/2/16.
+//  Created by lidaye on 7/10/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu

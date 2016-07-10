@@ -12,4 +12,7 @@
 
 @interface LoginViewController : UIViewController <FBSDKLoginButtonDelegate>
 
+@property (weak, nonatomic) IBOutlet FBSDKLoginButton *loginButton;
+@property (weak, nonatomic) IBOutlet UIImageView *qrCodeImageView;
+
 @end

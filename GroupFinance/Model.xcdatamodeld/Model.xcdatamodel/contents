@@ -9,12 +9,12 @@
     </entity>
     <entity name="AccountBook" representedClassName="AccountBook" syncable="YES">
         <attribute name="abname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cooperaters" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="using" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBook" inverseEntity="Account" syncable="YES"/>
         <relationship name="classifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classification" inverseName="accountBook" inverseEntity="Classification" syncable="YES"/>
-        <relationship name="cooperaters" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="groupAccountBooks" inverseEntity="User" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="myAccountBooks" inverseEntity="User" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="accountBook" inverseEntity="Photo" syncable="YES"/>
         <relationship name="records" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Record" inverseName="accountBook" inverseEntity="Record" syncable="YES"/>
@@ -64,7 +64,6 @@
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="token" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="groupAccountBooks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="cooperaters" inverseEntity="AccountBook" syncable="YES"/>
         <relationship name="myAccountBooks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="owner" inverseEntity="AccountBook" syncable="YES"/>
     </entity>
     <elements>
@@ -75,6 +74,6 @@
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="180"/>
         <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="120"/>
         <element name="Template" positionX="-12908" positionY="-4500" width="128" height="150"/>
-        <element name="User" positionX="-12395" positionY="-4581" width="128" height="105"/>
+        <element name="User" positionX="-12395" positionY="-4581" width="128" height="90"/>
     </elements>
 </model>

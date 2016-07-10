@@ -23,11 +23,7 @@
     }
     [super viewDidLoad];
     
-    FBSDKLoginButton *loginButton = [[FBSDKLoginButton alloc] init];
-    loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
-    loginButton.center=self.view.center;
-    loginButton.delegate=self;
-    [self.view addSubview:loginButton];
+    _loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
 }
 
 #pragma mark - FBSDKLoginButtonDelegate

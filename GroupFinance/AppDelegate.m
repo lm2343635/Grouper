@@ -208,12 +208,7 @@
         [_pull stop];
     }
     [_pull start];
-    
-    CBLQuery *query = [database createAllDocumentsQuery];
-    CBLQueryEnumerator* result = [query run: nil];
-    for (CBLQueryRow* row in result) {
-        NSLog(@"!!! Conflict in document %@", row.document);
-    }
+
 }
 
 - (void)replicationProgress:(NSNotification *)notification {
