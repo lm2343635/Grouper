@@ -10,23 +10,27 @@
 
 @implementation UserDao
 
-- (NSManagedObjectID *)saveWithToken:(NSString *)token andUid:(NSString *)uid {
+- (NSManagedObjectID *)saveWithJSONObject:(NSObject *)object {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     User *user=[NSEntityDescription insertNewObjectForEntityForName:UserEntityName
                                              inManagedObjectContext:self.context];
-    user.token=token;
-    user.userId=uid;
+    user.userId = [object valueForKey:@"id"];
+    user.email = [object valueForKey:@"email"];
+    user.name = [object valueForKey:@"name"];
+    user.gender = [object valueForKey:@"gender"];
+    user.pictureUrl = [[[object valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+    user.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.pictureUrl]];
     [self saveContext];
     return user.objectID;
 }
 
-- (User *)getByToken:(NSString *)token {
+- (User *)getByUserId:(NSString *)userId {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"token=%@", token];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"userId=%@", userId];
     return (User *)[self getByPredicate:predicate withEntityName:UserEntityName];
 }
 
@@ -34,8 +38,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-    return [self getByToken:[defaults valueForKey:@"token"]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [self getByUserId:[defaults valueForKey:@"userId"]];
 }
 
 @end

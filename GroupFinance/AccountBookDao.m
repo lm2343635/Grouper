@@ -10,14 +10,14 @@
 
 @implementation AccountBookDao
 
-- (NSManagedObjectID *)saveWithName:(NSString *)abname forOwner:(User *)user {
+- (NSManagedObjectID *)saveWithName:(NSString *)abname forOwner:(NSString *)userId {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    AccountBook *accountBook=[NSEntityDescription insertNewObjectForEntityForName:AccountBookEntityName
+    AccountBook *accountBook = [NSEntityDescription insertNewObjectForEntityForName:AccountBookEntityName
                                                            inManagedObjectContext:self.context];
-    accountBook.abname=abname;
-    accountBook.owner=user;
+    accountBook.abname = abname;
+    accountBook.owner = userId;
     [self saveContext];
     return accountBook.objectID;
 }

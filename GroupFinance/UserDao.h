@@ -12,10 +12,9 @@
 
 @interface UserDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithToken:(NSString *)token
-                              andUid:(NSString *)uid;
+- (NSManagedObjectID *)saveWithJSONObject:(NSObject *)object;
 
-- (User *)getByToken:(NSString *)token;
+- (User *)getByUserId:(NSString *)userId;
 
 - (User *)getUsingUser;
 

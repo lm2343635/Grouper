@@ -2,14 +2,12 @@
 //  User.h
 //  GroupFinance
 //
-//  Created by lidaye on 7/1/16.
+//  Created by lidaye on 7/14/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
-@class AccountBook;
 
 NS_ASSUME_NONNULL_BEGIN
 

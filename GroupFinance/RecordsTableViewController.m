@@ -80,7 +80,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if(editingStyle==UITableViewCellEditingStyleDelete) {
-        [dao.context deleteObject:[records objectAtIndex:indexPath.row]];
+        [dao.syncContext deleteObject:[records objectAtIndex:indexPath.row]];
         [dao saveContext];
         [records removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

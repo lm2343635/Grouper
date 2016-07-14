@@ -15,6 +15,7 @@
 
 @implementation LoginViewController {
     DaoManager *dao;
+    NSUserDefaults *defaults;
 }
 
 - (void)viewDidLoad {
@@ -22,8 +23,20 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
+    defaults=[NSUserDefaults standardUserDefaults];
+    
     
     _loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [super viewDidAppear:animated];
+    if([defaults boolForKey:@"login"]) {
+        [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
+    }
 }
 
 #pragma mark - FBSDKLoginButtonDelegate
@@ -34,13 +47,11 @@
     if(error) {
         NSLog(@"Login failed with error: %@", error.localizedDescription);
     }
-    NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
+    
+    [defaults setBool:YES forKey:@"login"];
     [defaults setObject:result.token.tokenString forKey:@"token"];
     [defaults setObject:result.token.userID forKey:@"userId"];
-    dao=[[DaoManager alloc] init];
-    [dao.userDao saveWithToken:result.token.tokenString
-                        andUid:result.token.userID];
-    
+
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:result.token.userID
                                                                    parameters:@{@"fields": @"picture, email, name, gender"}
                                                                    HTTPMethod:@"GET"];
@@ -48,7 +59,9 @@
         if(DEBUG) {
             NSLog(@"Get facebook user info: %@", result);
         }
-        [defaults setObject:result forKey:@"user"];
+        dao = [[DaoManager alloc] init];
+        [dao.userDao saveWithJSONObject:result];
+        [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
     }];
 }
 

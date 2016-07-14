@@ -18,7 +18,8 @@
 
 @interface DaoManager : NSObject
 
-@property (nonatomic,readonly) NSManagedObjectContext *context;
+@property (nonatomic,readonly) NSManagedObjectContext *syncContext;
+@property (nonatomic,readonly) NSManagedObjectContext *staticContext;
 
 @property (strong,nonatomic) AccountBookDao *accountBookDao;
 @property (strong,nonatomic) AccountDao *accountDao;
@@ -32,5 +33,7 @@
 -(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
 
 - (void)saveContext;
+
+- (void)saveStaticContext;
 
 @end

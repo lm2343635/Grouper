@@ -40,14 +40,16 @@
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
 		E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
+		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
+		E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */; };
+		E49BFB631D37A83C00BCE598 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB601D37A83C00BCE598 /* User+CoreDataProperties.m */; };
+		E49BFB641D37A83C00BCE598 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB621D37A83C00BCE598 /* User.m */; };
 		E4B0FF4A1D0C22D1000F0421 /* CBLIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */; };
 		E4B0FF4C1D0C2446000F0421 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */; };
 		E4B0FF4E1D0C244D000F0421 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4D1D0C244D000F0421 /* libz.tbd */; };
 		E4B0FF501D0C24C5000F0421 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */; };
 		E4B0FF521D0C24D4000F0421 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF511D0C24D4000F0421 /* Security.framework */; };
 		E4B0FF541D0C24E0000F0421 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */; };
-		E4D6ED7B1D2671D000C16364 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6ED781D2671D000C16364 /* User+CoreDataProperties.m */; };
-		E4D6ED7C1D2671D000C16364 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6ED7A1D2671D000C16364 /* User.m */; };
 		E4D6ED7F1D2678D200C16364 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6ED7E1D2678D200C16364 /* UserDao.m */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */; };
@@ -164,6 +166,13 @@
 		E48E2FAA1CE84FA900E727FD /* EditAccountBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountBookViewController.h; sourceTree = "<group>"; };
 		E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountBookViewController.m; sourceTree = "<group>"; };
 		E497059D1CDF22B20092B164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
+		E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
+		E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Static.xcdatamodel; sourceTree = "<group>"; };
+		E49BFB5F1D37A83C00BCE598 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49BFB601D37A83C00BCE598 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E49BFB611D37A83C00BCE598 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		E49BFB621D37A83C00BCE598 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E4B0FF481D0C22D1000F0421 /* CBLIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLIncrementalStore.h; sourceTree = "<group>"; };
 		E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLIncrementalStore.m; sourceTree = "<group>"; };
 		E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -171,10 +180,6 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		E4D6ED771D2671D000C16364 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4D6ED781D2671D000C16364 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4D6ED791D2671D000C16364 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		E4D6ED7A1D2671D000C16364 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		E4D6ED7D1D2678D200C16364 /* UserDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
 		E4D6ED7E1D2678D200C16364 /* UserDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
 		E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -334,6 +339,8 @@
 				E425D5781D290495000324A3 /* JoinAccountBookTableViewController.m */,
 				E453C6951D321C22001C0AD6 /* JionAccountBookViewController.h */,
 				E453C6961D321C22001C0AD6 /* JionAccountBookViewController.m */,
+				E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */,
+				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -470,6 +477,10 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E49BFB5F1D37A83C00BCE598 /* User+CoreDataProperties.h */,
+				E49BFB601D37A83C00BCE598 /* User+CoreDataProperties.m */,
+				E49BFB611D37A83C00BCE598 /* User.h */,
+				E49BFB621D37A83C00BCE598 /* User.m */,
 				E4F60AA01D041235006F5DF2 /* Account.h */,
 				E4F60AA11D041235006F5DF2 /* Account.m */,
 				E4F60AA31D041235006F5DF2 /* Account+CoreDataProperties.h */,
@@ -499,10 +510,7 @@
 				E4F60AC81D0413BA006F5DF2 /* Template.m */,
 				E4F60AC51D0413BA006F5DF2 /* Template+CoreDataProperties.h */,
 				E4F60AC61D0413BA006F5DF2 /* Template+CoreDataProperties.m */,
-				E4D6ED791D2671D000C16364 /* User.h */,
-				E4D6ED7A1D2671D000C16364 /* User.m */,
-				E4D6ED771D2671D000C16364 /* User+CoreDataProperties.h */,
-				E4D6ED781D2671D000C16364 /* User+CoreDataProperties.m */,
+				E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -704,7 +712,6 @@
 				E4F60ABD1D041235006F5DF2 /* Record+CoreDataProperties.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E4F60AB91D041235006F5DF2 /* Photo+CoreDataProperties.m in Sources */,
-				E4D6ED7B1D2671D000C16364 /* User+CoreDataProperties.m in Sources */,
 				E425D5791D290495000324A3 /* JoinAccountBookTableViewController.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E4F60AC01D041235006F5DF2 /* Classification+CoreDataProperties.m in Sources */,
@@ -721,16 +728,19 @@
 				E4F1CB431CFB0B0C00461B3F /* RecordDao.m in Sources */,
 				E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */,
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
+				E49BFB631D37A83C00BCE598 /* User+CoreDataProperties.m in Sources */,
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
 				E4F60AC91D0413BA006F5DF2 /* Template+CoreDataProperties.m in Sources */,
 				E4F60ABF1D041235006F5DF2 /* Shop.m in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
+				E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
 				E4F60AB61D041235006F5DF2 /* Photo.m in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
 				E40C441A1CCF28E90006D208 /* AccountBooksTableViewController.m in Sources */,
 				E40C44171CCF25870006D208 /* AddAccountBookViewController.m in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
+				E49BFB641D37A83C00BCE598 /* User.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
@@ -745,7 +755,7 @@
 				E4F60ABB1D041235006F5DF2 /* Record.m in Sources */,
 				E4F60AC11D041235006F5DF2 /* Shop+CoreDataProperties.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
-				E4D6ED7C1D2671D000C16364 /* User.m in Sources */,
+				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,
 				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
 				E457B42C1CF1A40100139C4C /* AccountBookDao.m in Sources */,
@@ -1027,6 +1037,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */,
+			);
+			currentVersion = E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */;
+			path = Static.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (

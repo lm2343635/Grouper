@@ -11,21 +11,15 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-// The changes from the original sample app are inside #if USE_COUCHBASE blocks
-#define USE_COUCHBASE 1
-
 // This is the URL of the remote database to sync with. This value assumes there is a Couchbase
 // Sync Gateway running on your development machine with a database named "recipes" that has guest
 // access enabled. You'll need to customize this to point to where your actual server is deployed.
 #define COUCHBASE_SYNC_URL @"http://group.softlab.cs.tsukuba.ac.jp:4984/group_finance"
 
-#define DB_NAME @"store"
+#define DB_NAME @"sync"
 
 // Enable/disable WebSocket in pull replication:
 #define kSyncGatewayWebSocketSupport NO
-
-// Guest DB Name:
-#define kGuestDBName @"guest"
 
 // Storage Type: kCBLSQLiteStorage or kCBLForestDBStorage
 #define kStorageType kCBLSQLiteStorage
@@ -43,9 +37,12 @@
 
 @implementation AppDelegate
 
-@synthesize managedObjectContext;
-@synthesize managedObjectModel;
-@synthesize persistentStoreCoordinator;
+@synthesize syncManagedObjectContext;
+@synthesize syncManagedObjectModel;
+@synthesize syncPersistentStoreCoordinator;
+@synthesize staticManagedObjectContext;
+@synthesize staticManagedObjectModel;
+@synthesize staticPersistentStoreCoordinator;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if(DEBUG) {
@@ -53,8 +50,6 @@
     }
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
-    
-    
     return YES;
 }
 
@@ -63,12 +58,12 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [managedObjectContext performBlock:^{
-            if([managedObjectContext hasChanges]) {
-                [managedObjectContext save:nil];
+        [syncManagedObjectContext performBlock:^{
+            if([syncManagedObjectContext hasChanges]) {
+                [syncManagedObjectContext save:nil];
             }
-
         }];
+
     });
 }
 
@@ -91,30 +86,29 @@
 }
 
 
-#pragma mark Core Data stack
-
+#pragma mark - Sync Core Data stack
 /**
  Returns the managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
-- (NSManagedObjectContext *)managedObjectContext {
+- (NSManagedObjectContext *)syncManagedObjectContext {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
+    if (syncManagedObjectContext != nil) {
+        return syncManagedObjectContext;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *coordinator = [self syncPersistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [managedObjectContext setPersistentStoreCoordinator: coordinator];
+        syncManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [syncManagedObjectContext setPersistentStoreCoordinator: coordinator];
     }
     
     CBLIncrementalStore *store = (CBLIncrementalStore*)[coordinator persistentStores][0];
-    [store addObservingManagedObjectContext:managedObjectContext];
+    [store addObservingManagedObjectContext:syncManagedObjectContext];
     
-    return managedObjectContext;
+    return syncManagedObjectContext;
 }
 
 
@@ -122,18 +116,18 @@
  Returns the managed object model for the application.
  If the model doesn't already exist, it is created by merging all of the models found in the application bundle.
  */
-- (NSManagedObjectModel *)managedObjectModel {
+- (NSManagedObjectModel *)syncManagedObjectModel {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (syncManagedObjectModel != nil) {
+        return syncManagedObjectModel;
     }
-    managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    syncManagedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
-    [CBLIncrementalStore updateManagedObjectModel:managedObjectModel];
+    [CBLIncrementalStore updateManagedObjectModel:syncManagedObjectModel];
 
-    return managedObjectModel;
+    return syncManagedObjectModel;
 }
 
 
@@ -141,17 +135,17 @@
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
  */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+- (NSPersistentStoreCoordinator *)syncPersistentStoreCoordinator {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
+    if (syncPersistentStoreCoordinator != nil) {
+        return syncPersistentStoreCoordinator;
     }
     
     NSError *error;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    CBLIncrementalStore *store = (CBLIncrementalStore*)[persistentStoreCoordinator addPersistentStoreWithType:[CBLIncrementalStore type]
+    syncPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self syncManagedObjectModel]];
+    CBLIncrementalStore *store = (CBLIncrementalStore*)[syncPersistentStoreCoordinator addPersistentStoreWithType:[CBLIncrementalStore type]
                                                                                                 configuration:nil
                                                                                                           URL:[NSURL URLWithString:DB_NAME]
                                                                                                       options:nil
@@ -170,7 +164,7 @@
         NSLog(@"Sync with facebook token %@", token);
     }
 
-    return persistentStoreCoordinator;
+    return syncPersistentStoreCoordinator;
 }
 
 - (void)startReplicationWithAuthenticator:(id <CBLAuthenticator>)authenticator inDatabase:(CBLDatabase *)database {
@@ -234,13 +228,63 @@
 
 }
 
-#pragma mark Application's documents directory
-
-- (NSString *)applicationDocumentsDirectory {
+#pragma mark - Static Core Data Stack
+- (NSManagedObjectContext *)staticManagedObjectContext {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    if(staticManagedObjectContext != nil) {
+        return staticManagedObjectContext;
+    }
+    staticManagedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    staticManagedObjectContext.persistentStoreCoordinator = [self staticPersistentStoreCoordinator];
+    staticManagedObjectContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
+    return staticManagedObjectContext;
+}
+
+- (NSPersistentStoreCoordinator *)staticPersistentStoreCoordinator {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if(staticPersistentStoreCoordinator != nil) {
+        return staticPersistentStoreCoordinator;
+    }
+    staticPersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self staticManagedObjectModel]];
+    NSDictionary *options=@{
+                            NSMigratePersistentStoresAutomaticallyOption: @YES,
+                            NSInferMappingModelAutomaticallyOption: @YES
+                            };
+    NSURL *directoryURL=[[NSFileManager defaultManager] URLForDirectory:NSApplicationSupportDirectory
+                                                               inDomain:NSUserDomainMask
+                                                      appropriateForURL:nil
+                                                                 create:YES
+                                                                  error:NULL];
+    directoryURL=[directoryURL URLByAppendingPathComponent:NSBundle.mainBundle.bundleIdentifier isDirectory:YES];
+    NSString *documentsDirectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSURL* storeURL = [NSURL fileURLWithPath:[documentsDirectory stringByAppendingString:@"/static.sqlite"] isDirectory:NO];
+    NSError *error;
+    [staticPersistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                   configuration:nil
+                                                             URL:storeURL
+                                                         options:options
+                                                           error:&error];
+    if(error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        return nil;
+    }
+    return staticPersistentStoreCoordinator;
+}
+
+- (NSManagedObjectModel *)staticManagedObjectModel {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if(staticManagedObjectModel != nil) {
+        return  staticManagedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Static" withExtension:@"momd"];
+    staticManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return staticManagedObjectModel;
 }
 
 @end

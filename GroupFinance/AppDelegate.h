@@ -12,9 +12,13 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+@property (nonatomic, strong, readonly) NSManagedObjectModel *syncManagedObjectModel;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *syncManagedObjectContext;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *syncPersistentStoreCoordinator;
+
+@property (nonatomic, strong, readonly) NSManagedObjectModel *staticManagedObjectModel;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *staticManagedObjectContext;
+@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *staticPersistentStoreCoordinator;
 
 @end
 

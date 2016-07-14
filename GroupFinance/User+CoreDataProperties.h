@@ -2,7 +2,7 @@
 //  User+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 7/10/16.
+//  Created by lidaye on 7/14/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -15,18 +15,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface User (CoreDataProperties)
 
-@property (nullable, nonatomic, retain) NSString *token;
 @property (nullable, nonatomic, retain) NSString *userId;
-@property (nullable, nonatomic, retain) NSSet<AccountBook *> *myAccountBooks;
-
-@end
-
-@interface User (CoreDataGeneratedAccessors)
-
-- (void)addMyAccountBooksObject:(AccountBook *)value;
-- (void)removeMyAccountBooksObject:(AccountBook *)value;
-- (void)addMyAccountBooks:(NSSet<AccountBook *> *)values;
-- (void)removeMyAccountBooks:(NSSet<AccountBook *> *)values;
+@property (nullable, nonatomic, retain) NSString *gender;
+@property (nullable, nonatomic, retain) NSString *email;
+@property (nullable, nonatomic, retain) NSString *pictureUrl;
+@property (nullable, nonatomic, retain) NSData *picture;
+@property (nullable, nonatomic, retain) NSString *name;
 
 @end
 

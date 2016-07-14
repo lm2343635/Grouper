@@ -30,7 +30,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [dao.accountBookDao saveWithName:_abnameTextField.text
-                            forOwner:[dao.userDao getUsingUser]];
+                            forOwner:[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end
