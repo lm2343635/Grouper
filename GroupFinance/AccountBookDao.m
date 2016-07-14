@@ -26,7 +26,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"using=%@", [NSNumber numberWithBool:YES]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *uniqueIdentifier = [defaults objectForKey:@"usingAccountBookIdentifier"];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"uniqueIdentifier=%@", uniqueIdentifier];
     return (AccountBook *)[self getByPredicate:predicate withEntityName:AccountBookEntityName];
 }
 
@@ -34,9 +36,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    AccountBook *oldUsingAccountBook=[self getUsingAccountBook];
-    oldUsingAccountBook.using=[NSNumber numberWithBool:NO];
-    accountBook.using=[NSNumber numberWithBool:YES];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    //Save the unique identifier of using account book to sandbox.
+    [defaults setObject:accountBook.uniqueIdentifier forKey:@"usingAccountBookIdentifier"];
     [self saveContext];
 }
 @end

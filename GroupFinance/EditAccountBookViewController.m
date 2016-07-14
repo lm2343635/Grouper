@@ -87,7 +87,6 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [dao.accountBookDao setUsingAccountBook:_accountBook];
-    NSLog(@"%@", _accountBook.using);
     [AlertTool showAlert:[NSString stringWithFormat:@"%@ is using account book now!", _accountBook.abname]];
 }
 @end

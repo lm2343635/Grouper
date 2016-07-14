@@ -17,6 +17,7 @@
     DaoManager *dao;
     NSMutableArray *accountBooks;
     AccountBook *selectedAccountBook;
+    NSString *usingAccountBookIdentifier;
 }
 
 - (void)viewDidLoad {
@@ -32,6 +33,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
+    //get using account book identifier from sanbox
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    usingAccountBookIdentifier = [defaults objectForKey:@"usingAccountBookIdentifier"];
+    //find account books
     accountBooks=[NSMutableArray arrayWithArray:[dao.accountBookDao findAllWithEntityName:AccountBookEntityName]];
     [self.tableView reloadData];
 }
@@ -50,7 +55,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     AccountBook *accountBook=[accountBooks objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: accountBook.using.intValue==1? @"usingAccountBookIndentifer": @"accountBookIndentifer"
+    NSString *identifier = [accountBook.uniqueIdentifier isEqualToString:usingAccountBookIdentifier]? @"usingAccountBookIndentifer": @"accountBookIndentifer";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier: identifier
                                                             forIndexPath:indexPath];
     UILabel *abnameLabel=(UILabel *)[cell viewWithTag:1];
     abnameLabel.text=accountBook.abname;

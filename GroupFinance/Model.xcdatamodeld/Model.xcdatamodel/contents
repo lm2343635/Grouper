@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="ain" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="aname" optional="YES" attributeType="String" syncable="YES"/>
@@ -12,7 +12,6 @@
         <attribute name="cooperaters" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="using" optional="YES" attributeType="Boolean" syncable="YES"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBook" inverseEntity="Account" syncable="YES"/>
         <relationship name="classifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classification" inverseName="accountBook" inverseEntity="Classification" syncable="YES"/>
         <relationship name="owner" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="myAccountBooks" inverseEntity="User" syncable="YES"/>
@@ -68,7 +67,7 @@
     </entity>
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="120"/>
-        <element name="AccountBook" positionX="-12674" positionY="-4833" width="128" height="225"/>
+        <element name="AccountBook" positionX="-12674" positionY="-4833" width="128" height="210"/>
         <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="120"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="105"/>
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="180"/>

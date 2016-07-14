@@ -2,7 +2,7 @@
 //  AccountBook+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 7/10/16.
+//  Created by 李大爷的电脑 on 7/14/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,10 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AccountBook (CoreDataProperties)
 
 @property (nullable, nonatomic, retain) NSString *abname;
-@property (nullable, nonatomic, retain) NSString *userId;
-@property (nullable, nonatomic, retain) NSNumber *using;
-@property (nullable, nonatomic, retain) NSString *uniqueIdentifier;
 @property (nullable, nonatomic, retain) NSString *cooperaters;
+@property (nullable, nonatomic, retain) NSString *uniqueIdentifier;
+@property (nullable, nonatomic, retain) NSString *userId;
 @property (nullable, nonatomic, retain) NSSet<Account *> *accounts;
 @property (nullable, nonatomic, retain) NSSet<Classification *> *classifications;
 @property (nullable, nonatomic, retain) User *owner;

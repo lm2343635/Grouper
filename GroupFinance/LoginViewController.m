@@ -40,6 +40,16 @@
     dao=[[DaoManager alloc] init];
     [dao.userDao saveWithToken:result.token.tokenString
                         andUid:result.token.userID];
+    
+    FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:result.token.userID
+                                                                   parameters:@{@"fields": @"picture, email, name, gender"}
+                                                                   HTTPMethod:@"GET"];
+    [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+        if(DEBUG) {
+            NSLog(@"Get facebook user info: %@", result);
+        }
+        [defaults setObject:result forKey:@"user"];
+    }];
 }
 
 - (void)loginButtonDidLogOut:(FBSDKLoginButton *)loginButton {
