@@ -36,7 +36,9 @@
         if(DEBUG) {
             NSLog(@"Error reading json: %@", error.localizedDescription);
         }
-        [AlertTool showAlert:@"Scanning QR code error!"];
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Scanning QR code error!"
+                     inViewController:self];
     }
     if([[object valueForKey:@"task"] isEqualToString:@"joinAccountBook"]) {
         userId = [object valueForKey:@"userId"];

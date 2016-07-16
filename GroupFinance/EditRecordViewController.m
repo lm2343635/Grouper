@@ -230,8 +230,12 @@
                                                                // 设置拍摄的照片允许编辑
                                                                imagePickerController.allowsEditing=YES;
                                                            }else{
-                                                               NSLog(@"iOS Simulator cannot open camera.");
-                                                               [AlertTool showAlert:@"iOS Simulator cannot open camera."];
+                                                               if(DEBUG) {
+                                                                   NSLog(@"iOS Simulator cannot open camera.");
+                                                               }
+                                                               [AlertTool showAlertWithTitle:@"Warning"
+                                                                                  andContent:@"iOS Simulator cannot open camera."
+                                                                            inViewController:self];
                                                            }
                                                            // 显示picker视图控制器
                                                            [self presentViewController:imagePickerController animated: YES completion:nil];

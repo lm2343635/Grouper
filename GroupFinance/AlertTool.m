@@ -1,8 +1,8 @@
 //
 //  AlertTool.m
-//  GroupFinance
+//  MuShare-iOS
 //
-//  Created by lidaye on 5/22/16.
+//  Created by 李大爷的电脑 on 7/12/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
@@ -10,15 +10,17 @@
 
 @implementation AlertTool
 
-+(void)showAlert:(NSString *)message {
-    if(DEBUG==1)
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Tip"
-                                                  message:message
-                                                 delegate:nil
-                                        cancelButtonTitle:@"OK"
-                                        otherButtonTitles:nil];
-    [alert show];
++ (void)showAlertWithTitle:(NSString *)title
+                andContent:(NSString *)content
+          inViewController:(UIViewController *)controller {
+    UIAlertController *alertController=[UIAlertController alertControllerWithTitle:title
+                                                                           message:content
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction=[UIAlertAction actionWithTitle:@"OK"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
+    [alertController addAction:cancelAction];
+    [controller presentViewController:alertController animated:YES completion:nil];
 }
 
 @end

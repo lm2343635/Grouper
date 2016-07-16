@@ -148,7 +148,9 @@
        _selectedClassification==nil||
        _selectedShop==nil||
        [_moneyTextFeild.text isEqualToString:@""]) {
-        [AlertTool showAlert:@"Money, classification, account or shop is empty."];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Money, classification, account or shop is empty."
+                     inViewController:self];
         return;
     }
     int moneyInt=(int)_moneyTextFeild.text.doubleValue;
@@ -240,8 +242,13 @@
                                                                // 设置拍摄的照片允许编辑
                                                                imagePickerController.allowsEditing=YES;
                                                            }else{
-                                                               NSLog(@"iOS Simulator cannot open camera.");
-                                                               [AlertTool showAlert:@"iOS Simulator cannot open camera."];
+                                                               if(DEBUG) {
+                                                                   NSLog(@"Warning: iOS Simulator cannot open camera.");
+                                                               }
+                                                               
+                                                               [AlertTool showAlertWithTitle:@"Warning"
+                                                                                  andContent:@"iOS Simulator cannot open camera."
+                                                                            inViewController:self];
                                                            }
                                                            // 显示picker视图控制器
                                                            [self presentViewController:imagePickerController animated: YES completion:nil];
@@ -287,7 +294,9 @@
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     if(_selectedAccount==nil||_selectedClassification==nil||_selectedShop==nil) {
-        [AlertTool showAlert:@"Classification, account or shop is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Classification, account or shop is empty!"
+                     inViewController:self];
         return;
     }
     [self performSegueWithIdentifier:@"saveAsTemplateSegue" sender:self];

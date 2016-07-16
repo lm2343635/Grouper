@@ -39,7 +39,9 @@
     }
     NSString *cname=_cnameTextField.text;
     if([cname isEqualToString:@""]) {
-        [AlertTool showAlert:@"Classification name is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Classification name is empty!"
+                     inViewController:self];
         return;
     }
     _classification.cname=cname;

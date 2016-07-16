@@ -12,7 +12,7 @@
         <scene sceneID="Ovj-bu-ryd">
             <objects>
                 <navigationController id="bsb-Xr-SWC" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="tab_setting" selectedImage="tab_setting_selected" id="zcX-GR-QiE"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="tab_setting" id="zcX-GR-QiE"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="deA-10-ndB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,7 +23,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEx-Rp-fM3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-455" y="3830"/>
+            <point key="canvasLocation" x="-455" y="3838"/>
         </scene>
         <!--Records-->
         <scene sceneID="21Q-Q4-iDp">
@@ -102,7 +102,7 @@
         <scene sceneID="CYA-AJ-oyn">
             <objects>
                 <navigationController id="XQF-0s-zrH" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Records" image="tab_list" id="owF-OX-eJ7"/>
+                    <tabBarItem key="tabBarItem" title="Records" image="tab_record" id="owF-OX-eJ7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="F5M-CF-nAV">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -931,22 +931,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Ozc-nU-nrX">
-                                        <rect key="frame" x="0.0" y="108" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ozc-nU-nrX" id="0AB-dI-s6f">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="BfD-So-Lbk">
-                                        <rect key="frame" x="0.0" y="152" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BfD-So-Lbk" id="Hb2-pX-h9c">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -1144,19 +1128,10 @@
                                     <action selector="setAsUsing:" destination="Axg-af-UpB" eventType="touchUpInside" id="UHX-iE-Ck3"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zGX-Lu-6xz">
-                                <rect key="frame" x="20" y="159" width="280" height="280"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="zGX-Lu-6xz" secondAttribute="height" multiplier="1:1" id="eaD-vJ-NBm"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="zGX-Lu-6xz" secondAttribute="leading" id="FQv-eX-UiR"/>
-                            <constraint firstItem="zGX-Lu-6xz" firstAttribute="top" secondItem="xdK-Y5-Man" secondAttribute="bottom" constant="8" id="KAH-HP-H8U"/>
                             <constraint firstItem="xdK-Y5-Man" firstAttribute="centerX" secondItem="s5H-Ki-oRg" secondAttribute="centerX" id="liG-j5-hX6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zGX-Lu-6xz" secondAttribute="trailing" id="otQ-DH-Tcy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zz9-G0-O6I" secondAttribute="trailing" constant="-20" id="qpM-V1-TZ0"/>
                             <constraint firstItem="Zz9-G0-O6I" firstAttribute="leading" secondItem="s5H-Ki-oRg" secondAttribute="leadingMargin" constant="-20" id="uS1-Yn-8YY"/>
                         </constraints>
@@ -1170,7 +1145,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="accountBookNameTextField" destination="Zz9-G0-O6I" id="GBd-va-33M"/>
-                        <outlet property="qrCodeImageView" destination="zGX-Lu-6xz" id="hLr-ez-fgN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Lu-c6-rgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2452,10 +2426,9 @@
         <image name="setting_synchronization" width="27" height="27"/>
         <image name="setting_template" width="27" height="27"/>
         <image name="setting_user" width="27" height="27"/>
-        <image name="tab_list" width="24" height="24"/>
-        <image name="tab_main" width="24" height="24"/>
+        <image name="tab_main" width="30" height="30"/>
+        <image name="tab_record" width="30" height="30"/>
         <image name="tab_setting" width="24" height="24"/>
-        <image name="tab_setting_selected" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ixm-zh-deC"/>

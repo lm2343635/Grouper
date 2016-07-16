@@ -35,7 +35,6 @@
 		E457B4321CF1A41800139C4C /* ShopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4311CF1A41800139C4C /* ShopDao.m */; };
 		E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4341CF1A42900139C4C /* ClassificationDao.m */; };
 		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
-		E457B43B1CF1AF3200139C4C /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B43A1CF1AF3200139C4C /* AlertTool.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
 		E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */; };
@@ -53,6 +52,7 @@
 		E4D6ED7F1D2678D200C16364 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6ED7E1D2678D200C16364 /* UserDao.m */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */; };
+		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
 		E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */; };
@@ -158,8 +158,6 @@
 		E457B4341CF1A42900139C4C /* ClassificationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationDao.m; sourceTree = "<group>"; };
 		E457B4361CF1AA6E00139C4C /* DaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoManager.h; sourceTree = "<group>"; };
 		E457B4371CF1AA6E00139C4C /* DaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoManager.m; sourceTree = "<group>"; };
-		E457B4391CF1AF3200139C4C /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
-		E457B43A1CF1AF3200139C4C /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
 		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
@@ -186,6 +184,8 @@
 		E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E4E66F1F1D27E74D00969AB8 /* ScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanQRCodeViewController.h; sourceTree = "<group>"; };
 		E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanQRCodeViewController.m; sourceTree = "<group>"; };
+		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
+		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
 		E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordViewController.m; sourceTree = "<group>"; };
 		E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecordItemTableViewController.h; sourceTree = "<group>"; };
@@ -462,10 +462,10 @@
 		E4F1CB2C1CFAF28500461B3F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E4EFB6611D3A0C4800C613B0 /* AlertTool.h */,
+				E4EFB6621D3A0C4800C613B0 /* AlertTool.m */,
 				E4B0FF481D0C22D1000F0421 /* CBLIncrementalStore.h */,
 				E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */,
-				E457B4391CF1AF3200139C4C /* AlertTool.h */,
-				E457B43A1CF1AF3200139C4C /* AlertTool.m */,
 				E4F1CB301CFAF2D100461B3F /* DateSelectorView.h */,
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
@@ -719,6 +719,7 @@
 				E4F60ABE1D041235006F5DF2 /* Classification.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
 				E4F60ACA1D0413BA006F5DF2 /* Template.m in Sources */,
+				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
 				E4F60AB71D041235006F5DF2 /* Account.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
@@ -749,7 +750,6 @@
 				E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */,
 				E4B0FF4A1D0C22D1000F0421 /* CBLIncrementalStore.m in Sources */,
 				E4F60AB81D041235006F5DF2 /* Account+CoreDataProperties.m in Sources */,
-				E457B43B1CF1AF3200139C4C /* AlertTool.m in Sources */,
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E4F60ABB1D041235006F5DF2 /* Record.m in Sources */,

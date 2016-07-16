@@ -99,11 +99,15 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if([_templateNameTextField.text isEqual:@""]) {
-        [AlertTool showAlert:@"Tempate name is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Tempate name is empty!"
+                     inViewController:self];
         return;
     }
     if(_selectedClassification==nil||_selectedAccount==nil||_selectedShop==nil) {
-        [AlertTool showAlert:@"Classification, account or shop is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Classification, account or shop is empty!"
+                     inViewController:self];
         return;
     }
     NSManagedObjectID *tid=[dao.templateDao saveWithNname:_templateNameTextField.text

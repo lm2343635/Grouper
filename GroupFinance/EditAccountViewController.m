@@ -39,7 +39,9 @@
     }
     NSString *aname=_anameTextField.text;
     if([aname isEqualToString:@""]) {
-        [AlertTool showAlert:@"Account name is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Account name is empty!"
+                     inViewController:self];
         return;
     }
     _account.aname=aname;

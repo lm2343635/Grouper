@@ -39,7 +39,9 @@
     }
     NSString *sname=_snameTextField.text;
     if([sname isEqualToString:@""]) {
-        [AlertTool showAlert:@"Shop name is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Shop name is empty!"
+                     inViewController:self];
         return;
     }
     _shop.sname=sname;

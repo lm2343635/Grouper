@@ -33,12 +33,16 @@
     }
     NSString *cname=_cnameTextField.text;
     if([cname isEqualToString:@""]) {
-        [AlertTool showAlert:@"Classification name is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Classification name is empty!"
+                     inViewController:self];
         return;
     }
     AccountBook *usingAccountBook=[dao.accountBookDao getUsingAccountBook];
     if(usingAccountBook==nil) {
-        [AlertTool showAlert:@"Choose an using account book at first!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Choose an using account book at first!"
+                     inViewController:self];
         return;
     }
     [dao.classificationDao saveWithName:cname inAccountBook:usingAccountBook];

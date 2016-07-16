@@ -28,7 +28,9 @@
         if(DEBUG) {
             NSLog(@"Selector is using by other button.");
         }
-        [AlertTool showAlert:SelectorBeUsingTip];
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:SelectorBeUsingTip
+                     inViewController:self];
     } else {
         doneButtonDidClicked=callback;
         datePicker=(UIDatePicker *)[self viewWithTag:1];

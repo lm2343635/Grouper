@@ -1,8 +1,8 @@
 //
 //  AlertTool.h
-//  GroupFinance
+//  MuShare-iOS
 //
-//  Created by lidaye on 5/22/16.
+//  Created by 李大爷的电脑 on 7/12/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
@@ -11,7 +11,8 @@
 
 @interface AlertTool : NSObject
 
-//显示一个提示框
-+(void)showAlert:(NSString *)message;
++ (void)showAlertWithTitle:(NSString *)title
+                andContent:(NSString *)content
+          inViewController:(UIViewController *)controller;
 
 @end

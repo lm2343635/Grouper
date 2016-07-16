@@ -33,12 +33,16 @@
     }
     NSString *sname=_snameTextField.text;
     if([sname isEqualToString:@""]) {
-        [AlertTool showAlert:@"Shop name is empty!"];
+        [AlertTool showAlertWithTitle:@"Warning"
+                           andContent:@"Shop name is empty!"
+                     inViewController:self];
         return;
     }
     AccountBook *usingAccountBook=[dao.accountBookDao getUsingAccountBook];
     if(usingAccountBook==nil) {
-        [AlertTool showAlert:@"Choose an using account book at first!"];
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Choose an using account book at first!"
+                     inViewController:self];
         return;
     }
     [dao.shopDao saveWithName:sname inAccountBook:usingAccountBook];
