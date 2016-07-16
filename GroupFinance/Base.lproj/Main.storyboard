@@ -1067,7 +1067,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0VK-pk-F2X">
-                                            <rect key="frame" x="16" y="11" width="287" height="21"/>
+                                            <rect key="frame" x="15" y="11" width="264" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1075,23 +1075,17 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="usingAccountBookIndentifer" id="r06-j2-yXp">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="usingAccountBookIndentifer" id="r06-j2-yXp">
                                 <rect key="frame" x="0.0" y="136" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="r06-j2-yXp" id="Jie-78-5Yv">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="281" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Account Book Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wk-f9-zTy">
-                                            <rect key="frame" x="64" y="11" width="239" height="21"/>
+                                            <rect key="frame" x="15" y="11" width="266" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Using" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oI-6f-CF0">
-                                            <rect key="frame" x="16" y="11" width="45" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -1156,21 +1150,11 @@
                                     <constraint firstAttribute="width" secondItem="zGX-Lu-6xz" secondAttribute="height" multiplier="1:1" id="eaD-vJ-NBm"/>
                                 </constraints>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" text="Share this account book to other users by scanning this QR code." textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jcv-ce-y9i">
-                                <rect key="frame" x="20" y="447" width="280" height="64"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="leadingMargin" secondItem="zGX-Lu-6xz" secondAttribute="leading" id="FQv-eX-UiR"/>
-                            <constraint firstItem="jcv-ce-y9i" firstAttribute="top" secondItem="zGX-Lu-6xz" secondAttribute="bottom" constant="8" id="FyE-at-yfH"/>
                             <constraint firstItem="zGX-Lu-6xz" firstAttribute="top" secondItem="xdK-Y5-Man" secondAttribute="bottom" constant="8" id="KAH-HP-H8U"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jcv-ce-y9i" secondAttribute="trailing" id="SYp-JM-FzU"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="jcv-ce-y9i" secondAttribute="leading" id="edN-7Z-aVl"/>
                             <constraint firstItem="xdK-Y5-Man" firstAttribute="centerX" secondItem="s5H-Ki-oRg" secondAttribute="centerX" id="liG-j5-hX6"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zGX-Lu-6xz" secondAttribute="trailing" id="otQ-DH-Tcy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zz9-G0-O6I" secondAttribute="trailing" constant="-20" id="qpM-V1-TZ0"/>
@@ -1205,24 +1189,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="My QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jf-gd-WFm">
-                                <rect key="frame" x="112" y="79" width="97" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-Oc-9m7">
-                                <rect key="frame" x="20" y="108" width="280" height="280"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HNZ-Oc-9m7">
+                                <rect key="frame" x="20" y="81" width="280" height="280"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="HNZ-Oc-9m7" secondAttribute="height" multiplier="1:1" id="plN-Zd-Fo7"/>
+                                    <constraint firstAttribute="width" secondItem="HNZ-Oc-9m7" secondAttribute="height" multiplier="1:1" id="AW4-9Q-iIt"/>
                                 </constraints>
                             </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" editable="NO" text="Share this QR code to other users for joining thier account book." textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IjW-Cx-7OL">
+                                <rect key="frame" x="20" y="369" width="280" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="HNZ-Oc-9m7" secondAttribute="leading" id="8Ke-p9-Iyp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="HNZ-Oc-9m7" secondAttribute="trailing" id="TI7-4u-0pw"/>
-                            <constraint firstItem="1jf-gd-WFm" firstAttribute="centerX" secondItem="pJO-j8-Uv3" secondAttribute="centerX" id="UGT-2l-NvZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="IjW-Cx-7OL" secondAttribute="trailing" id="7vU-K5-zi0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HNZ-Oc-9m7" secondAttribute="trailing" id="8jf-aI-6sr"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="IjW-Cx-7OL" secondAttribute="leading" id="EAq-nG-lHd"/>
+                            <constraint firstItem="HNZ-Oc-9m7" firstAttribute="top" secondItem="5vM-pX-hJF" secondAttribute="bottom" constant="17" id="Wbn-87-oML"/>
+                            <constraint firstItem="IjW-Cx-7OL" firstAttribute="top" secondItem="HNZ-Oc-9m7" secondAttribute="bottom" constant="8" id="Zwv-Fh-1gU"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="HNZ-Oc-9m7" secondAttribute="leading" id="fux-BI-hpU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Join Account Book" id="uK0-JQ-IqS"/>
