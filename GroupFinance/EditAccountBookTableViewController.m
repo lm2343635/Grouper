@@ -1,19 +1,19 @@
 //
-//  EditAccountBookViewController.m
+//  EditAccountBookTableViewController.m
 //  GroupFinance
 //
-//  Created by lidaye on 5/15/16.
+//  Created by lidaye on 7/16/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "EditAccountBookViewController.h"
+#import "EditAccountBookTableViewController.h"
 #import "AlertTool.h"
 
-@interface EditAccountBookViewController ()
+@interface EditAccountBookTableViewController ()
 
 @end
 
-@implementation EditAccountBookViewController {
+@implementation EditAccountBookTableViewController {
     DaoManager *dao;
 }
 

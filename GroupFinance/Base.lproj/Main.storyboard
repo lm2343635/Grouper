@@ -1096,60 +1096,88 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
-                        <segue destination="Axg-af-UpB" kind="push" identifier="editAccountBookSegue" id="oG8-dx-K59"/>
+                        <segue destination="t1t-K3-axD" kind="push" identifier="editAccountBookSegue" id="OXr-Iu-VF2"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jom-VX-WOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1538" y="5383"/>
         </scene>
-        <!--Edit Account Book-->
-        <scene sceneID="lhN-nL-tLJ">
+        <!--Account Book-->
+        <scene sceneID="VpE-pv-iJf">
             <objects>
-                <viewController id="Axg-af-UpB" customClass="EditAccountBookViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QUW-lN-Kfv"/>
-                        <viewControllerLayoutGuide type="bottom" id="Q6D-od-spZ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="s5H-Ki-oRg">
+                <tableViewController id="t1t-K3-axD" customClass="EditAccountBookTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="VRp-aa-pGW">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Book Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zz9-G0-O6I">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-Y5-Man">
-                                <rect key="frame" x="20" y="121" width="280" height="30"/>
-                                <state key="normal" title="Set as using account book"/>
-                                <connections>
-                                    <action selector="setAsUsing:" destination="Axg-af-UpB" eventType="touchUpInside" id="UHX-iE-Ck3"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="xdK-Y5-Man" firstAttribute="centerX" secondItem="s5H-Ki-oRg" secondAttribute="centerX" id="liG-j5-hX6"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Zz9-G0-O6I" secondAttribute="trailing" constant="-20" id="qpM-V1-TZ0"/>
-                            <constraint firstItem="Zz9-G0-O6I" firstAttribute="leading" secondItem="s5H-Ki-oRg" secondAttribute="leadingMargin" constant="-20" id="uS1-Yn-8YY"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Edit Account Book" id="zJz-GV-Yvw">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="GnY-Rb-5T5">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="STY-rj-yYw">
+                            <rect key="frame" x="0.0" y="64" width="320" height="87"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Book Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zz9-G0-O6I">
+                                    <rect key="frame" x="0.0" y="8" width="320" height="41"/>
+                                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xdK-Y5-Man">
+                                    <rect key="frame" x="20" y="57" width="280" height="30"/>
+                                    <state key="normal" title="Set as using account book"/>
+                                    <connections>
+                                        <action selector="setAsUsing:" destination="t1t-K3-axD" eventType="touchUpInside" id="BLw-kb-LZR"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="60" id="DW4-sQ-HVo">
+                                <rect key="frame" x="0.0" y="179" width="320" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DW4-sQ-HVo" id="zcp-t2-qyp">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BJQ-Yb-IwY">
+                                            <rect key="frame" x="15" y="6" width="47" height="47"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cooperater Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyW-uk-oJg">
+                                            <rect key="frame" x="70" y="32" width="242" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cooperater Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XjZ-qk-FsS">
+                                            <rect key="frame" x="70" y="6" width="242" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="t1t-K3-axD" id="WlV-6w-Ljd"/>
+                            <outlet property="delegate" destination="t1t-K3-axD" id="VJM-eE-JX9"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Account Book" id="3av-4y-V1Y">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ewa-e0-6uB">
                             <connections>
-                                <action selector="saveEidt:" destination="Axg-af-UpB" id="poS-HA-yFk"/>
+                                <action selector="saveEidt:" destination="t1t-K3-axD" id="hgK-iK-K1i"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="accountBookNameTextField" destination="Zz9-G0-O6I" id="GBd-va-33M"/>
+                        <outlet property="accountBookNameTextField" destination="Zz9-G0-O6I" id="P8B-Ta-ZF6"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5Lu-c6-rgk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fec-hg-oBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1538" y="6111"/>
+            <point key="canvasLocation" x="1538" y="6170"/>
         </scene>
         <!--Join Account Book-->
         <scene sceneID="afR-kN-Xpk">

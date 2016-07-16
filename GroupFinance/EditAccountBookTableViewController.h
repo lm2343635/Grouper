@@ -1,15 +1,15 @@
 //
-//  EditAccountBookViewController.h
+//  EditAccountBookTableViewController.h
 //  GroupFinance
 //
-//  Created by lidaye on 5/15/16.
+//  Created by lidaye on 7/16/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "DaoManager.h"
 
-@interface EditAccountBookViewController : UIViewController
+@interface EditAccountBookTableViewController : UITableViewController
 
 @property (nonatomic, strong) AccountBook *accountBook;
 

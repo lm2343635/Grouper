@@ -37,7 +37,6 @@
 		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
-		E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
 		E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */; };
@@ -53,6 +52,7 @@
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
+		E4EFB6661D3A106E00C613B0 /* EditAccountBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6651D3A106E00C613B0 /* EditAccountBookTableViewController.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
 		E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */; };
@@ -161,8 +161,6 @@
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
 		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
-		E48E2FAA1CE84FA900E727FD /* EditAccountBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountBookViewController.h; sourceTree = "<group>"; };
-		E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountBookViewController.m; sourceTree = "<group>"; };
 		E497059D1CDF22B20092B164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
@@ -186,6 +184,8 @@
 		E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanQRCodeViewController.m; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
 		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
+		E4EFB6641D3A106E00C613B0 /* EditAccountBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountBookTableViewController.h; sourceTree = "<group>"; };
+		E4EFB6651D3A106E00C613B0 /* EditAccountBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountBookTableViewController.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
 		E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordViewController.m; sourceTree = "<group>"; };
 		E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecordItemTableViewController.h; sourceTree = "<group>"; };
@@ -299,8 +299,6 @@
 		E40C44141CCF25640006D208 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				E425D5741D28FD3C000324A3 /* QRScanView.h */,
-				E425D5751D28FD3C000324A3 /* QRScanView.m */,
 				E40C44181CCF28E90006D208 /* AccountBooksTableViewController.h */,
 				E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */,
 				E457B4231CF19E6700139C4C /* AccountsTableViewController.h */,
@@ -317,30 +315,32 @@
 				E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */,
 				E457B41D1CF19E5300139C4C /* ClassificationsTableViewController.h */,
 				E457B41E1CF19E5300139C4C /* ClassificationsTableViewController.m */,
-				E48E2FAA1CE84FA900E727FD /* EditAccountBookViewController.h */,
-				E48E2FAB1CE84FA900E727FD /* EditAccountBookViewController.m */,
+				E4EFB6641D3A106E00C613B0 /* EditAccountBookTableViewController.h */,
+				E4EFB6651D3A106E00C613B0 /* EditAccountBookTableViewController.m */,
 				E457B41A1CF19E4100139C4C /* EditAccountViewController.h */,
 				E457B41B1CF19E4100139C4C /* EditAccountViewController.m */,
 				E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */,
 				E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */,
 				E457B4141CF19E2A00139C4C /* EditShopViewController.h */,
 				E457B4151CF19E2A00139C4C /* EditShopViewController.m */,
+				E453C6951D321C22001C0AD6 /* JionAccountBookViewController.h */,
+				E453C6961D321C22001C0AD6 /* JionAccountBookViewController.m */,
+				E425D5771D290495000324A3 /* JoinAccountBookTableViewController.h */,
+				E425D5781D290495000324A3 /* JoinAccountBookTableViewController.m */,
 				E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */,
 				E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */,
+				E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */,
+				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
+				E425D5741D28FD3C000324A3 /* QRScanView.h */,
+				E425D5751D28FD3C000324A3 /* QRScanView.m */,
+				E4E66F1F1D27E74D00969AB8 /* ScanQRCodeViewController.h */,
+				E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */,
 				E457B4201CF19E5D00139C4C /* ShopsTableViewController.h */,
 				E457B4211CF19E5D00139C4C /* ShopsTableViewController.m */,
 				E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */,
 				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
 				E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */,
 				E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */,
-				E4E66F1F1D27E74D00969AB8 /* ScanQRCodeViewController.h */,
-				E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */,
-				E425D5771D290495000324A3 /* JoinAccountBookTableViewController.h */,
-				E425D5781D290495000324A3 /* JoinAccountBookTableViewController.m */,
-				E453C6951D321C22001C0AD6 /* JionAccountBookViewController.h */,
-				E453C6961D321C22001C0AD6 /* JionAccountBookViewController.m */,
-				E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */,
-				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -706,9 +706,9 @@
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
+				E4EFB6661D3A106E00C613B0 /* EditAccountBookTableViewController.m in Sources */,
 				E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
-				E48E2FAC1CE84FA900E727FD /* EditAccountBookViewController.m in Sources */,
 				E4F60ABD1D041235006F5DF2 /* Record+CoreDataProperties.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E4F60AB91D041235006F5DF2 /* Photo+CoreDataProperties.m in Sources */,
