@@ -14,7 +14,9 @@
 @property (nonatomic, strong) AccountBook *accountBook;
 
 @property (weak, nonatomic) IBOutlet UITextField *accountBookNameTextField;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButtonItem;
 
+@property (nonatomic) NSUInteger *cooperatersCount;
 
 - (IBAction)saveEidt:(id)sender;
 - (IBAction)setAsUsing:(id)sender;

@@ -2,7 +2,7 @@
 //  Shop+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 7/10/16.
+//  Created by lidaye on 7/17/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSNumber *sin;
 @property (nullable, nonatomic, retain) NSString *sname;
 @property (nullable, nonatomic, retain) NSNumber *sout;
-@property (nullable, nonatomic, retain) NSString *userId;
+@property (nullable, nonatomic, retain) NSString *creator;
 @property (nullable, nonatomic, retain) AccountBook *accountBook;
 
 @end

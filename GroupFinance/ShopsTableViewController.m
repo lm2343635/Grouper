@@ -52,7 +52,7 @@
     Shop *shop=[shops objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shopIndentifer"
                                                             forIndexPath:indexPath];
-    UILabel *snameLabel=(UILabel *)[cell viewWithTag:0];
+    UILabel *snameLabel=(UILabel *)[cell viewWithTag:1];
     snameLabel.text=shop.sname;
     return cell;
 }

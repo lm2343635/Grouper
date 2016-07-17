@@ -12,7 +12,7 @@
 
 @interface UserDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithJSONObject:(NSObject *)object;
+- (User *)saveOrUpdateWithJSONObject:(NSObject *)object;
 
 - (User *)getByUserId:(NSString *)userId;
 

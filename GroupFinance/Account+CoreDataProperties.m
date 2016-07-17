@@ -2,7 +2,7 @@
 //  Account+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 7/10/16.
+//  Created by lidaye on 7/17/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,7 +16,7 @@
 @dynamic ain;
 @dynamic aname;
 @dynamic aout;
-@dynamic userId;
+@dynamic creator;
 @dynamic accountBook;
 
 @end

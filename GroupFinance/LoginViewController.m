@@ -60,7 +60,7 @@
             NSLog(@"Get facebook user info: %@", result);
         }
         dao = [[DaoManager alloc] init];
-        [dao.userDao saveWithJSONObject:result];
+        [dao.userDao saveOrUpdateWithJSONObject:result];
         [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
     }];
 }

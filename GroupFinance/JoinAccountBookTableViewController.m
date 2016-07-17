@@ -9,6 +9,8 @@
 #import "JoinAccountBookTableViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
 @interface JoinAccountBookTableViewController ()
 
@@ -90,15 +92,21 @@
                                                             style:UIAlertActionStyleDestructive
                                                           handler:^(UIAlertAction * _Nonnull action) {
                                                               
-                                                              NSMutableArray *cooperaters = [NSJSONSerialization JSONObjectWithData:[selectedAccountBook.cooperaters dataUsingEncoding:NSUTF8StringEncoding]
-                                                                                                                            options:NSJSONReadingMutableContainers
-                                                                                                                              error:nil];
+                                                              NSMutableArray *cooperaters = [selectedAccountBook getCooperatersWithJSONArray];
                                                               [cooperaters addObject:userId];
-                                                              selectedAccountBook.cooperaters = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:cooperaters
-                                                                                                                                                               options:NSJSONWritingPrettyPrinted
-                                                                                                                                                                 error:nil]
-                                                                                                                      encoding:NSUTF8StringEncoding];
-                                                              [dao saveContext];
+                                                              [selectedAccountBook setCooperatersWithJSONArray:cooperaters];
+                                                              
+                                                              FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:userId
+                                                                                                                             parameters:@{@"fields": @"picture, email, name, gender"}
+                                                                                                                             HTTPMethod:@"GET"];
+                                                              [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
+                                                                  if(DEBUG) {
+                                                                      NSLog(@"Get facebook user info: %@", result);
+                                                                  }
+                                                                  [dao.userDao saveOrUpdateWithJSONObject:result];
+                                                                  [dao saveContext];
+                                                              }];
+                                                              
                                                           }];
     [sheet addAction:cancelAction];
     [sheet addAction:confirmAction];

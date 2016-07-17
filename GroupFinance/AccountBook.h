@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AccountBook : NSManagedObject
 
+- (NSMutableArray *)getCooperatersWithJSONArray;
+
+- (void)setCooperatersWithJSONArray:(NSArray *)cooperaters;
+
 @end
 
 NS_ASSUME_NONNULL_END

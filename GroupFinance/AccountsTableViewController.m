@@ -52,7 +52,7 @@
     Account *account=[accounts objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountIndentifer"
                                                             forIndexPath:indexPath];
-    UILabel *anameLabel=(UILabel *)[cell viewWithTag:0];
+    UILabel *anameLabel=(UILabel *)[cell viewWithTag:1];
     anameLabel.text=account.aname;
     return cell;
 }

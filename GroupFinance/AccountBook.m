@@ -27,4 +27,23 @@
     }
 }
 
+- (NSMutableArray *)getCooperatersWithJSONArray {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [NSJSONSerialization JSONObjectWithData:[self.cooperaters dataUsingEncoding:NSUTF8StringEncoding]
+                                           options:NSJSONReadingMutableContainers
+                                             error:nil];
+}
+
+- (void)setCooperatersWithJSONArray:(NSArray *)cooperaters {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    self.cooperaters = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:cooperaters
+                                                                                      options:NSJSONWritingPrettyPrinted
+                                                                                        error:nil]
+                                             encoding:NSUTF8StringEncoding];
+}
+
 @end

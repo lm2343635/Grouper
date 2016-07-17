@@ -10,12 +10,15 @@
 
 @implementation UserDao
 
-- (NSManagedObjectID *)saveWithJSONObject:(NSObject *)object {
+- (User *)saveOrUpdateWithJSONObject:(NSObject *)object {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    User *user=[NSEntityDescription insertNewObjectForEntityForName:UserEntityName
+    User *user = [self getByUserId:[object valueForKey:@"id"]];
+    if(user == nil) {
+        user = [NSEntityDescription insertNewObjectForEntityForName:UserEntityName
                                              inManagedObjectContext:self.context];
+    }
     user.userId = [object valueForKey:@"id"];
     user.email = [object valueForKey:@"email"];
     user.name = [object valueForKey:@"name"];
@@ -23,7 +26,7 @@
     user.pictureUrl = [[[object valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
     user.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.pictureUrl]];
     [self saveContext];
-    return user.objectID;
+    return user;
 }
 
 - (User *)getByUserId:(NSString *)userId {
