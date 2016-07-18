@@ -20,7 +20,7 @@
     UIDatePicker *datePicker;
 }
 
--(void)initWithCallback:(Callback)callback {
+- (void)initWithCallback:(Callback)callback inViewController:(UIViewController *)controller {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
@@ -30,7 +30,7 @@
         }
         [AlertTool showAlertWithTitle:@"Tip"
                            andContent:SelectorBeUsingTip
-                     inViewController:self];
+                     inViewController:controller];
     } else {
         doneButtonDidClicked=callback;
         datePicker=(UIDatePicker *)[self viewWithTag:1];

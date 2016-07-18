@@ -216,7 +216,7 @@
     _selectTimeButton.enabled=NO;
     [_timeSelectorView initWithCallback:^(NSObject *object) {
         [self setTime:(NSDate *)object];
-    }];
+    } inViewController:self];
 }
 
 - (IBAction)takePhoto:(id)sender {

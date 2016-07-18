@@ -19,6 +19,6 @@ typedef void (^Callback)(NSObject *);
 
 @interface DateSelectorView : UIView
 
--(void)initWithCallback:(Callback)callback;
+- (void)initWithCallback:(Callback)callback inViewController:(UIViewController *)controller;
 
 @end
