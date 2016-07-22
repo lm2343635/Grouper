@@ -18,6 +18,7 @@
     AccountBook *usingAccountBook;
     NSMutableArray *shops;
     Shop *selectedShop;
+    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -25,15 +26,16 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    usingAccountBook=[dao.accountBookDao getUsingAccountBook];
+    dao = [[DaoManager alloc] init];
+    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
+    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    shops=[NSMutableArray arrayWithArray:[dao.shopDao findWithAccountBook:usingAccountBook]];
+    shops = [NSMutableArray arrayWithArray:[dao.shopDao findWithAccountBook:usingAccountBook]];
     [self.tableView reloadData];
 }
 
@@ -49,11 +51,11 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Shop *shop=[shops objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shopIndentifer"
-                                                            forIndexPath:indexPath];
-    UILabel *snameLabel=(UILabel *)[cell viewWithTag:1];
-    snameLabel.text=shop.sname;
+    Shop *shop = [shops objectAtIndex:indexPath.row];
+    NSString *identifier = [shop isEditableForUser:userId]? @"shopIndentifer": @"cooperateShopIndentifer";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    UILabel *snameLabel = (UILabel *)[cell viewWithTag:1];
+    snameLabel.text = shop.sname;
     return cell;
 }
 
@@ -61,15 +63,18 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    selectedShop=[shops objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:@"editShopSegue" sender:self];
+    selectedShop = [shops objectAtIndex:indexPath.row];
+    if([selectedShop isEditableForUser:userId]) {
+        [self performSegueWithIdentifier:@"editShopSegue" sender:self];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(editingStyle==UITableViewCellEditingStyleDelete) {
+    Shop *shop = [shops objectAtIndex:indexPath.row];
+    if(editingStyle == UITableViewCellEditingStyleDelete && [shop isEditableForUser:userId]) {
         [dao.syncContext deleteObject:[shops objectAtIndex:indexPath.row]];
         [dao saveContext];
         [shops removeObjectAtIndex:indexPath.row];

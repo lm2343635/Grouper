@@ -34,7 +34,9 @@
 						access(users, doc._id);
 					} else if(doc.type == "Classification" || 
 						doc.type == "Account" || 
-						doc.type =="Shop") {
+						doc.type == "Shop" ||
+						doc.type == "Template" ||
+						doc.type == "Record") {
 						channel(doc.accountBook);
 					}
 				}

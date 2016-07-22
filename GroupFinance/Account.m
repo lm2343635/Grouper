@@ -22,4 +22,10 @@
     }
 }
 
+- (BOOL)isEditableForUser:(NSString *)userId {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self.accountBook.owner isEqualToString:userId] || [self.creator isEqualToString:userId];
+}
 @end

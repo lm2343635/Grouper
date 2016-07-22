@@ -26,8 +26,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    usingAccountBook=[dao.accountBookDao getUsingAccountBook];
+    dao = [[DaoManager alloc] init];
+    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
@@ -35,7 +35,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    classifications=[NSMutableArray arrayWithArray:[dao.classificationDao findWithAccountBook:usingAccountBook]];
+    classifications = [NSMutableArray arrayWithArray:[dao.classificationDao findWithAccountBook:usingAccountBook]];
     [self.tableView reloadData];
 }
 
@@ -51,7 +51,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Classification *classification=[classifications objectAtIndex:indexPath.row];
+    Classification *classification = [classifications objectAtIndex:indexPath.row];
     NSString *identifier = [classification isEditableForUser:userId]? @"classificationIndentifer": @"cooperateClassificationIndentifer";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     UILabel *cnameLabel = (UILabel *)[cell viewWithTag:1];

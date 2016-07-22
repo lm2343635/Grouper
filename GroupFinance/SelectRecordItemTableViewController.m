@@ -54,7 +54,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"itemIdentifier"
                                                             forIndexPath:indexPath];
-    UILabel *itemNameLabel=(UILabel *)[cell viewWithTag:0];
+    UILabel *itemNameLabel=(UILabel *)[cell viewWithTag:1];
     NSObject *item=[items objectAtIndex:indexPath.row];
     switch (_selectItemType.unsignedIntegerValue) {
         case SELECT_ITEM_TYPE_CLASSIFICATION:

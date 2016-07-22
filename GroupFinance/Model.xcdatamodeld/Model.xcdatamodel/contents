@@ -12,6 +12,7 @@
         <attribute name="cooperaters" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="owner" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="accounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Account" inverseName="accountBook" inverseEntity="Account" syncable="YES"/>
         <relationship name="classifications" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Classification" inverseName="accountBook" inverseEntity="Classification" syncable="YES"/>
         <relationship name="photos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Photo" inverseName="accountBook" inverseEntity="Photo" syncable="YES"/>
@@ -62,7 +63,7 @@
     </entity>
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="120"/>
-        <element name="AccountBook" positionX="-12674" positionY="-4833" width="128" height="195"/>
+        <element name="AccountBook" positionX="-12674" positionY="-4833" width="128" height="210"/>
         <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="135"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="105"/>
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="180"/>
