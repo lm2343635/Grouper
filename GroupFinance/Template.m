@@ -19,10 +19,17 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super awakeFromInsert];
-    if(!self.userId) {
-        NSUserDefaults *defaults=[NSUserDefaults standardUserDefaults];
-        self.userId=[defaults valueForKey:@"userId"];
+    if(!self.creator) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.creator = [defaults valueForKey:@"userId"];
     }
+}
+
+- (BOOL)isEditableForUser:(NSString *)userId {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self.accountBook.owner isEqualToString:userId] || [self.creator isEqualToString:userId];
 }
 
 @end

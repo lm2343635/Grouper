@@ -18,6 +18,7 @@
     DaoManager *dao;
     NSMutableArray *templates;
     AccountBook *usingAccountBook;
+    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -25,8 +26,9 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    usingAccountBook=[dao.accountBookDao getUsingAccountBook];
+    dao = [[DaoManager alloc] init];
+    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
+    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,13 +49,13 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Template *template=[templates objectAtIndex:indexPath.row];
-    NSString *cellIdentifier=template.saveRecordType.boolValue? @"templateEarnCell": @"templateSpendCell";
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    UILabel *templateNameLabel=(UILabel *)[cell viewWithTag:1];
-    UILabel *templateInformationLable=(UILabel *)[cell viewWithTag:2];
-    templateNameLabel.text=template.tname;
-    templateInformationLable.text=[NSString stringWithFormat:@"%@ | %@ | %@", template.classification.cname, template.account.aname, template.shop.sname];
+    Template *template = [templates objectAtIndex:indexPath.row];
+    NSString *cellIdentifier = template.saveRecordType.boolValue? @"templateEarnCell": @"templateSpendCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    UILabel *templateNameLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *templateInformationLable = (UILabel *)[cell viewWithTag:2];
+    templateNameLabel.text = template.tname;
+    templateInformationLable.text = [NSString stringWithFormat:@"%@ | %@ | %@", template.classification.cname, template.account.aname, template.shop.sname];
     return cell;
 }
 
@@ -61,8 +63,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSUInteger viewControllersCount=self.navigationController.viewControllers.count;
-    UIViewController *lastController=[self.navigationController.viewControllers objectAtIndex:viewControllersCount-2];
+    NSUInteger viewControllersCount = self.navigationController.viewControllers.count;
+    UIViewController *lastController = [self.navigationController.viewControllers objectAtIndex:viewControllersCount-2];
     if([lastController isKindOfClass:AddRecordViewController.class]) {
         [lastController setValue:[templates objectAtIndex:indexPath.row] forKey:@"template"];
         [self.navigationController popViewControllerAnimated:YES];
@@ -73,8 +75,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(editingStyle==UITableViewCellEditingStyleDelete) {
-        [dao.syncContext deleteObject:[templates objectAtIndex:indexPath.row]];
+    Template *template = [templates objectAtIndex:indexPath.row];
+    if(editingStyle == UITableViewCellEditingStyleDelete && [template isEditableForUser:userId]) {
+        [dao.syncContext deleteObject:template];
         [dao saveContext];
         [templates removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

@@ -2,7 +2,7 @@
 //  Record+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 7/19/16.
+//  Created by 李大爷的电脑 on 7/24/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -16,7 +16,7 @@
 @dynamic money;
 @dynamic remark;
 @dynamic time;
-@dynamic userId;
+@dynamic creator;
 @dynamic account;
 @dynamic accountBook;
 @dynamic classification;

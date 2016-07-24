@@ -21,6 +21,7 @@
     DaoManager *dao;
     NSUInteger selectItemType;
     UIImagePickerController *imagePickerController;
+    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -28,48 +29,62 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    imagePickerController=[[UIImagePickerController alloc] init];
-    imagePickerController.delegate=self;
-    if(_record.photo!=nil) {
+    dao = [[DaoManager alloc] init];
+    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    if(_record.photo != nil) {
         [_takePhotoButton setImage:[UIImage imageWithData:_record.photo.data]
                           forState:UIControlStateNormal];
     }
     [_moneyTextFeild setText:[NSString stringWithFormat:@"%@", _record.money]];
-    [_saveTypeSwitch setOn:_record.money.intValue>=0];
-    [_saveTypeLabel setText:_record.money.intValue>=0? @"Save as Earn": @"Save as Spend"];
+    [_saveTypeSwitch setOn:_record.money.intValue >= 0];
+    [_saveTypeLabel setText:_record.money.intValue >= 0? @"Save as Earn": @"Save as Spend"];
     [_selectClassificationButton setTitle:_record.classification.cname
                                  forState:UIControlStateNormal];
     [_selectAccountButton setTitle:_record.account.aname
                           forState:UIControlStateNormal];
     [_selectShopButton setTitle:_record.shop.sname
                        forState:UIControlStateNormal];
-    [_selectTimeButton setTitle:[DateTool formateDate:_record.time withFormat:DateFormatYearMonthDayHourMinutes]
+    [_selectTimeButton setTitle:[DateTool formateDate:_record.time
+                                           withFormat:DateFormatYearMonthDayHourMinutes]
                        forState:UIControlStateNormal];
     [_remarkTextView setText:_record.remark];
-    
+    //Set edit privilege for owner and creater
+    if([_record isEditableForUser:userId]) {
+        _saveBarButtonItem.enabled = YES;
+        _takePhotoButton.enabled = YES;
+        _moneyTextFeild.enabled = YES;
+        _saveTypeSwitch.enabled = YES;
+        _selectClassificationButton.enabled = YES;
+        _selectAccountButton.enabled = YES;
+        _selectShopButton.enabled = YES;
+        _selectTimeButton.enabled = YES;
+        _remarkTextView.editable = YES;
+        _remarkTextView.selectable = YES;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_item==nil) {
+    if(_item == nil) {
         return;
     }
     switch (selectItemType) {
         case SELECT_ITEM_TYPE_CLASSIFICATION:
-            _selectedClassification=(Classification *)_item;
+            _selectedClassification = (Classification *)_item;
             [_selectClassificationButton setTitle:_selectedClassification.cname
                                          forState:UIControlStateNormal];
             break;
         case SELECT_ITEM_TYPE_ACCOUNT:
-            _selectedAccount=(Account *)_item;
+            _selectedAccount = (Account *)_item;
             [_selectAccountButton setTitle:_selectedAccount.aname
                                   forState:UIControlStateNormal];
             break;
         case SELECT_ITEM_TYPE_SHOP:
-            _selectedShop=(Shop *)_item;
+            _selectedShop = (Shop *)_item;
             [_selectShopButton setTitle:_selectedShop.sname
                                forState:UIControlStateNormal];
             break;
@@ -83,15 +98,15 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
     }
-    if(textView==_remarkTextView) {
+    if(textView == _remarkTextView) {
         CGRect frame = textView.frame;
-        int offset=frame.origin.y+textView.frame.size.height-(self.view.frame.size.height-KeyboardHeight);
+        int offset=frame.origin.y+textView.frame.size.height - (self.view.frame.size.height-KeyboardHeight);
         NSTimeInterval animationDuration = 0.30f;
         [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
         [UIView setAnimationDuration:animationDuration];
         //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
         if(offset > 0) {
-            self.view.frame=CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
+            self.view.frame = CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
         }
         [UIView commitAnimations];
         _remarkOK.hidden=NO;
@@ -115,7 +130,7 @@
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     // 判断获取类型：图片
     if([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
-        _photoImage=[info objectForKey:UIImagePickerControllerEditedImage];
+        _photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
         [_takePhotoButton setImage:_photoImage forState:UIControlStateNormal];
     }
     // 隐藏UIImagePickerController
@@ -127,7 +142,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    UIViewController *controller=[segue destinationViewController];
+    UIViewController *controller = [segue destinationViewController];
     if([segue.identifier isEqualToString:@"editRecordItemSegue"]) {
         [controller setValue:[NSNumber numberWithInteger:selectItemType] forKey:@"selectItemType"];
     } else if([segue.identifier isEqualToString:@"showPhotoSegue"]) {
@@ -141,16 +156,16 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if(_photoImage) {
-        if(_record.photo==nil) {
-            NSManagedObjectID *pid=[dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)
+        if(_record.photo == nil) {
+            NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)
                                                 inAccountBook:[dao.accountBookDao getUsingAccountBook]];
-            _record.photo=(Photo *)[dao getObjectById:pid];
+            _record.photo = (Photo *)[dao getObjectById:pid];
         } else {
-            _record.photo.data=UIImageJPEGRepresentation(_photoImage, 1.0);
+            _record.photo.data = UIImageJPEGRepresentation(_photoImage, 1.0);
         }
     }
     if(![_remarkTextView.text isEqualToString:@""]) {
-        _record.remark=_remarkTextView.text;
+        _record.remark = _remarkTextView.text;
     }
     _record.money=[NSNumber numberWithInt:_moneyTextFeild.text.intValue];
     if(_selectedClassification) {

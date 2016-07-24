@@ -27,6 +27,7 @@
 
 @property (weak, nonatomic) IBOutlet DateSelectorView *timeSelectorView;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButtonItem;
 @property (weak, nonatomic) IBOutlet UILabel *saveTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
 @property (weak, nonatomic) IBOutlet UITextField *moneyTextFeild;

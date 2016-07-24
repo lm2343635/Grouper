@@ -20,6 +20,7 @@
     NSMutableArray *records;
     AccountBook *usingAccountBook;
     Record *selectedRecord;
+    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -27,15 +28,16 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    usingAccountBook=[dao.accountBookDao getUsingAccountBook];
+    dao = [[DaoManager alloc] init];
+    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
+    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    records=[[NSMutableArray alloc] initWithArray:[dao.recordDao findByAccountBook:usingAccountBook]];
+    records = [[NSMutableArray alloc] initWithArray:[dao.recordDao findByAccountBook:usingAccountBook]];
     [self.tableView reloadData];
 }
 
@@ -52,16 +54,16 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"recordIdentifier" forIndexPath:indexPath];
-    Record *record=[records objectAtIndex:indexPath.row];
-    UILabel *dayLabel=(UILabel *)[cell viewWithTag:1];
-    UILabel *classificationNameLabel=(UILabel *)[cell viewWithTag:2];
-    UILabel *informationLabel=(UILabel *)[cell viewWithTag:3];
-    UILabel *moneyLabel=(UILabel *)[cell viewWithTag:4];
-    dayLabel.text=[DateTool formateDate:record.time withFormat:DateFormatDay];
-    classificationNameLabel.text=record.classification.cname;
-    informationLabel.text=[NSString stringWithFormat:@"%@ | %@",record.account.aname,record.shop.sname];
-    moneyLabel.text=[NSString stringWithFormat:@"%@",record.money];
-    if([record.money doubleValue]<0) {
+    Record *record = [records objectAtIndex:indexPath.row];
+    UILabel *dayLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *classificationNameLabel = (UILabel *)[cell viewWithTag:2];
+    UILabel *informationLabel = (UILabel *)[cell viewWithTag:3];
+    UILabel *moneyLabel = (UILabel *)[cell viewWithTag:4];
+    dayLabel.text = [DateTool formateDate:record.time withFormat:DateFormatDay];
+    classificationNameLabel.text = record.classification.cname;
+    informationLabel.text = [NSString stringWithFormat:@"%@ | %@",record.account.aname,record.shop.sname];
+    moneyLabel.text = [NSString stringWithFormat:@"%@",record.money];
+    if([record.money doubleValue] < 0) {
         moneyLabel.textColor=[UIColor redColor];
     }
     return cell;
@@ -71,7 +73,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    selectedRecord=[records objectAtIndex:indexPath.row];
+    selectedRecord = [records objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"recordSegue" sender:self];
 }
 
@@ -79,8 +81,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(editingStyle==UITableViewCellEditingStyleDelete) {
-        [dao.syncContext deleteObject:[records objectAtIndex:indexPath.row]];
+    Record *record = [records objectAtIndex:indexPath.row];
+    if(editingStyle == UITableViewCellEditingStyleDelete && [record isEditableForUser:userId]) {
+        [dao.syncContext deleteObject:record];
         [dao saveContext];
         [records removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
@@ -94,7 +97,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if([segue.identifier isEqualToString:@"recordSegue"]) {
-        UIViewController *controller=[segue destinationViewController];
+        UIViewController *controller = [segue destinationViewController];
         [controller setValue:selectedRecord forKey:@"record"];
     }
 }

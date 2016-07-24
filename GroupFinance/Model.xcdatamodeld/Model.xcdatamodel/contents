@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="ain" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="aname" optional="YES" attributeType="String" syncable="YES"/>
@@ -25,7 +25,6 @@
         <attribute name="cname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cout" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="classifications" inverseEntity="AccountBook" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
@@ -35,10 +34,10 @@
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="photos" inverseEntity="AccountBook" syncable="YES"/>
     </entity>
     <entity name="Record" representedClassName="Record" syncable="YES">
+        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="money" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="time" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="records" inverseEntity="AccountBook" syncable="YES"/>
         <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" syncable="YES"/>
@@ -53,9 +52,9 @@
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="shops" inverseEntity="AccountBook" syncable="YES"/>
     </entity>
     <entity name="Template" representedClassName="Template" syncable="YES">
+        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="saveRecordType" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="tname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="account" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Account" syncable="YES"/>
         <relationship name="accountBook" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AccountBook" inverseName="templates" inverseEntity="AccountBook" syncable="YES"/>
         <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" syncable="YES"/>
@@ -64,10 +63,10 @@
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="120"/>
         <element name="AccountBook" positionX="-12674" positionY="-4833" width="128" height="210"/>
-        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="135"/>
+        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="30"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="105"/>
-        <element name="Record" positionX="-12719" positionY="-4347" width="128" height="180"/>
+        <element name="Record" positionX="-12719" positionY="-4347" width="128" height="30"/>
         <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="120"/>
-        <element name="Template" positionX="-12908" positionY="-4500" width="128" height="150"/>
+        <element name="Template" positionX="-12908" positionY="-4500" width="128" height="30"/>
     </elements>
 </model>
