@@ -36,7 +36,9 @@
 						doc.type == "Account" || 
 						doc.type == "Shop" ||
 						doc.type == "Template" ||
-						doc.type == "Record") {
+						doc.type == "Record" ||
+						doc.type == "Photo") {
+						//use same channel with account book
 						channel(doc.accountBook);
 					}
 				}

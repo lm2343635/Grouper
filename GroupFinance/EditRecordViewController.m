@@ -53,7 +53,6 @@
     //Set edit privilege for owner and creater
     if([_record isEditableForUser:userId]) {
         _saveBarButtonItem.enabled = YES;
-        _takePhotoButton.enabled = YES;
         _moneyTextFeild.enabled = YES;
         _saveTypeSwitch.enabled = YES;
         _selectClassificationButton.enabled = YES;
@@ -100,7 +99,7 @@
     }
     if(textView == _remarkTextView) {
         CGRect frame = textView.frame;
-        int offset=frame.origin.y+textView.frame.size.height - (self.view.frame.size.height-KeyboardHeight);
+        int offset = frame.origin.y+textView.frame.size.height - (self.view.frame.size.height-KeyboardHeight);
         NSTimeInterval animationDuration = 0.30f;
         [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
         [UIView setAnimationDuration:animationDuration];
@@ -109,7 +108,7 @@
             self.view.frame = CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
         }
         [UIView commitAnimations];
-        _remarkOK.hidden=NO;
+        _remarkOK.hidden = NO;
     }
 }
 
@@ -169,16 +168,16 @@
     }
     _record.money=[NSNumber numberWithInt:_moneyTextFeild.text.intValue];
     if(_selectedClassification) {
-        _record.classification=_selectedClassification;
+        _record.classification = _selectedClassification;
     }
     if(_selectedAccount) {
-        _record.account=_selectedAccount;
+        _record.account = _selectedAccount;
     }
     if(_selectedShop) {
-        _record.shop=_selectedShop;
+        _record.shop = _selectedShop;
     }
     if(_selectedTime) {
-        _record.time=_selectedTime;
+        _record.time = _selectedTime;
     }
     [dao saveContext];
     [self.navigationController popViewControllerAnimated:YES];
@@ -189,7 +188,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _item=nil;
-    selectItemType=SELECT_ITEM_TYPE_CLASSIFICATION;
+    selectItemType = SELECT_ITEM_TYPE_CLASSIFICATION;
     [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
 
@@ -198,7 +197,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _item=nil;
-    selectItemType=SELECT_ITEM_TYPE_ACCOUNT;
+    selectItemType = SELECT_ITEM_TYPE_ACCOUNT;
     [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
 
@@ -207,7 +206,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _item=nil;
-    selectItemType=SELECT_ITEM_TYPE_SHOP;
+    selectItemType = SELECT_ITEM_TYPE_SHOP;
     [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
 
@@ -215,7 +214,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _selectTimeButton.enabled=NO;
+    _selectTimeButton.enabled = NO;
     [_timeSelectorView initWithCallback:^(NSObject *object) {
         [self setTime:(NSDate *)object];
     } inViewController:self];
@@ -226,55 +225,58 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    UIAlertController *alertController=[UIAlertController alertControllerWithTitle:@"Choose Photo from"
-                                                                           message:nil
-                                                                    preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction=[UIAlertAction actionWithTitle:@"Cancel"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:nil];
-    UIAlertAction *cameraAction=[UIAlertAction actionWithTitle:@"Camera"
-                                                         style:UIAlertActionStyleDefault
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                                                               // 将sourceType设为UIImagePickerControllerSourceTypeCamera代表拍照或拍视频
-                                                               imagePickerController.sourceType=UIImagePickerControllerSourceTypeCamera;
-                                                               // 设置模式为拍摄照片
-                                                               imagePickerController.cameraCaptureMode=UIImagePickerControllerCameraCaptureModePhoto;
-                                                               // 设置使用手机的后置摄像头（默认使用后置摄像头）
-                                                               imagePickerController.cameraDevice=UIImagePickerControllerCameraDeviceRear;
-                                                               // 设置拍摄的照片允许编辑
-                                                               imagePickerController.allowsEditing=YES;
-                                                           }else{
-                                                               if(DEBUG) {
-                                                                   NSLog(@"iOS Simulator cannot open camera.");
-                                                               }
-                                                               [AlertTool showAlertWithTitle:@"Warning"
-                                                                                  andContent:@"iOS Simulator cannot open camera."
-                                                                            inViewController:self];
-                                                           }
-                                                           // 显示picker视图控制器
-                                                           [self presentViewController:imagePickerController animated: YES completion:nil];
-                                                       }];
-    UIAlertAction *libraryAction=[UIAlertAction actionWithTitle:@"Photo Library"
-                                                          style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                            // 设置选择载相册的图片
-                                                            imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                                                            imagePickerController.allowsEditing = YES;
-                                                            // 显示picker视图控制器
-                                                            [self presentViewController:imagePickerController animated: YES completion:nil];
-                                                        }];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Choose Photo from"
+                                                                            message:nil
+                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
+                                                           style:UIAlertActionStyleCancel
+                                                         handler:nil];
     [alertController addAction:cancelAction];
-    [alertController addAction:cameraAction];
-    [alertController addAction:libraryAction];
+    //show photo if exsit
     if(_record.photo) {
-        UIAlertAction *showAction=[UIAlertAction actionWithTitle:@"Show"
-                                                           style:UIAlertActionStyleDestructive
-                                                         handler:^(UIAlertAction * _Nonnull action) {
-                                                             [self performSegueWithIdentifier:@"showPhotoSegue" sender:self];
-                                                         }];
-        
+        UIAlertAction *showAction = [UIAlertAction actionWithTitle:@"Show"
+                                                             style:UIAlertActionStyleDestructive
+                                                           handler:^(UIAlertAction * _Nonnull action) {
+                                                               [self performSegueWithIdentifier:@"showPhotoSegue" sender:self];
+                                                           }];
         [alertController addAction:showAction];
+    }
+    //editable for record owner and creator
+    if([_record isEditableForUser:userId]) {
+        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction * _Nonnull action) {
+                                                                 if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                                                                     // 将sourceType设为UIImagePickerControllerSourceTypeCamera代表拍照或拍视频
+                                                                     imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                     // 设置模式为拍摄照片
+                                                                     imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+                                                                     // 设置使用手机的后置摄像头（默认使用后置摄像头）
+                                                                     imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+                                                                     // 设置拍摄的照片允许编辑
+                                                                     imagePickerController.allowsEditing = YES;
+                                                                 }else{
+                                                                     if(DEBUG) {
+                                                                         NSLog(@"iOS Simulator cannot open camera.");
+                                                                     }
+                                                                     [AlertTool showAlertWithTitle:@"Warning"
+                                                                                        andContent:@"iOS Simulator cannot open camera."
+                                                                                  inViewController:self];
+                                                                 }
+                                                                 // 显示picker视图控制器
+                                                                 [self presentViewController:imagePickerController animated: YES completion:nil];
+                                                             }];
+        UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:@"Photo Library"
+                                                                style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * _Nonnull action) {
+                                                                  // 设置选择载相册的图片
+                                                                  imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                                  imagePickerController.allowsEditing = YES;
+                                                                  // 显示picker视图控制器
+                                                                  [self presentViewController:imagePickerController animated: YES completion:nil];
+                                                              }];
+        [alertController addAction:cameraAction];
+        [alertController addAction:libraryAction];
     }
     [self presentViewController:alertController animated:YES completion:nil];
 }
@@ -284,11 +286,11 @@
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     if([sender isOn]) {
-        _record.money=[NSNumber numberWithInt:abs(_record.money.intValue)];
-        _saveTypeLabel.text=@"Save as Earn";
+        _record.money = [NSNumber numberWithInt:abs(_record.money.intValue)];
+        _saveTypeLabel.text = @"Save as Earn";
     } else {
-        _record.money=[NSNumber numberWithInt:-abs(_record.money.intValue)];
-        _saveTypeLabel.text=@"Save as Spend";
+        _record.money = [NSNumber numberWithInt:-abs(_record.money.intValue)];
+        _saveTypeLabel.text = @"Save as Spend";
     }
     [_moneyTextFeild setText:[NSString stringWithFormat:@"%@", _record.money]];
 }
@@ -298,7 +300,7 @@
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     [_remarkTextView resignFirstResponder];
-    _remarkOK.hidden=YES;
+    _remarkOK.hidden = YES;
 }
 
 #pragma mark - Service
@@ -306,8 +308,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    _selectedTime=time;
-    _selectTimeButton.enabled=YES;
+    _selectedTime = time;
+    _selectTimeButton.enabled = YES;
     [_selectTimeButton setTitle:[DateTool formateDate:_selectedTime withFormat:DateFormatYearMonthDayHourMinutes]
                        forState:UIControlStateNormal];
 }
