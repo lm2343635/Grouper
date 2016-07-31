@@ -585,7 +585,15 @@
 				TargetAttributes = {
 					E4400D6C1CCB5845000DFB1A = {
 						CreatedOnToolsVersion = 7.3;
-						DevelopmentTeam = 94DS5KS578;
+						DevelopmentTeam = 6ANM44X2CJ;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					E4400D851CCB5845000DFB1A = {
 						CreatedOnToolsVersion = 7.3;
@@ -910,13 +918,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"Ensembles\"",
-					"-framework",
-					"\"SSZipArchive\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -937,13 +941,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
-					"-framework",
-					"\"Ensembles\"",
-					"-framework",
-					"\"SSZipArchive\"",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
