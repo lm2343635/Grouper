@@ -10,24 +10,23 @@
 
 @implementation ClassificationDao
 
-- (NSManagedObjectID *)saveWithName:(NSString *)cname
-                      inAccountBook:(AccountBook *)accountBook {
+- (NSManagedObjectID *)saveWithName:(NSString *)cname {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Classification *classification=[NSEntityDescription insertNewObjectForEntityForName:ClassificationEntityName
-                                                                 inManagedObjectContext:self.context];
-    classification.cname=cname;
-    classification.accountBook=accountBook;
+    Classification *classification = [NSEntityDescription insertNewObjectForEntityForName:ClassificationEntityName
+                                                                   inManagedObjectContext:self.context];
+    classification.cname = cname;
+
     [self saveContext];
     return classification.objectID;
 }
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook {
+- (NSArray *)findAll {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"accountBook=%@", accountBook];
-    return [self findByPredicate:predicate withEntityName:ClassificationEntityName];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"cname" ascending:NO];
+    return [self findByPredicate:nil withEntityName:ClassificationEntityName orderBy:sort];
 }
 @end

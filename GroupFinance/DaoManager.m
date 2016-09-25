@@ -12,64 +12,46 @@
 @implementation DaoManager
 
 - (id)init {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    self=[super init];
-    if(self) {
+    self = [super init];
+    if (self) {
         //Get NSManagedObjectContent form AppDelegate
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        _syncContext = [delegate syncManagedObjectContext];
-        _staticContext = [delegate staticManagedObjectContext];
+        _context = delegate.dataStack.mainContext;
         //Set context for sync object dao
-        _accountBookDao=[[AccountBookDao alloc] initWithManagedObjectContext:_syncContext];
-        _accountDao=[[AccountDao alloc] initWithManagedObjectContext:_syncContext];
-        _classificationDao=[[ClassificationDao alloc] initWithManagedObjectContext:_syncContext];
-        _shopDao=[[ShopDao alloc] initWithManagedObjectContext:_syncContext];
-        _recordDao=[[RecordDao alloc] initWithManagedObjectContext:_syncContext];
-        _photoDao=[[PhotoDao alloc] initWithManagedObjectContext:_syncContext];
-        _templateDao=[[TemplateDao alloc] initWithManagedObjectContext:_syncContext];
-        //Set context for static object dao
-        _userDao=[[UserDao alloc] initWithManagedObjectContext:_staticContext];
+        _accountDao = [[AccountDao alloc] initWithManagedObjectContext:_context];
+        _classificationDao = [[ClassificationDao alloc] initWithManagedObjectContext:_context];
+        _shopDao = [[ShopDao alloc] initWithManagedObjectContext:_context];
+        _recordDao = [[RecordDao alloc] initWithManagedObjectContext:_context];
+        _photoDao = [[PhotoDao alloc] initWithManagedObjectContext:_context];
+        _templateDao = [[TemplateDao alloc] initWithManagedObjectContext:_context];
+
     }
     return self;
 }
 
 - (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    return [_syncContext existingObjectWithID:objectID error:nil];
+    return [_context existingObjectWithID:objectID error:nil];
 }
 
 - (void)saveContext {
-    if(DEBUG)
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    if ([_syncContext hasChanges]) {
-        NSError *error = nil;
-        if([_syncContext save:&error]) {
-            if(DEBUG)
-                NSLog(@"_context saved changes to persistent store.");
-        }
-        else
-            NSLog(@"Failed to save _context : %@",error);
-    }else{
-        NSLog(@"Skipped _context save, there are no changes.");
     }
-}
-
-- (void)saveStaticContext {
-    if(DEBUG)
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    if ([_staticContext hasChanges]) {
+    if ([_context hasChanges]) {
         NSError *error = nil;
-        if([_staticContext save:&error]) {
+        if([_context save:&error]) {
             if(DEBUG)
                 NSLog(@"_context saved changes to persistent store.");
-        }
-        else
+        } else {
             NSLog(@"Failed to save _context : %@",error);
-    }else{
+        }
+    } else {
         NSLog(@"Skipped _context save, there are no changes.");
     }
 }

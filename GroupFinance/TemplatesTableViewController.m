@@ -17,7 +17,6 @@
 @implementation TemplatesTableViewController {
     DaoManager *dao;
     NSMutableArray *templates;
-    AccountBook *usingAccountBook;
     NSString *userId;
 }
 
@@ -27,13 +26,12 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    templates=[NSMutableArray arrayWithArray:[dao.templateDao findWithAccountBook:usingAccountBook]];
+    templates=[NSMutableArray arrayWithArray:[dao.templateDao findAll]];
     [self.tableView reloadData];
 }
 
@@ -76,8 +74,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Template *template = [templates objectAtIndex:indexPath.row];
-    if(editingStyle == UITableViewCellEditingStyleDelete && [template isEditableForUser:userId]) {
-        [dao.syncContext deleteObject:template];
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:template];
         [dao saveContext];
         [templates removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

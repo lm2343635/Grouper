@@ -15,7 +15,6 @@
 
 @implementation ClassificationsTableViewController {
     DaoManager *dao;
-    AccountBook *usingAccountBook;
     NSMutableArray *classifications;
     Classification *selectedClassification;
     NSString *userId;
@@ -27,7 +26,6 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
@@ -35,7 +33,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    classifications = [NSMutableArray arrayWithArray:[dao.classificationDao findWithAccountBook:usingAccountBook]];
+    classifications = [NSMutableArray arrayWithArray:[dao.classificationDao findAll]];
     [self.tableView reloadData];
 }
 
@@ -52,8 +50,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Classification *classification = [classifications objectAtIndex:indexPath.row];
-    NSString *identifier = [classification isEditableForUser:userId]? @"classificationIndentifer": @"cooperateClassificationIndentifer";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"classificationIndentifer" forIndexPath:indexPath];
     UILabel *cnameLabel = (UILabel *)[cell viewWithTag:1];
     cnameLabel.text = classification.cname;
     return cell;
@@ -64,18 +62,17 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     selectedClassification = [classifications objectAtIndex:indexPath.row];
-    if([selectedClassification isEditableForUser:userId]) {
-        [self performSegueWithIdentifier:@"editClassificationSegue" sender:self];
-    }
+    [self performSegueWithIdentifier:@"editClassificationSegue" sender:self];
+
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Classification *classification=[classifications objectAtIndex:indexPath.row];
-    if(editingStyle == UITableViewCellEditingStyleDelete && [classification isEditableForUser:userId]) {
-        [dao.syncContext deleteObject:classification];
+    Classification *classification = [classifications objectAtIndex:indexPath.row];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:classification];
         [dao saveContext];
         [classifications removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

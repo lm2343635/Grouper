@@ -1,24 +1,20 @@
 //
-//  Shop.h
+//  Account+CoreDataClass.h
 //  GroupFinance
 //
-//  Created by lidaye on 5/22/16.
+//  Created by lidaye on 31/10/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class AccountBook;
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Shop : NSManagedObject
-
-- (BOOL)isEditableForUser:(NSString *)userId;
+@interface Account : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Shop+CoreDataProperties.h"
+#import "Account+CoreDataProperties.h"

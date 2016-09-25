@@ -13,7 +13,6 @@
 @interface PhotoDao : DaoTemplate
 
 //新建照片使用
--(NSManagedObjectID *)saveWithData:(NSData *)pdata
-                     inAccountBook:(AccountBook *)accountBook;
+- (NSManagedObjectID *)saveWithData:(NSData *)pdata;
 
 @end

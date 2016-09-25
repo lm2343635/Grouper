@@ -8,14 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "AccountBook.h"
-#import "Classification.h"
-#import "Shop.h"
-#import "Account.h"
-#import "Record.h"
-#import "Photo.h"
-#import "Template.h"
-#import "User.h"
+#import "Classification+CoreDataClass.h"
+#import "Shop+CoreDataClass.h"
+#import "Account+CoreDataClass.h"
+#import "Record+CoreDataClass.h"
+#import "Photo+CoreDataClass.h"
+#import "Template+CoreDataClass.h"
 
 @interface DaoTemplate : NSObject
 

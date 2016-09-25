@@ -1,21 +1,19 @@
 //
-//  Template.h
+//  Template+CoreDataClass.h
 //  GroupFinance
 //
-//  Created by lidaye on 6/5/16.
+//  Created by lidaye on 31/10/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Account, AccountBook, Classification, Shop;
+@class Account, Classification, Shop;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Template : NSManagedObject
-
-- (BOOL)isEditableForUser:(NSString *)userId;
 
 @end
 

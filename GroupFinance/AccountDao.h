@@ -12,8 +12,8 @@
 
 @interface AccountDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)aname inAccountBook:(AccountBook *)accountBook;
+- (NSManagedObjectID *)saveWithName:(NSString *)aname;
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook;
+- (NSArray *)findAll;
 
 @end

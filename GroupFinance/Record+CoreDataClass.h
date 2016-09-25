@@ -1,23 +1,19 @@
 //
-//  Record.h
+//  Record+CoreDataClass.h
 //  GroupFinance
 //
-//  Created by lidaye on 5/29/16.
+//  Created by lidaye on 31/10/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Account, AccountBook, Classification, Shop;
+@class Account, Classification, Photo, Shop;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class Photo;
-
 @interface Record : NSManagedObject
-
-- (BOOL)isEditableForUser:(NSString *)userId;
 
 @end
 

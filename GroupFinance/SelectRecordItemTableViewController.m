@@ -24,18 +24,18 @@
     }
     [super viewDidLoad];
     dao=[[DaoManager alloc] init];
-    AccountBook *usingAccountBook=[dao.accountBookDao getUsingAccountBook];
+
     switch (_selectItemType.unsignedIntegerValue) {
         case SELECT_ITEM_TYPE_CLASSIFICATION:
-            items=[dao.classificationDao findWithAccountBook:usingAccountBook];
+            items=[dao.classificationDao findAll];
             self.navigationItem.title=@"Select a Classification";
             break;
         case SELECT_ITEM_TYPE_ACCOUNT:
-            items=[dao.accountDao findWithAccountBook:usingAccountBook];
+            items=[dao.accountDao findAll];
             self.navigationItem.title=@"Select an Account";
             break;
         case SELECT_ITEM_TYPE_SHOP:
-            items=[dao.shopDao findWithAccountBook:usingAccountBook];
+            items=[dao.shopDao findAll];
             self.navigationItem.title=@"Select a Shop";
             break;
         default:

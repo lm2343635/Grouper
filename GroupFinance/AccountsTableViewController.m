@@ -15,33 +15,31 @@
 
 @implementation AccountsTableViewController {
     DaoManager *dao;
-    AccountBook *usingAccountBook;
     NSMutableArray *accounts;
     Account *selectedAccount;
     NSString *userId;
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    accounts=[NSMutableArray arrayWithArray:[dao.accountDao findWithAccountBook:usingAccountBook]];
+    accounts = [NSMutableArray arrayWithArray:[dao.accountDao findAll]];
     [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return accounts.count;
@@ -51,9 +49,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Account *account=[accounts objectAtIndex:indexPath.row];
-    NSString *identifier = [account isEditableForUser:userId]? @"accountIndentifer": @"cooperateAccountIndentifer";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    Account *account = [accounts objectAtIndex:indexPath.row];
+
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"accountIndentifer" forIndexPath:indexPath];
     UILabel *anameLabel = (UILabel *)[cell viewWithTag:1];
     anameLabel.text = account.aname;
     return cell;
@@ -64,9 +62,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     selectedAccount = [accounts objectAtIndex:indexPath.row];
-    if([selectedAccount isEditableForUser:userId]) {
-        [self performSegueWithIdentifier:@"editAccountSegue" sender:self];
-    }
+    [self performSegueWithIdentifier:@"editAccountSegue" sender:self];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,8 +70,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Account *account=[accounts objectAtIndex:indexPath.row];
-    if(editingStyle == UITableViewCellEditingStyleDelete && [account isEditableForUser:userId]) {
-        [dao.syncContext deleteObject:account];
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:account];
         [dao saveContext];
         [accounts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

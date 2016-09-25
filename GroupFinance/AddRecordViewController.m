@@ -22,7 +22,6 @@
     NSUInteger selectItemType;
     UIImagePickerController *imagePickerController;
     BOOL saveRecordType;
-    AccountBook *usingAccountBook;
 }
 
 - (void)viewDidLoad {
@@ -31,7 +30,6 @@
     }
     [super viewDidLoad];
     dao=[[DaoManager alloc] init];
-    usingAccountBook=[dao.accountBookDao getUsingAccountBook];
     imagePickerController=[[UIImagePickerController alloc] init];
     imagePickerController.delegate=self;
     saveRecordType=NO;
@@ -153,29 +151,27 @@
                      inViewController:self];
         return;
     }
-    int moneyInt=(int)_moneyTextFeild.text.doubleValue;
-    NSNumber *money=[NSNumber numberWithInt: saveRecordType==YES ? moneyInt: -moneyInt];
-    Photo *photo=nil;
+    int moneyInt = (int)_moneyTextFeild.text.doubleValue;
+    NSNumber *money = [NSNumber numberWithInt: saveRecordType==YES ? moneyInt: -moneyInt];
+    Photo *photo = nil;
     //如果用户拍过照就要新建Photo对象
-    if(_photoImage!=nil) {
-        NSManagedObjectID *pid=[dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)
-                                            inAccountBook:usingAccountBook];
-        if(DEBUG) {
-            NSLog(@"Create photo(pid=%@) in accountBook %@", pid, usingAccountBook.abname);
+    if (_photoImage != nil) {
+        NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)];
+        if (DEBUG) {
+            NSLog(@"Create photo with pid = %@");
         }
-        photo=(Photo *)[dao getObjectById:pid];
+        photo = (Photo *)[dao getObjectById:pid];
     }
     
-    NSManagedObjectID *rid=[dao.recordDao saveWithMoney:money
-                                              andRemark:_remarkTextView.text
-                                                andTime:_selectedTime
-                                      andClassification:_selectedClassification
-                                             andAccount:_selectedAccount
-                                                andShop:_selectedShop
-                                               andPhoto:photo
-                                          inAccountBook:usingAccountBook];
-    if(DEBUG) {
-        NSLog(@"Create record(rid=%@) in accountBook %@", rid, usingAccountBook.abname);
+    NSManagedObjectID *rid = [dao.recordDao saveWithMoney:money
+                                                andRemark:_remarkTextView.text
+                                                  andTime:_selectedTime
+                                        andClassification:_selectedClassification
+                                               andAccount:_selectedAccount
+                                                  andShop:_selectedShop
+                                                 andPhoto:photo];
+    if (DEBUG) {
+        NSLog(@"Create record with rid = %@", rid);
     }
     if(rid) {
         [self.navigationController popViewControllerAnimated:YES];

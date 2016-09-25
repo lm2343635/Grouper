@@ -17,7 +17,7 @@
 
 @implementation MyProfileTableViewController {
     DaoManager *dao;
-    User *user;
+
 }
 
 - (void)viewDidLoad {
@@ -26,11 +26,11 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    user = [dao.userDao getUsingUser];
-    _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
-    _nameLabel.text = user.name;
-    _emailLabel.text = user.email;
-    _genderLabel.text = user.gender;
+
+//    _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
+//    _nameLabel.text = user.name;
+//    _emailLabel.text = user.email;
+//    _genderLabel.text = user.gender;
 }
 
 #pragma mark - Action

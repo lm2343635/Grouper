@@ -95,28 +95,27 @@
 
 #pragma mark - Navigation
 - (void)save:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if([_templateNameTextField.text isEqual:@""]) {
+    if ([_templateNameTextField.text isEqual:@""]) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Tempate name is empty!"
                      inViewController:self];
         return;
     }
-    if(_selectedClassification==nil||_selectedAccount==nil||_selectedShop==nil) {
+    if (_selectedClassification == nil || _selectedAccount == nil || _selectedShop == nil) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Classification, account or shop is empty!"
                      inViewController:self];
         return;
     }
-    NSManagedObjectID *tid=[dao.templateDao saveWithNname:_templateNameTextField.text
-                                            andRecordType:_recordType
-                                        andClassification:_selectedClassification
-                                               andAccount:_selectedAccount
-                                                  andShop:_selectedShop
-                                            inAccountBook:[dao.accountBookDao getUsingAccountBook]];
-    if(tid) {
+    NSManagedObjectID *tid = [dao.templateDao saveWithNname:_templateNameTextField.text
+                                              andRecordType:_recordType
+                                          andClassification:_selectedClassification
+                                                 andAccount:_selectedAccount
+                                                    andShop:_selectedShop];
+    if (tid) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

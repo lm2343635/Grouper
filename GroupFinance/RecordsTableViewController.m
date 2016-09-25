@@ -18,7 +18,6 @@
 @implementation RecordsTableViewController {
     DaoManager *dao;
     NSMutableArray *records;
-    AccountBook *usingAccountBook;
     Record *selectedRecord;
     NSString *userId;
 }
@@ -29,7 +28,7 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
+
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
@@ -37,7 +36,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    records = [[NSMutableArray alloc] initWithArray:[dao.recordDao findByAccountBook:usingAccountBook]];
+    records = [[NSMutableArray alloc] initWithArray:[dao.recordDao findAll]];
     [self.tableView reloadData];
 }
 
@@ -82,8 +81,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Record *record = [records objectAtIndex:indexPath.row];
-    if(editingStyle == UITableViewCellEditingStyleDelete && [record isEditableForUser:userId]) {
-        [dao.syncContext deleteObject:record];
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:record];
         [dao saveContext];
         [records removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

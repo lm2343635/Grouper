@@ -10,16 +10,14 @@
 
 @implementation PhotoDao
 
-- (NSManagedObjectID *)saveWithData:(NSData *)pdata
-                      inAccountBook:(AccountBook *)accountBook {
+- (NSManagedObjectID *)saveWithData:(NSData *)pdata {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    Photo *photo=[NSEntityDescription insertNewObjectForEntityForName:PhotoEntityName
-                                               inManagedObjectContext:self.context];
-    photo.data=pdata;
-    photo.createDate=[NSDate date];
-    photo.accountBook=accountBook;
+    Photo *photo = [NSEntityDescription insertNewObjectForEntityForName:PhotoEntityName
+                                                 inManagedObjectContext:self.context];
+    photo.data = pdata;
+    photo.createDate = [NSDate date];
     [self saveContext];
     return photo.objectID;
 }

@@ -10,24 +10,23 @@
 
 @implementation AccountDao
 
-- (NSManagedObjectID *)saveWithName:(NSString *)aname inAccountBook:(AccountBook *)accountBook {
+- (NSManagedObjectID *)saveWithName:(NSString *)aname {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Account *account=[NSEntityDescription insertNewObjectForEntityForName:AccountEntityName
-                                                   inManagedObjectContext:self.context];
-    account.aname=aname;
-    account.accountBook=accountBook;
+    Account *account = [NSEntityDescription insertNewObjectForEntityForName:AccountEntityName
+                                                     inManagedObjectContext:self.context];
+    account.aname = aname;
     [self saveContext];
     return account.objectID;
 }
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook {
+- (NSArray *)findAll {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"accountBook=%@", accountBook];
-    return [self findByPredicate:predicate withEntityName:AccountEntityName];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"aname" ascending:NO];
+    return [self findByPredicate:nil withEntityName:AccountEntityName orderBy:sort];
 }
 
 @end

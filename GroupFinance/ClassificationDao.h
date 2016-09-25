@@ -12,8 +12,8 @@
 
 @interface ClassificationDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)cname inAccountBook:(AccountBook *)accountBook;
+- (NSManagedObjectID *)saveWithName:(NSString *)cname;
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook;
+- (NSArray *)findAll;
 
 @end

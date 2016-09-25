@@ -8,10 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC968FBD0630BE3B26A135B5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B294A411C24BDEE0824FF74A /* Pods.framework */; };
-		E40C44171CCF25870006D208 /* AddAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C44161CCF25870006D208 /* AddAccountBookViewController.m */; };
-		E40C441A1CCF28E90006D208 /* AccountBooksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
-		E425D5791D290495000324A3 /* JoinAccountBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5781D290495000324A3 /* JoinAccountBookTableViewController.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D781CCB5845000DFB1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D771CCB5845000DFB1A /* ViewController.m */; };
@@ -19,7 +16,6 @@
 		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
 		E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */; };
 		E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */; };
-		E453C6971D321C22001C0AD6 /* JionAccountBookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E453C6961D321C22001C0AD6 /* JionAccountBookViewController.m */; };
 		E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */; };
 		E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */; };
 		E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4121CF19E2000139C4C /* AddShopViewController.m */; };
@@ -30,29 +26,40 @@
 		E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4211CF19E5D00139C4C /* ShopsTableViewController.m */; };
 		E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4241CF19E6700139C4C /* AccountsTableViewController.m */; };
 		E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4281CF1A26A00139C4C /* DaoTemplate.m */; };
-		E457B42C1CF1A40100139C4C /* AccountBookDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B42B1CF1A40100139C4C /* AccountBookDao.m */; };
 		E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B42E1CF1A40D00139C4C /* AccountDao.m */; };
 		E457B4321CF1A41800139C4C /* ShopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4311CF1A41800139C4C /* ShopDao.m */; };
 		E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4341CF1A42900139C4C /* ClassificationDao.m */; };
 		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
+		E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D57671DB4D21900116C4E /* GLibFacade.c */; };
+		E46D576E1DB4D21900116C4E /* shamir.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D57691DB4D21900116C4E /* shamir.c */; };
+		E46D576F1DB4D21900116C4E /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D576B1DB4D21900116C4E /* strtok.c */; };
+		E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E46D57711DB4D65800116C4E /* SecretSharing.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
 		E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */; };
-		E49BFB631D37A83C00BCE598 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB601D37A83C00BCE598 /* User+CoreDataProperties.m */; };
-		E49BFB641D37A83C00BCE598 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB621D37A83C00BCE598 /* User.m */; };
+		E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */; };
+		E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */; };
+		E49E7CE21DC7343400E9E43A /* Classification+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCD1DC7343400E9E43A /* Classification+CoreDataClass.m */; };
+		E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCF1DC7343400E9E43A /* Classification+CoreDataProperties.m */; };
+		E49E7CE41DC7343400E9E43A /* Account+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */; };
+		E49E7CE51DC7343400E9E43A /* Account+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD31DC7343400E9E43A /* Account+CoreDataProperties.m */; };
+		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
+		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
+		E49E7CE81DC7343400E9E43A /* Shop+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD91DC7343400E9E43A /* Shop+CoreDataClass.m */; };
+		E49E7CE91DC7343400E9E43A /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDB1DC7343400E9E43A /* Shop+CoreDataProperties.m */; };
+		E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */; };
+		E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */; };
 		E4B0FF4A1D0C22D1000F0421 /* CBLIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */; };
 		E4B0FF4C1D0C2446000F0421 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */; };
 		E4B0FF4E1D0C244D000F0421 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4D1D0C244D000F0421 /* libz.tbd */; };
 		E4B0FF501D0C24C5000F0421 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */; };
 		E4B0FF521D0C24D4000F0421 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF511D0C24D4000F0421 /* Security.framework */; };
 		E4B0FF541D0C24E0000F0421 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */; };
-		E4D6ED7F1D2678D200C16364 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D6ED7E1D2678D200C16364 /* UserDao.m */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
-		E4EFB6661D3A106E00C613B0 /* EditAccountBookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6651D3A106E00C613B0 /* EditAccountBookTableViewController.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
 		E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */; };
@@ -64,20 +71,6 @@
 		E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */; };
 		E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */; };
 		E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */; };
-		E4F60AB61D041235006F5DF2 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A9F1D041235006F5DF2 /* Photo.m */; };
-		E4F60AB71D041235006F5DF2 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AA11D041235006F5DF2 /* Account.m */; };
-		E4F60AB81D041235006F5DF2 /* Account+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AA41D041235006F5DF2 /* Account+CoreDataProperties.m */; };
-		E4F60AB91D041235006F5DF2 /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AA51D041235006F5DF2 /* Photo+CoreDataProperties.m */; };
-		E4F60ABA1D041235006F5DF2 /* AccountBook.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AA81D041235006F5DF2 /* AccountBook.m */; };
-		E4F60ABB1D041235006F5DF2 /* Record.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AA91D041235006F5DF2 /* Record.m */; };
-		E4F60ABC1D041235006F5DF2 /* AccountBook+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AAC1D041235006F5DF2 /* AccountBook+CoreDataProperties.m */; };
-		E4F60ABD1D041235006F5DF2 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AAD1D041235006F5DF2 /* Record+CoreDataProperties.m */; };
-		E4F60ABE1D041235006F5DF2 /* Classification.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB01D041235006F5DF2 /* Classification.m */; };
-		E4F60ABF1D041235006F5DF2 /* Shop.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB11D041235006F5DF2 /* Shop.m */; };
-		E4F60AC01D041235006F5DF2 /* Classification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB41D041235006F5DF2 /* Classification+CoreDataProperties.m */; };
-		E4F60AC11D041235006F5DF2 /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AB51D041235006F5DF2 /* Shop+CoreDataProperties.m */; };
-		E4F60AC91D0413BA006F5DF2 /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AC61D0413BA006F5DF2 /* Template+CoreDataProperties.m */; };
-		E4F60ACA1D0413BA006F5DF2 /* Template.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AC81D0413BA006F5DF2 /* Template.m */; };
 		E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */; };
 		E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */; };
 /* End PBXBuildFile section */
@@ -103,14 +96,8 @@
 		0C9E7037D47A5CF4EB2438D9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B294A411C24BDEE0824FF74A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D557B93C5754F51464A5D0FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		E40C44151CCF25870006D208 /* AddAccountBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddAccountBookViewController.h; sourceTree = "<group>"; };
-		E40C44161CCF25870006D208 /* AddAccountBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddAccountBookViewController.m; sourceTree = "<group>"; };
-		E40C44181CCF28E90006D208 /* AccountBooksTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBooksTableViewController.h; sourceTree = "<group>"; };
-		E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBooksTableViewController.m; sourceTree = "<group>"; };
 		E425D5741D28FD3C000324A3 /* QRScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanView.h; sourceTree = "<group>"; };
 		E425D5751D28FD3C000324A3 /* QRScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanView.m; sourceTree = "<group>"; };
-		E425D5771D290495000324A3 /* JoinAccountBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinAccountBookTableViewController.h; sourceTree = "<group>"; };
-		E425D5781D290495000324A3 /* JoinAccountBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinAccountBookTableViewController.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -126,8 +113,6 @@
 		E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceUITests.m; sourceTree = "<group>"; };
 		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E453C6951D321C22001C0AD6 /* JionAccountBookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JionAccountBookViewController.h; sourceTree = "<group>"; };
-		E453C6961D321C22001C0AD6 /* JionAccountBookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JionAccountBookViewController.m; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
 		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
 		E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditClassificationViewController.h; sourceTree = "<group>"; };
@@ -148,8 +133,6 @@
 		E457B4241CF19E6700139C4C /* AccountsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountsTableViewController.m; sourceTree = "<group>"; };
 		E457B4271CF1A26A00139C4C /* DaoTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoTemplate.h; sourceTree = "<group>"; };
 		E457B4281CF1A26A00139C4C /* DaoTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoTemplate.m; sourceTree = "<group>"; };
-		E457B42A1CF1A40100139C4C /* AccountBookDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBookDao.h; sourceTree = "<group>"; };
-		E457B42B1CF1A40100139C4C /* AccountBookDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBookDao.m; sourceTree = "<group>"; };
 		E457B42D1CF1A40D00139C4C /* AccountDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountDao.h; sourceTree = "<group>"; };
 		E457B42E1CF1A40D00139C4C /* AccountDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountDao.m; sourceTree = "<group>"; };
 		E457B4301CF1A41800139C4C /* ShopDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopDao.h; sourceTree = "<group>"; };
@@ -158,6 +141,14 @@
 		E457B4341CF1A42900139C4C /* ClassificationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationDao.m; sourceTree = "<group>"; };
 		E457B4361CF1AA6E00139C4C /* DaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoManager.h; sourceTree = "<group>"; };
 		E457B4371CF1AA6E00139C4C /* DaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoManager.m; sourceTree = "<group>"; };
+		E46D57671DB4D21900116C4E /* GLibFacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLibFacade.c; sourceTree = "<group>"; };
+		E46D57681DB4D21900116C4E /* GLibFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLibFacade.h; sourceTree = "<group>"; };
+		E46D57691DB4D21900116C4E /* shamir.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shamir.c; sourceTree = "<group>"; };
+		E46D576A1DB4D21900116C4E /* shamir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shamir.h; sourceTree = "<group>"; };
+		E46D576B1DB4D21900116C4E /* strtok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtok.c; sourceTree = "<group>"; };
+		E46D576C1DB4D21900116C4E /* strtok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strtok.h; sourceTree = "<group>"; };
+		E46D57701DB4D65800116C4E /* SecretSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecretSharing.h; sourceTree = "<group>"; };
+		E46D57711DB4D65800116C4E /* SecretSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretSharing.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
 		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
@@ -165,10 +156,30 @@
 		E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
 		E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Static.xcdatamodel; sourceTree = "<group>"; };
-		E49BFB5F1D37A83C00BCE598 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E49BFB601D37A83C00BCE598 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E49BFB611D37A83C00BCE598 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
-		E49BFB621D37A83C00BCE598 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		E49E7CC81DC7343400E9E43A /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
+		E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
+		E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E49E7CCC1DC7343400E9E43A /* Classification+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Classification+CoreDataClass.h"; sourceTree = "<group>"; };
+		E49E7CCD1DC7343400E9E43A /* Classification+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Classification+CoreDataClass.m"; sourceTree = "<group>"; };
+		E49E7CCE1DC7343400E9E43A /* Classification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Classification+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49E7CCF1DC7343400E9E43A /* Classification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Classification+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E49E7CD01DC7343400E9E43A /* Account+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Account+CoreDataClass.h"; sourceTree = "<group>"; };
+		E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataClass.m"; sourceTree = "<group>"; };
+		E49E7CD21DC7343400E9E43A /* Account+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Account+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49E7CD31DC7343400E9E43A /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E49E7CD41DC7343400E9E43A /* Photo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataClass.h"; sourceTree = "<group>"; };
+		E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataClass.m"; sourceTree = "<group>"; };
+		E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E49E7CD81DC7343400E9E43A /* Shop+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shop+CoreDataClass.h"; sourceTree = "<group>"; };
+		E49E7CD91DC7343400E9E43A /* Shop+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shop+CoreDataClass.m"; sourceTree = "<group>"; };
+		E49E7CDA1DC7343400E9E43A /* Shop+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shop+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49E7CDB1DC7343400E9E43A /* Shop+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shop+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E49E7CDC1DC7343400E9E43A /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
+		E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
+		E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E4B0FF481D0C22D1000F0421 /* CBLIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLIncrementalStore.h; sourceTree = "<group>"; };
 		E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLIncrementalStore.m; sourceTree = "<group>"; };
 		E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -176,16 +187,12 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		E4D6ED7D1D2678D200C16364 /* UserDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
-		E4D6ED7E1D2678D200C16364 /* UserDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
 		E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E4E66F1F1D27E74D00969AB8 /* ScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanQRCodeViewController.h; sourceTree = "<group>"; };
 		E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanQRCodeViewController.m; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
 		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
-		E4EFB6641D3A106E00C613B0 /* EditAccountBookTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountBookTableViewController.h; sourceTree = "<group>"; };
-		E4EFB6651D3A106E00C613B0 /* EditAccountBookTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountBookTableViewController.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
 		E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordViewController.m; sourceTree = "<group>"; };
 		E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecordItemTableViewController.h; sourceTree = "<group>"; };
@@ -208,34 +215,6 @@
 		E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplatesTableViewController.h; sourceTree = "<group>"; };
 		E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatesTableViewController.m; sourceTree = "<group>"; };
 		E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		E4F60A9E1D041235006F5DF2 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
-		E4F60A9F1D041235006F5DF2 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
-		E4F60AA01D041235006F5DF2 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
-		E4F60AA11D041235006F5DF2 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
-		E4F60AA21D041235006F5DF2 /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AA31D041235006F5DF2 /* Account+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Account+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AA41D041235006F5DF2 /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AA51D041235006F5DF2 /* Photo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AA61D041235006F5DF2 /* AccountBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountBook.h; sourceTree = "<group>"; };
-		E4F60AA71D041235006F5DF2 /* Record.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Record.h; sourceTree = "<group>"; };
-		E4F60AA81D041235006F5DF2 /* AccountBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountBook.m; sourceTree = "<group>"; };
-		E4F60AA91D041235006F5DF2 /* Record.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Record.m; sourceTree = "<group>"; };
-		E4F60AAA1D041235006F5DF2 /* AccountBook+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AccountBook+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AAB1D041235006F5DF2 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AAC1D041235006F5DF2 /* AccountBook+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AccountBook+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AAD1D041235006F5DF2 /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AAE1D041235006F5DF2 /* Classification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Classification.h; sourceTree = "<group>"; };
-		E4F60AAF1D041235006F5DF2 /* Shop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Shop.h; sourceTree = "<group>"; };
-		E4F60AB01D041235006F5DF2 /* Classification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Classification.m; sourceTree = "<group>"; };
-		E4F60AB11D041235006F5DF2 /* Shop.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Shop.m; sourceTree = "<group>"; };
-		E4F60AB21D041235006F5DF2 /* Classification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Classification+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AB31D041235006F5DF2 /* Shop+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shop+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AB41D041235006F5DF2 /* Classification+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Classification+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AB51D041235006F5DF2 /* Shop+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Shop+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AC51D0413BA006F5DF2 /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4F60AC61D0413BA006F5DF2 /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4F60AC71D0413BA006F5DF2 /* Template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Template.h; sourceTree = "<group>"; };
-		E4F60AC81D0413BA006F5DF2 /* Template.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Template.m; sourceTree = "<group>"; };
 		E4F60ACB1D0413FF006F5DF2 /* TemplateDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateDao.h; sourceTree = "<group>"; };
 		E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateDao.m; sourceTree = "<group>"; };
 		E4F60AD11D0448FF006F5DF2 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -299,12 +278,8 @@
 		E40C44141CCF25640006D208 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				E40C44181CCF28E90006D208 /* AccountBooksTableViewController.h */,
-				E40C44191CCF28E90006D208 /* AccountBooksTableViewController.m */,
 				E457B4231CF19E6700139C4C /* AccountsTableViewController.h */,
 				E457B4241CF19E6700139C4C /* AccountsTableViewController.m */,
-				E40C44151CCF25870006D208 /* AddAccountBookViewController.h */,
-				E40C44161CCF25870006D208 /* AddAccountBookViewController.m */,
 				E457B4171CF19E3500139C4C /* AddAccountViewController.h */,
 				E457B4181CF19E3500139C4C /* AddAccountViewController.m */,
 				E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */,
@@ -315,18 +290,12 @@
 				E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */,
 				E457B41D1CF19E5300139C4C /* ClassificationsTableViewController.h */,
 				E457B41E1CF19E5300139C4C /* ClassificationsTableViewController.m */,
-				E4EFB6641D3A106E00C613B0 /* EditAccountBookTableViewController.h */,
-				E4EFB6651D3A106E00C613B0 /* EditAccountBookTableViewController.m */,
 				E457B41A1CF19E4100139C4C /* EditAccountViewController.h */,
 				E457B41B1CF19E4100139C4C /* EditAccountViewController.m */,
 				E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */,
 				E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */,
 				E457B4141CF19E2A00139C4C /* EditShopViewController.h */,
 				E457B4151CF19E2A00139C4C /* EditShopViewController.m */,
-				E453C6951D321C22001C0AD6 /* JionAccountBookViewController.h */,
-				E453C6961D321C22001C0AD6 /* JionAccountBookViewController.m */,
-				E425D5771D290495000324A3 /* JoinAccountBookTableViewController.h */,
-				E425D5781D290495000324A3 /* JoinAccountBookTableViewController.m */,
 				E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */,
 				E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */,
 				E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */,
@@ -418,8 +387,6 @@
 		E457B4261CF1A22A00139C4C /* Dao */ = {
 			isa = PBXGroup;
 			children = (
-				E457B42A1CF1A40100139C4C /* AccountBookDao.h */,
-				E457B42B1CF1A40100139C4C /* AccountBookDao.m */,
 				E457B42D1CF1A40D00139C4C /* AccountDao.h */,
 				E457B42E1CF1A40D00139C4C /* AccountDao.m */,
 				E457B4331CF1A42900139C4C /* ClassificationDao.h */,
@@ -436,8 +403,6 @@
 				E4F1CB451CFB0B2D00461B3F /* PhotoDao.m */,
 				E4F60ACB1D0413FF006F5DF2 /* TemplateDao.h */,
 				E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */,
-				E4D6ED7D1D2678D200C16364 /* UserDao.h */,
-				E4D6ED7E1D2678D200C16364 /* UserDao.m */,
 			);
 			name = Dao;
 			sourceTree = "<group>";
@@ -462,6 +427,12 @@
 		E4F1CB2C1CFAF28500461B3F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E46D57671DB4D21900116C4E /* GLibFacade.c */,
+				E46D57681DB4D21900116C4E /* GLibFacade.h */,
+				E46D57691DB4D21900116C4E /* shamir.c */,
+				E46D576A1DB4D21900116C4E /* shamir.h */,
+				E46D576B1DB4D21900116C4E /* strtok.c */,
+				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E4EFB6611D3A0C4800C613B0 /* AlertTool.h */,
 				E4EFB6621D3A0C4800C613B0 /* AlertTool.m */,
 				E4B0FF481D0C22D1000F0421 /* CBLIncrementalStore.h */,
@@ -470,6 +441,8 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
+				E46D57701DB4D65800116C4E /* SecretSharing.h */,
+				E46D57711DB4D65800116C4E /* SecretSharing.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -477,39 +450,31 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E49BFB5F1D37A83C00BCE598 /* User+CoreDataProperties.h */,
-				E49BFB601D37A83C00BCE598 /* User+CoreDataProperties.m */,
-				E49BFB611D37A83C00BCE598 /* User.h */,
-				E49BFB621D37A83C00BCE598 /* User.m */,
-				E4F60AA01D041235006F5DF2 /* Account.h */,
-				E4F60AA11D041235006F5DF2 /* Account.m */,
-				E4F60AA31D041235006F5DF2 /* Account+CoreDataProperties.h */,
-				E4F60AA41D041235006F5DF2 /* Account+CoreDataProperties.m */,
-				E4F60AA61D041235006F5DF2 /* AccountBook.h */,
-				E4F60AA81D041235006F5DF2 /* AccountBook.m */,
-				E4F60AAA1D041235006F5DF2 /* AccountBook+CoreDataProperties.h */,
-				E4F60AAC1D041235006F5DF2 /* AccountBook+CoreDataProperties.m */,
-				E4F60AAE1D041235006F5DF2 /* Classification.h */,
-				E4F60AB01D041235006F5DF2 /* Classification.m */,
-				E4F60AB21D041235006F5DF2 /* Classification+CoreDataProperties.h */,
-				E4F60AB41D041235006F5DF2 /* Classification+CoreDataProperties.m */,
+				E49E7CC81DC7343400E9E43A /* Record+CoreDataClass.h */,
+				E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */,
+				E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */,
+				E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */,
+				E49E7CCC1DC7343400E9E43A /* Classification+CoreDataClass.h */,
+				E49E7CCD1DC7343400E9E43A /* Classification+CoreDataClass.m */,
+				E49E7CCE1DC7343400E9E43A /* Classification+CoreDataProperties.h */,
+				E49E7CCF1DC7343400E9E43A /* Classification+CoreDataProperties.m */,
+				E49E7CD01DC7343400E9E43A /* Account+CoreDataClass.h */,
+				E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */,
+				E49E7CD21DC7343400E9E43A /* Account+CoreDataProperties.h */,
+				E49E7CD31DC7343400E9E43A /* Account+CoreDataProperties.m */,
+				E49E7CD41DC7343400E9E43A /* Photo+CoreDataClass.h */,
+				E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */,
+				E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */,
+				E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */,
+				E49E7CD81DC7343400E9E43A /* Shop+CoreDataClass.h */,
+				E49E7CD91DC7343400E9E43A /* Shop+CoreDataClass.m */,
+				E49E7CDA1DC7343400E9E43A /* Shop+CoreDataProperties.h */,
+				E49E7CDB1DC7343400E9E43A /* Shop+CoreDataProperties.m */,
+				E49E7CDC1DC7343400E9E43A /* Template+CoreDataClass.h */,
+				E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */,
+				E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */,
+				E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */,
 				E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */,
-				E4F60A9E1D041235006F5DF2 /* Photo.h */,
-				E4F60A9F1D041235006F5DF2 /* Photo.m */,
-				E4F60AA21D041235006F5DF2 /* Photo+CoreDataProperties.h */,
-				E4F60AA51D041235006F5DF2 /* Photo+CoreDataProperties.m */,
-				E4F60AA71D041235006F5DF2 /* Record.h */,
-				E4F60AA91D041235006F5DF2 /* Record.m */,
-				E4F60AAB1D041235006F5DF2 /* Record+CoreDataProperties.h */,
-				E4F60AAD1D041235006F5DF2 /* Record+CoreDataProperties.m */,
-				E4F60AAF1D041235006F5DF2 /* Shop.h */,
-				E4F60AB11D041235006F5DF2 /* Shop.m */,
-				E4F60AB31D041235006F5DF2 /* Shop+CoreDataProperties.h */,
-				E4F60AB51D041235006F5DF2 /* Shop+CoreDataProperties.m */,
-				E4F60AC71D0413BA006F5DF2 /* Template.h */,
-				E4F60AC81D0413BA006F5DF2 /* Template.m */,
-				E4F60AC51D0413BA006F5DF2 /* Template+CoreDataProperties.h */,
-				E4F60AC61D0413BA006F5DF2 /* Template+CoreDataProperties.m */,
 				E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */,
 			);
 			name = Model;
@@ -706,67 +671,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E453C6971D321C22001C0AD6 /* JionAccountBookViewController.m in Sources */,
+				E46D576F1DB4D21900116C4E /* strtok.c in Sources */,
 				E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */,
+				E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */,
+				E49E7CE81DC7343400E9E43A /* Shop+CoreDataClass.m in Sources */,
 				E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */,
+				E49E7CE21DC7343400E9E43A /* Classification+CoreDataClass.m in Sources */,
 				E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */,
 				E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */,
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
+				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
-				E4EFB6661D3A106E00C613B0 /* EditAccountBookTableViewController.m in Sources */,
+				E49E7CE91DC7343400E9E43A /* Shop+CoreDataProperties.m in Sources */,
 				E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
-				E4F60ABD1D041235006F5DF2 /* Record+CoreDataProperties.m in Sources */,
+				E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
-				E4F60AB91D041235006F5DF2 /* Photo+CoreDataProperties.m in Sources */,
-				E425D5791D290495000324A3 /* JoinAccountBookTableViewController.m in Sources */,
+				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
-				E4F60AC01D041235006F5DF2 /* Classification+CoreDataProperties.m in Sources */,
-				E4D6ED7F1D2678D200C16364 /* UserDao.m in Sources */,
-				E4F60ABE1D041235006F5DF2 /* Classification.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
-				E4F60ACA1D0413BA006F5DF2 /* Template.m in Sources */,
+				E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */,
 				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
-				E4F60AB71D041235006F5DF2 /* Account.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
 				E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */,
+				E49E7CE51DC7343400E9E43A /* Account+CoreDataProperties.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
 				E4F1CB431CFB0B0C00461B3F /* RecordDao.m in Sources */,
 				E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */,
+				E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */,
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
-				E49BFB631D37A83C00BCE598 /* User+CoreDataProperties.m in Sources */,
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
-				E4F60AC91D0413BA006F5DF2 /* Template+CoreDataProperties.m in Sources */,
-				E4F60ABF1D041235006F5DF2 /* Shop.m in Sources */,
+				E49E7CE41DC7343400E9E43A /* Account+CoreDataClass.m in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
 				E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
-				E4F60AB61D041235006F5DF2 /* Photo.m in Sources */,
+				E46D576E1DB4D21900116C4E /* shamir.c in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
-				E40C441A1CCF28E90006D208 /* AccountBooksTableViewController.m in Sources */,
-				E40C44171CCF25870006D208 /* AddAccountBookViewController.m in Sources */,
+				E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
-				E49BFB641D37A83C00BCE598 /* User.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
-				E4F60ABC1D041235006F5DF2 /* AccountBook+CoreDataProperties.m in Sources */,
-				E4F60ABA1D041235006F5DF2 /* AccountBook.m in Sources */,
 				E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */,
 				E4B0FF4A1D0C22D1000F0421 /* CBLIncrementalStore.m in Sources */,
-				E4F60AB81D041235006F5DF2 /* Account+CoreDataProperties.m in Sources */,
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
-				E4F60ABB1D041235006F5DF2 /* Record.m in Sources */,
-				E4F60AC11D041235006F5DF2 /* Shop+CoreDataProperties.m in Sources */,
+				E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */,
+				E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,
 				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
-				E457B42C1CF1A40100139C4C /* AccountBookDao.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

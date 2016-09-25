@@ -38,14 +38,8 @@
                      inViewController:self];
         return;
     }
-    AccountBook *usingAccountBook=[dao.accountBookDao getUsingAccountBook];
-    if(usingAccountBook==nil) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Choose an using account book at first!"
-                     inViewController:self];
-        return;
-    }
-    [dao.accountDao saveWithName:aname inAccountBook:usingAccountBook];
+
+    [dao.accountDao saveWithName:aname];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

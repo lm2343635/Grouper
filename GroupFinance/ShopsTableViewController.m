@@ -15,7 +15,6 @@
 
 @implementation ShopsTableViewController {
     DaoManager *dao;
-    AccountBook *usingAccountBook;
     NSMutableArray *shops;
     Shop *selectedShop;
     NSString *userId;
@@ -27,7 +26,6 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    usingAccountBook = [dao.accountBookDao getUsingAccountBook];
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
@@ -35,7 +33,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    shops = [NSMutableArray arrayWithArray:[dao.shopDao findWithAccountBook:usingAccountBook]];
+    shops = [NSMutableArray arrayWithArray:[dao.shopDao findAll]];
     [self.tableView reloadData];
 }
 
@@ -52,8 +50,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Shop *shop = [shops objectAtIndex:indexPath.row];
-    NSString *identifier = [shop isEditableForUser:userId]? @"shopIndentifer": @"cooperateShopIndentifer";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shopIndentifer" forIndexPath:indexPath];
     UILabel *snameLabel = (UILabel *)[cell viewWithTag:1];
     snameLabel.text = shop.sname;
     return cell;
@@ -64,9 +61,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     selectedShop = [shops objectAtIndex:indexPath.row];
-    if([selectedShop isEditableForUser:userId]) {
-        [self performSegueWithIdentifier:@"editShopSegue" sender:self];
-    }
+    [self performSegueWithIdentifier:@"editShopSegue" sender:self];
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -74,8 +69,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Shop *shop = [shops objectAtIndex:indexPath.row];
-    if(editingStyle == UITableViewCellEditingStyleDelete && [shop isEditableForUser:userId]) {
-        [dao.syncContext deleteObject:[shops objectAtIndex:indexPath.row]];
+    if(editingStyle == UITableViewCellEditingStyleDelete) {
+        [dao.context deleteObject:[shops objectAtIndex:indexPath.row]];
         [dao saveContext];
         [shops removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

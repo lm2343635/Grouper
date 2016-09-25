@@ -12,8 +12,8 @@
 
 @interface ShopDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)sname inAccountBook:(AccountBook *)accountBook;
+- (NSManagedObjectID *)saveWithName:(NSString *)sname;
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook;
+- (NSArray *)findAll;
 
 @end

@@ -16,9 +16,8 @@
                        andRecordType:(NSNumber *)recordType
                    andClassification:(Classification *)classification
                           andAccount:(Account *)account
-                             andShop:(Shop *)shop
-                       inAccountBook:(AccountBook *)accountBook;
+                             andShop:(Shop *)shop;
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook;
+- (NSArray *)findAll;
 
 @end

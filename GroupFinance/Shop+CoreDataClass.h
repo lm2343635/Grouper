@@ -1,8 +1,8 @@
 //
-//  User.h
+//  Shop+CoreDataClass.h
 //  GroupFinance
 //
-//  Created by lidaye on 7/14/16.
+//  Created by lidaye on 31/10/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
@@ -11,12 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface User : NSManagedObject
-
-// Insert code here to declare functionality of your managed object subclass
+@interface Shop : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "User+CoreDataProperties.h"
+#import "Shop+CoreDataProperties.h"

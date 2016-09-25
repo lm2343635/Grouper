@@ -1,21 +1,17 @@
 //
-//  Classification.h
+//  Classification+CoreDataClass.h
 //  GroupFinance
 //
-//  Created by lidaye on 5/22/16.
+//  Created by lidaye on 31/10/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class AccountBook;
-
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Classification : NSManagedObject
-
-- (BOOL)isEditableForUser:(NSString *)userId;
 
 @end
 

@@ -19,9 +19,8 @@
                   andClassification:(Classification *)classsification
                          andAccount:(Account *)account
                             andShop:(Shop *)shop
-                           andPhoto:(Photo *)photo
-                      inAccountBook:(AccountBook *)accountBook;
+                           andPhoto:(Photo *)photo;
 
-- (NSArray *)findByAccountBook:(AccountBook *)accountBook;
+- (NSArray *)findAll;
 
 @end

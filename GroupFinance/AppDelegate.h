@@ -7,18 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+@import DATAStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic, strong, readonly) NSManagedObjectModel *syncManagedObjectModel;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *syncManagedObjectContext;
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *syncPersistentStoreCoordinator;
-
-@property (nonatomic, strong, readonly) NSManagedObjectModel *staticManagedObjectModel;
-@property (nonatomic, strong, readonly) NSManagedObjectContext *staticManagedObjectContext;
-@property (nonatomic, strong, readonly) NSPersistentStoreCoordinator *staticPersistentStoreCoordinator;
+@property (nonatomic) DATAStack *dataStack;
 
 @end
 

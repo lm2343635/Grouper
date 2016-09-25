@@ -14,29 +14,27 @@
                        andRecordType:(NSNumber *)recordType
                    andClassification:(Classification *)classification
                           andAccount:(Account *)account
-                             andShop:(Shop *)shop
-                       inAccountBook:(AccountBook *)accountBook {
+                             andShop:(Shop *)shop {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Template *template=[NSEntityDescription insertNewObjectForEntityForName:TemplateEntityName
-                                                     inManagedObjectContext:self.context];
-    template.tname=tname;
-    template.saveRecordType=recordType;
-    template.classification=classification;
-    template.account=account;
-    template.shop=shop;
-    template.accountBook=accountBook;
+    Template *template = [NSEntityDescription insertNewObjectForEntityForName:TemplateEntityName
+                                                       inManagedObjectContext:self.context];
+    template.tname = tname;
+    template.saveRecordType = recordType;
+    template.classification = classification;
+    template.account = account;
+    template.shop = shop;
     [self saveContext];
     return template.objectID;
 }
 
-- (NSArray *)findWithAccountBook:(AccountBook *)accountBook {
+- (NSArray *)findAll {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"accountBook=%@", accountBook];
-    return [self findByPredicate:predicate withEntityName:TemplateEntityName];
+    NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"cname" ascending:NO];
+    return [self findByPredicate:nil withEntityName:TemplateEntityName orderBy:sort];
 }
 
 @end

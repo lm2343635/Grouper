@@ -59,8 +59,8 @@
         if(DEBUG) {
             NSLog(@"Get facebook user info: %@", result);
         }
-        dao = [[DaoManager alloc] init];
-        [dao.userDao saveOrUpdateWithJSONObject:result];
+        //Save user info from facebook.
+        
         [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
     }];
 }

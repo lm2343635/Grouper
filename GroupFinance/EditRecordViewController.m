@@ -51,17 +51,15 @@
                        forState:UIControlStateNormal];
     [_remarkTextView setText:_record.remark];
     //Set edit privilege for owner and creater
-    if([_record isEditableForUser:userId]) {
-        _saveBarButtonItem.enabled = YES;
-        _moneyTextFeild.enabled = YES;
-        _saveTypeSwitch.enabled = YES;
-        _selectClassificationButton.enabled = YES;
-        _selectAccountButton.enabled = YES;
-        _selectShopButton.enabled = YES;
-        _selectTimeButton.enabled = YES;
-        _remarkTextView.editable = YES;
-        _remarkTextView.selectable = YES;
-    }
+    _saveBarButtonItem.enabled = YES;
+    _moneyTextFeild.enabled = YES;
+    _saveTypeSwitch.enabled = YES;
+    _selectClassificationButton.enabled = YES;
+    _selectAccountButton.enabled = YES;
+    _selectShopButton.enabled = YES;
+    _selectTimeButton.enabled = YES;
+    _remarkTextView.editable = YES;
+    _remarkTextView.selectable = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -156,8 +154,7 @@
     }
     if(_photoImage) {
         if(_record.photo == nil) {
-            NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)
-                                                inAccountBook:[dao.accountBookDao getUsingAccountBook]];
+            NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)];
             _record.photo = (Photo *)[dao getObjectById:pid];
         } else {
             _record.photo.data = UIImageJPEGRepresentation(_photoImage, 1.0);
@@ -242,42 +239,41 @@
         [alertController addAction:showAction];
     }
     //editable for record owner and creator
-    if([_record isEditableForUser:userId]) {
-        UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera"
-                                                               style:UIAlertActionStyleDefault
-                                                             handler:^(UIAlertAction * _Nonnull action) {
-                                                                 if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                                                                     // 将sourceType设为UIImagePickerControllerSourceTypeCamera代表拍照或拍视频
-                                                                     imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-                                                                     // 设置模式为拍摄照片
-                                                                     imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
-                                                                     // 设置使用手机的后置摄像头（默认使用后置摄像头）
-                                                                     imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
-                                                                     // 设置拍摄的照片允许编辑
-                                                                     imagePickerController.allowsEditing = YES;
-                                                                 }else{
-                                                                     if(DEBUG) {
-                                                                         NSLog(@"iOS Simulator cannot open camera.");
-                                                                     }
-                                                                     [AlertTool showAlertWithTitle:@"Warning"
-                                                                                        andContent:@"iOS Simulator cannot open camera."
-                                                                                  inViewController:self];
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera"
+                                                           style:UIAlertActionStyleDefault
+                                                         handler:^(UIAlertAction * _Nonnull action) {
+                                                             if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                                                                 // 将sourceType设为UIImagePickerControllerSourceTypeCamera代表拍照或拍视频
+                                                                 imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                                                                 // 设置模式为拍摄照片
+                                                                 imagePickerController.cameraCaptureMode = UIImagePickerControllerCameraCaptureModePhoto;
+                                                                 // 设置使用手机的后置摄像头（默认使用后置摄像头）
+                                                                 imagePickerController.cameraDevice = UIImagePickerControllerCameraDeviceRear;
+                                                                 // 设置拍摄的照片允许编辑
+                                                                 imagePickerController.allowsEditing = YES;
+                                                             }else{
+                                                                 if(DEBUG) {
+                                                                     NSLog(@"iOS Simulator cannot open camera.");
                                                                  }
-                                                                 // 显示picker视图控制器
-                                                                 [self presentViewController:imagePickerController animated: YES completion:nil];
-                                                             }];
-        UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:@"Photo Library"
-                                                                style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * _Nonnull action) {
-                                                                  // 设置选择载相册的图片
-                                                                  imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-                                                                  imagePickerController.allowsEditing = YES;
-                                                                  // 显示picker视图控制器
-                                                                  [self presentViewController:imagePickerController animated: YES completion:nil];
-                                                              }];
-        [alertController addAction:cameraAction];
-        [alertController addAction:libraryAction];
-    }
+                                                                 [AlertTool showAlertWithTitle:@"Warning"
+                                                                                    andContent:@"iOS Simulator cannot open camera."
+                                                                              inViewController:self];
+                                                             }
+                                                             // 显示picker视图控制器
+                                                             [self presentViewController:imagePickerController animated: YES completion:nil];
+                                                         }];
+    UIAlertAction *libraryAction = [UIAlertAction actionWithTitle:@"Photo Library"
+                                                            style:UIAlertActionStyleDefault
+                                                          handler:^(UIAlertAction * _Nonnull action) {
+                                                              // 设置选择载相册的图片
+                                                              imagePickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                                                              imagePickerController.allowsEditing = YES;
+                                                              // 显示picker视图控制器
+                                                              [self presentViewController:imagePickerController animated: YES completion:nil];
+                                                          }];
+    [alertController addAction:cameraAction];
+    [alertController addAction:libraryAction];
+    
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
