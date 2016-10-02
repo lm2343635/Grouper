@@ -36,9 +36,10 @@
 		E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E46D57711DB4D65800116C4E /* SecretSharing.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
+		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
+		E4939F9E1DA1096A006CA612 /* UserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F9D1DA1096A006CA612 /* UserTool.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
-		E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */; };
 		E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */; };
 		E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */; };
 		E49E7CE21DC7343400E9E43A /* Classification+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCD1DC7343400E9E43A /* Classification+CoreDataClass.m */; };
@@ -51,7 +52,6 @@
 		E49E7CE91DC7343400E9E43A /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDB1DC7343400E9E43A /* Shop+CoreDataProperties.m */; };
 		E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */; };
 		E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */; };
-		E4B0FF4A1D0C22D1000F0421 /* CBLIncrementalStore.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */; };
 		E4B0FF4C1D0C2446000F0421 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */; };
 		E4B0FF4E1D0C244D000F0421 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4D1D0C244D000F0421 /* libz.tbd */; };
 		E4B0FF501D0C24C5000F0421 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */; };
@@ -152,10 +152,14 @@
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
 		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
+		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
+		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GroupFinance.entitlements; sourceTree = "<group>"; };
+		E4939F9C1DA1096A006CA612 /* UserTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTool.h; sourceTree = "<group>"; };
+		E4939F9D1DA1096A006CA612 /* UserTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTool.m; sourceTree = "<group>"; };
 		E497059D1CDF22B20092B164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
-		E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Static.xcdatamodel; sourceTree = "<group>"; };
 		E49E7CC81DC7343400E9E43A /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -180,8 +184,6 @@
 		E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
 		E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4B0FF481D0C22D1000F0421 /* CBLIncrementalStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBLIncrementalStore.h; sourceTree = "<group>"; };
-		E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CBLIncrementalStore.m; sourceTree = "<group>"; };
 		E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E4B0FF4D1D0C244D000F0421 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -310,6 +312,8 @@
 				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
 				E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */,
 				E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */,
+				E4939F981D97CD42006CA612 /* SettingsTableViewController.h */,
+				E4939F991D97CD42006CA612 /* SettingsTableViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -339,6 +343,7 @@
 		E4400D6F1CCB5845000DFB1A /* GroupFinance */ = {
 			isa = PBXGroup;
 			children = (
+				E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */,
 				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E457B4261CF1A22A00139C4C /* Dao */,
 				E4F1CB1F1CFAE4B800461B3F /* Record */,
@@ -435,14 +440,14 @@
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E4EFB6611D3A0C4800C613B0 /* AlertTool.h */,
 				E4EFB6621D3A0C4800C613B0 /* AlertTool.m */,
-				E4B0FF481D0C22D1000F0421 /* CBLIncrementalStore.h */,
-				E4B0FF491D0C22D1000F0421 /* CBLIncrementalStore.m */,
 				E4F1CB301CFAF2D100461B3F /* DateSelectorView.h */,
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
 				E46D57701DB4D65800116C4E /* SecretSharing.h */,
 				E46D57711DB4D65800116C4E /* SecretSharing.m */,
+				E4939F9C1DA1096A006CA612 /* UserTool.h */,
+				E4939F9D1DA1096A006CA612 /* UserTool.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -475,7 +480,6 @@
 				E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */,
 				E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */,
 				E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */,
-				E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -674,6 +678,7 @@
 				E46D576F1DB4D21900116C4E /* strtok.c in Sources */,
 				E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */,
 				E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */,
+				E4939F9E1DA1096A006CA612 /* UserTool.m in Sources */,
 				E49E7CE81DC7343400E9E43A /* Shop+CoreDataClass.m in Sources */,
 				E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */,
 				E49E7CE21DC7343400E9E43A /* Classification+CoreDataClass.m in Sources */,
@@ -706,17 +711,16 @@
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
 				E49E7CE41DC7343400E9E43A /* Account+CoreDataClass.m in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
-				E49BFB5E1D37A79500BCE598 /* Static.xcdatamodeld in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
 				E46D576E1DB4D21900116C4E /* shamir.c in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
 				E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
+				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
 				E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */,
-				E4B0FF4A1D0C22D1000F0421 /* CBLIncrementalStore.m in Sources */,
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */,
@@ -866,6 +870,7 @@
 			baseConfigurationReference = D557B93C5754F51464A5D0FC /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GroupFinance/GroupFinance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -889,6 +894,7 @@
 			baseConfigurationReference = 0C9E7037D47A5CF4EB2438D9 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GroupFinance/GroupFinance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -995,16 +1001,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E49BFB5C1D37A79500BCE598 /* Static.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */,
-			);
-			currentVersion = E49BFB5D1D37A79500BCE598 /* Static.xcdatamodel */;
-			path = Static.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
 		E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
