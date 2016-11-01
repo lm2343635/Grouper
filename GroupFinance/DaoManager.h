@@ -13,17 +13,19 @@
 #import "RecordDao.h"
 #import "PhotoDao.h"
 #import "TemplateDao.h"
+#import "SenderDao.h"
 
 @interface DaoManager : NSObject
 
-@property (nonatomic,readonly) NSManagedObjectContext *context;
+@property (nonatomic, readonly) NSManagedObjectContext *context;
 
-@property (strong,nonatomic) AccountDao *accountDao;
-@property (strong,nonatomic) ClassificationDao *classificationDao;
-@property (strong,nonatomic) ShopDao *shopDao;
-@property (strong,nonatomic) RecordDao *recordDao;
-@property (strong,nonatomic) PhotoDao *photoDao;
+@property (strong, nonatomic) AccountDao *accountDao;
+@property (strong, nonatomic) ClassificationDao *classificationDao;
+@property (strong, nonatomic) ShopDao *shopDao;
+@property (strong, nonatomic) RecordDao *recordDao;
+@property (strong, nonatomic) PhotoDao *photoDao;
 @property (strong, nonatomic) TemplateDao *templateDao;
+@property (strong, nonatomic) SenderDao *senderDao;
 
 -(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
 

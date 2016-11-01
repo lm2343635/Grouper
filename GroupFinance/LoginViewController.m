@@ -23,9 +23,9 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    defaults=[NSUserDefaults standardUserDefaults];
+    defaults = [NSUserDefaults standardUserDefaults];
     
-    
+    //Set Facebook Oauth permission.
     _loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
 }
 
@@ -48,7 +48,7 @@
         NSLog(@"Login failed with error: %@", error.localizedDescription);
     }
     
-    [defaults setBool:YES forKey:@"login"];
+//    [defaults setBool:YES forKey:@"login"];
     [defaults setObject:result.token.tokenString forKey:@"token"];
     [defaults setObject:result.token.userID forKey:@"userId"];
 

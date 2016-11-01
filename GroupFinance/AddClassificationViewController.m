@@ -39,7 +39,8 @@
         return;
     }
 
-    [dao.classificationDao saveWithName:cname];
+    Classification *classification = [dao.classificationDao saveWithName:cname];
+    [dao.senderDao saveWithObject:classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

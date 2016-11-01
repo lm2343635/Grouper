@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16B2555" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11542" systemVersion="16A323" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="ain" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="aname" optional="YES" attributeType="String" syncable="YES"/>
@@ -27,6 +27,14 @@
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" syncable="YES"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" syncable="YES"/>
     </entity>
+    <entity name="Sender" representedClassName="Sender" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="object" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resend" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sendtime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="sid" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="Shop" representedClassName="Shop" syncable="YES">
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sin" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -48,5 +56,6 @@
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="165"/>
         <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="105"/>
         <element name="Template" positionX="-12908" positionY="-4500" width="128" height="135"/>
+        <element name="Sender" positionX="-13230" positionY="-4608" width="128" height="135"/>
     </elements>
 </model>

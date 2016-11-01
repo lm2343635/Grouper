@@ -12,7 +12,7 @@
 
 @interface ClassificationDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)cname;
+- (Classification *)saveWithName:(NSString *)cname;
 
 - (NSArray *)findAll;
 
