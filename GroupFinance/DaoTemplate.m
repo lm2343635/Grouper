@@ -12,43 +12,46 @@
 @implementation DaoTemplate
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context {
-    if(DEBUG) {
-        NSLog(@"Running %@ ''%@", self.class, NSStringFromSelector(_cmd));
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@‘", self.class, NSStringFromSelector(_cmd));
     }
-    self=[super init];
-    _context=context;
+    self = [super init];
+    _context = context;
     return self;
 }
 
 - (void)saveContext{
-    if(DEBUG==1)
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
     if ([_context hasChanges]) {
         NSError *error=nil;
-        if([_context save:&error]) {
-            if(DEBUG==1)
+        if ([_context save:&error]) {
+            if (DEBUG) {
                 NSLog(@"_context saved changes to persistent store.");
-        }
-        else
+            }
+        } else {
             NSLog(@"Failed to save _context : %@",error);
-    }else{
+        }
+    } else {
         NSLog(@"Skipped _context save, there are no changes.");
     }
 }
 
 - (NSManagedObject *)getByPredicate:(NSPredicate *)predicate
                     withEntityName:(NSString *)entityName {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    NSFetchRequest *request=[[NSFetchRequest alloc] initWithEntityName:entityName];
-    request.predicate=predicate;
-    request.fetchLimit=1;
-    NSError *error=nil;
-    NSArray *objects=[_context executeFetchRequest:request error:&error];
-    if(error)
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    request.predicate = predicate;
+    request.fetchLimit = 1;
+    NSError *error = nil;
+    NSArray *objects = [_context executeFetchRequest:request error:&error];
+    if (error) {
         NSLog(@"Error in searching user: %@",error);
-    if(objects.count>0) {
+    }
+    if (objects.count > 0) {
         return [objects objectAtIndex:0];
     }
     return nil;

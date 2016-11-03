@@ -21,6 +21,8 @@
     const char *secret = [string cStringUsingEncoding:NSUTF8StringEncoding];
     char *shares = generate_share_strings(secret, n, k);
     NSString *result = [NSString stringWithCString:shares encoding:NSUTF8StringEncoding];
-    return [result componentsSeparatedByString:@"\n"];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"\n"]];
+    [array removeLastObject];
+    return array;
 }
 @end

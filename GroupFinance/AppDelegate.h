@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 @import DATAStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>

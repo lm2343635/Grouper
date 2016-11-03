@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CC968FBD0630BE3B26A135B5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B294A411C24BDEE0824FF74A /* Pods.framework */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
+		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D781CCB5845000DFB1A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D771CCB5845000DFB1A /* ViewController.m */; };
@@ -101,6 +102,8 @@
 		D557B93C5754F51464A5D0FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E425D5741D28FD3C000324A3 /* QRScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanView.h; sourceTree = "<group>"; };
 		E425D5751D28FD3C000324A3 /* QRScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanView.m; sourceTree = "<group>"; };
+		E42C58D71DCC53C4009A2596 /* SendTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTool.h; sourceTree = "<group>"; };
+		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -459,6 +462,8 @@
 				E46D57711DB4D65800116C4E /* SecretSharing.m */,
 				E4939F9C1DA1096A006CA612 /* UserTool.h */,
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
+				E42C58D71DCC53C4009A2596 /* SendTool.h */,
+				E42C58D81DCC53C4009A2596 /* SendTool.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -735,6 +740,7 @@
 				E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
+				E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,

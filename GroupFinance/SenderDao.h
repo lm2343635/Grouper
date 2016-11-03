@@ -9,10 +9,12 @@
 #import "DaoTemplate.h"
 #import <SYNCPropertyMapper/NSManagedObject+SYNCPropertyMapper.h>
 
-#define RecordEntityName @"Sender"
+#define SenderEntityName @"Sender"
 
 @interface SenderDao : DaoTemplate
 
 - (Sender *)saveWithObject:(NSManagedObject *)object;
+
+- (NSArray *)findResend;
 
 @end

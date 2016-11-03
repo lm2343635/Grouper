@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DaoManager.h"
 
 @interface AppDelegate ()
 
@@ -28,7 +29,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
     return YES;
 }
 
@@ -60,5 +62,17 @@
     }
 }
 
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                                  openURL:url
+                                                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
+                                                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
+                    ];
+    // 在此添加任意自定义逻辑。
+    return handled;
+}
 
 @end

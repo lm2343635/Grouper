@@ -14,7 +14,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Sender *sender = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(object.class)
+    Sender *sender = [NSEntityDescription insertNewObjectForEntityForName:SenderEntityName
                                                    inManagedObjectContext:self.context];
     sender.sid = [[NSUUID UUID] UUIDString];
     sender.object = NSStringFromClass(object.class);
@@ -30,7 +30,15 @@
     sender.count = [NSNumber numberWithInt:0];
     sender.resend = [NSNumber numberWithBool:YES];
     [self saveContext];
-    return nil;
+    return sender;
+}
+
+- (NSArray *)findResend {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"resend=%@", [NSNumber numberWithBool:YES]];
+    return [self findByPredicate:predicate withEntityName:SenderEntityName];
 }
 
 @end

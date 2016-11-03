@@ -1,8 +1,8 @@
 use_frameworks!
 
 pod 'Sync', '~> 1'
-pod 'FBSDKCoreKit', '~> 4.13'
-pod 'FBSDKLoginKit', '~> 4.13'
+pod 'FBSDKCoreKit', '~> 4'
+pod 'FBSDKLoginKit', '~> 4'
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|
