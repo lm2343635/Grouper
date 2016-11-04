@@ -17,7 +17,7 @@
 
 @implementation MyProfileTableViewController {
     DaoManager *dao;
-
+    User *user;
 }
 
 - (void)viewDidLoad {
@@ -26,11 +26,11 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-
-//    _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
-//    _nameLabel.text = user.name;
-//    _emailLabel.text = user.email;
-//    _genderLabel.text = user.gender;
+    user = [dao.userDao getUsingUser];
+    _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
+    _nameLabel.text = user.name;
+    _emailLabel.text = user.email;
+    _genderLabel.text = user.gender;
 }
 
 #pragma mark - Action
@@ -43,6 +43,21 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:NO forKey:@"login"];
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - Table view data source
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return 20;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return 0.1;
 }
 
 @end

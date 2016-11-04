@@ -14,6 +14,7 @@
 #import "PhotoDao.h"
 #import "TemplateDao.h"
 #import "SenderDao.h"
+#import "UserDao.h"
 
 @interface DaoManager : NSObject
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) PhotoDao *photoDao;
 @property (strong, nonatomic) TemplateDao *templateDao;
 @property (strong, nonatomic) SenderDao *senderDao;
+@property (strong, nonatomic) UserDao *userDao;
 
 -(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
 

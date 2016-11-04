@@ -15,6 +15,7 @@
 #import "Photo+CoreDataClass.h"
 #import "Template+CoreDataClass.h"
 #import "Sender+CoreDataClass.h"
+#import "User+CoreDataClass.h"
 
 @interface DaoTemplate : NSObject
 

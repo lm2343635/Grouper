@@ -36,6 +36,9 @@
 		E46D576F1DB4D21900116C4E /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D576B1DB4D21900116C4E /* strtok.c */; };
 		E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E46D57711DB4D65800116C4E /* SecretSharing.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
+		E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */; };
+		E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */; };
+		E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA61DCC724500B20B20 /* UserDao.m */; };
 		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
 		E4939F9E1DA1096A006CA612 /* UserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F9D1DA1096A006CA612 /* UserTool.m */; };
@@ -157,6 +160,12 @@
 		E46D57711DB4D65800116C4E /* SecretSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretSharing.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
+		E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
+		E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
+		E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E48A3EA51DCC724500B20B20 /* UserDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
+		E48A3EA61DCC724500B20B20 /* UserDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
 		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
 		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
@@ -422,6 +431,8 @@
 				E457B4311CF1A41800139C4C /* ShopDao.m */,
 				E4F60ACB1D0413FF006F5DF2 /* TemplateDao.h */,
 				E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */,
+				E48A3EA51DCC724500B20B20 /* UserDao.h */,
+				E48A3EA61DCC724500B20B20 /* UserDao.m */,
 			);
 			name = Dao;
 			sourceTree = "<group>";
@@ -471,6 +482,10 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */,
+				E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */,
+				E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */,
+				E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */,
 				E49E7CD01DC7343400E9E43A /* Account+CoreDataClass.h */,
 				E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */,
 				E49E7CD21DC7343400E9E43A /* Account+CoreDataProperties.h */,
@@ -712,6 +727,7 @@
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
 				E49E7CE91DC7343400E9E43A /* Shop+CoreDataProperties.m in Sources */,
 				E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */,
+				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */,
 				E4ADFD7E1DC84EE4009F3E37 /* Sender+CoreDataProperties.m in Sources */,
@@ -725,6 +741,7 @@
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
 				E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */,
+				E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */,
 				E49E7CE51DC7343400E9E43A /* Account+CoreDataProperties.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
 				E4F1CB431CFB0B0C00461B3F /* RecordDao.m in Sources */,
@@ -742,6 +759,7 @@
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
+				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
 				E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */,
@@ -915,6 +933,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -940,6 +959,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
