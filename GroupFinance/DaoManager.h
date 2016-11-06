@@ -29,10 +29,13 @@
 @property (strong, nonatomic) SenderDao *senderDao;
 @property (strong, nonatomic) UserDao *userDao;
 
--(NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
+//Get instance of DaoManager from AppDelegate
++ (DaoManager *)getInstance;
 
+//Get object by object ID
+- (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;
+
+//Save Core Data context
 - (void)saveContext;
-
-- (void)saveStaticContext;
 
 @end

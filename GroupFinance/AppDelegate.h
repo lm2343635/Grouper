@@ -8,13 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <AFNetworking/AFNetworking.h>
 @import DATAStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (nonatomic) DATAStack *dataStack;
+@property (strong, nonatomic) AFHTTPSessionManager *httpSessionManager;
+@property (strong, nonatomic) DATAStack *dataStack;
 
 @end
 

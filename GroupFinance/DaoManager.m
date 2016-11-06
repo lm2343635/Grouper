@@ -34,6 +34,13 @@
     return self;
 }
 
++ (DaoManager *)getInstance {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    return nil;
+}
+
 - (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));

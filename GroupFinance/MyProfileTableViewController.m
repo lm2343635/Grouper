@@ -46,6 +46,16 @@
 }
 
 #pragma mark - Table view data source
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    //Clear header view color
+    UIView *headerView = [[UIView alloc] init];
+    [headerView setBackgroundColor:[UIColor clearColor]];
+    return headerView;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));

@@ -15,22 +15,16 @@
 
 @implementation AppDelegate
 
-@synthesize dataStack = _dataStack;
-
-- (DATAStack *)dataStack {
-    if (_dataStack) {
-        return _dataStack;
-    }
-    _dataStack = [[DATAStack alloc] initWithModelName:@"Model"];
-    return _dataStack;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
+    
+    //Init AFHTTPSessionManager.
+    [self httpSessionManager];
     return YES;
 }
 
@@ -73,6 +67,29 @@
                     ];
     // 在此添加任意自定义逻辑。
     return handled;
+}
+
+
+@synthesize dataStack = _dataStack;
+
+- (DATAStack *)dataStack {
+    if (_dataStack) {
+        return _dataStack;
+    }
+    _dataStack = [[DATAStack alloc] initWithModelName:@"Model"];
+    return _dataStack;
+}
+
+#pragma mark - AFNetworking
+@synthesize httpSessionManager = _httpSessionManager;
+
+- (AFHTTPSessionManager *)httpSessionManager {
+    if(_httpSessionManager != nil) {
+        return _httpSessionManager;
+    }
+    _httpSessionManager = [AFHTTPSessionManager manager];
+    _httpSessionManager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
+    return _httpSessionManager;
 }
 
 @end
