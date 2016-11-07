@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		CC968FBD0630BE3B26A135B5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B294A411C24BDEE0824FF74A /* Pods.framework */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
+		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
+		E42776491DD043F700FB1D33 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E42776481DD043F700FB1D33 /* MCManager.m */; };
+		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
 		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
@@ -60,11 +63,6 @@
 		E4ADFD7D1DC84EE4009F3E37 /* Sender+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD7A1DC84EE4009F3E37 /* Sender+CoreDataClass.m */; };
 		E4ADFD7E1DC84EE4009F3E37 /* Sender+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD7C1DC84EE4009F3E37 /* Sender+CoreDataProperties.m */; };
 		E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD801DC84EFE009F3E37 /* SenderDao.m */; };
-		E4B0FF4C1D0C2446000F0421 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */; };
-		E4B0FF4E1D0C244D000F0421 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4D1D0C244D000F0421 /* libz.tbd */; };
-		E4B0FF501D0C24C5000F0421 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */; };
-		E4B0FF521D0C24D4000F0421 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF511D0C24D4000F0421 /* Security.framework */; };
-		E4B0FF541D0C24E0000F0421 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
@@ -106,6 +104,11 @@
 		D557B93C5754F51464A5D0FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		E425D5741D28FD3C000324A3 /* QRScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanView.h; sourceTree = "<group>"; };
 		E425D5751D28FD3C000324A3 /* QRScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanView.m; sourceTree = "<group>"; };
+		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
+		E42776471DD043F700FB1D33 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
+		E42776481DD043F700FB1D33 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
+		E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersTableViewController.h; sourceTree = "<group>"; };
+		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
 		E42C58D71DCC53C4009A2596 /* SendTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTool.h; sourceTree = "<group>"; };
 		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -253,11 +256,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B0FF541D0C24E0000F0421 /* CFNetwork.framework in Frameworks */,
-				E4B0FF521D0C24D4000F0421 /* Security.framework in Frameworks */,
-				E4B0FF501D0C24C5000F0421 /* SystemConfiguration.framework in Frameworks */,
-				E4B0FF4E1D0C244D000F0421 /* libz.tbd in Frameworks */,
-				E4B0FF4C1D0C2446000F0421 /* libsqlite3.tbd in Frameworks */,
+				E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */,
 				CC968FBD0630BE3B26A135B5 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -282,6 +281,7 @@
 		0A96C9409F0E310C101BF950 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */,
 				E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */,
 				E4B0FF511D0C24D4000F0421 /* Security.framework */,
 				E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */,
@@ -343,6 +343,15 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		E427764A1DD044F400FB1D33 /* Members */ = {
+			isa = PBXGroup;
+			children = (
+				E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */,
+				E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */,
+			);
+			name = Members;
+			sourceTree = "<group>";
+		};
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
@@ -371,6 +380,7 @@
 				E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */,
 				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E457B4261CF1A22A00139C4C /* Dao */,
+				E427764A1DD044F400FB1D33 /* Members */,
 				E4F1CB1F1CFAE4B800461B3F /* Record */,
 				E40C44141CCF25640006D208 /* Settings */,
 				E4F1CB2C1CFAF28500461B3F /* Support */,
@@ -482,6 +492,8 @@
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E4939F9C1DA1096A006CA612 /* UserTool.h */,
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
+				E42776471DD043F700FB1D33 /* MCManager.h */,
+				E42776481DD043F700FB1D33 /* MCManager.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -758,6 +770,7 @@
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
 				E49E7CE41DC7343400E9E43A /* Account+CoreDataClass.m in Sources */,
+				E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
 				E46D576E1DB4D21900116C4E /* shamir.c in Sources */,
@@ -765,6 +778,7 @@
 				E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
+				E42776491DD043F700FB1D33 /* MCManager.m in Sources */,
 				E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,

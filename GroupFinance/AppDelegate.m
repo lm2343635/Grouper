@@ -19,12 +19,20 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+
     //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
     //Init AFHTTPSessionManager.
     [self httpSessionManager];
+    
+    //Set root view controller.
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uid"] == nil) {
+        [self setRootViewControllerWithIdentifer:@"loginViewController"];
+    } else {
+        [self setRootViewControllerWithIdentifer:@"mainTabBarController"];
+    }
     return YES;
 }
 
@@ -69,7 +77,7 @@
     return handled;
 }
 
-
+#pragma mark - DataStack
 @synthesize dataStack = _dataStack;
 
 - (DATAStack *)dataStack {
@@ -90,6 +98,17 @@
     _httpSessionManager = [AFHTTPSessionManager manager];
     _httpSessionManager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
     return _httpSessionManager;
+}
+
+#pragma mark - Service
+- (void)setRootViewControllerWithIdentifer:(NSString *)identifer {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:identifer];
+    [self.window makeKeyAndVisible];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <AFNetworking/AFNetworking.h>
+#import "MCManager.h"
 @import DATAStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -17,6 +18,7 @@
 
 @property (strong, nonatomic) AFHTTPSessionManager *httpSessionManager;
 @property (strong, nonatomic) DATAStack *dataStack;
+@property (strong, nonatomic) MCManager *mcManager;
 
 @end
 
