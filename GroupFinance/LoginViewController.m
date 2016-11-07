@@ -52,7 +52,9 @@
     [defaults setObject:result.token.userID forKey:@"uid"];
 
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:result.token.userID
-                                                                   parameters:@{@"fields": @"picture, email, name, gender"}
+                                                                   parameters:@{
+                                                                                @"fields": @"picture, email, name, gender"
+                                                                                }
                                                                    HTTPMethod:@"GET"];
     [request startWithCompletionHandler:^(FBSDKGraphRequestConnection *connection, id result, NSError *error) {
         if (DEBUG) {

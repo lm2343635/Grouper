@@ -24,12 +24,12 @@
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
+    dao = [[DaoManager alloc] init];
 }
 
 #pragma mark - Action
 - (IBAction)save:(id)button {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *cname = _cnameTextField.text;
@@ -42,8 +42,8 @@
 
     Classification *classification = [dao.classificationDao saveWithName:cname];
     Sender *sender = [dao.senderDao saveWithObject:classification];
-    NSLog(@"%@", sender);
-    [SendTool sendWithSender:sender];
+    SendTool *send = [[SendTool alloc] initWithSender:sender];
+    [send sendShares];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

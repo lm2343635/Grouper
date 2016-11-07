@@ -41,7 +41,6 @@
 		E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */; };
 		E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA61DCC724500B20B20 /* UserDao.m */; };
 		E48DE0711DCF660300A7A5DB /* InternetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DE0701DCF660300A7A5DB /* InternetTool.m */; };
-		E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E48E2FA81CE846E000E727FD /* main_head.jpg */; };
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
 		E4939F9E1DA1096A006CA612 /* UserTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F9D1DA1096A006CA612 /* UserTool.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
@@ -172,7 +171,6 @@
 		E48A3EA61DCC724500B20B20 /* UserDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
 		E48DE06F1DCF660300A7A5DB /* InternetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetTool.h; sourceTree = "<group>"; };
 		E48DE0701DCF660300A7A5DB /* InternetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetTool.m; sourceTree = "<group>"; };
-		E48E2FA81CE846E000E727FD /* main_head.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = main_head.jpg; sourceTree = "<group>"; };
 		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GroupFinance.entitlements; sourceTree = "<group>"; };
@@ -392,7 +390,6 @@
 		E4400D701CCB5845000DFB1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E48E2FA81CE846E000E727FD /* main_head.jpg */,
 				E4400D711CCB5845000DFB1A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -646,7 +643,6 @@
 			files = (
 				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
-				E48E2FA91CE846E000E727FD /* main_head.jpg in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
