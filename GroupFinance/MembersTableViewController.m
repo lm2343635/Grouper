@@ -17,6 +17,7 @@
     MCManager *mcManager;
     NSMutableArray *connectedDevices;
     DaoManager * dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
@@ -26,13 +27,17 @@
     [super viewDidLoad];
     
     dao = [[DaoManager alloc] init];
-    User *currentUser = [dao.userDao getUsingUser];
+    currentUser = [dao.userDao getUsingUser];
     mcManager = [MCManager getSingleInstance];
     [mcManager setupPeerAndSessionWithDisplayName:currentUser.name];
     [mcManager advertiseSelf:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
                                                  name:@"MCDidChangeStateNotification"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDataWithNotification:)
+                                                 name:@"MCDidReceiveDataNotification"
                                                object:nil];
     connectedDevices = [[NSMutableArray alloc] init];
 }
@@ -78,7 +83,6 @@
     [mcManager.browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-
 #pragma mark - Action
 - (IBAction)browseForDevices:(id)sender {
     if (DEBUG) {
@@ -97,17 +101,26 @@
     MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
     NSString *peerDisplayName = peerID.displayName;
     MCSessionState state=[[[notification userInfo] objectForKey:@"state"] intValue];
-    if (state != MCSessionStateConnecting) {
-        if (state == MCSessionStateConnected) {
-            [connectedDevices addObject:peerDisplayName];
-        } else if (state == MCSessionStateNotConnected) {
-            if (connectedDevices.count > 0) {
-                [connectedDevices removeObjectAtIndex:[connectedDevices indexOfObject:peerDisplayName]];
-            }
+    NSLog(@"peerDisplayName = %@, state = %ld", peerDisplayName, state);
+    NSLog(@"%@", mcManager.session.connectedPeers);
+    if (state == MCSessionStateConnected) {
+        NSError *error = nil;
+        [mcManager.session sendData:[currentUser.uid dataUsingEncoding:NSUTF8StringEncoding]
+                            toPeers:mcManager.session.connectedPeers
+                           withMode:MCSessionSendDataReliable
+                              error:&error];
+        if (error) {
+            NSLog(@"Error in mutipeer sending: %@", error.localizedDescription);
         }
-        NSLog(@"Now, connectedDevices are %@", connectedDevices);
-        [self.tableView reloadData];
-
     }
 }
+
+-(void)didReceiveDataWithNotification:(NSNotification *)notification {
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *peerDisplayName = peerID.displayName;
+    NSData *receivedData = [[notification userInfo] objectForKey:@"data"];
+    NSString *receivedText = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
+    NSLog(@"Received text %@", receivedText);
+}
+
 @end

@@ -10,7 +10,6 @@
 #import "MCManager.h"
 
 @interface MembersTableViewController : UITableViewController <MCBrowserViewControllerDelegate>
-
 - (IBAction)browseForDevices:(id)sender;
 
 @end
