@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		CC968FBD0630BE3B26A135B5 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B294A411C24BDEE0824FF74A /* Pods.framework */; };
+		E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */; };
+		E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */; };
+		E4039EE01DE0730C00D39DDB /* GroupTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* GroupTool.m */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
 		E42776491DD043F700FB1D33 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E42776481DD043F700FB1D33 /* MCManager.m */; };
@@ -101,6 +104,12 @@
 		0C9E7037D47A5CF4EB2438D9 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B294A411C24BDEE0824FF74A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D557B93C5754F51464A5D0FC /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersTableViewController.h; sourceTree = "<group>"; };
+		E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersTableViewController.m; sourceTree = "<group>"; };
+		E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
+		E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
+		E4039EDE1DE0730C00D39DDB /* GroupTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTool.h; sourceTree = "<group>"; };
+		E4039EDF1DE0730C00D39DDB /* GroupTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTool.m; sourceTree = "<group>"; };
 		E425D5741D28FD3C000324A3 /* QRScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanView.h; sourceTree = "<group>"; };
 		E425D5751D28FD3C000324A3 /* QRScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanView.m; sourceTree = "<group>"; };
 		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
@@ -334,6 +343,10 @@
 				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
 				E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */,
 				E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */,
+				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
+				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
+				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
+				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -489,6 +502,8 @@
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
 				E42776471DD043F700FB1D33 /* MCManager.h */,
 				E42776481DD043F700FB1D33 /* MCManager.m */,
+				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
+				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -744,6 +759,7 @@
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */,
 				E4ADFD7E1DC84EE4009F3E37 /* Sender+CoreDataProperties.m in Sources */,
+				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
@@ -763,6 +779,7 @@
 				E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */,
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
+				E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */,
 				E49E7CE41DC7343400E9E43A /* Account+CoreDataClass.m in Sources */,
 				E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
@@ -782,6 +799,7 @@
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */,
+				E4039EE01DE0730C00D39DDB /* GroupTool.m in Sources */,
 				E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,

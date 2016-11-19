@@ -78,7 +78,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Members" id="u3B-v7-ceR">
-                        <barButtonItem key="rightBarButtonItem" image="members_add" id="NZJ-8Q-AOZ">
+                        <barButtonItem key="rightBarButtonItem" image="add_members" id="NZJ-8Q-AOZ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="browseForDevices:" destination="SsN-lu-m6B" id="qnh-zo-6AB"/>
@@ -183,7 +183,7 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="search" id="EFT-go-NUQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" image="record_add" id="qAD-OS-pqG">
+                        <barButtonItem key="rightBarButtonItem" image="27ED4512-27C5-4A44-94B0-59907E28EB9A" id="qAD-OS-pqG">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="nKr-Bt-vdH" kind="push" id="fr9-e4-FNg"/>
@@ -820,7 +820,7 @@
         <!--Untrusted Servers-->
         <scene sceneID="XfP-MA-wWT">
             <objects>
-                <tableViewController id="43V-2y-gFs" sceneMemberID="viewController">
+                <tableViewController id="43V-2y-gFs" customClass="ServersTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="S0S-Dr-b0a">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -877,7 +877,7 @@
         <!--Add Untrusted Server-->
         <scene sceneID="ilB-k5-PIf">
             <objects>
-                <viewController id="bxZ-5Z-jUh" sceneMemberID="viewController">
+                <viewController id="bxZ-5Z-jUh" customClass="AddServerViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bi2-va-vSN"/>
                         <viewControllerLayoutGuide type="bottom" id="gYi-l8-61p"/>
@@ -937,7 +937,7 @@
                                             <constraint firstAttribute="height" constant="40" id="zTJ-SF-VE1"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -974,6 +974,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="submit:" destination="bxZ-5Z-jUh" eventType="touchUpInside" id="Dow-go-vfF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96068316698074341" green="0.96084421873092651" blue="0.96066063642501831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -987,6 +990,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Untrusted Server" id="fDH-lL-Oyb"/>
+                    <connections>
+                        <outlet property="groupIdTextField" destination="XXy-ZJ-ocq" id="1J9-FF-XIh"/>
+                        <outlet property="groupNameTextField" destination="OjH-Bo-2rz" id="a3A-HT-Z6r"/>
+                        <outlet property="serverAddressTextField" destination="yMv-6p-hKw" id="Zno-mo-uX9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gD0-nk-mr4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1408,20 +1416,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iav-Ot-hZ7">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="SkC-hS-LLz"/>
+                                    <constraint firstAttribute="height" constant="50" id="2Ve-xp-35T"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93715614080429077" green="0.93731337785720825" blue="0.93713396787643433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="Iav-Ot-hZ7" firstAttribute="top" secondItem="4iZ-yf-X6D" secondAttribute="bottom" constant="16" id="G8w-aN-Po3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Iav-Ot-hZ7" secondAttribute="trailing" constant="-20" id="Lsw-mX-s3c"/>
                             <constraint firstItem="Iav-Ot-hZ7" firstAttribute="leading" secondItem="oAn-bM-kdE" secondAttribute="leadingMargin" constant="-20" id="NIF-6h-aBM"/>
-                            <constraint firstItem="Iav-Ot-hZ7" firstAttribute="top" secondItem="4iZ-yf-X6D" secondAttribute="bottom" constant="8" id="WHR-50-3c1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Shop" id="bHm-gd-0I0">
@@ -1453,18 +1461,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3dq-1Z-lfu">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="AOj-py-NUM"/>
+                                    <constraint firstAttribute="height" constant="50" id="7rn-ar-VIE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93715614080429077" green="0.93731337785720825" blue="0.93713396787643433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="3dq-1Z-lfu" firstAttribute="top" secondItem="F0g-eU-1hj" secondAttribute="bottom" constant="8" id="519-iN-buF"/>
+                            <constraint firstItem="3dq-1Z-lfu" firstAttribute="top" secondItem="F0g-eU-1hj" secondAttribute="bottom" constant="16" id="NI5-Lt-Th4"/>
                             <constraint firstItem="3dq-1Z-lfu" firstAttribute="leading" secondItem="z8r-cp-lvZ" secondAttribute="leadingMargin" constant="-20" id="arX-aP-zPy"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3dq-1Z-lfu" secondAttribute="trailing" constant="-20" id="eTT-vr-Oyv"/>
                         </constraints>
@@ -1543,24 +1551,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IGs-yw-htE">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="cBa-uS-vod"/>
+                                    <constraint firstAttribute="height" constant="50" id="Tpo-17-0qz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93715614080429077" green="0.93731337785720825" blue="0.93713396787643433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="IGs-yw-htE" firstAttribute="top" secondItem="Vn2-OL-bVu" secondAttribute="bottom" constant="16" id="9Ft-pe-zLD"/>
                             <constraint firstItem="IGs-yw-htE" firstAttribute="leading" secondItem="znm-Uw-gmR" secondAttribute="leadingMargin" constant="-20" id="HzC-fs-zhN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IGs-yw-htE" secondAttribute="trailing" constant="-20" id="srY-iH-wwt"/>
-                            <constraint firstItem="IGs-yw-htE" firstAttribute="top" secondItem="Vn2-OL-bVu" secondAttribute="bottom" constant="8" id="yEq-hn-QS9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Account" id="8wM-vB-yhM">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="sAN-Tf-RFx">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="save:" destination="fVC-Hp-FHq" id="pH7-eR-1of"/>
                             </connections>
@@ -1632,24 +1641,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zXv-et-Tcs">
-                                <rect key="frame" x="0.0" y="72" width="320" height="41"/>
-                                <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="80" width="320" height="50"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="wJ8-Bf-Var"/>
+                                    <constraint firstAttribute="height" constant="50" id="r5r-nb-5S8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.93715614080429077" green="0.93731337785720825" blue="0.93713396787643433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="zXv-et-Tcs" firstAttribute="top" secondItem="jf3-ou-JCB" secondAttribute="bottom" constant="16" id="MZi-NW-K5l"/>
                             <constraint firstItem="zXv-et-Tcs" firstAttribute="leading" secondItem="ugG-LH-HON" secondAttribute="leadingMargin" constant="-20" id="Nv8-yK-RSt"/>
-                            <constraint firstItem="zXv-et-Tcs" firstAttribute="top" secondItem="jf3-ou-JCB" secondAttribute="bottom" constant="8" id="bpq-jK-Rx4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zXv-et-Tcs" secondAttribute="trailing" constant="-20" id="hbB-lz-kt5"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Shop" id="KyG-px-eRu">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="mAz-kf-FgD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="save:" destination="8A4-wV-3Hb" id="PY2-vZ-STG"/>
                             </connections>
@@ -2382,7 +2392,24 @@
         </scene>
     </scenes>
     <resources>
+        <image name="27ED4512-27C5-4A44-94B0-59907E28EB9A" width="30" height="30">
+            <mutableData key="keyedArchiveRepresentation">
+YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBMU
+GR4fJSYsLzU4VSRudWxs1QkKCwwNDg8QERJWTlNTaXplViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBz
+V05TQ29sb3KAAoAMEiTAAACAA4AKWHszMCwgMzB90hUKFhhaTlMub2JqZWN0c6EXgASACdIVChoYohsc
+gAWABoAJEAXTIAohIiMkV05TLmJhc2VbTlMucmVsYXRpdmWAAIAIgAdfEHxmaWxlOi8vL0FwcGxpY2F0
+aW9ucy9YY29kZS5hcHAvQ29udGVudHMvUGx1Z0lucy9JREVJbnRlcmZhY2VCdWlsZGVyS2l0LmlkZXBs
+dWdpbi9Db250ZW50cy9SZXNvdXJjZXMvSUJNaXNzaW5nSW1hZ2VHbHlwaC50aWZm0icoKSpaJGNsYXNz
+bmFtZVgkY2xhc3Nlc1VOU1VSTKIpK1hOU09iamVjdNInKC0uV05TQXJyYXmiLSvTMDEKMjM0V05TV2hp
+dGVcTlNDb2xvclNwYWNlRDAgMAAQA4AL0icoNjdXTlNDb2xvcqI2K9InKDk6V05TSW1hZ2WiOStfEA9O
+U0tleWVkQXJjaGl2ZXLRPT5Ucm9vdIABAAgAEQAaACMALQAyADcARQBLAFYAXQBkAHEAeACAAIIAhACJ
+AIsAjQCWAJsApgCoAKoArACxALQAtgC4ALoAvADDAMsA1wDZANsA3QFcAWEBbAF1AXsBfgGHAYwBlAGX
+AZ4BpgGzAbgBugG8AcEByQHMAdEB2QHcAe4B8QH2AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAA
+Afg
+</mutableData>
+        </image>
         <image name="CameraButton" width="91" height="91"/>
+        <image name="add_members" width="30" height="30"/>
         <image name="add_server" width="30" height="30"/>
         <image name="add_server_address" width="30" height="30"/>
         <image name="add_server_id" width="30" height="30"/>
@@ -2390,15 +2417,13 @@
         <image name="close_record_photo" width="23" height="22"/>
         <image name="date_today" width="32" height="32"/>
         <image name="icon" width="75" height="75"/>
-        <image name="members_add" width="30" height="30"/>
-        <image name="record_add" width="30" height="30"/>
-        <image name="setting_account" width="27" height="27"/>
-        <image name="setting_classification" width="27" height="27"/>
-        <image name="setting_security" width="27" height="27"/>
+        <image name="setting_account" width="30" height="30"/>
+        <image name="setting_classification" width="30" height="30"/>
+        <image name="setting_security" width="30" height="30"/>
         <image name="setting_servers" width="30" height="30"/>
-        <image name="setting_shop" width="27" height="27"/>
-        <image name="setting_template" width="27" height="27"/>
-        <image name="setting_user" width="27" height="27"/>
+        <image name="setting_shop" width="30" height="30"/>
+        <image name="setting_template" width="30" height="30"/>
+        <image name="setting_user" width="30" height="30"/>
         <image name="tab_main" width="30" height="30"/>
         <image name="tab_members" width="30" height="30"/>
         <image name="tab_record" width="30" height="30"/>
