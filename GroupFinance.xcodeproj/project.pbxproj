@@ -64,7 +64,6 @@
 		E4ADFD7E1DC84EE4009F3E37 /* Sender+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD7C1DC84EE4009F3E37 /* Sender+CoreDataProperties.m */; };
 		E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD801DC84EFE009F3E37 /* SenderDao.m */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
-		E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
@@ -219,8 +218,6 @@
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		E4E66F1F1D27E74D00969AB8 /* ScanQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScanQRCodeViewController.h; sourceTree = "<group>"; };
-		E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScanQRCodeViewController.m; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
 		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
@@ -329,8 +326,6 @@
 				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
 				E425D5741D28FD3C000324A3 /* QRScanView.h */,
 				E425D5751D28FD3C000324A3 /* QRScanView.m */,
-				E4E66F1F1D27E74D00969AB8 /* ScanQRCodeViewController.h */,
-				E4E66F201D27E74D00969AB8 /* ScanQRCodeViewController.m */,
 				E4939F981D97CD42006CA612 /* SettingsTableViewController.h */,
 				E4939F991D97CD42006CA612 /* SettingsTableViewController.m */,
 				E457B4201CF19E5D00139C4C /* ShopsTableViewController.h */,
@@ -745,7 +740,6 @@
 				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
 				E4400D781CCB5845000DFB1A /* ViewController.m in Sources */,
 				E49E7CE91DC7343400E9E43A /* Shop+CoreDataProperties.m in Sources */,
-				E4E66F211D27E74D00969AB8 /* ScanQRCodeViewController.m in Sources */,
 				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */,

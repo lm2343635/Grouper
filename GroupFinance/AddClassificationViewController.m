@@ -42,8 +42,8 @@
 
     Classification *classification = [dao.classificationDao saveWithName:cname];
     Sender *sender = [dao.senderDao saveWithObject:classification];
-    SendTool *send = [[SendTool alloc] initWithSender:sender];
-    [send sendShares];
+//    SendTool *send = [[SendTool alloc] initWithSender:sender];
+//    [send sendShares];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end
