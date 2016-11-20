@@ -10,4 +10,7 @@
 
 @interface ServersTableViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UILabel *groupIdLabel;
+@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+
 @end

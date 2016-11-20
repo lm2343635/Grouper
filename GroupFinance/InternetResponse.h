@@ -10,14 +10,11 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface InternetResponse : NSObject
+
 typedef NS_OPTIONS(NSUInteger, ErrorCode) {
-    ErrorCodeTelephoneExsit = 200,
-    ErrorCodeEmailExsit = 300,
-    ErrorCodePasswordWrong = 301,
-    ErrorCodeAccountNotFound = 302,
-    ErrorCodeNotValidated = 304,
-    ErrorCodeMailNeedActivate = 330,
-    ErrorCodeTokenError = 350,
+    ErrorGroupExsit = 1001,
+    ErrorGroupRegister = 1002,
+
     ErrorCodeNotConnectedToInternet = -1009
 };
 

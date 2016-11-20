@@ -317,6 +317,8 @@
 				E457B4181CF19E3500139C4C /* AddAccountViewController.m */,
 				E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */,
 				E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */,
+				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
+				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
 				E457B4111CF19E2000139C4C /* AddShopViewController.h */,
 				E457B4121CF19E2000139C4C /* AddShopViewController.m */,
 				E4F60A941D040C05006F5DF2 /* AddTemplateViewController.h */,
@@ -335,6 +337,8 @@
 				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
 				E425D5741D28FD3C000324A3 /* QRScanView.h */,
 				E425D5751D28FD3C000324A3 /* QRScanView.m */,
+				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
+				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
 				E4939F981D97CD42006CA612 /* SettingsTableViewController.h */,
 				E4939F991D97CD42006CA612 /* SettingsTableViewController.m */,
 				E457B4201CF19E5D00139C4C /* ShopsTableViewController.h */,
@@ -343,10 +347,6 @@
 				E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */,
 				E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */,
 				E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */,
-				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
-				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
-				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
-				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -486,10 +486,14 @@
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
 				E46D57671DB4D21900116C4E /* GLibFacade.c */,
 				E46D57681DB4D21900116C4E /* GLibFacade.h */,
+				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
+				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
 				E446C0FF1DCF75E600EC5966 /* InternetResponse.h */,
 				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
 				E48DE06F1DCF660300A7A5DB /* InternetTool.h */,
 				E48DE0701DCF660300A7A5DB /* InternetTool.m */,
+				E42776471DD043F700FB1D33 /* MCManager.h */,
+				E42776481DD043F700FB1D33 /* MCManager.m */,
 				E46D57701DB4D65800116C4E /* SecretSharing.h */,
 				E46D57711DB4D65800116C4E /* SecretSharing.m */,
 				E42C58D71DCC53C4009A2596 /* SendTool.h */,
@@ -500,10 +504,6 @@
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E4939F9C1DA1096A006CA612 /* UserTool.h */,
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
-				E42776471DD043F700FB1D33 /* MCManager.h */,
-				E42776481DD043F700FB1D33 /* MCManager.m */,
-				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
-				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";

@@ -36,7 +36,7 @@
         error.code == NSURLErrorDNSLookupFailed ||
         error.code == NSURLErrorCannotFindHost ||
         error.code == NSURLErrorCannotConnectToHost) {
-        _data = @{@"error_code": [NSNumber numberWithInteger:ErrorCodeNotConnectedToInternet]};
+        _data = @{@"errorCode": [NSNumber numberWithInteger:ErrorCodeNotConnectedToInternet]};
         return self;
     }
     if(self) {
@@ -70,7 +70,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     
-    int erroCode = [[_data valueForKey:@"error_code"] intValue];
+    int erroCode = [[_data valueForKey:@"errorCode"] intValue];
     return erroCode;
 }
 @end

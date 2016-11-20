@@ -17,4 +17,6 @@
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSDictionary *servers;
 
+- (NSUInteger)addServerAddress:(NSString *)address withAccessKey:(NSString *)accessKey;
+
 @end
