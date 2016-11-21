@@ -10,7 +10,16 @@
 
 @interface ServersTableViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UILabel *groupIdLabel;
-@property (weak, nonatomic) IBOutlet UILabel *groupNameLabel;
+@property (nonatomic) NSInteger sent;
+
+@property (weak, nonatomic) IBOutlet UITextField *groupIdTextField;
+@property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
+
+@property (weak, nonatomic) IBOutlet UIView *groupInformationView;
+@property (weak, nonatomic) IBOutlet UILabel *noServerLabel;
+@property (weak, nonatomic) IBOutlet UIButton *initialGroupButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *addServerBarButtonItem;
+
+- (IBAction)initialGroup:(id)sender;
 
 @end

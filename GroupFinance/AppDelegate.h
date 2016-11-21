@@ -16,7 +16,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) AFHTTPSessionManager *httpSessionManager;
+@property (strong, nonatomic) NSDictionary *sessionManagers;
+@property (strong, nonatomic) AFHTTPSessionManager *sessionManager;
 @property (strong, nonatomic) DATAStack *dataStack;
 @property (strong, nonatomic) MCManager *mcManager;
 

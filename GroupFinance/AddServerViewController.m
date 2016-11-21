@@ -79,7 +79,7 @@
           failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
               InternetResponse *response = [[InternetResponse alloc] initWithError:error];
               switch ([response errorCode]) {
-                  case ErrorCodeNotConnectedToInternet:
+                  case ErrorNotConnectedToInternet:
                       [AlertTool showAlertWithTitle:@"Tip"
                                          andContent:@"Cannot find this server!"
                                    inViewController:self];

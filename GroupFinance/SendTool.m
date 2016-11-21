@@ -41,30 +41,30 @@
               options:NSKeyValueObservingOptionOld
               context:nil];
     dcount = 0;
-    for (NSString *share in shares) {
-        [manager POST:[InternetTool createUrl:@"transfer/send"]
-           parameters:@{
-                        @"sid": _sender.sid,
-                        @"content": share,
-                        @"object": _sender.object
-                        }
-             progress:nil
-              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                  InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                  self.sent ++;
-                  dcount += [[response.data valueForKey:@"count"] intValue];
-                  if (DEBUG) {
-                      NSLog(@"Sent share %@ in %@", share, [NSDate date]);
-                  }
-              }
-              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                  InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                  switch ([response errorCode]) {
-                      default:
-                          break;
-                  }
-              }];
-    }
+//    for (NSString *share in shares) {
+//        [manager POST:[InternetTool createUrl:@"transfer/send"]
+//           parameters:@{
+//                        @"sid": _sender.sid,
+//                        @"content": share,
+//                        @"object": _sender.object
+//                        }
+//             progress:nil
+//              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//                  InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+//                  self.sent ++;
+//                  dcount += [[response.data valueForKey:@"count"] intValue];
+//                  if (DEBUG) {
+//                      NSLog(@"Sent share %@ in %@", share, [NSDate date]);
+//                  }
+//              }
+//              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//                  InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+//                  switch ([response errorCode]) {
+//                      default:
+//                          break;
+//                  }
+//              }];
+//    }
     
 }
 

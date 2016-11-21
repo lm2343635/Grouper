@@ -14,8 +14,9 @@
 typedef NS_OPTIONS(NSUInteger, ErrorCode) {
     ErrorGroupExsit = 1001,
     ErrorGroupRegister = 1002,
-
-    ErrorCodeNotConnectedToInternet = -1009
+    ErrorMasterKey = 2001,
+    ErrorAddUser = 2002,
+    ErrorNotConnectedToInternet = -1009
 };
 
 @property (nonatomic, strong) NSObject *data;

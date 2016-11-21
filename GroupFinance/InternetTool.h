@@ -10,14 +10,17 @@
 #import "AppDelegate.h"
 #import "InternetResponse.h"
 
-#define DoaminName @"127.0.0.1:8080"
-
 @interface InternetTool : NSObject
 
-//Get AFHTTPSessionManager with token if signed in
 + (AFHTTPSessionManager *)getSessionManager;
 
-+ (NSString *)createUrl:(NSString *)relativePosition;
+//Get all HTTP session managers from AppDelegate.
++ (NSDictionary *)getSessionManagers;
+
+//Get a HTTP session manager by server address from AppDelegate
++ (AFHTTPSessionManager *)getSessionManagerWithServerAddress:(NSString *)address;
+
++ (NSString *)createUrl:(NSString *)relativePosition withServerAddress:(NSString *)address;
 
 + (NSDictionary *)getResponse:(id  _Nullable)responseObject;
 

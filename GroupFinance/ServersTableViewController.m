@@ -8,6 +8,9 @@
 
 #import "ServersTableViewController.h"
 #import "GroupTool.h"
+#import "InternetTool.h"
+#import "DaoManager.h"
+#import "AlertTool.h"
 
 @interface ServersTableViewController ()
 
@@ -16,6 +19,8 @@
 @implementation ServersTableViewController {
     GroupTool *group;
     NSDictionary *servers;
+    DaoManager *dao;
+    User *user;
 }
 
 - (void)viewDidLoad {
@@ -23,9 +28,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    group = [[GroupTool alloc] init];
-    _groupIdLabel.text = group.groupId;
-    _groupNameLabel.text = group.groupName;
+    dao = [[DaoManager alloc] init];
+    user = [dao.userDao getUsingUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -34,6 +38,20 @@
     }
     group = [[GroupTool alloc] init];
     servers = group.servers;
+    if (group.groupId == nil && group.groupName == nil) {
+        _noServerLabel.hidden = NO;
+    } else {
+        _groupIdTextField.text = group.groupId;
+        _groupNameTextField.text = group.groupName;
+        _noServerLabel.hidden = YES;
+        _groupInformationView.hidden = NO;
+        _initialGroupButton.hidden = NO;
+    }
+    if (group.members == 0) {
+        _addServerBarButtonItem.enabled = YES;
+    } else {
+        _initialGroupButton.hidden = YES;
+    }
     [self.tableView reloadData];
 }
 
@@ -65,4 +83,107 @@
     return cell;
 }
 
+#pragma mark - Action
+- (IBAction)initialGroup:(id)sender {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Initialize Group"
+                                                                   message:@"You cannot add more untrusted server after initializing your group. Are you sure to initialize?"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *initialize = [UIAlertAction actionWithTitle:@"Yes"
+                                                         style:UIAlertActionStyleDestructive
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           [self registerOwnerInUntrustedServers];
+                                                       }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [alertController addAction:initialize];
+    [alertController addAction:cancel];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
+}
+
+#pragma mark - Service
+- (void)registerOwnerInUntrustedServers {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    _initialGroupButton.enabled = NO;
+    NSDictionary *managers = [InternetTool getSessionManagers];
+    //Set count for HTTP request.
+    self.sent = 0;
+    [self addObserver:self
+           forKeyPath:@"sent"
+              options:NSKeyValueObservingOptionOld
+              context:nil];
+    for (NSString *address in managers.allKeys) {
+        [managers[address] POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
+                     parameters:@{
+                                  @"uid": user.uid,
+                                  @"name": user.name,
+                                  @"email": user.email,
+                                  @"gender": user.gender,
+                                  @"pictureUrl": user.pictureUrl,
+                                  @"owner": @YES
+                                  }
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                            if ([response statusOK]) {
+                                self.sent ++;
+                            }
+                        }
+                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            _initialGroupButton.enabled = YES;
+                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                            switch ([response errorCode]) {
+                                case ErrorMasterKey:
+                                    [AlertTool showAlertWithTitle:@"Warning"
+                                                       andContent:@"Your master key is wrong!"
+                                                 inViewController:self];
+                                    break;
+                                case ErrorAddUser:
+                                    [AlertTool showAlertWithTitle:@"Warning"
+                                                       andContent:@"Add owner failed in server, try again later."
+                                                 inViewController:self];
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([keyPath isEqualToString:@"sent"]) {
+        if (DEBUG) {
+            NSLog(@"Send owner's information to %ld untrusted servers successfully.", self.sent);
+        }
+        //Send owner's information to all untrusted servers successfully.
+        if (self.sent == group.servers.count) {
+            if (DEBUG) {
+                NSLog(@"Send owner's information to all untrusted servers successfully!");
+            }
+            //Set owner and update number of group memebers
+            group.owner = user.uid;
+            group.members ++;
+            //Hide initial group button and add server bar button
+            _initialGroupButton.hidden = YES;
+            _addServerBarButtonItem.enabled = NO;
+            
+            [AlertTool showAlertWithTitle:@"Tip"
+                               andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.groupName]
+                         inViewController:self];
+        }
+    }
+}
 @end

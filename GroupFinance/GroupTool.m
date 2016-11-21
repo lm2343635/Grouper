@@ -22,12 +22,16 @@
 
 @synthesize owner = _owner;
 
-- (void)setOwner:(BOOL)owner {
-    [defaults setBool:owner forKey:NSStringFromSelector(@selector(owner))];
+- (void)setOwner:(NSString *)owner {
+    _owner = owner;
+    [defaults setObject:owner forKey:NSStringFromSelector(@selector(owner))];
 }
 
-- (BOOL)owner {
-    return [defaults boolForKey:NSStringFromSelector(@selector(owner))];
+- (NSString *)owner {
+    if (_owner == nil) {
+        _owner = [defaults objectForKey:NSStringFromSelector(@selector(owner))];
+    }
+    return _owner;
 }
 
 @synthesize members = _members;

@@ -36,7 +36,7 @@
         error.code == NSURLErrorDNSLookupFailed ||
         error.code == NSURLErrorCannotFindHost ||
         error.code == NSURLErrorCannotConnectToHost) {
-        _data = @{@"errorCode": [NSNumber numberWithInteger:ErrorCodeNotConnectedToInternet]};
+        _data = @{@"errorCode": [NSNumber numberWithInteger:ErrorNotConnectedToInternet]};
         return self;
     }
     if(self) {

@@ -15,11 +15,27 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    return delegate.httpSessionManager;
+    return delegate.sessionManager;
 }
 
-+ (NSString *)createUrl:(NSString *)relativePosition {
-    NSString *url=[NSString stringWithFormat:@"http://%@/%@", DoaminName, relativePosition];
++ (NSDictionary *)getSessionManagers {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    return delegate.sessionManagers;
+}
+
++ (AFHTTPSessionManager *)getSessionManagerWithServerAddress:(NSString *)address {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSDictionary *managers = [self getSessionManagers];
+    return [managers objectForKey:address];
+}
+
++ (NSString *)createUrl:(NSString *)relativePosition withServerAddress:(NSString *)address {
+    NSString *url=[NSString stringWithFormat:@"http://%@/%@", address, relativePosition];
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
         NSLog(@"Request URL is: %@",url);

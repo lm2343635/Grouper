@@ -8,25 +8,39 @@
 
 #import "AppDelegate.h"
 #import "DaoManager.h"
+#import "GroupTool.h"
 
 @interface AppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation AppDelegate {
+    GroupTool *group;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    group = [[GroupTool alloc] init];
+    if (DEBUG) {
+        NSLog(@"Number of group menbers is %ld", group.members);
+        NSLog(@"Group id is %@, group name is %@, group owner is %@", group.groupId, group.groupName, group.owner);
+        for (NSString *address in group.servers.allKeys) {
+            NSLog(@"Untrusted server %@, access key is %@", address, group.servers[address]);
+        }
     }
 
     //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
-    //Init AFHTTPSessionManager.
-    [self httpSessionManager];
-    
+//    //Init AFHTTPSessionManager.
+//    [self sessionManager];
+//    if (group.members > 0) {
+//        [self sessionManagers];
+//    }
+//    
     //Set root view controller.
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uid"] == nil) {
         [self setRootViewControllerWithIdentifer:@"loginViewController"];
@@ -89,15 +103,32 @@
 }
 
 #pragma mark - AFNetworking
-@synthesize httpSessionManager = _httpSessionManager;
+@synthesize sessionManagers = _sessionManagers;
 
-- (AFHTTPSessionManager *)httpSessionManager {
-    if(_httpSessionManager != nil) {
-        return _httpSessionManager;
+- (NSDictionary *)sessionManagers {
+    if (_sessionManagers == nil) {
+        NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
+        group = [[GroupTool alloc] init];
+        for (NSString *address in group.servers.allKeys) {
+            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+            //Set access key in request header.
+            [manager.requestSerializer setValue:[group.servers valueForKey:address] forHTTPHeaderField:@"key"];
+            manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
+            [managers setObject:manager forKey:address];
+        }
+        _sessionManagers = managers;
     }
-    _httpSessionManager = [AFHTTPSessionManager manager];
-    _httpSessionManager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
-    return _httpSessionManager;
+    return _sessionManagers;
+}
+
+@synthesize sessionManager = _sessionManager;
+
+- (AFHTTPSessionManager *)sessionManager {
+    if(_sessionManager == nil) {
+        _sessionManager = [AFHTTPSessionManager manager];
+        _sessionManager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
+    }
+    return _sessionManager;
 }
 
 #pragma mark - Service

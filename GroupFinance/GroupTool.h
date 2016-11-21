@@ -10,7 +10,8 @@
 
 @interface GroupTool : NSObject
 
-@property (nonatomic) BOOL owner;
+//User id of owner
+@property (nonatomic) NSString *owner;
 @property (nonatomic) NSInteger members;
 
 @property (nonatomic, strong) NSString *groupId;
