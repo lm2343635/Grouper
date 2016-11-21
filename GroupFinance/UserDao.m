@@ -45,4 +45,13 @@
     return [self getByUserId:[defaults valueForKey:@"uid"]];
 }
 
+- (NSArray *)findMembersExceptOwner:(NSString *)ownerId {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"uid!=%@", ownerId]
+                  withEntityName:UserEntityName
+                         orderBy:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO]];
+}
+
 @end

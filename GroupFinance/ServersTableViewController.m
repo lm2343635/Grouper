@@ -173,6 +173,7 @@
             if (DEBUG) {
                 NSLog(@"Send owner's information to all untrusted servers successfully!");
             }
+            [self removeObserver:self forKeyPath:@"sent"];
             //Set owner and update number of group memebers
             group.owner = user.uid;
             group.members ++;

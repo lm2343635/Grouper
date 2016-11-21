@@ -18,4 +18,6 @@
 
 - (User *)getUsingUser;
 
+- (NSArray *)findMembersExceptOwner:(NSString *)ownerId;
+
 @end
