@@ -36,6 +36,7 @@
     if (group.members > 0) {
         members = [dao.userDao findMembersExceptOwner:group.owner];
         owner = [dao.userDao getByUserId:group.owner];
+        _noMembersView.hidden = YES;
     }
     
     
@@ -72,6 +73,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    if (group.members ==0) {
+        return 0;
+    }
     return (section == 0)? 1: members.count;
 }
 
@@ -97,7 +101,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return @" ";
+    return (group.members == 0)? nil: @" ";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
