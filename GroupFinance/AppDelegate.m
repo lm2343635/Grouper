@@ -30,6 +30,8 @@
             NSLog(@"Untrusted server %@, access key is %@", address, group.servers[address]);
         }
     }
+    
+    _mcManager = [[MCManager alloc] init];
 
     //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application

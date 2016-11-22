@@ -1,26 +1,14 @@
 //
 //  MCManager.m
-//  GroupFinance
+//  MCDemo
 //
-//  Created by lidaye on 07/11/2016.
+//  Created by limeng on 2/12/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import "MCManager.h"
-#import "AppDelegate.h"
 
 @implementation MCManager
-
-+ (MCManager *)getSingleInstance {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    if (delegate.mcManager == nil) {
-        delegate.mcManager = [[MCManager alloc] init];
-    }
-    return delegate.mcManager;
-}
 
 - (instancetype)init {
     if (DEBUG) {
@@ -44,8 +32,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSDictionary *dictionary = @{
-                                 @"peerID": peerID,
-                                 @"state": [NSNumber numberWithInt:state]
+                               @"peerID": peerID,
+                               @"state": [NSNumber numberWithInt:state]
                                };
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidChangeStateNotification"
                                                         object:nil
@@ -53,14 +41,14 @@
 }
 
 - (void)session:(MCSession *)session
- didReceiveData:(NSData *)data
+didReceiveData:(NSData *)data
        fromPeer:(MCPeerID *)peerID {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSDictionary *dictionary = @{
-                                 @"data": data,
-                                 @"peerID": peerID
+                               @"data": data,
+                               @"peerID": peerID
                                };
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidReceiveDataNotification"
                                                         object:nil
@@ -68,25 +56,25 @@
 }
 
 - (void)session:(MCSession *)session
-    didStartReceivingResourceWithName:(NSString *)resourceName
+didStartReceivingResourceWithName:(NSString *)resourceName
        fromPeer:(MCPeerID *)peerID
    withProgress:(NSProgress *)progress {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSDictionary *dictionary = @{
-                                 @"resourceName": resourceName,
-                                 @"peerID": peerID,
-                                 @"progress": progress
+                               @"resourceName": resourceName,
+                               @"peerID": peerID,
+                               @"progress": progress
                                };
     [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidStartReceivingResourceNotification"
                                                         object:nil
                                                       userInfo:dictionary];
     dispatch_async(dispatch_get_main_queue(), ^{
-        [progress addObserver:self
-                   forKeyPath:@"fractionCompleted"
-                      options:NSKeyValueObservingOptionNew
-                      context:nil];
+       [progress addObserver:self
+                  forKeyPath:@"fractionCompleted"
+                     options:NSKeyValueObservingOptionNew
+                     context:nil];
     });
 }
 
@@ -99,9 +87,9 @@ didFinishReceivingResourceWithName:(NSString *)resourceName
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSDictionary *dictionary = @{
-                                 @"resourceName": resourceName,
-                                 @"peerID": peerID,
-                                 @"localURL": localURL
+                               @"resourceName": resourceName,
+                               @"peerID": peerID,
+                               @"localURL": localURL
                                };
     [[NSNotificationCenter defaultCenter] postNotificationName:@"didFinishReceivingResourceNotification"
                                                         object:nil
@@ -118,8 +106,8 @@ didReceiveStream:(NSInputStream *)stream
 }
 
 #pragma mark - Functions
-- (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
-    if(DEBUG) {
+-(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _peerID = [[MCPeerID alloc] initWithDisplayName:displayName];
@@ -127,16 +115,16 @@ didReceiveStream:(NSInputStream *)stream
     _session.delegate = self;
 }
 
--(void)setupMCBrowser {
-    if(DEBUG) {
+- (void)setupMCBrowser {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"chat-files" session:_session];
-
+    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"chat-files"
+                                                                        session:_session];
 }
 
 -(void)advertiseSelf:(BOOL)shouldAdvertise {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if (shouldAdvertise) {
@@ -146,7 +134,7 @@ didReceiveStream:(NSInputStream *)stream
         [_advertiserAssistant start];
     } else {
         [_advertiserAssistant stop];
-        _advertiserAssistant = nil;
+        _advertiserAssistant=nil;
     }
 }
 

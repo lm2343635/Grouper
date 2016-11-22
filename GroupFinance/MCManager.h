@@ -1,8 +1,8 @@
 //
 //  MCManager.h
-//  GroupFinance
+//  MCDemo
 //
-//  Created by lidaye on 07/11/2016.
+//  Created by limeng on 2/12/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
@@ -16,10 +16,8 @@
 @property (nonatomic, strong) MCBrowserViewController *browserViewController;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiserAssistant;
 
-+ (MCManager *)getSingleInstance;
-
-- (void)setupPeerAndSessionWithDisplayName: (NSString *)displayName;
-- (void)setupMCBrowser;
-- (void)advertiseSelf: (BOOL)shouldAdvertise;
+-(void)setupPeerAndSessionWithDisplayName: (NSString *)displayName;
+-(void)setupMCBrowser;
+-(void)advertiseSelf: (BOOL)shouldAdvertise;
 
 @end

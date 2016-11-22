@@ -7,12 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MCManager.h"
 
-@interface MembersTableViewController : UITableViewController <MCBrowserViewControllerDelegate>
+@interface MembersTableViewController : UITableViewController
 
 @property (weak, nonatomic) IBOutlet UIView *noMembersView;
-
-- (IBAction)browseForDevices:(id)sender;
 
 @end
