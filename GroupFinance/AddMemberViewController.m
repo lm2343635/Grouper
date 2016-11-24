@@ -9,21 +9,23 @@
 #import "AddMemberViewController.h"
 #import "DaoManager.h"
 #import "AppDelegate.h"
+#import "GroupTool.h"
 
 @interface AddMemberViewController ()
 
 @property (nonatomic, strong) AppDelegate *delegate;
-@property (nonatomic, strong) NSMutableArray *connectedDevices;
+@property (nonatomic, strong) NSMutableArray *connectedPeers;
 
--(void)peerDidChangeStateWithNotification: (NSNotification *)notification;
+- (void)peerDidChangeStateWithNotification: (NSNotification *)notification;
+- (void)didReceiveDataWithNotification: (NSNotification *)notification;
 
 @end
 
 @implementation AddMemberViewController {
-
     DaoManager *dao;
     User *currentUser;
-    
+    GroupTool *group;
+    BOOL isOwner;
 }
 
 - (void)viewDidLoad {
@@ -33,34 +35,40 @@
 
     dao = [[DaoManager alloc] init];
     currentUser = [dao.userDao getUsingUser];
+    group = [[GroupTool alloc] init];
+    isOwner = [group.owner isEqualToString:currentUser.uid];
     
-    _delegate=(AppDelegate *)[[UIApplication sharedApplication] delegate];
+    _delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [_delegate.mcManager setupPeerAndSessionWithDisplayName:currentUser.name];
     [_delegate.mcManager advertiseSelf:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(peerDidChangeStateWithNotification:)
                                                  name:@"MCDidChangeStateNotification"
                                                object:nil];
-    _connectedDevices=[[NSMutableArray alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDataWithNotification:)
+                                                 name:@"MCDidReceiveDataNotification"
+                                               object:nil];
+    _connectedPeers = [[NSMutableArray alloc] init];
 }
 
 #pragma mark - UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return 0.1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return _connectedDevices.count;
+    return _connectedPeers.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deviceIdentifier"];
@@ -68,15 +76,44 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"deviceIdentifier"];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.textLabel.text = [_connectedDevices objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = @"Invite";
+    cell.textLabel.text = [[_connectedPeers objectAtIndex:indexPath.row] displayName];
+    //If this user is the owner of group, he can invite
+    if (isOwner) {
+        cell.detailTextLabel.text = @"Invite";
+    }
+    
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    //If this user is the owner of group, he can invite
+    if (isOwner) {
+        MCPeerID *peer = [_connectedPeers objectAtIndex:indexPath.row];
+        NSString *message = [NSString stringWithFormat:@"Invite %@ to your group.", peer.displayName];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invite"
+                                                                                 message:message
+                                                                          preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
+        UIAlertAction *invite = [UIAlertAction actionWithTitle:@"Yes"
+                                                         style:UIAlertActionStyleDestructive
+                                                       handler:^(UIAlertAction * _Nonnull action) {
+                                                           [self invite:peer];
+                                                       }];
+        [alertController addAction:cancel];
+        [alertController addAction:invite];
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
 
 #pragma mark - MCBrowserViewControllerDelegate
 -(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [_delegate.mcManager.browserViewController dismissViewControllerAnimated:YES
@@ -84,7 +121,7 @@
 }
 
 -(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [_delegate.mcManager.browserViewController dismissViewControllerAnimated:YES
@@ -93,7 +130,7 @@
 
 #pragma mark - Action
 - (IBAction)browseForDevices:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [_delegate.mcManager setupMCBrowser];
@@ -105,24 +142,55 @@
 
 #pragma mark - Notification
 - (void)peerDidChangeStateWithNotification:(NSNotification *)notification {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
-    NSString *peerDisplayName = peerID.displayName;
     MCSessionState state = [[[notification userInfo] objectForKey:@"state"] intValue];
     if (state != MCSessionStateConnecting) {
         if (state == MCSessionStateConnected) {
-            [_connectedDevices addObject:peerDisplayName];
+            [_connectedPeers addObject:peerID];
         } else if (state == MCSessionStateNotConnected) {
-            if(_connectedDevices.count > 0) {
-                [_connectedDevices removeObjectAtIndex:[_connectedDevices indexOfObject:peerDisplayName]];
+            if(_connectedPeers.count > 0) {
+                [_connectedPeers removeObject:peerID];
             }
         }
-        NSLog(@"Connected devices: %@", _connectedDevices);
         [_devicesTableView reloadData];
 
     }
 }
 
+- (void)didReceiveDataWithNotification:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *peerDisplayName = peerID.displayName;
+    NSData *data = [[notification userInfo] objectForKey:@"data"];
+    NSDictionary *message = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+    if (DEBUG) {
+        NSLog(@"Received message from %@: %@", peerDisplayName, message);
+    }
+}
+
+#pragma mark - Service
+- (void)invite:(MCPeerID *)peer {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSDictionary *message = @{@"task": @"invite"};
+    NSData *data = [NSJSONSerialization dataWithJSONObject:message
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    NSError *error;
+    [_delegate.mcManager.session sendData:data
+                                  toPeers:[NSArray arrayWithObject:peer]
+                                 withMode:MCSessionSendDataReliable
+                                    error:&error];
+    if(error) {
+        NSLog(@"Error in sending: %@", error.localizedDescription);
+    }
+}
 @end
