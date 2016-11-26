@@ -103,7 +103,7 @@
         UIAlertAction *invite = [UIAlertAction actionWithTitle:@"Yes"
                                                          style:UIAlertActionStyleDestructive
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           [self invite:peer];
+                                                           [self sendMessage:@{@"task": @"invite"} to:peer];
                                                        }];
         [alertController addAction:cancel];
         [alertController addAction:invite];
@@ -173,14 +173,23 @@
     if (DEBUG) {
         NSLog(@"Received message from %@: %@", peerDisplayName, message);
     }
+    NSString *task = [message valueForKey:@"task"];
+    if ([task isEqualToString:@"invite"] && !isOwner) {
+        [self sendMessage:@{
+                            @"task": @"sendUserInfo",
+                            @"userInfo": currentUser
+                            }
+                       to:peerID];
+    } else if ([task isEqualToString:@"sendUserInfo"] && isOwner) {
+        //Send user info to untrusted servers.
+    }
 }
 
 #pragma mark - Service
-- (void)invite:(MCPeerID *)peer {
+- (void)sendMessage:(NSDictionary *)message to:(MCPeerID *)peer {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSDictionary *message = @{@"task": @"invite"};
     NSData *data = [NSJSONSerialization dataWithJSONObject:message
                                                    options:NSJSONWritingPrettyPrinted
                                                      error:nil];

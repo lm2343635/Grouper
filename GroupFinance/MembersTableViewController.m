@@ -26,15 +26,22 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    group = [[GroupTool alloc] init];
     dao = [[DaoManager alloc] init];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [super viewWillAppear:animated];
+    
+    group = [[GroupTool alloc] init];
     
     if (group.members > 0) {
         members = [dao.userDao findMembersExceptOwner:group.owner];
         owner = [dao.userDao getByUserId:group.owner];
         _noMembersView.hidden = YES;
     }
-    
 }
 
 #pragma mark - Table view data source
