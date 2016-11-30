@@ -106,7 +106,7 @@ didReceiveStream:(NSInputStream *)stream
 }
 
 #pragma mark - Functions
--(void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
+- (void)setupPeerAndSessionWithDisplayName:(NSString *)displayName {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -119,16 +119,16 @@ didReceiveStream:(NSInputStream *)stream
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"chat-files"
+    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"grouper"
                                                                         session:_session];
 }
 
--(void)advertiseSelf:(BOOL)shouldAdvertise {
+- (void)advertiseSelf:(BOOL)shouldAdvertise {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if (shouldAdvertise) {
-        _advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"chat-files"
+        _advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"grouper"
                                                                     discoveryInfo:nil
                                                                           session:_session];
         [_advertiserAssistant start];

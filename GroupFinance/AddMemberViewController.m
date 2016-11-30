@@ -116,16 +116,14 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [_delegate.mcManager.browserViewController dismissViewControllerAnimated:YES
-                                                                  completion:nil];
+    [_delegate.mcManager.browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [_delegate.mcManager.browserViewController dismissViewControllerAnimated:YES
-                                                                  completion:nil];
+    [_delegate.mcManager.browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Action
@@ -177,7 +175,13 @@
     if ([task isEqualToString:@"invite"] && !isOwner) {
         [self sendMessage:@{
                             @"task": @"sendUserInfo",
-                            @"userInfo": currentUser
+                            @"userInfo": @{
+                                        @"uid": currentUser.uid,
+                                        @"email": currentUser.email,
+                                        @"name": currentUser.name,
+                                        @"gender": currentUser.gender,
+                                        @"pictureUrl": currentUser.pictureUrl,
+                                    }
                             }
                        to:peerID];
     } else if ([task isEqualToString:@"sendUserInfo"] && isOwner) {
