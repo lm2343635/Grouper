@@ -166,7 +166,7 @@
     }
     if ([keyPath isEqualToString:@"sent"]) {
         if (DEBUG) {
-            NSLog(@"Send owner's information to %ld untrusted servers successfully.", self.sent);
+            NSLog(@"Send owner's information to %d untrusted servers successfully.", self.sent);
         }
         //Send owner's information to all untrusted servers successfully.
         if (self.sent == group.servers.count) {
@@ -187,4 +187,5 @@
         }
     }
 }
+
 @end

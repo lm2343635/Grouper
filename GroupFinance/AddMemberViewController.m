@@ -10,6 +10,7 @@
 #import "DaoManager.h"
 #import "AppDelegate.h"
 #import "GroupTool.h"
+#import "InternetTool.h"
 
 @interface AddMemberViewController ()
 
@@ -26,6 +27,8 @@
     User *currentUser;
     GroupTool *group;
     BOOL isOwner;
+    NSMutableDictionary *serverInfoForUser;
+    MCPeerID *invitePeer;
 }
 
 - (void)viewDidLoad {
@@ -92,8 +95,8 @@
     }
     //If this user is the owner of group, he can invite
     if (isOwner) {
-        MCPeerID *peer = [_connectedPeers objectAtIndex:indexPath.row];
-        NSString *message = [NSString stringWithFormat:@"Invite %@ to your group.", peer.displayName];
+        invitePeer = [_connectedPeers objectAtIndex:indexPath.row];
+        NSString *message = [NSString stringWithFormat:@"Invite %@ to your group.", invitePeer.displayName];
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invite"
                                                                                  message:message
                                                                           preferredStyle:UIAlertControllerStyleAlert];
@@ -103,7 +106,7 @@
         UIAlertAction *invite = [UIAlertAction actionWithTitle:@"Yes"
                                                          style:UIAlertActionStyleDestructive
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           [self sendMessage:@{@"task": @"invite"} to:peer];
+                                                           [self sendMessage:@{@"task": @"invite"} to:invitePeer];
                                                        }];
         [alertController addAction:cancel];
         [alertController addAction:invite];
@@ -185,7 +188,42 @@
                             }
                        to:peerID];
     } else if ([task isEqualToString:@"sendUserInfo"] && isOwner) {
+        //Set count for HTTP request.
+        self.sent = 0;
+        [self addObserver:self
+               forKeyPath:@"sent"
+                  options:NSKeyValueObservingOptionOld
+                  context:nil];
         //Send user info to untrusted servers.
+        for (NSString *address in group.servers.allKeys) {
+            NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[message objectForKey:@"userInfo"]];
+            [parameters setValue:@NO forKey:@"owner"];
+            AFHTTPSessionManager *manager = [InternetTool getSessionManagerWithServerAddress:address];
+            [manager POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
+               parameters:parameters
+                 progress:nil
+                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                      InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                      if ([response statusOK]) {
+                          self.sent ++;
+                          NSObject *result = [response getResponseResult];
+                          NSString *accesskey = [result valueForKey:@"accesskey"];
+                          [serverInfoForUser setValue:accesskey forKey:address];
+                      }
+                  }
+                  failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                      InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                      switch ([response errorCode]) {
+                      
+                      }
+                  }];
+        }
+    } else if ([task isEqualToString:@"sendServerInfo"] && !isOwner) {
+        //Receive server information and access key from group owner.
+        group.servers = [message valueForKey:@"serverInfo"];
+        [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
+    } else if ([task isEqualToString:@"joinSuccess"] && isOwner) {
+        //Joined group successfully.
     }
 }
 
@@ -204,6 +242,34 @@
                                     error:&error];
     if(error) {
         NSLog(@"Error in sending: %@", error.localizedDescription);
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([keyPath isEqualToString:@"sent"]) {
+        if (DEBUG) {
+            NSLog(@"Send user's information to %d untrusted servers successfully.", self.sent);
+        }
+        //Send owner's information to all untrusted servers successfully.
+        if (self.sent == group.servers.count) {
+            if (DEBUG) {
+                NSLog(@"Send user's information to all untrusted servers successfully!");
+            }
+            [self removeObserver:self forKeyPath:@"sent"];
+            //Send access keys and server information to joiner.
+            [self sendMessage:@{
+                                @"task": @"sendServerInfo",
+                                @"serverInfo": serverInfoForUser
+                                }
+                           to:invitePeer];
+            
+        }
     }
 }
 @end
