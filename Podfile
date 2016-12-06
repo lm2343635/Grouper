@@ -1,9 +1,12 @@
 use_frameworks!
 
-pod 'Sync', '~> 1'
-pod 'FBSDKCoreKit', '~> 4'
-pod 'FBSDKLoginKit', '~> 4'
-pod 'AFNetworking', '~> 3.1'
+target 'GroupFinance' do
+    pod 'Sync', '~> 1'
+    pod 'FBSDKCoreKit', '~> 4'
+    pod 'FBSDKLoginKit', '~> 4'
+    pod 'AFNetworking', '~> 3.1'
+    pod 'MJRefresh', '~> 3.1'
+end
 
 post_install do |installer|
     installer.pods_project.targets.each do |target|

@@ -15,7 +15,9 @@ typedef NS_OPTIONS(NSUInteger, ErrorCode) {
     ErrorGroupExsit = 1001,
     ErrorGroupRegister = 1002,
     ErrorMasterKey = 2001,
-    ErrorAddUser = 2002,
+    ErrorAccessKey = 2002,
+    ErrorMasterOrAccessKey = 2003,
+    ErrorAddUser = 2004,
     ErrorNotConnectedToInternet = -1009
 };
 

@@ -27,6 +27,14 @@
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
     user = [dao.userDao getUsingUser];
+    if (user.picture == nil) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            user.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.pictureUrl]];
+        });
+        dispatch_async(dispatch_get_main_queue(), ^{
+             _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
+        });
+    }
     _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
     _nameLabel.text = user.name;
     _emailLabel.text = user.email;

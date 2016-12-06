@@ -9,6 +9,8 @@
 #import "MembersTableViewController.h"
 #import "DaoManager.h"
 #import "GroupTool.h"
+#import "InternetTool.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface MembersTableViewController ()
 
@@ -18,7 +20,9 @@
     DaoManager * dao;
     NSArray *members;
     User *owner;
+    User *currentUser;
     GroupTool *group;
+    NSDictionary *managers;
 }
 
 - (void)viewDidLoad {
@@ -26,7 +30,16 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
+    group = [[GroupTool alloc] init];
     dao = [[DaoManager alloc] init];
+    managers = [InternetTool getSessionManagers];
+    
+    currentUser = [dao.userDao getUsingUser];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self refreshMemberList];
+    }];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -34,14 +47,49 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
-    
-    group = [[GroupTool alloc] init];
-    
-    if (group.members > 0) {
-        members = [dao.userDao findMembersExceptOwner:group.owner];
-        owner = [dao.userDao getByUserId:group.owner];
-        _noMembersView.hidden = YES;
+}
+
+- (void)refreshMemberList {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+    //Reload user info
+    [managers[address0] GET:[InternetTool createUrl:@"user/list" withServerAddress:address0]
+                 parameters:nil
+                   progress:nil
+                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                        InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                        if ([response statusOK]) {
+                            NSObject *result = [response getResponseResult];
+                            NSArray *users = [result valueForKey:@"users"];
+                            for(NSObject *user in users) {
+                                if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
+                                    continue;
+                                }
+                                [dao.userDao saveOrUpdateWithJSONObject:user];
+                            }
+                            
+                            group.members = users.count;
+                            if (group.members > 0) {
+                                members = [dao.userDao findMembersExceptOwner:group.owner];
+                                owner = [dao.userDao getByUserId:group.owner];
+                                _noMembersView.hidden = YES;
+                            }
+                            
+                            [self.tableView reloadData];
+                            [self.tableView.mj_header endRefreshing];
+                        }
+                    }
+                    failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                        InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                        switch ([response errorCode]) {
+                            case ErrorMasterOrAccessKey:
+                                [self.tableView.mj_header endRefreshing];
+                                break;
+                        }
+                    }];
+
 }
 
 #pragma mark - Table view data source

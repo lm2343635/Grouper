@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "GroupTool.h"
 #import "InternetTool.h"
+#import "AlertTool.h"
 
 @interface AddMemberViewController ()
 
@@ -194,10 +195,12 @@
                forKeyPath:@"sent"
                   options:NSKeyValueObservingOptionOld
                   context:nil];
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[message valueForKey:@"userInfo"]];
+        [parameters setValue:@NO forKey:@"owner"];
+        //Init serverInfoForUser
+        serverInfoForUser = [[NSMutableDictionary alloc] init];
         //Send user info to untrusted servers.
         for (NSString *address in group.servers.allKeys) {
-            NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[message objectForKey:@"userInfo"]];
-            [parameters setValue:@NO forKey:@"owner"];
             AFHTTPSessionManager *manager = [InternetTool getSessionManagerWithServerAddress:address];
             [manager POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
                parameters:parameters
@@ -205,10 +208,12 @@
                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                       InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                       if ([response statusOK]) {
-                          self.sent ++;
                           NSObject *result = [response getResponseResult];
                           NSString *accesskey = [result valueForKey:@"accesskey"];
                           [serverInfoForUser setValue:accesskey forKey:address];
+                          NSLog(@"%@ serverInfoForUser %@", address, serverInfoForUser);
+                          //All task finished, sent plus 1
+                          self.sent ++;
                       }
                   }
                   failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -222,8 +227,61 @@
         //Receive server information and access key from group owner.
         group.servers = [message valueForKey:@"serverInfo"];
         [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
+        //Download group members and group info.
+        NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+        NSDictionary *managers = [InternetTool getSessionManagers];
+        [managers[address0] GET:[InternetTool createUrl:@"group/info" withServerAddress:address0]
+                     parameters:nil
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                            if ([response statusOK]) {
+                                NSObject *result = [response getResponseResult];
+                                NSObject *groupInfo = [result valueForKey:@"group"];
+                                group.groupId = [groupInfo valueForKey:@"id"];
+                                group.groupName = [groupInfo valueForKey:@"name"];
+                                group.members = [[groupInfo valueForKey:@"members"] integerValue];
+                                group.owner = [groupInfo valueForKey:@"oid"];
+                                [AlertTool showAlertWithTitle:@"Tip"
+                                                   andContent:[NSString stringWithFormat:@"You have joined to %@.", group.groupName]
+                                             inViewController:self];
+                            }
+                        }
+                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                            switch ([response errorCode]) {
+                                    
+                            }
+                        }];
+        //Reload user info
+        [managers[address0] GET:[InternetTool createUrl:@"user/list" withServerAddress:address0]
+                     parameters:nil
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                            if ([response statusOK]) {
+                                NSObject *result = [response getResponseResult];
+                                NSArray *users = [result valueForKey:@"users"];
+                                for(NSObject *user in users) {
+                                    if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
+                                        continue;
+                                    }
+                                    [dao.userDao saveOrUpdateWithJSONObject:user];
+                                }
+                            }
+                        }
+                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                            switch ([response errorCode]) {
+                                    
+                            }
+                        }];
+        
     } else if ([task isEqualToString:@"joinSuccess"] && isOwner) {
-        //Joined group successfully.
+        //Joined group successfully. Add this user to user list.
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Invite this user successfully!"
+                     inViewController:self];
     }
 }
 
@@ -263,6 +321,8 @@
             }
             [self removeObserver:self forKeyPath:@"sent"];
             //Send access keys and server information to joiner.
+            NSLog(@"serverInfoForUser = %@", serverInfoForUser);
+            NSLog(@"invitePeer = %@", invitePeer);
             [self sendMessage:@{
                                 @"task": @"sendServerInfo",
                                 @"serverInfo": serverInfoForUser

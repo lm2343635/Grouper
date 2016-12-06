@@ -24,7 +24,6 @@
     user.name = [object valueForKey:@"name"];
     user.gender = [object valueForKey:@"gender"];
     user.pictureUrl = [[[object valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
-    user.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.pictureUrl]];
     [self saveContext];
     return user;
 }
