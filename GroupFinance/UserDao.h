@@ -12,7 +12,7 @@
 
 @interface UserDao : DaoTemplate
 
-- (User *)saveOrUpdateWithJSONObject:(NSObject *)object;
+- (User *)saveOrUpdateWithJSONObject:(NSObject *)object fromUntrustedServer:(BOOL)source;
 
 - (User *)getByUserId:(NSString *)userId;
 

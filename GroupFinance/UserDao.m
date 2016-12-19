@@ -10,7 +10,7 @@
 
 @implementation UserDao
 
-- (User *)saveOrUpdateWithJSONObject:(NSObject *)object {
+- (User *)saveOrUpdateWithJSONObject:(NSObject *)object fromUntrustedServer:(BOOL)source {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -23,7 +23,7 @@
     user.email = [object valueForKey:@"email"];
     user.name = [object valueForKey:@"name"];
     user.gender = [object valueForKey:@"gender"];
-    user.pictureUrl = [[[object valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+    user.pictureUrl = source? [object valueForKey:@"picture"]: [[[object valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
     [self saveContext];
     return user;
 }

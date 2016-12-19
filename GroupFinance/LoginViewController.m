@@ -61,7 +61,7 @@
             NSLog(@"Get facebook user info: %@", result);
         }
         //Save user info from facebook.
-        [dao.userDao saveOrUpdateWithJSONObject:result];
+        [dao.userDao saveOrUpdateWithJSONObject:result fromUntrustedServer:NO];
         [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
     }];
 }

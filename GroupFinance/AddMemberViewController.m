@@ -266,7 +266,7 @@
                                     if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
                                         continue;
                                     }
-                                    [dao.userDao saveOrUpdateWithJSONObject:user];
+                                    [dao.userDao saveOrUpdateWithJSONObject:user fromUntrustedServer:YES];
                                 }
                             }
                         }

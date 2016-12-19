@@ -36,10 +36,13 @@
     
     currentUser = [dao.userDao getUsingUser];
     
+    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshMemberList];
     }];
-    [self.tableView.mj_header beginRefreshing];
+    if (group.groupId != nil) {
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -67,7 +70,7 @@
                                 if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
                                     continue;
                                 }
-                                [dao.userDao saveOrUpdateWithJSONObject:user];
+                                [dao.userDao saveOrUpdateWithJSONObject:user fromUntrustedServer:YES];
                             }
                             
                             group.members = users.count;
@@ -75,6 +78,12 @@
                                 members = [dao.userDao findMembersExceptOwner:group.owner];
                                 owner = [dao.userDao getByUserId:group.owner];
                                 _noMembersView.hidden = YES;
+                                
+                                for (User *member in members) {
+                                    member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
+                                }
+                                owner.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:owner.pictureUrl]];
+
                             }
                             
                             [self.tableView reloadData];
