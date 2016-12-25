@@ -10,8 +10,6 @@
 
 @interface SecretSharing : NSObject
 
-+ (NSArray *)generateSharesWith:(NSString *)string
-                          parts:(int)n
-                        recover:(int)k;
++ (NSDictionary *)generateSharesWith:(NSString *)string;
 
 @end

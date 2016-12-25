@@ -43,6 +43,8 @@
 		E476B0A31DE3FC3700FBCB24 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */; };
 		E476B0A61DE40F5C00FBCB24 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A51DE40F5C00FBCB24 /* MCManager.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
+		E47EF80E1E0F9DD9006C4B3B /* Sender+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E47EF80B1E0F9DD9006C4B3B /* Sender+CoreDataClass.m */; };
+		E47EF80F1E0F9DD9006C4B3B /* Sender+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E47EF80D1E0F9DD9006C4B3B /* Sender+CoreDataProperties.m */; };
 		E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */; };
 		E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */; };
 		E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA61DCC724500B20B20 /* UserDao.m */; };
@@ -63,8 +65,6 @@
 		E49E7CE91DC7343400E9E43A /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDB1DC7343400E9E43A /* Shop+CoreDataProperties.m */; };
 		E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */; };
 		E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */; };
-		E4ADFD7D1DC84EE4009F3E37 /* Sender+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD7A1DC84EE4009F3E37 /* Sender+CoreDataClass.m */; };
-		E4ADFD7E1DC84EE4009F3E37 /* Sender+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD7C1DC84EE4009F3E37 /* Sender+CoreDataProperties.m */; };
 		E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD801DC84EFE009F3E37 /* SenderDao.m */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
@@ -175,6 +175,10 @@
 		E476B0A51DE40F5C00FBCB24 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
+		E47EF80A1E0F9DD9006C4B3B /* Sender+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sender+CoreDataClass.h"; sourceTree = "<group>"; };
+		E47EF80B1E0F9DD9006C4B3B /* Sender+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sender+CoreDataClass.m"; sourceTree = "<group>"; };
+		E47EF80C1E0F9DD9006C4B3B /* Sender+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sender+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E47EF80D1E0F9DD9006C4B3B /* Sender+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sender+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
 		E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
 		E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -215,10 +219,6 @@
 		E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
 		E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E4ADFD791DC84EE4009F3E37 /* Sender+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sender+CoreDataClass.h"; sourceTree = "<group>"; };
-		E4ADFD7A1DC84EE4009F3E37 /* Sender+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sender+CoreDataClass.m"; sourceTree = "<group>"; };
-		E4ADFD7B1DC84EE4009F3E37 /* Sender+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sender+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E4ADFD7C1DC84EE4009F3E37 /* Sender+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sender+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E4ADFD7F1DC84EFE009F3E37 /* SenderDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenderDao.h; sourceTree = "<group>"; };
 		E4ADFD801DC84EFE009F3E37 /* SenderDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenderDao.m; sourceTree = "<group>"; };
 		E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -513,10 +513,6 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */,
-				E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */,
-				E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */,
-				E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */,
 				E49E7CD01DC7343400E9E43A /* Account+CoreDataClass.h */,
 				E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */,
 				E49E7CD21DC7343400E9E43A /* Account+CoreDataProperties.h */,
@@ -534,10 +530,10 @@
 				E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */,
 				E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */,
 				E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */,
-				E4ADFD791DC84EE4009F3E37 /* Sender+CoreDataClass.h */,
-				E4ADFD7A1DC84EE4009F3E37 /* Sender+CoreDataClass.m */,
-				E4ADFD7B1DC84EE4009F3E37 /* Sender+CoreDataProperties.h */,
-				E4ADFD7C1DC84EE4009F3E37 /* Sender+CoreDataProperties.m */,
+				E47EF80A1E0F9DD9006C4B3B /* Sender+CoreDataClass.h */,
+				E47EF80B1E0F9DD9006C4B3B /* Sender+CoreDataClass.m */,
+				E47EF80C1E0F9DD9006C4B3B /* Sender+CoreDataProperties.h */,
+				E47EF80D1E0F9DD9006C4B3B /* Sender+CoreDataProperties.m */,
 				E49E7CD81DC7343400E9E43A /* Shop+CoreDataClass.h */,
 				E49E7CD91DC7343400E9E43A /* Shop+CoreDataClass.m */,
 				E49E7CDA1DC7343400E9E43A /* Shop+CoreDataProperties.h */,
@@ -546,6 +542,10 @@
 				E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */,
 				E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */,
 				E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */,
+				E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */,
+				E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */,
+				E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */,
+				E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -750,7 +750,6 @@
 				E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */,
 				E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */,
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
-				E4ADFD7D1DC84EE4009F3E37 /* Sender+CoreDataClass.m in Sources */,
 				E446C1011DCF75E600EC5966 /* InternetResponse.m in Sources */,
 				E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
@@ -760,7 +759,6 @@
 				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */,
-				E4ADFD7E1DC84EE4009F3E37 /* Sender+CoreDataProperties.m in Sources */,
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
@@ -796,6 +794,8 @@
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
+				E47EF80F1E0F9DD9006C4B3B /* Sender+CoreDataProperties.m in Sources */,
+				E47EF80E1E0F9DD9006C4B3B /* Sender+CoreDataClass.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
 				E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */,
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,

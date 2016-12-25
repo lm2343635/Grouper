@@ -39,14 +39,16 @@
         _data = @{@"errorCode": [NSNumber numberWithInteger:ErrorNotConnectedToInternet]};
         return self;
     }
+    
+    if (DEBUG) {
+        NSLog(@"AFNetworkingOperationFailingURLResponseErrorKey: %@", error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey]);
+        NSLog(@"AFNetworkingOperationFailingURLResponseDataErrorKey: %@", [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding]);
+    }
     if(self) {
         _data = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
                                                 options:NSJSONReadingAllowFragments
                                                   error:nil];
         
-    }
-    if(DEBUG) {
-        NSLog(@"Get Error from server: %@", self.data);
     }
     return self;
 }

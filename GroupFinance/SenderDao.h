@@ -7,7 +7,6 @@
 //
 
 #import "DaoTemplate.h"
-#import <SYNCPropertyMapper/SYNCPropertyMapper.h>
 
 #define SenderEntityName @"Sender"
 

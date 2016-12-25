@@ -2,7 +2,7 @@
 //  Sender+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by 李大爷的电脑 on 01/11/2016.
+//  Created by lidaye on 25/12/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
@@ -14,11 +14,12 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Sender"];
 }
 
-@dynamic sid;
-@dynamic object;
 @dynamic content;
-@dynamic count;
+@dynamic type;
+@dynamic object;
+@dynamic sequence;
 @dynamic sendtime;
-@dynamic resend;
+@dynamic messageId;
+@dynamic receiver;
 
 @end

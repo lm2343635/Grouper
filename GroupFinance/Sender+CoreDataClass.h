@@ -2,12 +2,14 @@
 //  Sender+CoreDataClass.h
 //  GroupFinance
 //
-//  Created by 李大爷的电脑 on 01/11/2016.
+//  Created by lidaye on 25/12/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+
+@class User;
 
 NS_ASSUME_NONNULL_BEGIN
 

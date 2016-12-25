@@ -2,11 +2,12 @@
 //  Sender+CoreDataClass.m
 //  GroupFinance
 //
-//  Created by 李大爷的电脑 on 01/11/2016.
+//  Created by lidaye on 25/12/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
 #import "Sender+CoreDataClass.h"
+#import "User+CoreDataClass.h"
 
 @implementation Sender
 
