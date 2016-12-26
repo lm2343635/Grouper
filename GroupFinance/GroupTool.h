@@ -10,6 +10,13 @@
 
 @interface GroupTool : NSObject
 
+typedef NS_OPTIONS(NSUInteger, InitialState) {
+    NotInitial = 0,
+    RestoringServer = 2,
+    AddingNewServer = 3,
+    InitialFinished = 4
+};
+
 //User id of owner
 @property (nonatomic) NSString *owner;
 @property (nonatomic) NSInteger members;
@@ -17,6 +24,8 @@
 @property (nonatomic, strong) NSString *groupId;
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSDictionary *servers;
+
+@property (nonatomic) NSInteger initial;
 
 - (NSUInteger)addServerAddress:(NSString *)address withAccessKey:(NSString *)accessKey;
 

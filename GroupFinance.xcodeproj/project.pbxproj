@@ -36,6 +36,7 @@
 		E457B4321CF1A41800139C4C /* ShopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4311CF1A41800139C4C /* ShopDao.m */; };
 		E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4341CF1A42900139C4C /* ClassificationDao.m */; };
 		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
+		E458BB5A1E10EDA500699D23 /* RestoreServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E458BB591E10EDA500699D23 /* RestoreServerViewController.m */; };
 		E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D57671DB4D21900116C4E /* GLibFacade.c */; };
 		E46D576E1DB4D21900116C4E /* shamir.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D57691DB4D21900116C4E /* shamir.c */; };
 		E46D576F1DB4D21900116C4E /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D576B1DB4D21900116C4E /* strtok.c */; };
@@ -161,6 +162,8 @@
 		E457B4341CF1A42900139C4C /* ClassificationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationDao.m; sourceTree = "<group>"; };
 		E457B4361CF1AA6E00139C4C /* DaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoManager.h; sourceTree = "<group>"; };
 		E457B4371CF1AA6E00139C4C /* DaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoManager.m; sourceTree = "<group>"; };
+		E458BB581E10EDA500699D23 /* RestoreServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoreServerViewController.h; sourceTree = "<group>"; };
+		E458BB591E10EDA500699D23 /* RestoreServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoreServerViewController.m; sourceTree = "<group>"; };
 		E46D57671DB4D21900116C4E /* GLibFacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLibFacade.c; sourceTree = "<group>"; };
 		E46D57681DB4D21900116C4E /* GLibFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLibFacade.h; sourceTree = "<group>"; };
 		E46D57691DB4D21900116C4E /* shamir.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shamir.c; sourceTree = "<group>"; };
@@ -339,6 +342,8 @@
 				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
 				E425D5741D28FD3C000324A3 /* QRScanView.h */,
 				E425D5751D28FD3C000324A3 /* QRScanView.m */,
+				E458BB581E10EDA500699D23 /* RestoreServerViewController.h */,
+				E458BB591E10EDA500699D23 /* RestoreServerViewController.m */,
 				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
 				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
 				E4939F981D97CD42006CA612 /* SettingsTableViewController.h */,
@@ -770,6 +775,7 @@
 				E48DE0711DCF660300A7A5DB /* InternetTool.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
+				E458BB5A1E10EDA500699D23 /* RestoreServerViewController.m in Sources */,
 				E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */,
 				E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */,
 				E49E7CE51DC7343400E9E43A /* Account+CoreDataProperties.m in Sources */,

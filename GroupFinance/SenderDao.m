@@ -21,7 +21,7 @@
     sender.object = NSStringFromClass(object.class);
     NSError *error;
     NSData *data = [NSJSONSerialization dataWithJSONObject:[object hyp_dictionary]
-                                                   options:nil
+                                                   options:NSJSONWritingPrettyPrinted
                                                      error:&error];
     if (error) {
         NSLog(@"Create json with error: %@", error.localizedDescription);

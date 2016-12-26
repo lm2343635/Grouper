@@ -21,6 +21,7 @@ typedef NS_OPTIONS(NSUInteger, ErrorCode) {
     
     ErrorGroupExsit = 1011,
     ErrorGroupRegister = 1012,
+    ErrorUserNotInGroup = 1031,
 
     ErrorAddUser = 2011,
     

@@ -18,7 +18,9 @@
 @property (weak, nonatomic) IBOutlet UIView *groupInformationView;
 @property (weak, nonatomic) IBOutlet UILabel *noServerLabel;
 @property (weak, nonatomic) IBOutlet UIButton *initialGroupButton;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *addServerBarButtonItem;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *restoreServerBarButtonItem;
 
 - (IBAction)initialGroup:(id)sender;
 

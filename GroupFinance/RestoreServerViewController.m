@@ -1,23 +1,26 @@
 //
-//  AddServerViewController.m
+//  RestoreServerViewController.m
 //  GroupFinance
 //
-//  Created by lidaye on 19/11/2016.
+//  Created by lidaye on 26/12/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "AddServerViewController.h"
+#import "RestoreServerViewController.h"
 #import "AlertTool.h"
 #import "InternetTool.h"
 #import "GroupTool.h"
+#import "DaoManager.h"
 
-@interface AddServerViewController ()
+@interface RestoreServerViewController ()
 
 @end
 
-@implementation AddServerViewController {
+@implementation RestoreServerViewController {
     AFHTTPSessionManager *manager;
     GroupTool *group;
+    DaoManager *dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
@@ -27,52 +30,51 @@
     [super viewDidLoad];
     manager = [InternetTool getSessionManager];
     group = [[GroupTool alloc] init];
-    //If group id and group name has been set, autofill them and disable editing.
-    if (group.groupId != nil && group.groupName != nil) {
-        _groupIdTextField.text = group.groupId;
-        _groupNameTextField.text = group.groupName;
-        _groupIdTextField.enabled = NO;
-        _groupNameTextField.enabled = NO;
-    }
+    dao = [[DaoManager alloc] init];
+    currentUser = [dao.userDao getUsingUser];
 }
 
-- (IBAction)submit:(id)sender {
+#pragma mark - Action
+- (IBAction)restore:(id)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if ([_groupIdTextField.text isEqualToString:@""]
-        || [_groupNameTextField.text isEqualToString:@""]
-        || [_serverAddressTextField.text isEqualToString:@""]) {
+    if ([_addressTextField.text isEqualToString:@""]
+        || [_accessKeyTextField.text isEqualToString:@""]) {
         [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Group id, group name and server address cannot be empty!"
+                           andContent:@"Server address and access key cannot be empty!"
                      inViewController:self];
         return;
     }
     for (NSString *address in group.servers.allKeys) {
-        if ([_serverAddressTextField.text isEqualToString:address]) {
+        if ([_addressTextField.text isEqualToString:address]) {
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:@"This server is exist!"
                          inViewController:self];
             return;
         }
     }
-    [manager POST:[NSString stringWithFormat:@"http://%@/group/register", _serverAddressTextField.text]
+
+    [manager POST:[NSString stringWithFormat:@"http://%@/group/restore", _addressTextField.text]
        parameters:@{
-                    @"id": _groupIdTextField.text,
-                    @"name": _groupNameTextField.text
+                    @"uid": currentUser.uid,
+                    @"accesskey": _accessKeyTextField.text
                     }
          progress:nil
           success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
               InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
               if ([response statusOK]) {
                   NSObject *result = [response getResponseResult];
-                  [group addServerAddress:_serverAddressTextField.text
-                            withAccessKey:[result valueForKey:@"masterkey"]];
-                  //Set group id and group name.
+                  [group addServerAddress:_addressTextField.text
+                            withAccessKey:_accessKeyTextField.text];
+                  //Restore group info.
                   if (group.initial == NotInitial) {
-                      group.groupId = _groupIdTextField.text;
-                      group.groupName = _groupNameTextField.text;
-                      group.initial = AddingNewServer;
+                      NSObject *groupInfo = [result valueForKey:@"group"];
+                      group.groupId = [groupInfo valueForKey:@"id"];
+                      group.groupName = [groupInfo valueForKey:@"name"];
+                      group.members = [[groupInfo valueForKey:@"members"] integerValue];
+                      group.owner = [groupInfo valueForKey:@"oid"];
+                      group.initial = RestoringServer;
                   }
                   [self.navigationController popViewControllerAnimated:YES];
               }
@@ -85,14 +87,14 @@
                                          andContent:@"Cannot find this server!"
                                    inViewController:self];
                       break;
-                  case ErrorGroupExsit:
+                  case ErrorAccessKey:
                       [AlertTool showAlertWithTitle:@"Tip"
-                                         andContent:@"Group id has been registered by other users in this server!"
+                                         andContent:@"Access key is not found in this server."
                                    inViewController:self];
                       break;
-                  case ErrorGroupRegister:
+                  case ErrorUserNotInGroup:
                       [AlertTool showAlertWithTitle:@"Tip"
-                                         andContent:@"Register group error, try again later."
+                                         andContent:@"This user is not in the group with this access key."
                                    inViewController:self];
                       break;
                   default:

@@ -38,19 +38,30 @@
     }
     group = [[GroupTool alloc] init];
     servers = group.servers;
-    if (group.groupId == nil && group.groupName == nil) {
-        _noServerLabel.hidden = NO;
-    } else {
+    switch (group.initial) {
+        case NotInitial:
+            _noServerLabel.hidden = NO;
+            _groupInformationView.hidden = YES;
+            break;
+        case RestoringServer:
+            _addServerBarButtonItem.enabled = NO;
+            _noServerLabel.hidden = YES;
+            break;
+        case AddingNewServer:
+            _restoreServerBarButtonItem.enabled = NO;
+            _noServerLabel.hidden = YES;
+            break;
+        case InitialFinished:
+            _addServerBarButtonItem.enabled = NO;
+            _restoreServerBarButtonItem.enabled = NO;
+            break;
+        default:
+            break;
+    }
+    //Show group id and group name if group state is not uninitial.
+    if (group.initial != NotInitial) {
         _groupIdTextField.text = group.groupId;
         _groupNameTextField.text = group.groupName;
-        _noServerLabel.hidden = YES;
-        _groupInformationView.hidden = NO;
-        _initialGroupButton.hidden = NO;
-    }
-    if (group.members == 0) {
-        _addServerBarButtonItem.enabled = YES;
-    } else {
-        _initialGroupButton.hidden = YES;
     }
     [self.tableView reloadData];
 }
@@ -94,7 +105,17 @@
     UIAlertAction *initialize = [UIAlertAction actionWithTitle:@"Yes"
                                                          style:UIAlertActionStyleDestructive
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           [self registerOwnerInUntrustedServers];
+                                                           switch (group.initial) {
+                                                               case RestoringServer:
+                                                                   [self restoreUntrustedServers];
+                                                                   break;
+                                                               case AddingNewServer:
+                                                                   [self registerOwnerInUntrustedServers];
+                                                                   break;
+                                                               default:
+                                                                   break;
+                                                           }
+                                                           
                                                        }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
                                                      style:UIAlertActionStyleCancel
@@ -107,6 +128,28 @@
 }
 
 #pragma mark - Service
+
+- (void)restoreUntrustedServers {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    //Confirm the number of untrusted servers
+    //TODO List
+    if (group.servers.count != 0) {
+        
+    }
+    
+    //Hide initial group button and add server bar button
+    _initialGroupButton.hidden = YES;
+    _restoreServerBarButtonItem.enabled = NO;
+    //Change initial state.
+    group.initial = InitialFinished;
+    
+    [AlertTool showAlertWithTitle:@"Tip"
+                       andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.groupName]
+                 inViewController:self];
+}
+
 - (void)registerOwnerInUntrustedServers {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -166,7 +209,7 @@
     }
     if ([keyPath isEqualToString:@"sent"]) {
         if (DEBUG) {
-            NSLog(@"Send owner's information to %d untrusted servers successfully.", self.sent);
+            NSLog(@"Send owner's information to %ld untrusted servers successfully.", (long)self.sent);
         }
         //Send owner's information to all untrusted servers successfully.
         if (self.sent == group.servers.count) {
@@ -180,6 +223,8 @@
             //Hide initial group button and add server bar button
             _initialGroupButton.hidden = YES;
             _addServerBarButtonItem.enabled = NO;
+            //Change initial state.
+            group.initial = InitialFinished;
             
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.groupName]

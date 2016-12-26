@@ -100,4 +100,18 @@
     return servers.count;
 }
 
+@synthesize initial = _initial;
+
+- (void)setInitial:(NSInteger)initial {
+    _initial = initial;
+    [defaults setInteger:initial forKey:NSStringFromSelector(@selector(initial))];
+}
+
+- (NSInteger)initial {
+    if (_initial == 0) {
+        _initial = [defaults integerForKey:NSStringFromSelector(@selector(initial))];
+    }
+    return _initial;
+}
+
 @end
