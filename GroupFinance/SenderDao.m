@@ -31,6 +31,7 @@
     sender.sendtime = [NSNumber numberWithInt:(int)[[NSDate date] timeIntervalSince1970]];
     sender.sequence = [NSNumber numberWithInt:1];
     sender.type = @"normal";
+    sender.receiver = @"*";
     [self saveContext];
     return sender;
 }

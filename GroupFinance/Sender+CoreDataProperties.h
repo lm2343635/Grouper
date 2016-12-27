@@ -2,7 +2,7 @@
 //  Sender+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
+//  Created by lidaye on 27/12/2016.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
@@ -16,12 +16,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSFetchRequest<Sender *> *)fetchRequest;
 
 @property (nullable, nonatomic, copy) NSString *content;
-@property (nullable, nonatomic, copy) NSString *type;
-@property (nullable, nonatomic, copy) NSString *object;
-@property (nullable, nonatomic, copy) NSNumber *sequence;
-@property (nullable, nonatomic, copy) NSNumber *sendtime;
 @property (nullable, nonatomic, copy) NSString *messageId;
-@property (nullable, nonatomic, retain) User *receiver;
+@property (nullable, nonatomic, copy) NSString *object;
+@property (nullable, nonatomic, copy) NSNumber *sendtime;
+@property (nullable, nonatomic, copy) NSNumber *sequence;
+@property (nullable, nonatomic, copy) NSString *type;
+@property (nullable, nonatomic, copy) NSString *receiver;
 
 @end
 

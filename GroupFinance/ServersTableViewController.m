@@ -38,6 +38,7 @@
     }
     group = [[GroupTool alloc] init];
     servers = group.servers;
+
     switch (group.initial) {
         case NotInitial:
             _noServerLabel.hidden = NO;
@@ -46,10 +47,12 @@
         case RestoringServer:
             _addServerBarButtonItem.enabled = NO;
             _noServerLabel.hidden = YES;
+            _initialGroupButton.hidden = NO;
             break;
         case AddingNewServer:
             _restoreServerBarButtonItem.enabled = NO;
             _noServerLabel.hidden = YES;
+            _initialGroupButton.hidden = NO;
             break;
         case InitialFinished:
             _addServerBarButtonItem.enabled = NO;
@@ -58,11 +61,14 @@
         default:
             break;
     }
+    
     //Show group id and group name if group state is not uninitial.
     if (group.initial != NotInitial) {
+        _groupInformationView.hidden = NO;
         _groupIdTextField.text = group.groupId;
         _groupNameTextField.text = group.groupName;
     }
+    
     [self.tableView reloadData];
 }
 
