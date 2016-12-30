@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "DaoManager.h"
 #import "GroupTool.h"
+#import "ReceiveTool.h"
 
 @interface AppDelegate ()
 
@@ -37,12 +38,12 @@
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
     
-//    //Init AFHTTPSessionManager.
-//    [self sessionManager];
-//    if (group.members > 0) {
-//        [self sessionManagers];
-//    }
-//    
+    //Init AFHTTPSessionManager.
+    [self sessionManager];
+    if (group.members > 0) {
+        [self sessionManagers];
+    }
+    
     //Set root view controller.
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uid"] == nil) {
         [self setRootViewControllerWithIdentifer:@"loginViewController"];
@@ -56,7 +57,15 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
+}
 
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    ReceiveTool *receive = [[ReceiveTool alloc] init];
+    [receive receive];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {

@@ -67,6 +67,9 @@
 		E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */; };
 		E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */; };
 		E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD801DC84EFE009F3E37 /* SenderDao.m */; };
+		E4BF182E1E163F3A003340FB /* ReceiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF182D1E163F3A003340FB /* ReceiveTool.m */; };
+		E4BF18391E164232003340FB /* Receiver+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF18361E164232003340FB /* Receiver+CoreDataClass.m */; };
+		E4BF183A1E164232003340FB /* Receiver+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF18381E164232003340FB /* Receiver+CoreDataProperties.m */; };
 		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
@@ -229,6 +232,12 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E4BF182C1E163F3A003340FB /* ReceiveTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveTool.h; sourceTree = "<group>"; };
+		E4BF182D1E163F3A003340FB /* ReceiveTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveTool.m; sourceTree = "<group>"; };
+		E4BF18351E164232003340FB /* Receiver+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receiver+CoreDataClass.h"; sourceTree = "<group>"; };
+		E4BF18361E164232003340FB /* Receiver+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receiver+CoreDataClass.m"; sourceTree = "<group>"; };
+		E4BF18371E164232003340FB /* Receiver+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Receiver+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E4BF18381E164232003340FB /* Receiver+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Receiver+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
@@ -499,6 +508,10 @@
 				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
 				E48DE06F1DCF660300A7A5DB /* InternetTool.h */,
 				E48DE0701DCF660300A7A5DB /* InternetTool.m */,
+				E476B0A41DE40F5C00FBCB24 /* MCManager.h */,
+				E476B0A51DE40F5C00FBCB24 /* MCManager.m */,
+				E4BF182C1E163F3A003340FB /* ReceiveTool.h */,
+				E4BF182D1E163F3A003340FB /* ReceiveTool.m */,
 				E46D57701DB4D65800116C4E /* SecretSharing.h */,
 				E46D57711DB4D65800116C4E /* SecretSharing.m */,
 				E42C58D71DCC53C4009A2596 /* SendTool.h */,
@@ -509,8 +522,6 @@
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E4939F9C1DA1096A006CA612 /* UserTool.h */,
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
-				E476B0A41DE40F5C00FBCB24 /* MCManager.h */,
-				E476B0A51DE40F5C00FBCB24 /* MCManager.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -531,6 +542,10 @@
 				E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */,
 				E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */,
 				E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */,
+				E4BF18351E164232003340FB /* Receiver+CoreDataClass.h */,
+				E4BF18361E164232003340FB /* Receiver+CoreDataClass.m */,
+				E4BF18371E164232003340FB /* Receiver+CoreDataProperties.h */,
+				E4BF18381E164232003340FB /* Receiver+CoreDataProperties.m */,
 				E49E7CC81DC7343400E9E43A /* Record+CoreDataClass.h */,
 				E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */,
 				E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */,
@@ -767,6 +782,7 @@
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
+				E4BF183A1E164232003340FB /* Receiver+CoreDataProperties.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
 				E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */,
@@ -797,6 +813,7 @@
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */,
+				E4BF18391E164232003340FB /* Receiver+CoreDataClass.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
@@ -811,6 +828,7 @@
 				E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
+				E4BF182E1E163F3A003340FB /* ReceiveTool.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,
 				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
 			);
