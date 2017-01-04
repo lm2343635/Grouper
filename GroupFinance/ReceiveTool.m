@@ -72,15 +72,8 @@
     //TODO List
     
     //Download share contents.
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    for (NSString *_id in ids) {
-        [parameters setValue:_id forKey:@"id"];
-    }
-    
     [managers[address] POST:[InternetTool createUrl:@"transfer/get" withServerAddress:address]
-                 parameters:@{
-                              @"id": [ids objectAtIndex:0]
-                              }
+                 parameters:[NSDictionary dictionaryWithObjectsAndKeys: [NSSet setWithArray:ids], @"id", nil]
                    progress:nil
                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
