@@ -12,4 +12,6 @@
 
 + (NSDictionary *)generateSharesWith:(NSString *)string;
 
++ (NSString *)recoverShareWith:(NSArray *)shares;
+
 @end

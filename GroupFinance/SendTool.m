@@ -56,7 +56,8 @@
         [managers[address] POST:[InternetTool createUrl:@"transfer/put" withServerAddress:address]
                      parameters:@{
                                   @"share": shares[address],
-                                  @"receiver": @""
+                                  @"receiver": @"",
+                                  @"mid": _sender.messageId
                                   }
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -79,6 +80,7 @@
     
 }
 
+#pragma mark - Key Value Observe
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change

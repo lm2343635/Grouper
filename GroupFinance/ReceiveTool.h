@@ -10,6 +10,8 @@
 
 @interface ReceiveTool : NSObject
 
+@property (nonatomic) NSInteger received;
+
 - (void)receive;
 
 @end
