@@ -14,6 +14,7 @@
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
+		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
 		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
@@ -120,6 +121,8 @@
 		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersTableViewController.h; sourceTree = "<group>"; };
 		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
+		E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTool.swift; sourceTree = "<group>"; };
+		E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupFinance-Bridging-Header.h"; sourceTree = "<group>"; };
 		E42C58D71DCC53C4009A2596 /* SendTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTool.h; sourceTree = "<group>"; };
 		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -425,6 +428,7 @@
 			isa = PBXGroup;
 			children = (
 				E4400D711CCB5845000DFB1A /* main.m */,
+				E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -522,6 +526,7 @@
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E4939F9C1DA1096A006CA612 /* UserTool.h */,
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
+				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -641,6 +646,7 @@
 					E4400D6C1CCB5845000DFB1A = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = 6ANM44X2CJ;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -780,6 +786,7 @@
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E49E7CE31DC7343400E9E43A /* Classification+CoreDataProperties.m in Sources */,
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
+				E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
 				E4BF183A1E164232003340FB /* Receiver+CoreDataProperties.m in Sources */,
@@ -977,6 +984,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GroupFinance/GroupFinance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -993,6 +1001,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "GroupFinance/GroupFinance-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1003,6 +1014,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = GroupFinance/GroupFinance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1020,6 +1032,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "GroupFinance/GroupFinance-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1027,6 +1041,7 @@
 		E4400D9E1CCB5845000DFB1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = GroupFinanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1039,6 +1054,7 @@
 		E4400D9F1CCB5845000DFB1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = GroupFinanceTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1051,6 +1067,7 @@
 		E4400DA11CCB5845000DFB1A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = GroupFinanceUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceUITests;
@@ -1062,6 +1079,7 @@
 		E4400DA21CCB5845000DFB1A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				INFOPLIST_FILE = GroupFinanceUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceUITests;

@@ -11,4 +11,14 @@
 
 @implementation Sender
 
+- (void)awakeFromInsert {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [super awakeFromInsert];
+    if (!self.messageId) {
+        self.messageId = [[NSUUID UUID] UUIDString];
+    }
+}
+
 @end

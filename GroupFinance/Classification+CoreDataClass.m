@@ -10,4 +10,14 @@
 
 @implementation Classification
 
+- (void)awakeFromInsert {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [super awakeFromInsert];
+    if(!self.remoteID) {
+        self.remoteID = [[NSUUID UUID] UUIDString];
+    }
+}
+
 @end

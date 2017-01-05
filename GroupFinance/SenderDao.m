@@ -17,7 +17,6 @@
     }
     Sender *sender = [NSEntityDescription insertNewObjectForEntityForName:SenderEntityName
                                                    inManagedObjectContext:self.context];
-    sender.messageId = [[NSUUID UUID] UUIDString];
     sender.object = NSStringFromClass(object.class);
     NSError *error;
     NSData *data = [NSJSONSerialization dataWithJSONObject:[object hyp_dictionary]

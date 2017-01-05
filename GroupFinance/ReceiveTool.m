@@ -11,12 +11,14 @@
 #import "DaoManager.h"
 #import "InternetTool.h"
 #import "SecretSharing.h"
+#import "GroupFinance-Swift.h"
 
 @implementation ReceiveTool {
     GroupTool *group;
     DaoManager *dao;
     NSDictionary *managers;
     NSMutableArray *contentsGroup;
+    SyncTool *sync;
 }
 
 - (instancetype)init {
@@ -25,6 +27,7 @@
         managers = [InternetTool getSessionManagers];
         group = [[GroupTool alloc] init];
         dao = [[DaoManager alloc] init];
+        sync = [[SyncTool alloc] initWithDataStack:[dao getDataStack]];
     }
     return self;
 }
@@ -129,7 +132,7 @@
             }
         }
         NSString *message = [SecretSharing recoverShareWith:shares];
-        NSLog(@"Message: %@", message);
+        [sync syncWithMessage:message];
     }
 }
 

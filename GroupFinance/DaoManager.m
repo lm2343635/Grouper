@@ -7,7 +7,6 @@
 //
 
 #import "DaoManager.h"
-#import "AppDelegate.h"
 
 @implementation DaoManager
 
@@ -19,7 +18,8 @@
     if (self) {
         //Get NSManagedObjectContent form AppDelegate
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        _context = delegate.dataStack.mainContext;
+        _dataStack = delegate.dataStack;
+        _context = _dataStack.mainContext;
         //Set context for sync object dao
         _accountDao = [[AccountDao alloc] initWithManagedObjectContext:_context];
         _classificationDao = [[ClassificationDao alloc] initWithManagedObjectContext:_context];
@@ -63,6 +63,13 @@
     } else {
         NSLog(@"Skipped _context save, there are no changes.");
     }
+}
+
+- (DATAStack *)getDataStack {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    return _dataStack;
 }
 
 @end

@@ -2,8 +2,8 @@
 //  Classification+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 05/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Classification+CoreDataClass.h"
@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *cname;
 @property (nullable, nonatomic, copy) NSNumber *cout;
 @property (nullable, nonatomic, copy) NSString *creator;
+@property (nullable, nonatomic, copy) NSString *remoteID;
 
 @end
 

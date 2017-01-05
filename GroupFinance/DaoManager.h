@@ -15,9 +15,11 @@
 #import "TemplateDao.h"
 #import "SenderDao.h"
 #import "UserDao.h"
+#import "AppDelegate.h"
 
 @interface DaoManager : NSObject
 
+@property (nonatomic, readonly) DATAStack *dataStack;
 @property (nonatomic, readonly) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) AccountDao *accountDao;
@@ -37,5 +39,8 @@
 
 //Save Core Data context
 - (void)saveContext;
+
+//Get data stack from dao manager
+- (DATAStack *)getDataStack;
 
 @end

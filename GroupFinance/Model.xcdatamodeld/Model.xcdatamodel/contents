@@ -11,6 +11,7 @@
         <attribute name="cname" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cout" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -64,13 +65,13 @@
     </entity>
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="105"/>
-        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="105"/>
+        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="120"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="90"/>
+        <element name="Receiver" positionX="-13230" positionY="-4608" width="128" height="75"/>
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="165"/>
         <element name="Sender" positionX="-13230" positionY="-4608" width="128" height="150"/>
         <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="105"/>
         <element name="Template" positionX="-12908" positionY="-4500" width="128" height="135"/>
         <element name="User" positionX="-13230" positionY="-4608" width="128" height="135"/>
-        <element name="Receiver" positionX="-13230" positionY="-4608" width="128" height="75"/>
     </elements>
 </model>
