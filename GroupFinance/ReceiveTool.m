@@ -36,6 +36,10 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    //Only initail finished group can receive shares.
+    if (group.initial != InitialFinished) {
+        return;
+    }
     self.received = 0;
     [self addObserver:self
            forKeyPath:@"received"

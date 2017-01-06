@@ -6,7 +6,6 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-import UIKit
 import Sync
 import DATAStack
 
@@ -34,6 +33,7 @@ import DATAStack
                      completion: nil)
     }
     
+    //Transfer JSON string to dictionary
     func serializeJSON(_ string: String) -> [String: Any]? {
         if let data = string.data(using: .utf8) {
             do {
