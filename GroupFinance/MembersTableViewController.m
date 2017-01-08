@@ -36,12 +36,13 @@
     
     currentUser = [dao.userDao getUsingUser];
     
-    
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshMemberList];
     }];
-    if (group.groupId != nil) {
-        [self.tableView.mj_header beginRefreshing];
+    
+    if (group.members > 0) {
+        _noMembersView.hidden = YES;
+        [self loadMembersInfo];
     }
 }
 
@@ -75,15 +76,8 @@
                             
                             group.members = users.count;
                             if (group.members > 0) {
-                                members = [dao.userDao findMembersExceptOwner:group.owner];
-                                owner = [dao.userDao getByUserId:group.owner];
                                 _noMembersView.hidden = YES;
-                                
-                                for (User *member in members) {
-                                    member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
-                                }
-                                owner.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:owner.pictureUrl]];
-
+                                [self loadMembersInfo];
                             }
                             
                             [self.tableView reloadData];
@@ -99,6 +93,18 @@
                         }
                     }];
 
+}
+
+- (void)loadMembersInfo {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    members = [dao.userDao findMembersExceptOwner:group.owner];
+    owner = [dao.userDao getByUserId:group.owner];
+    for (User *member in members) {
+        member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
+    }
+    owner.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:owner.pictureUrl]];
 }
 
 #pragma mark - Table view data source
@@ -163,4 +169,11 @@
     return headerView;
 }
 
+#pragma mark - Action
+- (IBAction)refreshMembers:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [self.tableView.mj_header beginRefreshing];
+}
 @end

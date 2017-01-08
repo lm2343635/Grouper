@@ -114,6 +114,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Members" id="u3B-v7-ceR">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="uJW-nN-W7U">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshMembers:" destination="SsN-lu-m6B" id="SEC-Uw-5AN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="add_members" id="NZJ-8Q-AOZ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>

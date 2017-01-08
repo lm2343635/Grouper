@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIView *noMembersView;
 
+- (IBAction)refreshMembers:(id)sender;
+
 @end
