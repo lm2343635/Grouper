@@ -12,16 +12,19 @@
 
 @interface InternetTool : NSObject
 
-+ (AFHTTPSessionManager *)getSessionManager;
++ (AFHTTPSessionManager * _Nonnull)getSessionManager;
 
 //Get all HTTP session managers from AppDelegate.
-+ (NSDictionary *)getSessionManagers;
++ (NSDictionary * _Nullable)getSessionManagers;
+
+//Refresh session managers.
++ (void)refreshSessionManagers;
 
 //Get a HTTP session manager by server address from AppDelegate
-+ (AFHTTPSessionManager *)getSessionManagerWithServerAddress:(NSString *)address;
++ (AFHTTPSessionManager * _Nullable)getSessionManagerWithServerAddress:(NSString *)address;
 
-+ (NSString *)createUrl:(NSString *)relativePosition withServerAddress:(NSString *)address;
++ (NSString * _Nonnull)createUrl:(NSString *)relativePosition withServerAddress:(NSString *)address;
 
-+ (NSDictionary *)getResponse:(id  _Nullable)responseObject;
++ (NSDictionary * _Nullable)getResponse:(id  _Nullable)responseObject;
 
 @end

@@ -32,7 +32,6 @@
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
     user = [dao.userDao getUsingUser];
-    managers = [InternetTool getSessionManagers];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,7 +72,7 @@
     }
     
     if (group.initial == InitialFinished) {
-        _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", group.threshold];
+        _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.threshold];
         [_thresholdTextField setEnabled:NO];
     }
     
@@ -192,13 +191,21 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+
     _initialGroupButton.enabled = NO;
+    
     //Set count for HTTP request.
     self.setOwner = 0;
     [self addObserver:self
            forKeyPath:@"setOwner"
               options:NSKeyValueObservingOptionOld
               context:nil];
+    
+    //Refresh session manager.
+    [InternetTool refreshSessionManagers];
+    managers = [InternetTool getSessionManagers];
+    
+    //Send owner information
     for (NSString *address in managers.allKeys) {
         [managers[address] POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
                      parameters:@{
@@ -335,7 +342,7 @@
             //Change initial state.
             group.initial = InitialFinished;
             
-            _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", group.threshold];
+            _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.threshold];
             [_thresholdTextField setEnabled:NO];
             
             [AlertTool showAlertWithTitle:@"Tip"

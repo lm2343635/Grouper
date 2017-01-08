@@ -25,7 +25,7 @@
     }
     group = [[GroupTool alloc] init];
     if (DEBUG) {
-        NSLog(@"Number of group menbers is %ld", group.members);
+        NSLog(@"Number of group menbers is %ld", (long)group.members);
         NSLog(@"Group id is %@, group name is %@, group owner is %@", group.groupId, group.groupName, group.owner);
         for (NSString *address in group.servers.allKeys) {
             NSLog(@"Untrusted server %@, access key is %@", address, group.servers[address]);
@@ -118,18 +118,22 @@
 
 - (NSDictionary *)sessionManagers {
     if (_sessionManagers == nil) {
-        NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
-        group = [[GroupTool alloc] init];
-        for (NSString *address in group.servers.allKeys) {
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            //Set access key in request header.
-            [manager.requestSerializer setValue:[group.servers valueForKey:address] forHTTPHeaderField:@"key"];
-            manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
-            [managers setObject:manager forKey:address];
-        }
-        _sessionManagers = managers;
+        [self refreshSessionManagers];
     }
     return _sessionManagers;
+}
+
+- (void)refreshSessionManagers {
+    NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
+    group = [[GroupTool alloc] init];
+    for (NSString *address in group.servers.allKeys) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        //Set access key in request header.
+        [manager.requestSerializer setValue:[group.servers valueForKey:address] forHTTPHeaderField:@"key"];
+        manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
+        [managers setObject:manager forKey:address];
+    }
+    _sessionManagers = managers;
 }
 
 @synthesize sessionManager = _sessionManager;

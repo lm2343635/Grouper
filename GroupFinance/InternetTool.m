@@ -26,6 +26,14 @@
     return delegate.sessionManagers;
 }
 
++ (void)refreshSessionManagers {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate refreshSessionManagers];
+}
+
 + (AFHTTPSessionManager *)getSessionManagerWithServerAddress:(NSString *)address {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
