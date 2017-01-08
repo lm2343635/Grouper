@@ -24,6 +24,7 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 @property (nonatomic, strong) NSString *groupId;
 @property (nonatomic, strong) NSString *groupName;
 @property (nonatomic, strong) NSDictionary *servers;
+@property (nonatomic) NSInteger threshold;
 
 @property (nonatomic) NSInteger initial;
 

@@ -16,6 +16,7 @@
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
 		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
 		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
+		E430E7621E2219B400CF9660 /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7611E2219B400CF9660 /* CommonTool.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D791CCB5845000DFB1A /* Main.storyboard */; };
@@ -125,6 +126,8 @@
 		E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupFinance-Bridging-Header.h"; sourceTree = "<group>"; };
 		E42C58D71DCC53C4009A2596 /* SendTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTool.h; sourceTree = "<group>"; };
 		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
+		E430E7601E2219B400CF9660 /* CommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
+		E430E7611E2219B400CF9660 /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -500,6 +503,8 @@
 			children = (
 				E4EFB6611D3A0C4800C613B0 /* AlertTool.h */,
 				E4EFB6621D3A0C4800C613B0 /* AlertTool.m */,
+				E430E7601E2219B400CF9660 /* CommonTool.h */,
+				E430E7611E2219B400CF9660 /* CommonTool.m */,
 				E4F1CB301CFAF2D100461B3F /* DateSelectorView.h */,
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
@@ -524,9 +529,9 @@
 				E46D576A1DB4D21900116C4E /* shamir.h */,
 				E46D576B1DB4D21900116C4E /* strtok.c */,
 				E46D576C1DB4D21900116C4E /* strtok.h */,
+				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
 				E4939F9C1DA1096A006CA612 /* UserTool.h */,
 				E4939F9D1DA1096A006CA612 /* UserTool.m */,
-				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -788,6 +793,7 @@
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
+				E430E7621E2219B400CF9660 /* CommonTool.m in Sources */,
 				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
 				E4BF183A1E164232003340FB /* Receiver+CoreDataProperties.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,

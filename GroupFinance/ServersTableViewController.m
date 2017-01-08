@@ -11,12 +11,14 @@
 #import "InternetTool.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
+#import "CommonTool.h"
 
 @interface ServersTableViewController ()
 
 @end
 
 @implementation ServersTableViewController {
+    NSDictionary *managers;
     GroupTool *group;
     NSDictionary *servers;
     DaoManager *dao;
@@ -30,6 +32,7 @@
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
     user = [dao.userDao getUsingUser];
+    managers = [InternetTool getSessionManagers];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -69,6 +72,14 @@
         _groupNameTextField.text = group.groupName;
     }
     
+    if (group.initial == InitialFinished) {
+        _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", group.threshold];
+        [_thresholdTextField setEnabled:NO];
+    }
+    
+    //Set keyboard accessory for threshold text field
+    [self setCloseKeyboardAccessoryForSender:_thresholdTextField];
+    
     [self.tableView reloadData];
 }
 
@@ -105,6 +116,29 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    if ([_thresholdTextField.text isEqualToString:@""]) {
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Recover threshold cannot be empty!"
+                     inViewController:self];
+        return;
+    }
+    if (![CommonTool isInteger:_thresholdTextField.text]) {
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Recover threshold should be an integer!"
+                     inViewController:self];
+        return;
+    }
+    int threshold = _thresholdTextField.text.intValue;
+    if (threshold < 1 || threshold > group.servers.allKeys.count) {
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Recover threshold be more than 0 and less than the number of servers."
+                     inViewController:self];
+        return;
+    }
+    if ([_thresholdTextField isFirstResponder]) {
+        [_thresholdTextField resignFirstResponder];
+    }
+    
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Initialize Group"
                                                                    message:@"You cannot add more untrusted server after initializing your group. Are you sure to initialize?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -129,8 +163,6 @@
     [alertController addAction:initialize];
     [alertController addAction:cancel];
     [self presentViewController:alertController animated:YES completion:nil];
-    
-    
 }
 
 #pragma mark - Service
@@ -161,11 +193,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _initialGroupButton.enabled = NO;
-    NSDictionary *managers = [InternetTool getSessionManagers];
     //Set count for HTTP request.
-    self.sent = 0;
+    self.setOwner = 0;
     [self addObserver:self
-           forKeyPath:@"sent"
+           forKeyPath:@"setOwner"
               options:NSKeyValueObservingOptionOld
               context:nil];
     for (NSString *address in managers.allKeys) {
@@ -182,7 +213,7 @@
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                             InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                             if ([response statusOK]) {
-                                self.sent ++;
+                                self.setOwner ++;
                             }
                         }
                         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -206,24 +237,96 @@
     }
 }
 
+- (void)submitServerCountAndThreshold {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    self.setThreshold = 0;
+    [self addObserver:self
+           forKeyPath:@"setThreshold"
+              options:NSKeyValueObservingOptionOld
+              context:nil];
+    
+    for (NSString *address in managers.allKeys) {
+        [managers[address] POST:[InternetTool createUrl:@"group/init" withServerAddress:address]
+                     parameters:@{
+                                  @"servers": [NSNumber numberWithInteger:managers.allKeys.count],
+                                  @"threshold": [NSNumber numberWithInt:_thresholdTextField.text.intValue]
+                                  }
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                            if ([response statusOK]) {
+                                self.setThreshold ++;
+                            }
+                        }
+                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            
+                        }];
+    }
+}
+
+//Create done button for keyboard
+- (void)setCloseKeyboardAccessoryForSender:(id)sender {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    UIToolbar * topView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.window.frame.size.width, 35)];
+    [topView setBarStyle:UIBarStyleDefault];
+    UIBarButtonItem* spaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                     target:self
+                                                                                     action:nil];
+    UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                                    target:self
+                                                                                    action:@selector(editFinish)];
+    doneButtonItem.tintColor = [UIColor colorWithRed:38/255.0 green:186/255.0 blue:152/255.0 alpha:1.0];
+    NSArray * buttonsArray = [NSArray arrayWithObjects:spaceButtonItem, doneButtonItem, nil];
+    [topView setItems:buttonsArray];
+    [sender setInputAccessoryView:topView];
+}
+
+- (void)editFinish {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([_thresholdTextField isFirstResponder]) {
+        [_thresholdTextField resignFirstResponder];
+    }
+}
+
+#pragma mark - Key Value Observe
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary<NSKeyValueChangeKey,id> *)change
                        context:(void *)context {
     if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+        NSLog(@"Running %@ '%@', keyPath is %@", self.class, NSStringFromSelector(_cmd), keyPath);
     }
-    if ([keyPath isEqualToString:@"sent"]) {
+    if ([keyPath isEqualToString:@"setOwner"]) {
         if (DEBUG) {
-            NSLog(@"Send owner's information to %ld untrusted servers successfully.", (long)self.sent);
+            NSLog(@"Send owner's information to %ld untrusted servers successfully.", (long)self.setOwner);
         }
         //Send owner's information to all untrusted servers successfully.
-        if (self.sent == group.servers.count) {
+        if (self.setOwner == group.servers.count) {
             if (DEBUG) {
                 NSLog(@"Send owner's information to all untrusted servers successfully!");
             }
-            [self removeObserver:self forKeyPath:@"sent"];
-            //Set owner and update number of group memebers
+            [self removeObserver:self forKeyPath:@"setOwner"];
+            //Send init message to untrusted servers.
+            [self submitServerCountAndThreshold];
+        }
+    } else if ([keyPath isEqualToString:@"setThreshold"]) {
+        if (DEBUG) {
+            NSLog(@"Send init message to %ld untrusted servers successfully.", (long)self.setThreshold);
+        }
+        if (self.setThreshold == group.servers.count) {
+            if (DEBUG) {
+                NSLog(@"Send init message to all untrusted servers successfully!");
+            }
+            [self removeObserver:self forKeyPath:@"setThreshold"];
+            
+            //Set threshold, owner and update number of group memebers
+            group.threshold = _thresholdTextField.text.integerValue;
             group.owner = user.uid;
             group.members ++;
             //Hide initial group button and add server bar button
@@ -231,6 +334,9 @@
             _addServerBarButtonItem.enabled = NO;
             //Change initial state.
             group.initial = InitialFinished;
+            
+            _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", group.threshold];
+            [_thresholdTextField setEnabled:NO];
             
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.groupName]

@@ -10,10 +10,12 @@
 
 @interface ServersTableViewController : UITableViewController
 
-@property (nonatomic) NSInteger sent;
+@property (nonatomic) NSInteger setOwner;
+@property (nonatomic) NSInteger setThreshold;
 
 @property (weak, nonatomic) IBOutlet UITextField *groupIdTextField;
 @property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
+@property (weak, nonatomic) IBOutlet UITextField *thresholdTextField;
 
 @property (weak, nonatomic) IBOutlet UIView *groupInformationView;
 @property (weak, nonatomic) IBOutlet UILabel *noServerLabel;

@@ -100,6 +100,20 @@
     return servers.count;
 }
 
+@synthesize threshold = _threshold;
+
+- (void)setThreshold:(NSInteger)threshold {
+    _threshold = threshold;
+    [defaults setInteger:threshold forKey:NSStringFromSelector(@selector(threshold))];
+}
+
+- (NSInteger)threshold {
+    if (_threshold == 0) {
+        _threshold = [defaults integerForKey:NSStringFromSelector(@selector(threshold))];
+    }
+    return _threshold;
+}
+
 @synthesize initial = _initial;
 
 - (void)setInitial:(NSInteger)initial {
