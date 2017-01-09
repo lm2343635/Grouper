@@ -245,6 +245,7 @@
                                 group.groupName = [groupInfo valueForKey:@"name"];
                                 group.members = [[groupInfo valueForKey:@"members"] integerValue];
                                 group.owner = [groupInfo valueForKey:@"oid"];
+                                group.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
                                 group.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
                                 
                                 //Set init state

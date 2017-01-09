@@ -71,7 +71,7 @@
         _groupNameTextField.text = group.groupName;
     }
     
-    if (group.initial == InitialFinished) {
+    if (group.initial == InitialFinished || group.initial == RestoringServer) {
         _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.threshold];
         [_thresholdTextField setEnabled:NO];
     }
@@ -115,29 +115,42 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if ([_thresholdTextField.text isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Recover threshold cannot be empty!"
-                     inViewController:self];
-        return;
+    //Validate threshold when user wants to create a new group.
+    //Threshold need not to validate when user wants to restore an existed group.
+    if (group.initial == AddingNewServer) {
+        if ([_thresholdTextField.text isEqualToString:@""]) {
+            [AlertTool showAlertWithTitle:@"Tip"
+                               andContent:@"Recover threshold cannot be empty!"
+                         inViewController:self];
+            return;
+        }
+        if (![CommonTool isInteger:_thresholdTextField.text]) {
+            [AlertTool showAlertWithTitle:@"Tip"
+                               andContent:@"Recover threshold should be an integer!"
+                         inViewController:self];
+            return;
+        }
+        int threshold = _thresholdTextField.text.intValue;
+        if (threshold < 1 || threshold > group.servers.allKeys.count) {
+            [AlertTool showAlertWithTitle:@"Tip"
+                               andContent:@"Recover threshold be more than 0 and less than the number of servers."
+                         inViewController:self];
+            return;
+        }
+        if ([_thresholdTextField isFirstResponder]) {
+            [_thresholdTextField resignFirstResponder];
+        }
     }
-    if (![CommonTool isInteger:_thresholdTextField.text]) {
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Recover threshold should be an integer!"
-                     inViewController:self];
-        return;
+    //Check the number of untrusted servers if user wants to initialize by restoring an existed group.
+    else if (group.initial == RestoringServer) {
+        if (group.servers.allKeys.count != group.serverCount) {
+            [AlertTool showAlertWithTitle:@"Tip"
+                               andContent:[NSString stringWithFormat:@"%ld servers needed to initialize by restoring your group.", (long)group.serverCount]
+                         inViewController:self];
+            return;
+        }
     }
-    int threshold = _thresholdTextField.text.intValue;
-    if (threshold < 1 || threshold > group.servers.allKeys.count) {
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Recover threshold be more than 0 and less than the number of servers."
-                     inViewController:self];
-        return;
-    }
-    if ([_thresholdTextField isFirstResponder]) {
-        [_thresholdTextField resignFirstResponder];
-    }
-    
+
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Initialize Group"
                                                                    message:@"You cannot add more untrusted server after initializing your group. Are you sure to initialize?"
                                                             preferredStyle:UIAlertControllerStyleAlert];
@@ -170,12 +183,6 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    //Confirm the number of untrusted servers
-    //TODO List
-    if (group.servers.count != 0) {
-        
-    }
-    
     //Hide initial group button and add server bar button
     _initialGroupButton.hidden = YES;
     _restoreServerBarButtonItem.enabled = NO;
@@ -333,6 +340,7 @@
             [self removeObserver:self forKeyPath:@"setThreshold"];
             
             //Set threshold, owner and update number of group memebers
+            group.serverCount = group.servers.allKeys.count;
             group.threshold = _thresholdTextField.text.integerValue;
             group.owner = user.uid;
             group.members ++;

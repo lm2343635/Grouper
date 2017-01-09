@@ -40,7 +40,7 @@
         [self refreshMemberList];
     }];
     
-    if (group.members > 0) {
+    if (group.initial == InitialFinished) {
         _noMembersView.hidden = YES;
         [self loadMembersInfo];
     }
@@ -51,11 +51,17 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
+    group = [[GroupTool alloc] init];
+    managers = [InternetTool getSessionManagers];
 }
 
 - (void)refreshMemberList {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if (group.initial != InitialFinished) {
+        [self.tableView.mj_header endRefreshing];
+        return;
     }
     NSString *address0 = [group.servers.allKeys objectAtIndex:0];
     //Reload user info
@@ -126,7 +132,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (group.members ==0) {
+    if (group.initial != InitialFinished) {
         return 0;
     }
     return (section == 0)? 1: members.count;
@@ -154,7 +160,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return (group.members == 0)? nil: @" ";
+    return (group.initial != InitialFinished)? nil: @" ";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {

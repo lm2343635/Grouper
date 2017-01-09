@@ -47,6 +47,7 @@
     if (error) {
         NSLog(@"Login failed with error: %@", error.localizedDescription);
     }
+    _loginButton.hidden = YES;
     
     [defaults setObject:result.token.tokenString forKey:@"token"];
     [defaults setObject:result.token.userID forKey:@"uid"];
