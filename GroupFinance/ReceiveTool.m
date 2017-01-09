@@ -131,7 +131,7 @@
             NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:mid];
             [shares addObject:[[pairedContent valueForKey:@"data"] valueForKey:@"share"]];
             //If got enough shares, recover them.
-            if (shares.count == 2) {
+            if (shares.count == group.threshold) {
                 break;
             }
         }

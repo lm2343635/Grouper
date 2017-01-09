@@ -21,7 +21,7 @@
     NSArray *addresses = group.servers.allKeys;
     
     const char *secret = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    char *shares = generate_share_strings(secret, addresses.count, 2);
+    char *shares = generate_share_strings(secret, addresses.count, group.threshold);
     NSString *result = [NSString stringWithCString:shares encoding:NSUTF8StringEncoding];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"\n"]];
     [array removeLastObject];

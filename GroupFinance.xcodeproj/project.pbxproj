@@ -17,6 +17,7 @@
 		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
 		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
 		E430E7621E2219B400CF9660 /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7611E2219B400CF9660 /* CommonTool.m */; };
+		E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7651E2385D900CF9660 /* MainTableViewController.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D791CCB5845000DFB1A /* Main.storyboard */; };
@@ -128,6 +129,8 @@
 		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
 		E430E7601E2219B400CF9660 /* CommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
 		E430E7611E2219B400CF9660 /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
+		E430E7641E2385D900CF9660 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
+		E430E7651E2385D900CF9660 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -384,6 +387,15 @@
 			name = Members;
 			sourceTree = "<group>";
 		};
+		E430E7631E2385A600CF9660 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				E430E7641E2385D900CF9660 /* MainTableViewController.h */,
+				E430E7651E2385D900CF9660 /* MainTableViewController.m */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
@@ -412,8 +424,8 @@
 				E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */,
 				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E457B4261CF1A22A00139C4C /* Dao */,
-				E427764A1DD044F400FB1D33 /* Members */,
 				E4F1CB1F1CFAE4B800461B3F /* Record */,
+				E427764A1DD044F400FB1D33 /* Members */,
 				E40C44141CCF25640006D208 /* Settings */,
 				E4F1CB2C1CFAF28500461B3F /* Support */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
@@ -539,6 +551,7 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E430E7631E2385A600CF9660 /* Main */,
 				E49E7CD01DC7343400E9E43A /* Account+CoreDataClass.h */,
 				E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */,
 				E49E7CD21DC7343400E9E43A /* Account+CoreDataProperties.h */,
@@ -799,6 +812,7 @@
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
 				E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */,
+				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
 				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
 				E48DE0711DCF660300A7A5DB /* InternetTool.m in Sources */,
