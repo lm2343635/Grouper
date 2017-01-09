@@ -174,6 +174,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    if (group.members == 0) {
+        return;
+    }
     [self.tableView.mj_header beginRefreshing];
 }
 @end

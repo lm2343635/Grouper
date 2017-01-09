@@ -229,6 +229,8 @@
         [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
         //Download group members and group info.
         NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+        //Refresh session managers.
+        [InternetTool refreshSessionManagers];
         NSDictionary *managers = [InternetTool getSessionManagers];
         [managers[address0] GET:[InternetTool createUrl:@"group/info" withServerAddress:address0]
                      parameters:nil
@@ -238,10 +240,16 @@
                             if ([response statusOK]) {
                                 NSObject *result = [response getResponseResult];
                                 NSObject *groupInfo = [result valueForKey:@"group"];
+                                //Update group information
                                 group.groupId = [groupInfo valueForKey:@"id"];
                                 group.groupName = [groupInfo valueForKey:@"name"];
                                 group.members = [[groupInfo valueForKey:@"members"] integerValue];
                                 group.owner = [groupInfo valueForKey:@"oid"];
+                                group.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
+                                
+                                //Set init state
+                                group.initial = InitialFinished;
+                                
                                 [AlertTool showAlertWithTitle:@"Tip"
                                                    andContent:[NSString stringWithFormat:@"You have joined to %@.", group.groupName]
                                              inViewController:self];
@@ -312,7 +320,7 @@
     }
     if ([keyPath isEqualToString:@"sent"]) {
         if (DEBUG) {
-            NSLog(@"Send user's information to %d untrusted servers successfully.", self.sent);
+            NSLog(@"Send user's information to %ld untrusted servers successfully.", (long)self.sent);
         }
         //Send owner's information to all untrusted servers successfully.
         if (self.sent == group.servers.count) {
