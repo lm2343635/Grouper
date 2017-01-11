@@ -9,6 +9,7 @@
 #import "MainTableViewController.h"
 #import "GroupTool.h"
 #import "InternetTool.h"
+#import "ReceiveTool.h"
 
 @interface MainTableViewController ()
 
@@ -17,6 +18,11 @@
 @implementation MainTableViewController {
     GroupTool *group;
     NSDictionary *managers;
+    int accessedServers;
+    
+    NSMutableDictionary *loadingActivityIndicatorViews;
+    NSMutableDictionary *stateImageViews;
+    UIImageView *syncImageView;
 }
 
 - (void)viewDidLoad {
@@ -27,7 +33,11 @@
     
     group = [[GroupTool alloc] init];
     managers = [InternetTool getSessionManagers];
+    
+    loadingActivityIndicatorViews = [[NSMutableDictionary alloc] init];
+    stateImageViews = [[NSMutableDictionary alloc] init];
 
+    [self checkServerState];
 }
 
 #pragma mark - Table view data source]
@@ -72,7 +82,7 @@
     }
     UITableViewCell *cell = nil;
     if (indexPath.row == 0) {
-        cell = [self createTitleCellWithImageName:@"servers" title:@"Untrusted Servers" inIndexPath:indexPath];
+        cell = [self createTitleCellWithImageName:@"servers" title:@"Untrusted Servers State" inIndexPath:indexPath];
     } else if (NSLocationInRange(indexPath.row, NSMakeRange(1, group.serverCount))) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
         UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
@@ -80,8 +90,14 @@
         if (indexPath.row - 1 == group.servers.allKeys.count - 1) {
             cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
         }
+        
+        [stateImageViews setObject:(UIImageView *)[cell viewWithTag:2]
+                   forKey:serverAddressLabel.text];
+        [loadingActivityIndicatorViews setObject:(UIActivityIndicatorView *)[cell viewWithTag:3]
+                     forKey:serverAddressLabel.text];
     } else if (indexPath.row == 1 + group.serverCount) {
         cell = [self createTitleCellWithImageName:@"sync" title:@"Data Synchronization" inIndexPath:indexPath];
+        syncImageView = (UIImageView *)[cell viewWithTag:1];
     }
     return cell;
 }
@@ -100,6 +116,91 @@
     symbolImageView.image = [UIImage imageNamed:image];
     titleLabel.text = title;
     return cell;
+}
+
+- (void)checkServerState {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    self.checkState = 0;
+    [self addObserver:self
+           forKeyPath:@"checkState"
+              options:NSKeyValueObservingOptionNew
+              context:nil];
+    for (NSString *address in group.servers.allKeys) {
+        [managers[address] GET:[InternetTool createUrl:@"user/state" withServerAddress:address]
+                    parameters:nil
+                      progress:nil
+                       success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                           InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                           if ([response statusOK]) {
+                               BOOL state = [[[response getResponseResult] valueForKey:@"ok"] boolValue];
+                               if (state) {
+                                   accessedServers ++;
+                               }
+                               [self showState:state forServer:address];
+                               self.checkState ++;
+                           }
+                       }
+                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                           [self showState:NO forServer:address];
+                           self.checkState ++;
+                       }];
+    }
+}
+
+- (void)showState:(BOOL)state forServer:(NSString *)address {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    UIImageView *stateImageView = [stateImageViews objectForKey:address];
+    UIActivityIndicatorView *loadingActivityIndicatorView = [loadingActivityIndicatorViews objectForKey:address];
+    stateImageView.highlighted = !state;
+    stateImageView.hidden = NO;
+    [loadingActivityIndicatorView stopAnimating];
+}
+
+- (void)dataSync {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
+    CABasicAnimation *rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: - M_PI * 2.0];
+    rotationAnimation.duration = 2;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 100000;
+    [syncImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    
+    ReceiveTool *receive = [[ReceiveTool alloc] init];
+    [receive receive];
+}
+
+#pragma mark - Key Value Observe
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([keyPath isEqualToString:@"checkState"]) {
+        if (self.checkState == group.serverCount) {
+            if (DEBUG) {
+                NSLog(@"All servers' state have been checked.");
+            }
+            [self removeObserver:self forKeyPath:@"checkState"];
+            // If threshold is k in a secret sharing scheme f(k, n),
+            // sync method can be invoked after accessing more than k untrusted servers.
+            if (accessedServers >= group.threshold) {
+                if (DEBUG) {
+                    NSLog(@"Accessed %d servers, call sync method.", accessedServers);
+                }
+                [self dataSync];
+            }
+        }
+    }
 }
 
 @end

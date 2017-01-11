@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "DaoManager.h"
 #import "GroupTool.h"
-#import "ReceiveTool.h"
 
 @interface AppDelegate ()
 
@@ -64,8 +63,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    ReceiveTool *receive = [[ReceiveTool alloc] init];
-    [receive receive];
+
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -98,7 +96,7 @@
                                                         sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
                                                                annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
                     ];
-    // 在此添加任意自定义逻辑。
+    // Add user logic here.
     return handled;
 }
 

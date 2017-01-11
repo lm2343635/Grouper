@@ -10,4 +10,6 @@
 
 @interface MainTableViewController : UITableViewController
 
+@property (nonatomic) NSInteger checkState;
+
 @end

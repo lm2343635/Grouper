@@ -424,6 +424,7 @@
 				E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */,
 				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E457B4261CF1A22A00139C4C /* Dao */,
+				E430E7631E2385A600CF9660 /* Main */,
 				E4F1CB1F1CFAE4B800461B3F /* Record */,
 				E427764A1DD044F400FB1D33 /* Members */,
 				E40C44141CCF25640006D208 /* Settings */,
@@ -551,7 +552,6 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E430E7631E2385A600CF9660 /* Main */,
 				E49E7CD01DC7343400E9E43A /* Account+CoreDataClass.h */,
 				E49E7CD11DC7343400E9E43A /* Account+CoreDataClass.m */,
 				E49E7CD21DC7343400E9E43A /* Account+CoreDataProperties.h */,
