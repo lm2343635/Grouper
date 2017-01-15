@@ -17,20 +17,28 @@ import DATAStack
         self.dataStack = dataStack
     }
     
-    public func syncWithMessage(_ messageString:String) {
-        let message = serializeJSON(messageString)
-        if message == nil {
-            return
+    public func syncWithMessage(_ messageString:String) -> Bool {
+        let messageDictionary = serializeJSON(messageString)
+        if messageDictionary == nil {
+            return false
         }
-        let content = serializeJSON(message!["content"] as! String)
-        if content == nil {
-            return
+        let message = Message(fromDictionary: messageDictionary!)
+        switch message.type {
+        case "normal":
+            let content = serializeJSON(message.content)
+            if content == nil {
+                return false
+            }
+            Sync.changes([content!],
+                         inEntityNamed: message.object,
+                         dataStack: dataStack,
+                         operations: [.Insert, .Update],
+                         completion: nil)
+            return true
+        default:
+            return false
         }
-        Sync.changes([content!],
-                     inEntityNamed: message!["object"] as! String,
-                     dataStack: dataStack,
-                     operations: [.Insert, .Update],
-                     completion: nil)
+        
     }
     
     //Transfer JSON string to dictionary

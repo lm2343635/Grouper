@@ -2,8 +2,8 @@
 //  Receiver+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 30/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 15/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Receiver+CoreDataProperties.h"
@@ -14,7 +14,7 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Receiver"];
 }
 
-@dynamic shareId;
 @dynamic receiveTime;
+@dynamic shareId;
 
 @end

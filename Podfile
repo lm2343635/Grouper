@@ -6,6 +6,7 @@ target 'GroupFinance' do
     pod 'FBSDKLoginKit', '~> 4'
     pod 'AFNetworking', '~> 3.1'
     pod 'MJRefresh', '~> 3.1'
+    pod 'UIImageView+Extension', '~> 0.2'
 end
 
 post_install do |installer|

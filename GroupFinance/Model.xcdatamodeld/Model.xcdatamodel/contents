@@ -19,7 +19,7 @@
         <attribute name="userId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Receiver" representedClassName="Receiver" syncable="YES">
-        <attribute name="receiveTime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="receiveTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="shareId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Record" representedClassName="Record" syncable="YES">

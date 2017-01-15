@@ -124,19 +124,31 @@
     NSMutableArray *contents0 = [contentsGroup objectAtIndex:0];
     for (NSObject *content in contents0) {
         NSMutableArray *shares = [[NSMutableArray alloc] init];
+        NSMutableArray *shareIds = [[NSMutableArray alloc] init];
         NSObject *data = [content valueForKey:@"data"];
         NSString *mid = [data valueForKey:@"mid"];
         [shares addObject:[data valueForKey:@"share"]];
+        [shareIds addObject:[content valueForKey:@"id"]];
         for (int index = 1; index < contentsGroup.count; index++) {
             NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:mid];
             [shares addObject:[[pairedContent valueForKey:@"data"] valueForKey:@"share"]];
+            [shareIds addObject:[pairedContent valueForKey:@"id"]];
             //If got enough shares, recover them.
             if (shares.count == group.threshold) {
                 break;
             }
         }
-        NSString *message = [SecretSharing recoverShareWith:shares];
-        [sync syncWithMessage:message];
+        // Only getting more than k(threshold) shares, Grouper can recover and sync to persistent store.
+        if (shares.count >= group.threshold) {
+            NSString *message = [SecretSharing recoverShareWith:shares];
+            // Sync successfully, update receiver table.
+            if ([sync syncWithMessage:message]) {
+                for (NSString *shareId in shareIds) {
+                    [dao.receiverDao saveWithShareId:shareId];
+                }
+            }
+        }
+        
     }
 }
 

@@ -29,7 +29,7 @@
         _templateDao = [[TemplateDao alloc] initWithManagedObjectContext:_context];
         _senderDao = [[SenderDao alloc] initWithManagedObjectContext:_context];
         _userDao = [[UserDao alloc] initWithManagedObjectContext:_context];
-
+        _receiverDao = [[ReceiverDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
 }
