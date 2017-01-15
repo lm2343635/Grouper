@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^Completion)(void);
+
 @interface ReceiveTool : NSObject
 
 @property (nonatomic) NSInteger received;
 
-- (void)receive;
+- (void)receiveWithCompletion:(Completion)completion;
 
 @end

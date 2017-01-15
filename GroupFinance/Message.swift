@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Message {
+@objc class Message: NSObject {
 
 	var content : String!
 	var messageId : String!

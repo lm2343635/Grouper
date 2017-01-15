@@ -34,6 +34,7 @@ import DATAStack
                          dataStack: dataStack,
                          operations: [.Insert, .Update],
                          completion: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedNewObject"), object: message);
             return true
         default:
             return false

@@ -10,6 +10,9 @@
 #import "GroupTool.h"
 #import "InternetTool.h"
 #import "ReceiveTool.h"
+#import "GroupFinance-Swift.h"
+#import "CommonTool.h"
+#import "UIImageView+Extension.h"
 
 @interface MainTableViewController ()
 
@@ -23,6 +26,8 @@
     NSMutableDictionary *loadingActivityIndicatorViews;
     NSMutableDictionary *stateImageViews;
     UIImageView *syncImageView;
+    
+    NSMutableArray *messages;
 }
 
 - (void)viewDidLoad {
@@ -37,7 +42,13 @@
     loadingActivityIndicatorViews = [[NSMutableDictionary alloc] init];
     stateImageViews = [[NSMutableDictionary alloc] init];
 
-    [self checkServerState];
+    messages = [[NSMutableArray alloc] init];
+    
+    [self checkServerStateAndSync];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(receivedNewObject:)
+                                                 name:@"receivedNewObject"
+                                               object:nil];
 }
 
 #pragma mark - Table view data source]
@@ -52,28 +63,65 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return group.serverCount + 2;
+    switch (section) {
+        case 0:
+            return group.serverCount;
+            break;
+        case 1:
+            return messages.count;
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (indexPath.row == 0) {
-        return 70.0;
-    } else if (NSLocationInRange(indexPath.row, NSMakeRange(1, group.serverCount))) {
-        return 50.0;
-    } else if (indexPath.row == 1 + group.serverCount) {
-        return 70.0;
+    return @" ";
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 70;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return 50.0;
+    CGFloat width = self.tableView.frame.size.width;
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 70)];
+    view.backgroundColor = UIColorFromRGB(0xf2f2f2);
+    UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(width / 2 - 15, 8, 30, 30)];
+    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, width, 20)];
+    nameLabel.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:logoImageView];
+    [view addSubview:nameLabel];
+    // Set logo icon and title name.
+    switch (section) {
+        case 0:
+            logoImageView.image = [UIImage imageNamed:@"servers"];
+            nameLabel.text = @"Untrusted Servers State";
+            break;
+        case 1:
+            logoImageView.image = [UIImage imageNamed:@"sync"];
+            nameLabel.text = @"Data Synchronization";
+            syncImageView = logoImageView;
+            break;
+        default:
+            break;
+    }
+    
+    return view;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,44 +129,28 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     UITableViewCell *cell = nil;
-    if (indexPath.row == 0) {
-        cell = [self createTitleCellWithImageName:@"servers" title:@"Untrusted Servers State" inIndexPath:indexPath];
-    } else if (NSLocationInRange(indexPath.row, NSMakeRange(1, group.serverCount))) {
+    if (indexPath.section == 0) {
         cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
         UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
-        serverAddressLabel.text = [group.servers.allKeys objectAtIndex:indexPath.row - 1];
-        if (indexPath.row - 1 == group.servers.allKeys.count - 1) {
-            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        }
+        serverAddressLabel.text = [group.servers.allKeys objectAtIndex:indexPath.row];
         
         [stateImageViews setObject:(UIImageView *)[cell viewWithTag:2]
-                   forKey:serverAddressLabel.text];
+                            forKey:serverAddressLabel.text];
         [loadingActivityIndicatorViews setObject:(UIActivityIndicatorView *)[cell viewWithTag:3]
-                     forKey:serverAddressLabel.text];
-    } else if (indexPath.row == 1 + group.serverCount) {
-        cell = [self createTitleCellWithImageName:@"sync" title:@"Data Synchronization" inIndexPath:indexPath];
-        syncImageView = (UIImageView *)[cell viewWithTag:1];
+                                          forKey:serverAddressLabel.text];
+    } else if (indexPath.section == 1) {
+        Message *message = [messages objectAtIndex:indexPath.row];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
+        cell.textLabel.text = message.object;
+        cell.detailTextLabel.text = message.type;
     }
+
     return cell;
 }
 
 
 #pragma mark - Service
-- (UITableViewCell *)createTitleCellWithImageName:(NSString *)image
-                                            title:(NSString *)title
-                                      inIndexPath:(NSIndexPath *)indexPath{
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleIdentifier" forIndexPath:indexPath];
-    UIImageView *symbolImageView = (UIImageView *)[cell viewWithTag:1];
-    UILabel *titleLabel = (UILabel *)[cell viewWithTag:2];
-    symbolImageView.image = [UIImage imageNamed:image];
-    titleLabel.text = title;
-    return cell;
-}
-
-- (void)checkServerState {
+- (void)checkServerStateAndSync {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -165,16 +197,12 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
 
-    CABasicAnimation *rotationAnimation;
-    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-    rotationAnimation.toValue = [NSNumber numberWithFloat: - M_PI * 2.0];
-    rotationAnimation.duration = 2;
-    rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = 100000;
-    [syncImageView.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
+    [syncImageView startRotate:2 withClockwise:NO];
     
     ReceiveTool *receive = [[ReceiveTool alloc] init];
-    [receive receive];
+    [receive receiveWithCompletion:^{
+        [syncImageView stopRotate];
+    }];
 }
 
 #pragma mark - Key Value Observe
@@ -201,6 +229,18 @@
             }
         }
     }
+}
+
+#pragma mark - Notification
+- (void)receivedNewObject:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+
+    [messages addObject:(Message *)notification.object];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:messages.count - 1 inSection:1];
+    [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                          withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 @end

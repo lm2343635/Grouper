@@ -19,6 +19,8 @@
     NSDictionary *managers;
     NSMutableArray *contentsGroup;
     SyncTool *sync;
+    
+    Completion syncCompletion;
 }
 
 - (instancetype)init {
@@ -32,11 +34,11 @@
     return self;
 }
 
-- (void)receive {
+- (void)receiveWithCompletion:(Completion)completion {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    
+    syncCompletion = completion;
     // Only initail finished group can receive shares.
     if (group.initial != InitialFinished) {
         return;
@@ -170,7 +172,7 @@
                 }
             }
         }
-        
+        syncCompletion();
     }
 }
 
