@@ -761,17 +761,11 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tf6-Kb-yJP">
                                                     <rect key="frame" x="260" y="9" width="50" height="50"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="4p4-5h-icT"/>
-                                                        <constraint firstAttribute="width" constant="50" id="rls-Wj-slS"/>
+                                                        <constraint firstAttribute="width" constant="50" id="CxD-NF-ZYX"/>
+                                                        <constraint firstAttribute="height" constant="50" id="nch-s0-mqv"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="4"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                                            <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                             <real key="value" value="4"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
@@ -785,8 +779,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="Tf6-Kb-yJP" secondAttribute="trailing" constant="2" id="2j3-kz-D0r"/>
-                                                <constraint firstItem="Tf6-Kb-yJP" firstAttribute="top" secondItem="qhV-os-ZgD" secondAttribute="topMargin" constant="1" id="iAZ-PP-k4a"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Tf6-Kb-yJP" secondAttribute="trailing" constant="2" id="T8d-Eg-Hjs"/>
+                                                <constraint firstItem="Tf6-Kb-yJP" firstAttribute="top" secondItem="qhV-os-ZgD" secondAttribute="topMargin" constant="1" id="nVT-gE-zkm"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

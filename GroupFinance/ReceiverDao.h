@@ -14,4 +14,8 @@
 
 - (Receiver *)saveWithShareId:(NSString *)shareId;
 
+- (NSArray *)findInShareIds:(NSArray *)shareIds;
+
+- (BOOL)deleteAll;
+
 @end

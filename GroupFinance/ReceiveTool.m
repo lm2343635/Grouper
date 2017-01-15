@@ -36,7 +36,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    //Only initail finished group can receive shares.
+    
+    // Only initail finished group can receive shares.
     if (group.initial != InitialFinished) {
         return;
     }
@@ -53,7 +54,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
+    // Download share id list from untrusted servers.
     for (NSString *address in group.servers.allKeys) {
         [managers[address] GET:[InternetTool createUrl:@"transfer/list" withServerAddress:address]
                     parameters:nil
@@ -61,8 +62,8 @@
                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                            if ([response statusOK]) {
-                               NSArray *ids = [[response getResponseResult] valueForKey:@"shares"];
-                               [self downloadSharesWithIds:ids fromServer:address];
+                               NSArray *shareIds = [[response getResponseResult] valueForKey:@"shares"];
+                               [self downloadSharesWithIds:shareIds fromServer:address];
                            }
                        }
                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -83,16 +84,29 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@', download share from %@", self.class, NSStringFromSelector(_cmd), address);
     }
-    //Compare with local id table, discard those downloaded.
-    //TODO List
-    
+    // If there is no share id, return and received plus 1.
     if (ids.count == 0 || ids == nil) {
-        self.received++;
+        self.received ++;
         return;
     }
-    //Download share contents.
+    // Compare with local share id table, discard those downloaded.
+    NSArray *receivers = [dao.receiverDao findInShareIds:ids];
+    NSMutableArray *shareIds = [[NSMutableArray alloc] init];
+    for (NSString *shareId in ids) {
+        if (![self shareId:shareId existInReceivers:receivers]) {
+            [shareIds addObject:shareId];
+        }
+    }
+    
+    // If there is no share id after checking, return and received plus 1.
+    if (shareIds.count == 0 || shareIds == nil) {
+        self.received ++;
+        return;
+    }
+    
+    // Download share contents if there is any share id.
     [managers[address] POST:[InternetTool createUrl:@"transfer/get" withServerAddress:address]
-                 parameters:[NSDictionary dictionaryWithObjectsAndKeys: [NSSet setWithArray:ids], @"id", nil]
+                 parameters:[NSDictionary dictionaryWithObjectsAndKeys: [NSSet setWithArray:shareIds], @"id", nil]
                    progress:nil
                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
@@ -114,6 +128,15 @@
                     }];
 }
 
+- (BOOL)shareId:(NSString *)shareId existInReceivers:(NSArray *)receivers {
+    for (Receiver *receiver in receivers) {
+        if ([receiver.shareId isEqualToString:shareId]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 - (void)recoverShares {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -132,10 +155,9 @@
         for (int index = 1; index < contentsGroup.count; index++) {
             NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:mid];
             [shares addObject:[[pairedContent valueForKey:@"data"] valueForKey:@"share"]];
-            [shareIds addObject:[pairedContent valueForKey:@"id"]];
-            //If got enough shares, recover them.
-            if (shares.count == group.threshold) {
-                break;
+            // If got enough shares, only add share id.
+            if (shares.count >= group.threshold) {
+                [shareIds addObject:[pairedContent valueForKey:@"id"]];
             }
         }
         // Only getting more than k(threshold) shares, Grouper can recover and sync to persistent store.

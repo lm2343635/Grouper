@@ -22,4 +22,29 @@
     return receiver;
 }
 
+- (NSArray *)findInShareIds:(NSArray *)shareIds {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"shareId IN %@", shareIds]
+                  withEntityName:ReceiverEntityName];
+}
+
+- (BOOL)deleteAll {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:ReceiverEntityName];
+    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchrequest];
+    NSError *error = nil;
+    [self.context.persistentStoreCoordinator executeRequest:deleteRequest
+                                                withContext:self.context
+                                                      error:&error];
+    if (error) {
+        NSLog(@"Delete all %@ with error: %@", ReceiverEntityName, error.localizedDescription);
+        return NO;
+    }
+    return YES;
+}
+
 @end
