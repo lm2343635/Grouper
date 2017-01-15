@@ -15,15 +15,17 @@
 
 @implementation SendTool {
     NSDictionary *managers;
+    DaoManager *dao;
 }
 
-- (instancetype)initWithSender:(Sender *)sender {
+- (instancetype)initWithObject:(NSManagedObject *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     self = [super init];
     if (self) {
-        _sender = sender;
+        dao = [[DaoManager alloc] init];
+        _sender = [dao.senderDao saveWithObject:object];
         managers = [InternetTool getSessionManagers];
     }
     return self;

@@ -14,7 +14,8 @@
 @property (nonatomic) NSInteger sent;
 @property (strong, nonatomic) Sender *sender;
 
-- (instancetype)initWithSender:(Sender *)sender;
+- (instancetype)initWithObject:(NSManagedObject *)object;
+
 - (void)sendShares;
 
 @end

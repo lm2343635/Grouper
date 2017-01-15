@@ -8,6 +8,7 @@
 
 #import "EditClassificationViewController.h"
 #import "AlertTool.h"
+#import "SendTool.h"
 
 @interface EditClassificationViewController ()
 
@@ -33,7 +34,7 @@
 }
 
 #pragma mark - Action
-- (IBAction)save:(id)sender {
+- (IBAction)save:(id)saveButton {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -44,8 +45,9 @@
                      inViewController:self];
         return;
     }
-    _classification.cname=cname;
+    _classification.cname = cname;
     [dao saveContext];
+    [[[SendTool alloc] initWithObject:_classification] sendShares];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
