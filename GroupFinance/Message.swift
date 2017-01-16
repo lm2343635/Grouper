@@ -16,12 +16,12 @@ import Foundation
 	var sendtime : Int!
 	var sequence : Int!
 	var type : String!
-
+    var sender : String!
 
 	/**
 	 * Instantiate the instance using the passed dictionary values to set the properties values
 	 */
-	init(fromDictionary dictionary: Dictionary<String, Any>) {
+    init(fromDictionary dictionary: Dictionary<String, Any>, sender: String) {
 		content = dictionary["content"] as? String
 		messageId = dictionary["message_id"] as? String
 		object = dictionary["object"] as? String
@@ -29,6 +29,7 @@ import Foundation
 		sendtime = dictionary["sendtime"] as? Int
 		sequence = dictionary["sequence"] as? Int
 		type = dictionary["type"] as? String
+        self.sender = sender
 	}
 
 	/**

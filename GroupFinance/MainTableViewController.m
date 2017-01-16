@@ -10,9 +10,11 @@
 #import "GroupTool.h"
 #import "InternetTool.h"
 #import "ReceiveTool.h"
+#import "DaoManager.h"
 #import "GroupFinance-Swift.h"
 #import "CommonTool.h"
 #import "UIImageView+Extension.h"
+#import <MJRefresh/MJRefresh.h>
 
 @interface MainTableViewController ()
 
@@ -20,6 +22,7 @@
 
 @implementation MainTableViewController {
     GroupTool *group;
+    DaoManager *dao;
     NSDictionary *managers;
     int accessedServers;
     
@@ -37,6 +40,7 @@
     [super viewDidLoad];
     
     group = [[GroupTool alloc] init];
+    dao = [[DaoManager alloc] init];
     managers = [InternetTool getSessionManagers];
     
     loadingActivityIndicatorViews = [[NSMutableDictionary alloc] init];
@@ -49,6 +53,18 @@
                                              selector:@selector(receivedNewObject:)
                                                  name:@"receivedNewObject"
                                                object:nil];
+
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self.tableView.mj_header endRefreshing];
+        [self checkServerStateAndSync];
+    }];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    managers = [InternetTool getSessionManagers];
 }
 
 #pragma mark - Table view data source]
@@ -72,7 +88,7 @@
     }
     switch (section) {
         case 0:
-            return group.serverCount;
+            return group.initial == InitialFinished? group.serverCount: 1;
             break;
         case 1:
             return messages.count;
@@ -100,7 +116,7 @@
     }
     CGFloat width = self.tableView.frame.size.width;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 70)];
-    view.backgroundColor = UIColorFromRGB(0xf2f2f2);
+    view.backgroundColor = UIColorFromRGB(0xf5f5f5);
     UIImageView *logoImageView = [[UIImageView alloc] initWithFrame:CGRectMake(width / 2 - 15, 8, 30, 30)];
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, width, 20)];
     nameLabel.textAlignment = NSTextAlignmentCenter;
@@ -130,19 +146,35 @@
     }
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
-        UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
-        serverAddressLabel.text = [group.servers.allKeys objectAtIndex:indexPath.row];
         
-        [stateImageViews setObject:(UIImageView *)[cell viewWithTag:2]
-                            forKey:serverAddressLabel.text];
-        [loadingActivityIndicatorViews setObject:(UIActivityIndicatorView *)[cell viewWithTag:3]
-                                          forKey:serverAddressLabel.text];
+        if (group.initial == InitialFinished) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
+            UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
+            serverAddressLabel.text = [group.servers.allKeys objectAtIndex:indexPath.row];
+            
+            [stateImageViews setObject:(UIImageView *)[cell viewWithTag:2]
+                                forKey:serverAddressLabel.text];
+            [loadingActivityIndicatorViews setObject:(UIActivityIndicatorView *)[cell viewWithTag:3]
+                                              forKey:serverAddressLabel.text];
+        } else {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"defaultCell"];
+            cell.textLabel.text = @"Group is not initialized.";
+            cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        }
     } else if (indexPath.section == 1) {
         Message *message = [messages objectAtIndex:indexPath.row];
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"defaultCell"];
-        cell.textLabel.text = message.object;
-        cell.detailTextLabel.text = message.type;
+        
+        User *user = [dao.userDao getByUserId:message.sender];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
+                                               forIndexPath:indexPath];
+        UIImageView *avatarImageView = (UIImageView *)[cell viewWithTag:1];
+        UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
+        avatarImageView.image = [UIImage imageWithData:user.picture];
+        sendInfoLabel.text = [NSString stringWithFormat:@"%@", user.name];
+        UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];
+        UILabel *typeLabel = (UILabel *)[cell viewWithTag:4];
+        receiveInfoLabel.text = [NSString stringWithFormat:@"%@ received at %@", message.object, [NSDate date]];
+        typeLabel.text = message.type;
     }
 
     return cell;
@@ -221,7 +253,10 @@
             [self removeObserver:self forKeyPath:@"checkState"];
             // If threshold is k in a secret sharing scheme f(k, n),
             // sync method can be invoked after accessing more than k untrusted servers.
-            if (accessedServers >= group.threshold) {
+            if (DEBUG) {
+                NSLog(@"Grouper access to %d untrusted servers.", accessedServers);
+            }
+            if (accessedServers >= group.threshold && group.initial == InitialFinished) {
                 if (DEBUG) {
                     NSLog(@"Accessed %d servers, call sync method.", accessedServers);
                 }

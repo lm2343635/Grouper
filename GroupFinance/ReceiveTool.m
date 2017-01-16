@@ -166,9 +166,9 @@
         if (shares.count >= group.threshold) {
             NSString *message = [SecretSharing recoverShareWith:shares];
             // Sync successfully, update receiver table.
-            if ([sync syncWithMessage:message]) {
+            if ([sync syncWithMessage:message sender:[data valueForKey:@"sender"]]) {
                 for (NSString *shareId in shareIds) {
-                    [dao.receiverDao saveWithShareId:shareId];
+//                    [dao.receiverDao saveWithShareId:shareId];
                 }
             }
         }

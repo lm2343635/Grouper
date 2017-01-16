@@ -17,12 +17,12 @@ import DATAStack
         self.dataStack = dataStack
     }
     
-    public func syncWithMessage(_ messageString:String) -> Bool {
+    public func syncWithMessage(_ messageString:String, sender: String) -> Bool {
         let messageDictionary = serializeJSON(messageString)
         if messageDictionary == nil {
             return false
         }
-        let message = Message(fromDictionary: messageDictionary!)
+        let message = Message(fromDictionary: messageDictionary!, sender: sender)
         switch message.type {
         case "normal":
             let content = serializeJSON(message.content)
