@@ -39,7 +39,6 @@ import DATAStack
         default:
             return false
         }
-        
     }
     
     //Transfer JSON string to dictionary

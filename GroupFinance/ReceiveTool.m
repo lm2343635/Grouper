@@ -144,6 +144,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if (contentsGroup.count == 0) {
+        syncCompletion();
         return;
     }
     NSMutableArray *contents0 = [contentsGroup objectAtIndex:0];
@@ -168,7 +169,7 @@
             // Sync successfully, update receiver table.
             if ([sync syncWithMessage:message sender:[data valueForKey:@"sender"]]) {
                 for (NSString *shareId in shareIds) {
-//                    [dao.receiverDao saveWithShareId:shareId];
+                    [dao.receiverDao saveWithShareId:shareId];
                 }
             }
         }
