@@ -34,6 +34,17 @@
     return self;
 }
 
+- (void)dealloc {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    @try {
+        [self removeObserver:self forKeyPath:@"received"];
+    } @catch(id anException) {
+        //do nothing, obviously it wasn't attached because an exception was thrown
+    }
+}
+
 - (void)receiveWithCompletion:(Completion)completion {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -77,6 +88,7 @@
                                default:
                                    break;
                            }
+                           self.received ++;
                        }];
     }
 
@@ -127,6 +139,7 @@
                             default:
                                 break;
                         }
+                        self.received++;
                     }];
 }
 
@@ -200,9 +213,12 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if ([keyPath isEqualToString:@"received"]) {
+        if (DEBUG) {
+            NSLog(@"%ld group of shares received.", self.received);
+        }
         if (self.received == managers.count) {
             if (DEBUG) {
-                NSLog(@"%ld group of shares received successfully in %@", managers.count, [NSDate date]);
+                NSLog(@"All of %ld group of shares received successfully in %@", managers.count, [NSDate date]);
             }
             [self removeObserver:self forKeyPath:@"received"];
             [self recoverShares];
