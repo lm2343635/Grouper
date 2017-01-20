@@ -23,12 +23,22 @@
     Completion syncCompletion;
 }
 
++ (instancetype)sharedInstance {
+    static ReceiveTool *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[ReceiveTool alloc] init];
+    });
+    return instance;
+}
+
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         managers = [InternetTool getSessionManagers];
-        group = [[GroupTool alloc] init];
-        dao = [[DaoManager alloc] init];
+        group = [GroupTool sharedInstance];
+        dao = [DaoManager sharedInstance];
         sync = [[SyncTool alloc] initWithDataStack:[dao getDataStack]];
     }
     return self;

@@ -12,6 +12,15 @@
     NSUserDefaults *defaults;
 }
 
++ (instancetype)sharedInstance {
+    static GroupTool *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[GroupTool alloc] init];
+    });
+    return instance;
+}
+
 - (instancetype)init {
     self = [super init];
     if (self) {

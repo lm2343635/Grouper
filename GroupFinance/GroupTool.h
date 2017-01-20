@@ -31,4 +31,6 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 
 - (NSUInteger)addServerAddress:(NSString *)address withAccessKey:(NSString *)accessKey;
 
++ (instancetype)sharedInstance;
+
 @end

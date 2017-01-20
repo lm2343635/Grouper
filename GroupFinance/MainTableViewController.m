@@ -15,6 +15,7 @@
 #import "CommonTool.h"
 #import "UIImageView+Extension.h"
 #import <MJRefresh/MJRefresh.h>
+#import "Message.h"
 
 @interface MainTableViewController ()
 
@@ -24,6 +25,7 @@
     GroupTool *group;
     DaoManager *dao;
     NSDictionary *managers;
+    NSDateFormatter *dateFormatter;
     int accessedServers;
     
     NSMutableDictionary *loadingActivityIndicatorViews;
@@ -39,9 +41,12 @@
     }
     [super viewDidLoad];
     
-    group = [[GroupTool alloc] init];
-    dao = [[DaoManager alloc] init];
+    group = [GroupTool sharedInstance];
+    dao = [DaoManager sharedInstance];
     managers = [InternetTool getSessionManagers];
+    dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
     
     loadingActivityIndicatorViews = [[NSMutableDictionary alloc] init];
     stateImageViews = [[NSMutableDictionary alloc] init];
@@ -170,10 +175,11 @@
         UIImageView *avatarImageView = (UIImageView *)[cell viewWithTag:1];
         UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
         avatarImageView.image = [UIImage imageWithData:user.picture];
-        sendInfoLabel.text = [NSString stringWithFormat:@"%@", user.name];
+        sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
+
         UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];
         UILabel *typeLabel = (UILabel *)[cell viewWithTag:4];
-        receiveInfoLabel.text = [NSString stringWithFormat:@"%@ received at %@", message.object, [NSDate date]];
+        receiveInfoLabel.text = [NSString stringWithFormat:@"%@ received at %@", message.object, [dateFormatter stringFromDate:[NSDate date]]];
         typeLabel.text = message.type;
     }
 
@@ -228,11 +234,8 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
     [syncImageView startRotate:2 withClockwise:NO];
-    
-    ReceiveTool *receive = [[ReceiveTool alloc] init];
-    [receive receiveWithCompletion:^{
+    [[ReceiveTool sharedInstance] receiveWithCompletion:^{
         [syncImageView stopRotate];
     }];
 }

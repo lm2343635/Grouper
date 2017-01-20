@@ -22,7 +22,7 @@ import DATAStack
         if messageDictionary == nil {
             return false
         }
-        let message = Message(fromDictionary: messageDictionary!, sender: sender)
+        let message = Message(dictionary: messageDictionary, sender: sender)!
         switch message.type {
         case "normal":
             let content = serializeJSON(message.content)

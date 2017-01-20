@@ -24,7 +24,7 @@
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
+    dao = [DaoManager sharedInstance];
 }
 
 #pragma mark - Action
@@ -39,9 +39,9 @@
                      inViewController:self];
         return;
     }
-
-    Classification *classification = [dao.classificationDao saveWithName:cname];
-    [[[SendTool alloc] initWithObject:classification] sendShares];
+    User *user = [dao.userDao getUsingUser];
+    Classification *classification = [dao.classificationDao saveWithName:cname creator:user.uid];
+    [[SendTool sharedInstance] sendSharesWithObject:classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

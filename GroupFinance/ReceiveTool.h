@@ -14,6 +14,8 @@ typedef void (^Completion)(void);
 
 @property (nonatomic) NSInteger received;
 
++ (instancetype)sharedInstance;
+
 - (void)receiveWithCompletion:(Completion)completion;
 
 @end

@@ -33,8 +33,8 @@
 @property (strong, nonatomic) UserDao *userDao;
 @property (strong, nonatomic) ReceiverDao *receiverDao;
 
-//Get instance of DaoManager from AppDelegate
-+ (DaoManager *)getInstance;
+//Get single instance of DaoManager
++ (instancetype)sharedInstance;
 
 //Get object by object ID
 - (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID;

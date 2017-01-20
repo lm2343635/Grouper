@@ -18,23 +18,33 @@
     DaoManager *dao;
 }
 
-- (instancetype)initWithObject:(NSManagedObject *)object {
++ (instancetype)sharedInstance {
+    static SendTool *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[SendTool alloc] init];
+    });
+    return instance;
+}
+
+- (instancetype)init {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     self = [super init];
     if (self) {
-        dao = [[DaoManager alloc] init];
-        _sender = [dao.senderDao saveWithObject:object];
+        dao = [DaoManager sharedInstance];
         managers = [InternetTool getSessionManagers];
     }
     return self;
 }
 
-- (void)sendShares {
+- (void)sendSharesWithObject:(NSManagedObject *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    _sender = [dao.senderDao saveWithObject:object];
+    
     NSError *error;
     NSData *data = [NSJSONSerialization dataWithJSONObject:[_sender hyp_dictionary]
                                                    options:NSJSONWritingPrettyPrinted

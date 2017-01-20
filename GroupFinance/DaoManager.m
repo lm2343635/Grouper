@@ -10,6 +10,15 @@
 
 @implementation DaoManager
 
++ (instancetype)sharedInstance {
+    static DaoManager *instance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[DaoManager alloc] init];
+    });
+    return instance;
+}
+
 - (id)init {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
@@ -32,13 +41,6 @@
         _receiverDao = [[ReceiverDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
-}
-
-+ (DaoManager *)getInstance {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    }
-    return nil;
 }
 
 - (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {
