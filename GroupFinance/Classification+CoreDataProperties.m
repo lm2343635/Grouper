@@ -2,7 +2,7 @@
 //  Classification+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 05/01/2017.
+//  Created by lidaye on 20/01/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -14,10 +14,6 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Classification"];
 }
 
-@dynamic cin;
 @dynamic cname;
-@dynamic cout;
-@dynamic creator;
-@dynamic remoteID;
 
 @end

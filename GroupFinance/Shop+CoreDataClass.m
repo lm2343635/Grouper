@@ -2,8 +2,8 @@
 //  Shop+CoreDataClass.m
 //  GroupFinance
 //
-//  Created by lidaye on 31/10/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 20/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Shop+CoreDataClass.h"

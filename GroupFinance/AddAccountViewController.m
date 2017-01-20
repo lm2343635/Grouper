@@ -9,6 +9,7 @@
 #import "AddAccountViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
+#import "SendTool.h"
 
 @interface AddAccountViewController ()
 
@@ -16,6 +17,7 @@
 
 @implementation AddAccountViewController {
     DaoManager *dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
@@ -23,23 +25,24 @@
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
 }
 
 #pragma mark - Action
 - (IBAction)save:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *aname=_anameTextField.text;
+    NSString *aname = _anameTextField.text;
     if([aname isEqualToString:@""]) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Account name is empty!"
                      inViewController:self];
         return;
     }
-
-    [dao.accountDao saveWithName:aname];
+    Account *account = [dao.accountDao saveWithName:aname creator:currentUser.uid];
+    [[SendTool sharedInstance] sendSharesWithObject:account];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

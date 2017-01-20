@@ -25,7 +25,7 @@
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
@@ -43,7 +43,7 @@
     if(_item!=nil) {
         switch (selectItemType) {
             case SELECT_ITEM_TYPE_CLASSIFICATION:
-                _selectedClassification=(Classification *)_item;
+                _selectedClassification = (Classification *)_item;
                 [_selectClassificationButton setTitle:_selectedClassification.cname
                                              forState:UIControlStateNormal];
                 break;
@@ -53,7 +53,7 @@
                                       forState:UIControlStateNormal];
                 break;
             case SELECT_ITEM_TYPE_SHOP:
-                _selectedShop=(Shop *)_item;
+                _selectedShop = (Shop *)_item;
                 [_selectShopButton setTitle:_selectedShop.sname
                                    forState:UIControlStateNormal];
                 break;

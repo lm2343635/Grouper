@@ -12,7 +12,7 @@
 
 @interface ShopDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)sname;
+- (Shop *)saveWithName:(NSString *)sname creator:(NSString *)creator;
 
 - (NSArray *)findAll;
 

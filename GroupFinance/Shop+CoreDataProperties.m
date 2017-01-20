@@ -2,8 +2,8 @@
 //  Shop+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 20/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Shop+CoreDataProperties.h"
@@ -14,9 +14,6 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Shop"];
 }
 
-@dynamic creator;
-@dynamic sin;
 @dynamic sname;
-@dynamic sout;
 
 @end

@@ -10,19 +10,21 @@
 
 @implementation AccountDao
 
-- (NSManagedObjectID *)saveWithName:(NSString *)aname {
-    if(DEBUG) {
+- (Account *)saveWithName:(NSString *)aname creator:(NSString *)creator {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Account *account = [NSEntityDescription insertNewObjectForEntityForName:AccountEntityName
                                                      inManagedObjectContext:self.context];
     account.aname = aname;
+    account.creator = creator;
+    account.updater = creator;
     [self saveContext];
-    return account.objectID;
+    return account;
 }
 
 - (NSArray *)findAll {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"aname" ascending:NO];

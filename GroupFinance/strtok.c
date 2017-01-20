@@ -25,8 +25,7 @@ char* strtok_rr(
 {
     char *ret;
 
-    if (str == NULL)
-    {
+    if (str == NULL) {
         str = *nextp;
     }
 
@@ -36,8 +35,7 @@ char* strtok_rr(
 
     str += strspn(str, delim);
 
-    if (*str == '\0')
-    {
+    if (*str == '\0') {
         return NULL;
     }
 
@@ -45,8 +43,7 @@ char* strtok_rr(
 
     str += strcspn(str, delim);
 
-    if (*str)
-    {
+    if (*str) {
         *str++ = '\0';
     }
 

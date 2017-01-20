@@ -33,13 +33,13 @@
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *cname = _cnameTextField.text;
-    if([cname isEqualToString:@""]) {
+    if ([cname isEqualToString:@""]) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Classification name is empty!"
                      inViewController:self];
         return;
     }
-    User *user = [dao.userDao getUsingUser];
+    User *user = [dao.userDao currentUser];
     Classification *classification = [dao.classificationDao saveWithName:cname creator:user.uid];
     [[SendTool sharedInstance] sendSharesWithObject:classification];
     [self.navigationController popViewControllerAnimated:YES];

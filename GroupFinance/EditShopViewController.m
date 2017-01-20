@@ -8,6 +8,7 @@
 
 #import "EditShopViewController.h"
 #import "AlertTool.h"
+#import "SendTool.h"
 
 @interface EditShopViewController ()
 
@@ -15,14 +16,16 @@
 
 @implementation EditShopViewController {
     DaoManager *dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -34,18 +37,25 @@
 
 #pragma mark - Action
 - (IBAction)save:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *sname=_snameTextField.text;
+    NSString *sname = _snameTextField.text;
     if([sname isEqualToString:@""]) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Shop name is empty!"
                      inViewController:self];
         return;
     }
-    _shop.sname=sname;
+    // Update shop.
+    _shop.sname = sname;
+    _shop.updater = currentUser.uid;
+    _shop.updateAt = [NSDate date];
     [dao saveContext];
+    
+    // Send shares to untrusted servers.
+    [[SendTool sharedInstance] sendSharesWithObject:_shop];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

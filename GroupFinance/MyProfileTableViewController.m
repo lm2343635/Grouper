@@ -21,12 +21,14 @@
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
-    user = [dao.userDao getUsingUser];
+
+    dao = [DaoManager sharedInstance];
+    user = [dao.userDao currentUser];
+    
     if (user.picture == nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
             user.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.pictureUrl]];
@@ -43,7 +45,7 @@
 
 #pragma mark - Action
 - (IBAction)logout:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
@@ -72,7 +74,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return 0.1;

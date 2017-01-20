@@ -36,7 +36,7 @@
     return (User *)[self getByPredicate:predicate withEntityName:UserEntityName];
 }
 
-- (User *)getUsingUser {
+- (User *)currentUser {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }

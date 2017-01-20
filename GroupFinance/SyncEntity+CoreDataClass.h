@@ -1,5 +1,5 @@
 //
-//  Account+CoreDataClass.h
+//  SyncEntity+CoreDataClass.h
 //  GroupFinance
 //
 //  Created by lidaye on 20/01/2017.
@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SyncEntity+CoreDataClass.h"
+#import <CoreData/CoreData.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface Account : SyncEntity
+@interface SyncEntity : NSManagedObject
 
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "Account+CoreDataProperties.h"
+#import "SyncEntity+CoreDataProperties.h"

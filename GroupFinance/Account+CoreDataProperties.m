@@ -2,8 +2,8 @@
 //  Account+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 20/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Account+CoreDataProperties.h"
@@ -14,9 +14,6 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Account"];
 }
 
-@dynamic ain;
 @dynamic aname;
-@dynamic aout;
-@dynamic creator;
 
 @end

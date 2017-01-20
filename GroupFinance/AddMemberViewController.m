@@ -37,9 +37,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
 
-    dao = [[DaoManager alloc] init];
-    currentUser = [dao.userDao getUsingUser];
-    group = [[GroupTool alloc] init];
+    group = [GroupTool sharedInstance];
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
+
     isOwner = [group.owner isEqualToString:currentUser.uid];
     
     _delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

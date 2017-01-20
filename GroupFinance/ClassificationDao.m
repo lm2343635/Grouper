@@ -18,6 +18,7 @@
                                                                    inManagedObjectContext:self.context];
     classification.cname = cname;
     classification.creator = creator;
+    classification.updater = creator;
     [self saveContext];
     return classification;
 }
@@ -29,4 +30,5 @@
     NSSortDescriptor *sort = [[NSSortDescriptor alloc] initWithKey:@"cname" ascending:NO];
     return [self findByPredicate:nil withEntityName:ClassificationEntityName orderBy:sort];
 }
+
 @end

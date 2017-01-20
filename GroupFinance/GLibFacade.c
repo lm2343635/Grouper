@@ -31,8 +31,7 @@
 
 /* Solaris and Windows do not provide vasprintf() or asprintf(). */
 #if defined(__WIN32) || (defined(__SVR4) && defined(__sun))
-int vasprintf( char **sptr, char *fmt, va_list argv ) 
-{ 
+int vasprintf( char **sptr, char *fmt, va_list argv ) {
     int wanted = vsnprintf( *sptr = NULL, 0, fmt, argv ); 
     if( (wanted > 0) && ((*sptr = malloc( 1 + wanted )) != NULL) ) 
         return vsprintf( *sptr, fmt, argv ); 
@@ -40,8 +39,7 @@ int vasprintf( char **sptr, char *fmt, va_list argv )
     return wanted; 
 } 
  
-int asprintf( char **sptr, char *fmt, ... ) 
-{ 
+int asprintf( char **sptr, char *fmt, ... ) {
     int retval; 
     va_list argv; 
     va_start( argv, fmt ); 
@@ -57,8 +55,7 @@ int asprintf( char **sptr, char *fmt, ... )
 #define kStringBufferStartingSize 1024
 #define kStringBufferGrowthMultiplier 2
 
-GString* g_string_new(char *startingString)
-{
+GString * g_string_new(char *startingString) {
 	GString* newString = malloc(sizeof(GString));
 
 	if (startingString == NULL) startingString = "";
@@ -79,13 +76,10 @@ GString* g_string_new(char *startingString)
 	return newString;
 }
 
-char* g_string_free(GString* ripString, bool freeCharacterData)
-{	
+char* g_string_free(GString* ripString, bool freeCharacterData) {
 	char* returnedString = ripString->str;
-	if (freeCharacterData)
-	{
-		if (ripString->str != NULL)
-		{
+	if (freeCharacterData) {
+		if (ripString->str != NULL) {
 			free(ripString->str);
 		}
 		returnedString = NULL;
@@ -96,15 +90,12 @@ char* g_string_free(GString* ripString, bool freeCharacterData)
 	return returnedString;
 }
 
-static void ensureStringBufferCanHold(GString* baseString, size_t newStringSize)
-{
+static void ensureStringBufferCanHold(GString* baseString, size_t newStringSize) {
 	size_t newBufferSizeNeeded = newStringSize + 1;
-	if (newBufferSizeNeeded > baseString->currentStringBufferSize)
-	{
+	if (newBufferSizeNeeded > baseString->currentStringBufferSize) {
 		size_t newBufferSize = baseString->currentStringBufferSize;	
 
-		while (newBufferSizeNeeded > newBufferSize)
-		{
+		while (newBufferSizeNeeded > newBufferSize) {
 			newBufferSize *= kStringBufferGrowthMultiplier;
 		}
 		
@@ -113,10 +104,8 @@ static void ensureStringBufferCanHold(GString* baseString, size_t newStringSize)
 	}
 }
 
-void g_string_append(GString* baseString, char* appendedString)
-{
-	if ((appendedString != NULL) && (strlen(appendedString) > 0))
-	{
+void g_string_append(GString* baseString, char* appendedString) {
+	if ((appendedString != NULL) && (strlen(appendedString) > 0)) {
 		size_t appendedStringLength = strlen(appendedString);
 		size_t newStringLength = baseString->currentStringLength + appendedStringLength;
 		ensureStringBufferCanHold(baseString, newStringLength);
@@ -127,8 +116,7 @@ void g_string_append(GString* baseString, char* appendedString)
 	}
 }
 
-void g_string_append_c(GString* baseString, char appendedCharacter)
-{	
+void g_string_append_c(GString* baseString, char appendedCharacter) {
 	size_t newSizeNeeded = baseString->currentStringLength + 1;
 	ensureStringBufferCanHold(baseString, newSizeNeeded);
 	
@@ -137,25 +125,21 @@ void g_string_append_c(GString* baseString, char appendedCharacter)
 	baseString->str[baseString->currentStringLength] = '\0';
 }
 
-void g_string_append_printf(GString* baseString, char* format, ...)
-{
+void g_string_append_printf(GString* baseString, char* format, ...) {
 	va_list args;
 	va_start(args, format);
 	
 	char* formattedString = NULL;
 	vasprintf(&formattedString, format, args);
-	if (formattedString != NULL)
-	{
+	if (formattedString != NULL) {
 		g_string_append(baseString, formattedString);
 		free(formattedString);
 	}
 	va_end(args);
 } 
 
-void g_string_prepend(GString* baseString, char* prependedString)
-{
-	if ((prependedString != NULL) && (strlen(prependedString) > 0))
-	{
+void g_string_prepend(GString* baseString, char* prependedString) {
+	if ((prependedString != NULL) && (strlen(prependedString) > 0)) {
 		size_t prependedStringLength = strlen(prependedString);
 		size_t newStringLength = baseString->currentStringLength + prependedStringLength;
 		ensureStringBufferCanHold(baseString, newStringLength);
@@ -169,11 +153,9 @@ void g_string_prepend(GString* baseString, char* prependedString)
 
 /* GSList */
 
-void g_slist_free(GSList* ripList)
-{
+void g_slist_free(GSList* ripList) {
 	GSList* thisListItem = ripList;
-	while (thisListItem != NULL)
-	{
+	while (thisListItem != NULL) {
 		GSList* nextItem = thisListItem->next;
 		
 		/* I guess we don't release the data? Non-retained memory management is hard... let's figure it out later. */
@@ -184,14 +166,12 @@ void g_slist_free(GSList* ripList)
 }
 
 /* Currently only used for markdown_output.c endnotes printing */
-GSList* g_slist_reverse(GSList* theList)
-{	
+GSList* g_slist_reverse(GSList* theList) {
 	GSList* lastNodeSeen = NULL;
 	
 	/* Iterate the list items, tacking them on to our new reversed List as we find them */
 	GSList* listWalker = theList;
-	while (listWalker != NULL)
-	{
+	while (listWalker != NULL) {
 		GSList* nextNode = listWalker->next;
 		listWalker->next = lastNodeSeen;
 		lastNodeSeen = listWalker;
@@ -201,8 +181,7 @@ GSList* g_slist_reverse(GSList* theList)
 	return lastNodeSeen;
 }
 
-GSList* g_slist_prepend(GSList* targetElement, void* newElementData)
-{
+GSList* g_slist_prepend(GSList* targetElement, void* newElementData) {
 	GSList* newElement = malloc(sizeof(GSList));
 	newElement->data = newElementData;
 	newElement->next = targetElement;

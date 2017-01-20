@@ -16,6 +16,7 @@
 
 @implementation EditClassificationViewController {
     DaoManager *dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
@@ -24,6 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -39,14 +41,19 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *cname = _cnameTextField.text;
-    if([cname isEqualToString:@""]) {
+    if ([cname isEqualToString:@""]) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Classification name is empty!"
                      inViewController:self];
         return;
     }
+    // Update classification.
     _classification.cname = cname;
+    _classification.updater = currentUser.uid;
+    _classification.updateAt = [NSDate date];
     [dao saveContext];
+    
+    // Send shares to untrusted servers.
     [[SendTool sharedInstance] sendSharesWithObject:_classification];
     [self.navigationController popViewControllerAnimated:YES];
 }

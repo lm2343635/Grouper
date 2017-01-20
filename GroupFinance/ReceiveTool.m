@@ -189,6 +189,9 @@
         // Only getting more than k(threshold) shares, Grouper can recover and sync to persistent store.
         if (shares.count >= group.threshold) {
             NSString *message = [SecretSharing recoverShareWith:shares];
+            if (DEBUG) {
+                NSLog(@"Message is recovered at %@\n%@", [NSDate date], message);
+            }
             // Sync successfully, update receiver table.
             if ([sync syncWithMessage:message sender:[data valueForKey:@"sender"]]) {
                 for (NSString *shareId in shareIds) {
@@ -224,11 +227,11 @@
     }
     if ([keyPath isEqualToString:@"received"]) {
         if (DEBUG) {
-            NSLog(@"%ld group of shares received.", self.received);
+            NSLog(@"%ld group of shares received.", (long)self.received);
         }
         if (self.received == managers.count) {
             if (DEBUG) {
-                NSLog(@"All of %ld group of shares received successfully in %@", managers.count, [NSDate date]);
+                NSLog(@"All of %ld group of shares received successfully in %@", (unsigned long)managers.count, [NSDate date]);
             }
             [self removeObserver:self forKeyPath:@"received"];
             [self recoverShares];

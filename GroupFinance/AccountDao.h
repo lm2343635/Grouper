@@ -12,7 +12,7 @@
 
 @interface AccountDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithName:(NSString *)aname;
+- (Account *)saveWithName:(NSString *)aname creator:(NSString *)creator;
 
 - (NSArray *)findAll;
 

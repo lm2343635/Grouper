@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="11759" systemVersion="16C67" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <entity name="Account" representedClassName="Account" syncable="YES">
-        <attribute name="ain" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    <entity name="Account" representedClassName="Account" parentEntity="SyncEntity" syncable="YES">
         <attribute name="aname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="aout" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Classification" representedClassName="Classification" syncable="YES">
-        <attribute name="cin" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    <entity name="Classification" representedClassName="Classification" parentEntity="SyncEntity" syncable="YES">
         <attribute name="cname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="cout" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -41,11 +34,15 @@
         <attribute name="sequence" attributeType="Integer 64" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="type" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Shop" representedClassName="Shop" syncable="YES">
-        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sin" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    <entity name="Shop" representedClassName="Shop" parentEntity="SyncEntity" syncable="YES">
         <attribute name="sname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sout" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="SyncEntity" representedClassName="SyncEntity" syncable="YES">
+        <attribute name="createAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updateAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updater" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Template" representedClassName="Template" syncable="YES">
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,14 +61,15 @@
         <attribute name="uid" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Account" positionX="-13439" positionY="-4404" width="128" height="105"/>
-        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="120"/>
+        <element name="Account" positionX="-13439" positionY="-4404" width="128" height="60"/>
+        <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="60"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="90"/>
         <element name="Receiver" positionX="-13230" positionY="-4608" width="128" height="75"/>
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="165"/>
         <element name="Sender" positionX="-13230" positionY="-4608" width="128" height="150"/>
-        <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="105"/>
+        <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="60"/>
         <element name="Template" positionX="-12908" positionY="-4500" width="128" height="135"/>
         <element name="User" positionX="-13230" positionY="-4608" width="128" height="135"/>
+        <element name="SyncEntity" positionX="-13230" positionY="-4608" width="128" height="120"/>
     </elements>
 </model>

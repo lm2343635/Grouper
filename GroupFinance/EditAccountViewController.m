@@ -8,6 +8,7 @@
 
 #import "EditAccountViewController.h"
 #import "AlertTool.h"
+#import "SendTool.h"
 
 @interface EditAccountViewController ()
 
@@ -15,6 +16,7 @@
 
 @implementation EditAccountViewController {
     DaoManager *dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
@@ -22,11 +24,12 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [_anameTextField setText:_account.aname];
@@ -37,15 +40,22 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *aname=_anameTextField.text;
+    NSString *aname = _anameTextField.text;
     if([aname isEqualToString:@""]) {
         [AlertTool showAlertWithTitle:@"Warning"
                            andContent:@"Account name is empty!"
                      inViewController:self];
         return;
     }
-    _account.aname=aname;
+    // Update account.
+    _account.aname = aname;
+    _account.updater = currentUser.uid;
+    _account.updateAt = [NSDate date];
     [dao saveContext];
+    
+    // Send shares.
+    [[SendTool sharedInstance] sendSharesWithObject:_account];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

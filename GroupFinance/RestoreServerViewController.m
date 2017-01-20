@@ -29,9 +29,9 @@
     }
     [super viewDidLoad];
     manager = [InternetTool getSessionManager];
-    group = [[GroupTool alloc] init];
-    dao = [[DaoManager alloc] init];
-    currentUser = [dao.userDao getUsingUser];
+    group = [GroupTool sharedInstance];
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
 }
 
 #pragma mark - Action

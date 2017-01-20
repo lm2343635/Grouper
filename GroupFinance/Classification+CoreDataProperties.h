@@ -2,7 +2,7 @@
 //  Classification+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 05/01/2017.
+//  Created by lidaye on 20/01/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -15,11 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Classification *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSNumber *cin;
 @property (nullable, nonatomic, copy) NSString *cname;
-@property (nullable, nonatomic, copy) NSNumber *cout;
-@property (nullable, nonatomic, copy) NSString *creator;
-@property (nullable, nonatomic, copy) NSString *remoteID;
 
 @end
 

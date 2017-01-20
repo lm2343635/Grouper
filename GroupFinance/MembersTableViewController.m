@@ -30,11 +30,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    group = [[GroupTool alloc] init];
-    dao = [[DaoManager alloc] init];
+    group = [GroupTool sharedInstance];
+    dao = [DaoManager sharedInstance];
     managers = [InternetTool getSessionManagers];
     
-    currentUser = [dao.userDao getUsingUser];
+    currentUser = [dao.userDao currentUser];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self refreshMemberList];
@@ -51,7 +51,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
-    group = [[GroupTool alloc] init];
+//    group = [[GroupTool alloc] init];
     managers = [InternetTool getSessionManagers];
 }
 

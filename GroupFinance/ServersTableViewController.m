@@ -30,15 +30,15 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
-    user = [dao.userDao getUsingUser];
+    dao = [DaoManager sharedInstance];
+    user = [dao.userDao currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    group = [[GroupTool alloc] init];
+    group = [GroupTool sharedInstance];
     servers = group.servers;
 
     switch (group.initial) {

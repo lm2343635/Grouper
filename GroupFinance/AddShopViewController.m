@@ -9,6 +9,7 @@
 #import "AddShopViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
+#import "SendTool.h"
 
 @interface AddShopViewController ()
 
@@ -16,19 +17,21 @@
 
 @implementation AddShopViewController {
     DaoManager *dao;
+    User *currentUser;
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
 }
 
 #pragma mark - Action
 - (IBAction)save:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *sname=_snameTextField.text;
@@ -38,8 +41,10 @@
                      inViewController:self];
         return;
     }
-
-    [dao.shopDao saveWithName:sname];
+    // Save shop.
+    Shop *shop = [dao.shopDao saveWithName:sname creator:currentUser.uid];
+    // Send shares.
+    [[SendTool sharedInstance] sendSharesWithObject:shop];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

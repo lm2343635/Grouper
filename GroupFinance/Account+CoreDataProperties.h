@@ -2,8 +2,8 @@
 //  Account+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 20/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Account+CoreDataClass.h"
@@ -15,10 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Account *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSNumber *ain;
 @property (nullable, nonatomic, copy) NSString *aname;
-@property (nullable, nonatomic, copy) NSNumber *aout;
-@property (nullable, nonatomic, copy) NSString *creator;
 
 @end
 

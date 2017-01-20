@@ -16,7 +16,7 @@
 
 - (User *)getByUserId:(NSString *)userId;
 
-- (User *)getUsingUser;
+- (User *)currentUser;
 
 - (NSArray *)findMembersExceptOwner:(NSString *)ownerId;
 
