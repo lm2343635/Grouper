@@ -16,6 +16,7 @@
 
 @implementation SettingsTableViewController {
     GroupTool *group;
+    UIAlertController *clearAlertController;
 }
 
 - (void)viewDidLoad {
@@ -29,6 +30,8 @@
     }
     [super viewWillAppear:animated];
     group = [[GroupTool alloc] init];
+    
+    [self initClearAlertController];
 }
 
 #pragma mark - Navigation
@@ -77,6 +80,44 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return 0.1;
+}
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSLog(@"indexPath.section == %ld && indexPath.row == %ld", (long)indexPath.section, (long)indexPath.row);
+    if (indexPath.section == 2 && indexPath.row == 1) {
+        [self presentViewController:clearAlertController animated:YES completion:nil];
+    }
+}
+
+#pragma mark - Action
+- (void)initClearAlertController {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    clearAlertController = [UIAlertController alertControllerWithTitle:@"Clear Share ID Cache"
+                                                          message:nil
+                                                   preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *clear = [UIAlertAction actionWithTitle:@"Clear Now!"
+                                                    style:UIAlertActionStyleDestructive
+                                                  handler:^(UIAlertAction * _Nonnull action) {
+                                                      [self clearShareIdCache];
+                                                  }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    [clearAlertController addAction:clear];
+    [clearAlertController addAction:cancel];
+}
+
+- (void)clearShareIdCache {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    
 }
 
 @end
