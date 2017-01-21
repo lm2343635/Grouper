@@ -9,6 +9,7 @@
 #import "SettingsTableViewController.h"
 #import "GroupTool.h"
 #import "AlertTool.h"
+#import "DaoManager.h"
 
 @interface SettingsTableViewController ()
 
@@ -16,12 +17,17 @@
 
 @implementation SettingsTableViewController {
     GroupTool *group;
+    DaoManager *dao;
+    
     UIAlertController *clearAlertController;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    group = [GroupTool sharedInstance];
+    dao = [DaoManager sharedInstance];
+    
+    [self initClearAlertController];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -29,9 +35,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
-    group = [[GroupTool alloc] init];
     
-    [self initClearAlertController];
 }
 
 #pragma mark - Navigation
@@ -117,7 +121,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    
+    [dao.receiverDao deleteAll];
 }
 
 @end
