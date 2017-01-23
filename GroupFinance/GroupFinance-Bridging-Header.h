@@ -7,3 +7,4 @@
 //
 
 #import "Message.h"
+#import <M80AttributedLabel/M80AttributedLabel.h>

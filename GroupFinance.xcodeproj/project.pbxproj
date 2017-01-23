@@ -16,6 +16,9 @@
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
 		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
 		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
+		E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */; };
+		E4305A4F1E36283D00010B52 /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */; };
+		E4305A511E36363000010B52 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4305A501E36363000010B52 /* ContentViewController.swift */; };
 		E430E7621E2219B400CF9660 /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7611E2219B400CF9660 /* CommonTool.m */; };
 		E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7651E2385D900CF9660 /* MainTableViewController.m */; };
 		E432CC6E1E2B55AF00518622 /* ReceiverDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E432CC6D1E2B55AF00518622 /* ReceiverDao.m */; };
@@ -70,8 +73,6 @@
 		E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */; };
 		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
 		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
-		E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */; };
-		E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */; };
 		E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD801DC84EFE009F3E37 /* SenderDao.m */; };
 		E4BF182E1E163F3A003340FB /* ReceiveTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF182D1E163F3A003340FB /* ReceiveTool.m */; };
 		E4BF18391E164232003340FB /* Receiver+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF18361E164232003340FB /* Receiver+CoreDataClass.m */; };
@@ -130,6 +131,11 @@
 		E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupFinance-Bridging-Header.h"; sourceTree = "<group>"; };
 		E42C58D71DCC53C4009A2596 /* SendTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTool.h; sourceTree = "<group>"; };
 		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
+		E4305A4A1E36283D00010B52 /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
+		E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
+		E4305A4C1E36283D00010B52 /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
+		E4305A501E36363000010B52 /* ContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentViewController.swift; sourceTree = "<group>"; };
 		E430E7601E2219B400CF9660 /* CommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
 		E430E7611E2219B400CF9660 /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
 		E430E7641E2385D900CF9660 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
@@ -239,10 +245,6 @@
 		E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataClass.m"; sourceTree = "<group>"; };
 		E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E49E7CDC1DC7343400E9E43A /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
-		E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
-		E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E4ADFD7F1DC84EFE009F3E37 /* SenderDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenderDao.h; sourceTree = "<group>"; };
 		E4ADFD801DC84EFE009F3E37 /* SenderDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenderDao.m; sourceTree = "<group>"; };
 		E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -401,6 +403,7 @@
 			children = (
 				E430E7641E2385D900CF9660 /* MainTableViewController.h */,
 				E430E7651E2385D900CF9660 /* MainTableViewController.m */,
+				E4305A501E36363000010B52 /* ContentViewController.swift */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -604,10 +607,10 @@
 				E46516991E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m */,
 				E465169A1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.h */,
 				E465169B1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m */,
-				E49E7CDC1DC7343400E9E43A /* Template+CoreDataClass.h */,
-				E49E7CDD1DC7343400E9E43A /* Template+CoreDataClass.m */,
-				E49E7CDE1DC7343400E9E43A /* Template+CoreDataProperties.h */,
-				E49E7CDF1DC7343400E9E43A /* Template+CoreDataProperties.m */,
+				E4305A4A1E36283D00010B52 /* Template+CoreDataClass.h */,
+				E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */,
+				E4305A4C1E36283D00010B52 /* Template+CoreDataProperties.h */,
+				E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */,
 				E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */,
 				E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */,
 				E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */,
@@ -823,6 +826,7 @@
 				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
 				E476B0A61DE40F5C00FBCB24 /* MCManager.m in Sources */,
 				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
+				E4305A511E36363000010B52 /* ContentViewController.swift in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
 				E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */,
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
@@ -833,13 +837,13 @@
 				E4BF183A1E164232003340FB /* Receiver+CoreDataProperties.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
-				E49E7CEA1DC7343400E9E43A /* Template+CoreDataClass.m in Sources */,
 				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
 				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
 				E48DE0711DCF660300A7A5DB /* InternetTool.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
+				E4305A4F1E36283D00010B52 /* Template+CoreDataProperties.m in Sources */,
 				E458BB5A1E10EDA500699D23 /* RestoreServerViewController.m in Sources */,
 				E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */,
 				E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */,
@@ -878,8 +882,8 @@
 				E46516AC1E31F1F100A3E8E2 /* Shop+CoreDataClass.m in Sources */,
 				E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */,
 				E4039EE01DE0730C00D39DDB /* GroupTool.m in Sources */,
-				E49E7CEB1DC7343400E9E43A /* Template+CoreDataProperties.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
+				E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
 				E4BF182E1E163F3A003340FB /* ReceiveTool.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,

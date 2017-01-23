@@ -7,6 +7,7 @@ target 'GroupFinance' do
     pod 'AFNetworking', '~> 3.1'
     pod 'MJRefresh', '~> 3.1'
     pod 'UIImageView+Extension', '~> 0.2'
+    pod 'M80AttributedLabel', '~> 1.6'
 end
 
 post_install do |installer|

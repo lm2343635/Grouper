@@ -2,8 +2,8 @@
 //  Template+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by 李大爷的电脑 on 23/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Template+CoreDataClass.h"
@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Template *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSString *creator;
 @property (nullable, nonatomic, copy) NSNumber *saveRecordType;
 @property (nullable, nonatomic, copy) NSString *tname;
 @property (nullable, nonatomic, retain) Account *account;

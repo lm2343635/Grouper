@@ -11,6 +11,9 @@
 @implementation DaoManager
 
 + (instancetype)sharedInstance {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
     static DaoManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

@@ -33,6 +33,7 @@
     UIImageView *syncImageView;
     
     NSMutableArray *messages;
+    Message *selectedMessage;
 }
 
 - (void)viewDidLoad {
@@ -186,6 +187,26 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if (indexPath.section == 1) {
+        selectedMessage = [messages objectAtIndex:indexPath.row];
+        [self performSegueWithIdentifier:@"contentSegue" sender:self];
+    }
+}
+
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([segue.identifier isEqualToString:@"contentSegue"]) {
+        [segue.destinationViewController setValue:selectedMessage forKey:@"message"];
+    }
+}
 
 #pragma mark - Service
 - (void)checkServerStateAndSync {

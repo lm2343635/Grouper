@@ -12,11 +12,12 @@
 
 @interface TemplateDao : DaoTemplate
 
-- (NSManagedObjectID *)saveWithNname:(NSString *)tname
+- (Template *)saveWithNname:(NSString *)tname
                        andRecordType:(NSNumber *)recordType
                    andClassification:(Classification *)classification
                           andAccount:(Account *)account
-                             andShop:(Shop *)shop;
+                             andShop:(Shop *)shop
+                             creator:(NSString *)creator;
 
 - (NSArray *)findAll;
 

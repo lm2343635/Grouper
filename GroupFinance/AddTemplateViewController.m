@@ -9,6 +9,7 @@
 #import "AddTemplateViewController.h"
 #import "SelectRecordItemTableViewController.h"
 #import "AlertTool.h"
+#import "SendTool.h"
 
 @interface AddTemplateViewController ()
 
@@ -16,6 +17,7 @@
 
 @implementation AddTemplateViewController {
     DaoManager *dao;
+    User *currentUser;
     NSUInteger selectItemType;
 }
 
@@ -24,48 +26,50 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    if(_recordType==nil) {
+    dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
+    
+    if (_recordType == nil) {
         _recordType=[NSNumber numberWithBool:NO];
     }
-    if(_recordType!=nil) {
+    if (_recordType != nil) {
         [_saveTypeSwitch setOn:_recordType.boolValue];
     }
-    NSLog(@"%@", _recordType);
-    if(_selectedClassification!=nil) {
+
+    if (_selectedClassification != nil) {
         [_selectClassificationButton setTitle:_selectedClassification.cname
                                      forState:UIControlStateNormal];
     }
-    if(_selectedAccount!=nil) {
+    if (_selectedAccount != nil) {
         [_selectAccountButton setTitle:_selectedAccount.aname
                               forState:UIControlStateNormal];
     }
-    if(_selectedShop!=nil) {
+    if (_selectedShop != nil) {
         [_selectShopButton setTitle:_selectedShop.sname
                            forState:UIControlStateNormal];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_item==nil) {
+    if (_item == nil) {
         return;
     }
     switch (selectItemType) {
         case SELECT_ITEM_TYPE_CLASSIFICATION:
-            _selectedClassification=(Classification *)_item;
+            _selectedClassification = (Classification *)_item;
             [_selectClassificationButton setTitle:_selectedClassification.cname
                                          forState:UIControlStateNormal];
             break;
         case SELECT_ITEM_TYPE_ACCOUNT:
-            _selectedAccount=(Account *)_item;
+            _selectedAccount = (Account *)_item;
             [_selectAccountButton setTitle:_selectedAccount.aname
                                   forState:UIControlStateNormal];
             break;
         case SELECT_ITEM_TYPE_SHOP:
-            _selectedShop=(Shop *)_item;
+            _selectedShop = (Shop *)_item;
             [_selectShopButton setTitle:_selectedShop.sname
                                forState:UIControlStateNormal];
             break;
@@ -110,53 +114,53 @@
                      inViewController:self];
         return;
     }
-    NSManagedObjectID *tid = [dao.templateDao saveWithNname:_templateNameTextField.text
-                                              andRecordType:_recordType
-                                          andClassification:_selectedClassification
-                                                 andAccount:_selectedAccount
-                                                    andShop:_selectedShop];
-    if (tid) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    Template *template = [dao.templateDao saveWithNname:_templateNameTextField.text
+                                          andRecordType:_recordType
+                                      andClassification:_selectedClassification
+                                             andAccount:_selectedAccount
+                                                andShop:_selectedShop
+                                                creator:currentUser.uid];
+    [[SendTool sharedInstance] sendSharesWithObject:template];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)selectClassification:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _item=nil;
-    selectItemType=SELECT_ITEM_TYPE_CLASSIFICATION;
+    _item =  nil;
+    selectItemType = SELECT_ITEM_TYPE_CLASSIFICATION;
     [self performSegueWithIdentifier:@"templateRecordItemSegue" sender:self];
 }
 
 - (IBAction)selectAccount:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _item=nil;
-    selectItemType=SELECT_ITEM_TYPE_ACCOUNT;
+    _item = nil;
+    selectItemType = SELECT_ITEM_TYPE_ACCOUNT;
     [self performSegueWithIdentifier:@"templateRecordItemSegue" sender:self];
 }
 
 - (IBAction)selectShop:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _item=nil;
-    selectItemType=SELECT_ITEM_TYPE_SHOP;
+    _item = nil;
+    selectItemType = SELECT_ITEM_TYPE_SHOP;
     [self performSegueWithIdentifier:@"templateRecordItemSegue" sender:self];
 }
 
 - (void)changeSaveType:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if([sender isOn]) {
-        _recordType=[NSNumber numberWithBool:YES];
-        _saveTypeLabel.text=@"Save as Earn";
+    if ([sender isOn]) {
+        _recordType = [NSNumber numberWithBool:YES];
+        _saveTypeLabel.text = @"Save as Earn";
     } else {
-        _recordType=[NSNumber numberWithBool:NO];
-        _saveTypeLabel.text=@"Save as Spend";
+        _recordType = [NSNumber numberWithBool:NO];
+        _saveTypeLabel.text = @"Save as Spend";
     }
 }
 

@@ -10,11 +10,12 @@
 
 @implementation TemplateDao
 
-- (NSManagedObjectID *)saveWithNname:(NSString *)tname
+- (Template *)saveWithNname:(NSString *)tname
                        andRecordType:(NSNumber *)recordType
                    andClassification:(Classification *)classification
                           andAccount:(Account *)account
-                             andShop:(Shop *)shop {
+                             andShop:(Shop *)shop
+                             creator:(NSString *)creator {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -25,8 +26,11 @@
     template.classification = classification;
     template.account = account;
     template.shop = shop;
+    
+    template.creator = creator;
+    template.updater = creator;
     [self saveContext];
-    return template.objectID;
+    return template;
 }
 
 - (NSArray *)findAll {
