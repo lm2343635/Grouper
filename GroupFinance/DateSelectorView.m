@@ -7,86 +7,59 @@
 //
 
 #import "DateSelectorView.h"
-#import "AlertTool.h"
 
 @implementation DateSelectorView {
-    //选择器视图高度
-    CGFloat seletorHeight;
-    //当前选择器是否被使用，选择器被使用时不能被另外一个按钮调用，除非点击done关闭选择器
-    BOOL isUsing;
-    //定义回调函数
-    Callback doneButtonDidClicked;
-    UIButton *doneButton;
+    UIViewController *parentController;
     UIDatePicker *datePicker;
+    UIToolbar *toolBar;
+
+    Callback doneButtonDidClicked;
 }
 
-- (void)initWithCallback:(Callback)callback inViewController:(UIViewController *)controller {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+- (instancetype)initForController:(UIViewController *)controller done:(Callback)callback {
+    self = [super init];
+    if (self) {
+        CGRect screenRect = [[UIScreen mainScreen] bounds];
+        CGFloat screenWidth = screenRect.size.width;
+        CGFloat screenHeight = screenRect.size.height;
+        self.frame = CGRectMake(0, screenHeight, screenWidth, SeletorHeight + ToolBarHeight);
+        
+        toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, screenWidth, ToolBarHeight)];
+        UIBarButtonItem *flexSpaceButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                                             target:self
+                                                                                             action:nil];
+        UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                       target:self
+                                                                       action:@selector(done)];
+        [toolBar setItems:[NSArray arrayWithObjects:flexSpaceButtonItem, doneButtonItem, nil]];
+        [self addSubview:toolBar];
+        
+        datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, ToolBarHeight, screenWidth, SeletorHeight)];
+        datePicker.backgroundColor = [UIColor whiteColor];
+        [self addSubview:datePicker];
+        
+        doneButtonDidClicked = callback;
+        parentController = controller;
+        [parentController.view addSubview:self];
     }
-    if(isUsing) {
-        if(DEBUG) {
-            NSLog(@"Selector is using by other button.");
-        }
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:SelectorBeUsingTip
-                     inViewController:controller];
-    } else {
-        doneButtonDidClicked=callback;
-        datePicker=(UIDatePicker *)[self viewWithTag:1];
-        //时间选择器的默认时间设为现在
-        datePicker.date=[[NSDate alloc] init];
-        doneButton=(UIButton *)[self viewWithTag:2];
-        doneButton.enabled=YES;
-        [doneButton addTarget:self
-                       action:@selector(doneButtonClicked)
-             forControlEvents:UIControlEventTouchUpInside];
-        seletorHeight=self.frame.size.height;
-        [self showSelector];
-    }
+    return self;
 }
 
-#pragma mark - Action
-//显示选择器
--(void)showSelector {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    }
-    CGPoint center=self.center;
-    if(DEBUG) {
-        NSLog(@"Selector start from (%f,%f)",center.x,center.y);
-    }
+// Show selecor
+- (void)show {
     [UIView animateWithDuration:AnimationDurationTime animations:^{
-        self.center=CGPointMake(center.x, center.y-seletorHeight);
+        self.center = CGPointMake(self.center.x, self.center.y - SeletorHeight);
     }];
 }
 
-//隐藏选择器
--(void)hideSelector {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    }
-    CGPoint center=self.center;
-    if(DEBUG) {
-        NSLog(@"Selector start from (%f,%f)",center.x,center.y);
-    }
+// Finish editing, close date selector view.
+- (void)done {
     [UIView animateWithDuration:AnimationDurationTime animations:^{
-        self.center=CGPointMake(center.x, center.y+seletorHeight);
-    }];
-}
-
--(void)doneButtonClicked {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
-    }
-    [self hideSelector];
-    //doneButton设为不可用
-    doneButton.enabled=NO;
-    //当前按钮释放选择器
-    isUsing=NO;
-    if(doneButtonDidClicked) {
+        self.center = CGPointMake(self.center.x, self.center.y + SeletorHeight);
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
         doneButtonDidClicked(datePicker.date);
-    }
+    }];
 }
 
 @end

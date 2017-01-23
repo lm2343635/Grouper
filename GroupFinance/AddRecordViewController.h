@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DaoManager.h"
-#import "DateSelectorView.h"
 
 #define TakePhotoActionSheetCameraIndex 0
 #define TakePhotoActionSheetPhtotLibraryIndex 1
@@ -24,8 +23,6 @@
 @property (strong, nonatomic) NSDate *selectedTime;
 @property (strong, nonatomic) UIImage *photoImage;
 @property (strong, nonatomic) Template *template;
-
-@property (weak, nonatomic) IBOutlet DateSelectorView *timeSelectorView;
 
 @property (weak, nonatomic) IBOutlet UILabel *saveTypeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;

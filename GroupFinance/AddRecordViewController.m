@@ -9,9 +9,9 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AddRecordViewController.h"
 #import "SelectRecordItemTableViewController.h"
-#import "DaoManager.h"
 #import "AlertTool.h"
 #import "DateTool.h"
+#import "DateSelectorView.h"
 
 @interface AddRecordViewController ()
 
@@ -19,9 +19,12 @@
 
 @implementation AddRecordViewController {
     DaoManager *dao;
+    
     NSUInteger selectItemType;
-    UIImagePickerController *imagePickerController;
     BOOL saveRecordType;
+    
+    UIImagePickerController *imagePickerController;
+    DateSelectorView *dateSelector;
 }
 
 - (void)viewDidLoad {
@@ -29,18 +32,18 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao=[[DaoManager alloc] init];
-    imagePickerController=[[UIImagePickerController alloc] init];
-    imagePickerController.delegate=self;
-    saveRecordType=NO;
+    dao = [DaoManager sharedInstance];
+    imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.delegate = self;
+    saveRecordType = NO;
     [self setTime:[[NSDate alloc] init]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_item!=nil) {
+    if (_item != nil) {
         switch (selectItemType) {
             case SELECT_ITEM_TYPE_CLASSIFICATION:
                 _selectedClassification = (Classification *)_item;
@@ -48,7 +51,7 @@
                                              forState:UIControlStateNormal];
                 break;
             case SELECT_ITEM_TYPE_ACCOUNT:
-                _selectedAccount=(Account *)_item;
+                _selectedAccount = (Account *)_item;
                 [_selectAccountButton setTitle:_selectedAccount.aname
                                       forState:UIControlStateNormal];
                 break;
@@ -61,52 +64,52 @@
                 break;
         }
     }
-    if(_template!=nil) {
-        saveRecordType=_template.saveRecordType.boolValue;
+    if (_template != nil) {
+        saveRecordType = _template.saveRecordType.boolValue;
         [_saveTypeSwitch setOn:saveRecordType];
-        _saveTypeLabel.text=saveRecordType? @"Save as Earn": @"Save as Spend";
-        _selectedClassification=_template.classification;
+        _saveTypeLabel.text = saveRecordType? @"Save as Earn": @"Save as Spend";
+        _selectedClassification = _template.classification;
         [_selectClassificationButton setTitle:_selectedClassification.cname
                                      forState:UIControlStateNormal];
-        _selectedAccount=_template.account;
+        _selectedAccount = _template.account;
         [_selectAccountButton setTitle:_selectedAccount.aname
                               forState:UIControlStateNormal];
-        _selectedShop=_template.shop;
+        _selectedShop = _template.shop;
         [_selectShopButton setTitle:_selectedShop.sname
                            forState:UIControlStateNormal];
     }
 }
 
 #pragma mark - UITextViewDelegate
--(void)textViewDidBeginEditing:(UITextView *)textView {
-    if(DEBUG) {
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
     }
-    if(textView==_remarkTextView) {
+    if (textView == _remarkTextView) {
         CGRect frame = textView.frame;
-        int offset=frame.origin.y+textView.frame.size.height-(self.view.frame.size.height-KeyboardHeight);
+        int offset = frame.origin.y + textView.frame.size.height - (self.view.frame.size.height - KeyboardHeight);
         NSTimeInterval animationDuration = 0.30f;
         [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
         [UIView setAnimationDuration:animationDuration];
         //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
         if(offset > 0) {
-            self.view.frame=CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
+            self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
         }
         [UIView commitAnimations];
-        _remarkOK.hidden=NO;
+        _remarkOK.hidden = NO;
     }
 }
 
--(void)textViewDidEndEditing:(UITextView *)textView {
-    if(DEBUG) {
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
     }
-    self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 #pragma mark - UIImagePickerControllerDelegate
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    if(DEBUG) {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
         NSLog(@"MediaInfo: %@",info);
     }
@@ -123,11 +126,11 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    UIViewController *controller=[segue destinationViewController];
-    if([segue.identifier isEqualToString:@"selectRecordItemSegue"]) {
+    UIViewController *controller = [segue destinationViewController];
+    if ([segue.identifier isEqualToString:@"selectRecordItemSegue"]) {
         [controller setValue:[NSNumber numberWithInteger:selectItemType] forKey:@"selectItemType"];
     } else if ([segue.identifier isEqualToString:@"saveAsTemplateSegue"]) {
         [controller setValue:[NSNumber numberWithBool:saveRecordType] forKey:@"recordType"];
@@ -158,7 +161,7 @@
     if (_photoImage != nil) {
         NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)];
         if (DEBUG) {
-            NSLog(@"Create photo with pid = %@");
+            NSLog(@"Create photo with pid = %@", pid);
         }
         photo = (Photo *)[dao getObjectById:pid];
     }
@@ -209,23 +212,26 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _selectTimeButton.enabled=NO;
-    [_timeSelectorView initWithCallback:^(NSObject *object) {
-        [self setTime:(NSDate *)object];
-    } inViewController:self];
+    _selectTimeButton.enabled = NO;
+    dateSelector = [[DateSelectorView alloc] initForController:self done:^(NSDate *date) {
+        _selectTimeButton.enabled = YES;
+        [self setTime:date];
+    }];
+    [dateSelector show];
+    
 }
 
 - (IBAction)takePhoto:(id)sender {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    UIAlertController *alertController=[UIAlertController alertControllerWithTitle:@"Choose Photo from"
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Choose Photo from"
                                                                            message:nil
                                                                     preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *cancelAction=[UIAlertAction actionWithTitle:@"Cancel"
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel"
                                                          style:UIAlertActionStyleCancel
                                                        handler:nil];
-    UIAlertAction *cameraAction=[UIAlertAction actionWithTitle:@"Camera"
+    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"Camera"
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction * _Nonnull action) {
                                                            if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {

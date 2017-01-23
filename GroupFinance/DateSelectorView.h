@@ -8,17 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-#define DatePickerSelectorDebug 0
-//选择器被其他按钮占用时，提示用户先完成当前按钮的选择
-#define SelectorBeUsingTip @"Please finish what you are choosing now."
-//动画时间长度
+// Animation duration time
 #define AnimationDurationTime 0.3
 
-//定义回调函数数据类型
-typedef void (^Callback)(NSObject *);
+// Select height and tool bar height
+#define SeletorHeight 250
+#define ToolBarHeight 30
+
+// Define callback function type
+typedef void (^Callback)(NSDate *);
 
 @interface DateSelectorView : UIView
 
-- (void)initWithCallback:(Callback)callback inViewController:(UIViewController *)controller;
+- (instancetype)initForController:(UIViewController *)controller done:(Callback)callback;
+
+- (void)show;
 
 @end

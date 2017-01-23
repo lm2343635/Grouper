@@ -212,9 +212,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _selectTimeButton.enabled = NO;
-    [_timeSelectorView initWithCallback:^(NSObject *object) {
-        [self setTime:(NSDate *)object];
-    } inViewController:self];
+
 }
 
 
