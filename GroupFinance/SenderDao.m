@@ -11,26 +11,21 @@
 
 @implementation SenderDao
 
-- (Sender *)saveWithObject:(NSManagedObject *)object {
+- (Sender *)saveWithContent:(NSString *)content
+                     object:(NSString *)objectName
+                       type:(NSString *)type
+                forReceiver:(NSString *)receiver {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Sender *sender = [NSEntityDescription insertNewObjectForEntityForName:SenderEntityName
                                                    inManagedObjectContext:self.context];
-    sender.object = NSStringFromClass(object.class);
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:[object hyp_dictionary]
-                                                   options:NSJSONWritingPrettyPrinted
-                                                     error:&error];
-    if (error) {
-        NSLog(@"Create json with error: %@", error.localizedDescription);
-        return nil;
-    }
-    sender.content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    sender.sendtime = [NSNumber numberWithInt:(int)[[NSDate date] timeIntervalSince1970]];
+    sender.object = objectName;
+    sender.content = content;
+    sender.sendtime = [NSNumber numberWithInt:(int)([[NSDate date] timeIntervalSince1970])];
     sender.sequence = [NSNumber numberWithInt:1];
-    sender.type = @"normal";
-    sender.receiver = @"*";
+    sender.type = type;
+    sender.receiver = receiver;
     [self saveContext];
     return sender;
 }

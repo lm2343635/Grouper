@@ -295,9 +295,8 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
-    [messages addObject:(Message *)notification.object];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:messages.count - 1 inSection:1];
+    [messages insertObject:(Message *)notification.object atIndex:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                           withRowAnimation:UITableViewRowAnimationAutomatic];
 }

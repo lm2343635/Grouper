@@ -2,7 +2,7 @@
 //  Template+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by 李大爷的电脑 on 23/01/2017.
+//  Created by lidaye on 30/01/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 

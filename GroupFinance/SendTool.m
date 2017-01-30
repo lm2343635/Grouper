@@ -43,21 +43,26 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _sender = [dao.senderDao saveWithObject:object];
+//    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeNone]];
+//    if ([NSStringFromClass(object.class) isEqualToString:@"Template"]) {
+//        Template *template = (Template *)object;
+//        [dictionary setValue:template.classification.remoteID forKey:@"classification_remoteID"];
+//        [dictionary setValue:template.shop.remoteID forKey:@"shop_remoteID"];
+//        [dictionary setValue:template.account.remoteID forKey:@"account_remoteID"];
+//    }
+
+    NSDictionary *dictionary  = [object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+    _sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:dictionary]
+                                      object: NSStringFromClass(object.class)
+                                        type:@"normal"
+                                 forReceiver:@"*"];
     
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:[_sender hyp_dictionary]
-                                                   options:NSJSONWritingPrettyPrinted
-                                                     error:&error];
-    if (error) {
-        NSLog(@"Create json with error: %@", error.localizedDescription);
-        return;
-    }
-    NSString *text = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    // Creat json string
+    NSString *json = [self JSONStringFromObject:[_sender hyp_dictionary]];
     if (DEBUG) {
-        NSLog(@"Send message:%@", text);
+        NSLog(@"Send message:%@", json);
     }
-    NSDictionary *shares = [SecretSharing generateSharesWith:text];
+    NSDictionary *shares = [SecretSharing generateSharesWith:json];
     self.sent = 0;
     [self addObserver:self
            forKeyPath:@"sent"
@@ -108,6 +113,19 @@
             }
         }
     }
+}
+
+#pragma mark - Service
+- (NSString *)JSONStringFromObject:(NSObject *)object {
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:object
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:&error];
+    if (error) {
+        NSLog(@"Create json with error: %@", error.localizedDescription);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 @end

@@ -115,7 +115,6 @@
 		3A5070CBDE318AFF455E23F3 /* Pods-GroupFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupFinance/Pods-GroupFinance.release.xcconfig"; sourceTree = "<group>"; };
 		710458120C337F8796D1E807 /* Pods_GroupFinance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupFinance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0B7F1ED6537206984CEF56 /* Pods-GroupFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupFinance/Pods-GroupFinance.debug.xcconfig"; sourceTree = "<group>"; };
-		B294A411C24BDEE0824FF74A /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersTableViewController.h; sourceTree = "<group>"; };
 		E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersTableViewController.m; sourceTree = "<group>"; };
 		E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
@@ -336,7 +335,6 @@
 				E4B0FF4D1D0C244D000F0421 /* libz.tbd */,
 				E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */,
 				E4F1CB331CFAFCF500461B3F /* MobileCoreServices.framework */,
-				B294A411C24BDEE0824FF74A /* Pods.framework */,
 				710458120C337F8796D1E807 /* Pods_GroupFinance.framework */,
 			);
 			name = Frameworks;

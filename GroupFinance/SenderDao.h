@@ -12,7 +12,10 @@
 
 @interface SenderDao : DaoTemplate
 
-- (Sender *)saveWithObject:(NSManagedObject *)object;
+- (Sender *)saveWithContent:(NSString *)content
+                     object:(NSString *)objectName
+                       type:(NSString *)type
+                forReceiver:(NSString *)receiver;
 
 - (NSArray *)findResend;
 
