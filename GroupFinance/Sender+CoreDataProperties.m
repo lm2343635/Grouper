@@ -2,8 +2,8 @@
 //  Sender+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 27/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 30/01/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Sender+CoreDataProperties.h"
@@ -17,9 +17,8 @@
 @dynamic content;
 @dynamic messageId;
 @dynamic object;
-@dynamic sendtime;
-@dynamic sequence;
-@dynamic type;
 @dynamic receiver;
+@dynamic sendtime;
+@dynamic type;
 
 @end

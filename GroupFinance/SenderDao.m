@@ -22,8 +22,7 @@
                                                    inManagedObjectContext:self.context];
     sender.object = objectName;
     sender.content = content;
-    sender.sendtime = [NSNumber numberWithInt:(int)([[NSDate date] timeIntervalSince1970])];
-    sender.sequence = [NSNumber numberWithInt:1];
+    sender.sendtime = [NSNumber numberWithLongLong:(long long)([[NSDate date] timeIntervalSince1970] * 1000)];
     sender.type = type;
     sender.receiver = receiver;
     [self saveContext];

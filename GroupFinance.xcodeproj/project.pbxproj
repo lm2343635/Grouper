@@ -141,6 +141,7 @@
 		E430E7651E2385D900CF9660 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		E432CC6C1E2B55AF00518622 /* ReceiverDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiverDao.h; sourceTree = "<group>"; };
 		E432CC6D1E2B55AF00518622 /* ReceiverDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiverDao.m; sourceTree = "<group>"; };
+		E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.1.xcdatamodel; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1181,9 +1182,10 @@
 		E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */,
 				E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */,
 			);
-			currentVersion = E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */;
+			currentVersion = E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

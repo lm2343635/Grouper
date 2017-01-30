@@ -22,6 +22,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+
     group = [[GroupTool alloc] init];
     if (DEBUG) {
         NSLog(@"Number of group menbers is %ld", (long)group.members);

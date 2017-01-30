@@ -15,8 +15,7 @@
 @property (nonatomic, strong) NSString *messageId;
 @property (nonatomic, strong) NSString *object;
 @property (nonatomic, strong) NSString *receiver;
-@property (nonatomic, assign) NSInteger sendtime;
-@property (nonatomic, assign) NSInteger sequence;
+@property (nonatomic, assign) long long sendtime;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *sender;
 
