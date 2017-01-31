@@ -11,6 +11,7 @@
 #import "InternetTool.h"
 #import "ReceiveTool.h"
 #import "DaoManager.h"
+#import "MembersManager.h"
 #import "GroupFinance-Swift.h"
 #import "CommonTool.h"
 #import "UIImageView+Extension.h"
@@ -24,7 +25,9 @@
 @implementation MainTableViewController {
     GroupTool *group;
     DaoManager *dao;
+    MembersManager *membersManager;
     NSDictionary *managers;
+    
     NSDateFormatter *dateFormatter;
     int accessedServers;
     
@@ -45,6 +48,8 @@
     group = [GroupTool sharedInstance];
     dao = [DaoManager sharedInstance];
     managers = [InternetTool getSessionManagers];
+    membersManager = [MembersManager sharedInstance];
+    
     dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
@@ -284,10 +289,14 @@
                 if (DEBUG) {
                     NSLog(@"Accessed %d servers, call sync method.", accessedServers);
                 }
-                [self dataSync];
+                // Refresh members list before data sync
+                [membersManager refreshMemberListWithCompletion:^(BOOL success) {
+                    [self dataSync];
+                }];
             }
         }
     }
+
 }
 
 #pragma mark - Notification

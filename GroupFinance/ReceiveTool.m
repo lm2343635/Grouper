@@ -32,7 +32,6 @@
     return instance;
 }
 
-
 - (instancetype)init {
     self = [super init];
     if (self) {

@@ -10,6 +10,7 @@
 #import "DaoManager.h"
 #import "GroupTool.h"
 #import "InternetTool.h"
+#import "MembersManager.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface MembersTableViewController ()
@@ -18,10 +19,13 @@
 
 @implementation MembersTableViewController {
     DaoManager * dao;
+    GroupTool *group;
+    MembersManager *membersManager;
+    
     NSArray *members;
     User *owner;
     User *currentUser;
-    GroupTool *group;
+    
     NSDictionary *managers;
 }
 
@@ -32,12 +36,21 @@
     [super viewDidLoad];
     group = [GroupTool sharedInstance];
     dao = [DaoManager sharedInstance];
-    managers = [InternetTool getSessionManagers];
-    
+    membersManager = [MembersManager sharedInstance];
     currentUser = [dao.userDao currentUser];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self refreshMemberList];
+        [membersManager refreshMemberListWithCompletion:^(BOOL success) {
+            [self.tableView.mj_header endRefreshing];
+            if (success) {
+                if (group.members > 0) {
+                    _noMembersView.hidden = YES;
+                    [self loadMembersInfo];
+                }
+                
+                [self.tableView reloadData];
+            }
+        }];
     }];
     
     if (group.initial == InitialFinished) {
@@ -51,66 +64,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
-//    group = [[GroupTool alloc] init];
     managers = [InternetTool getSessionManagers];
-}
-
-- (void)refreshMemberList {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    if (group.initial != InitialFinished) {
-        [self.tableView.mj_header endRefreshing];
-        return;
-    }
-    NSString *address0 = [group.servers.allKeys objectAtIndex:0];
-    //Reload user info
-    [managers[address0] GET:[InternetTool createUrl:@"user/list" withServerAddress:address0]
-                 parameters:nil
-                   progress:nil
-                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                        InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                        if ([response statusOK]) {
-                            NSObject *result = [response getResponseResult];
-                            NSArray *users = [result valueForKey:@"users"];
-                            for(NSObject *user in users) {
-                                if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
-                                    continue;
-                                }
-                                [dao.userDao saveOrUpdateWithJSONObject:user fromUntrustedServer:YES];
-                            }
-                            
-                            group.members = users.count;
-                            if (group.members > 0) {
-                                _noMembersView.hidden = YES;
-                                [self loadMembersInfo];
-                            }
-                            
-                            [self.tableView reloadData];
-                            [self.tableView.mj_header endRefreshing];
-                        }
-                    }
-                    failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                        InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                        switch ([response errorCode]) {
-                            case ErrorMasterOrAccessKey:
-                                [self.tableView.mj_header endRefreshing];
-                                break;
-                        }
-                    }];
-
-}
-
-- (void)loadMembersInfo {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    members = [dao.userDao findMembersExceptOwner:group.owner];
-    owner = [dao.userDao getByUserId:group.owner];
-    for (User *member in members) {
-        member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
-    }
-    owner.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:owner.pictureUrl]];
 }
 
 #pragma mark - Table view data source
@@ -185,4 +139,18 @@
     }
     [self.tableView.mj_header beginRefreshing];
 }
+
+#pragma mark - Service
+- (void)loadMembersInfo {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    members = [dao.userDao findMembersExceptOwner:group.owner];
+    owner = [dao.userDao getByUserId:group.owner];
+    for (User *member in members) {
+        member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
+    }
+    owner.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:owner.pictureUrl]];
+}
+
 @end
