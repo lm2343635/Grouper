@@ -23,22 +23,29 @@ import DATAStack
             return false
         }
         let message = Message(dictionary: messageDictionary, sender: sender)!
+        let content = serializeJSON(message.content)
+        if content == nil {
+            return false
+        }
         switch message.type {
-        case "normal":
-            let content = serializeJSON(message.content)
-            if content == nil {
-                return false
-            }
+        case "update":
             Sync.changes([content!],
                          inEntityNamed: message.object,
                          dataStack: dataStack,
                          operations: [.Insert, .Update],
                          completion: nil)
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedNewObject"), object: message);
-            return true
+        case "delete":
+            do {
+                let remoteID = content?["id"] as! String
+                try Sync.delete(remoteID, inEntityNamed: message.object, using: dataStack.mainContext)
+            } catch _ {
+                return false
+            }
         default:
             return false
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "receivedNewObject"), object: message);
+        return true
     }
     
     //Transfer JSON string to dictionary

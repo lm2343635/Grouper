@@ -44,7 +44,7 @@
     // Save shop.
     Shop *shop = [dao.shopDao saveWithName:sname creator:currentUser.uid];
     // Send shares.
-    [[SendTool sharedInstance] sendSharesWithObject:shop];
+    [[SendTool sharedInstance] update:shop];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

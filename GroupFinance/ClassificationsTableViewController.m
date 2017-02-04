@@ -8,6 +8,7 @@
 
 #import "ClassificationsTableViewController.h"
 #import "DaoManager.h"
+#import "SendTool.h"
 
 @interface ClassificationsTableViewController ()
 
@@ -17,7 +18,6 @@
     DaoManager *dao;
     NSMutableArray *classifications;
     Classification *selectedClassification;
-    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -25,8 +25,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
-    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    dao = [DaoManager sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,8 +78,11 @@
     }
     Classification *classification = [classifications objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [[SendTool sharedInstance] delete:classification];
         [dao.context deleteObject:classification];
         [dao saveContext];
+        
+        
         [classifications removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

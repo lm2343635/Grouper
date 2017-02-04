@@ -54,7 +54,7 @@
     [dao saveContext];
     
     // Send shares.
-    [[SendTool sharedInstance] sendSharesWithObject:_account];
+    [[SendTool sharedInstance] update:_account];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

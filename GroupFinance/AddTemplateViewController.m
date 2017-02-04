@@ -120,7 +120,7 @@
                                              andAccount:_selectedAccount
                                                 andShop:_selectedShop
                                                 creator:currentUser.uid];
-    [[SendTool sharedInstance] sendSharesWithObject:template];
+    [[SendTool sharedInstance] update:template];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

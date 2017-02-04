@@ -7,15 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Sender+CoreDataClass.h"
+#import "DaoManager.h"
 
 @interface SendTool : NSObject
 
 @property (nonatomic) NSInteger sent;
-@property (strong, nonatomic) Sender *sender;
 
 + (instancetype)sharedInstance;
 
-- (void)sendSharesWithObject:(NSManagedObject *)object;
+// Send update message for a sync entity.
+- (void)update:(SyncEntity *)object;
+
+// Send delete message for a sync entity.
+- (void)delete:(SyncEntity *)object;
 
 @end

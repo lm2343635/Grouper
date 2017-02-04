@@ -54,7 +54,7 @@
     [dao saveContext];
     
     // Send shares to untrusted servers.
-    [[SendTool sharedInstance] sendSharesWithObject:_classification];
+    [[SendTool sharedInstance] update:_classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

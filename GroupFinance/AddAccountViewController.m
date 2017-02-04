@@ -42,7 +42,7 @@
         return;
     }
     Account *account = [dao.accountDao saveWithName:aname creator:currentUser.uid];
-    [[SendTool sharedInstance] sendSharesWithObject:account];
+    [[SendTool sharedInstance] update:account];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

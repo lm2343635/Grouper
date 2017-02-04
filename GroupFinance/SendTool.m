@@ -8,7 +8,6 @@
 
 #import "SendTool.h"
 #import "SecretSharing.h"
-#import "DaoManager.h"
 #import "InternetTool.h"
 #import "GroupTool.h"
 #import <SYNCPropertyMapper/SYNCPropertyMapper.h>
@@ -16,6 +15,8 @@
 @implementation SendTool {
     NSDictionary *managers;
     DaoManager *dao;
+    // Sender object
+    Sender *sender;
 }
 
 + (instancetype)sharedInstance {
@@ -39,7 +40,7 @@
     return self;
 }
 
-- (void)sendSharesWithObject:(NSManagedObject *)object {
+- (void)update:(SyncEntity *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -51,16 +52,34 @@
 //        [dictionary setValue:template.account.remoteID forKey:@"account_remoteID"];
 //    }
 
-    NSDictionary *dictionary  = [object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
-    _sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:dictionary]
+    NSDictionary *dictionary = [object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+    sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:dictionary]
                                       object: NSStringFromClass(object.class)
-                                        type:@"normal"
+                                        type:@"update"
                                  forReceiver:@"*"];
     
-    // Creat json string
-    NSString *json = [self JSONStringFromObject:[_sender hyp_dictionary]];
+    [self sendShares];
+}
+
+- (void)delete:(SyncEntity *)object {
     if (DEBUG) {
-        NSLog(@"Send message:%@", json);
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]
+                                      object: NSStringFromClass(object.class)
+                                        type:@"delete"
+                                 forReceiver:@"*"];
+    [self sendShares];
+}
+
+- (void)sendShares {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Creat json string
+    NSString *json = [self JSONStringFromObject:[sender hyp_dictionary]];
+    if (DEBUG) {
+        NSLog(@"Send message: %@", json);
     }
     NSDictionary *shares = [SecretSharing generateSharesWith:json];
     self.sent = 0;
@@ -68,13 +87,13 @@
            forKeyPath:@"sent"
               options:NSKeyValueObservingOptionOld
               context:nil];
-
+    
     for (NSString *address in managers.allKeys) {
         [managers[address] POST:[InternetTool createUrl:@"transfer/put" withServerAddress:address]
                      parameters:@{
                                   @"share": shares[address],
                                   @"receiver": @"",
-                                  @"mid": _sender.messageId
+                                  @"mid": sender.messageId
                                   }
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -94,7 +113,6 @@
                             }
                         }];
     }
-    
 }
 
 #pragma mark - Key Value Observe
