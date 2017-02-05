@@ -57,15 +57,11 @@
 
 #include "shamir.h"
 
-
-static int prime = 257;	
-
+static int prime = 257;
 
 /*
 	http://stackoverflow.com/questions/322938/recommended-way-to-initialize-srand
-
 	http://www.concentric.net/~Ttwang/tech/inthash.htm
-	
 	Need a less predictable way to seed rand().
 */
 

@@ -10,6 +10,7 @@
 #import "RecordsTableViewController.h"
 #import "DaoManager.h"
 #import "DateTool.h"
+#import "SendTool.h"
 
 @interface RecordsTableViewController ()
 
@@ -19,7 +20,6 @@
     DaoManager *dao;
     NSMutableArray *records;
     Record *selectedRecord;
-    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -27,9 +27,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
-
-    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    dao = [DaoManager sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -89,8 +87,7 @@
     }
     Record *record = [records objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [dao.context deleteObject:record];
-        [dao saveContext];
+        [[SendTool sharedInstance] delete:record];
         [records removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:YES];

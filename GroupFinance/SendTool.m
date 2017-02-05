@@ -51,13 +51,15 @@
 //        [dictionary setValue:template.shop.remoteID forKey:@"shop_remoteID"];
 //        [dictionary setValue:template.account.remoteID forKey:@"account_remoteID"];
 //    }
-
+    
+    // Transfer sync entity to dictionary.
     NSDictionary *dictionary = [object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+    // Create update message and save to sender entity.
     sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:dictionary]
                                       object: NSStringFromClass(object.class)
                                         type:@"update"
                                  forReceiver:@"*"];
-    
+    // At last, we send the update message to multiple untrusted servers.
     [self sendShares];
 }
 
@@ -65,10 +67,15 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    // At first, we delete the sync entity.
+    [dao.context deleteObject:object];
+    // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
+    // Then, we create a delete message and save to sender entity.
     sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]
                                       object: NSStringFromClass(object.class)
                                         type:@"delete"
                                  forReceiver:@"*"];
+    // At last, we send the delete message to multiple untrusted servers.
     [self sendShares];
 }
 
@@ -81,13 +88,15 @@
     if (DEBUG) {
         NSLog(@"Send message: %@", json);
     }
+    // Create several shares by secret sharing scheme.
     NSDictionary *shares = [SecretSharing generateSharesWith:json];
+    // User KVO to observe the status of sending shares.
     self.sent = 0;
     [self addObserver:self
            forKeyPath:@"sent"
               options:NSKeyValueObservingOptionOld
               context:nil];
-    
+    // Send shares to multiple untrusted servers.
     for (NSString *address in managers.allKeys) {
         [managers[address] POST:[InternetTool createUrl:@"transfer/put" withServerAddress:address]
                      parameters:@{
@@ -134,6 +143,7 @@
 }
 
 #pragma mark - Service
+// Create a json string from an object.
 - (NSString *)JSONStringFromObject:(NSObject *)object {
     NSError *error;
     NSData *data = [NSJSONSerialization dataWithJSONObject:object

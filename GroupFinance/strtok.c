@@ -18,36 +18,23 @@
 
 #include "strtok.h"
 
-char* strtok_rr(
-    char *str, 
-    const char *delim, 
-    char **nextp)
-{
+char* strtok_rr(char *str, const char *delim, char **nextp) {
     char *ret;
-
     if (str == NULL) {
         str = *nextp;
     }
-
 	if (str == NULL) {
 		return NULL;
 	}
-
     str += strspn(str, delim);
-
     if (*str == '\0') {
         return NULL;
     }
-
     ret = str;
-
     str += strcspn(str, delim);
-
     if (*str) {
         *str++ = '\0';
     }
-
     *nextp = str;
-
     return ret;
 }

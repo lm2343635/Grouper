@@ -79,10 +79,6 @@
     Classification *classification = [classifications objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         [[SendTool sharedInstance] delete:classification];
-        [dao.context deleteObject:classification];
-        [dao saveContext];
-        
-        
         [classifications removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

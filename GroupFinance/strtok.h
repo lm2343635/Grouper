@@ -3,7 +3,4 @@
 
 #include <string.h>
 
-char* strtok_rr(
-    char *str, 
-    const char *delim, 
-    char **nextp);
+char* strtok_rr(char *str, const char *delim, char **nextp);

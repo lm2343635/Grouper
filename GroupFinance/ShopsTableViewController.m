@@ -8,6 +8,7 @@
 
 #import "ShopsTableViewController.h"
 #import "DaoManager.h"
+#import "SendTool.h"
 
 @interface ShopsTableViewController ()
 
@@ -17,7 +18,6 @@
     DaoManager *dao;
     NSMutableArray *shops;
     Shop *selectedShop;
-    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -25,8 +25,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
-    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    dao = [DaoManager sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,8 +76,7 @@
     }
     Shop *shop = [shops objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [dao.context deleteObject:[shops objectAtIndex:indexPath.row]];
-        [dao saveContext];
+        [[SendTool sharedInstance] delete:shop];
         [shops removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -8,12 +8,8 @@
 #endif
 
 /** 
-
 @file
-
 @brief Simple library for providing SSS functionality.
-
-
 */
 
 /// Seed the random number generator.  MUST BE CALLED before using the library (unless on arc4random() system).

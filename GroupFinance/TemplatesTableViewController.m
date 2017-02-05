@@ -9,6 +9,7 @@
 #import "TemplatesTableViewController.h"
 #import "AddRecordViewController.h"
 #import "DaoManager.h"
+#import "SendTool.h"
 
 @interface TemplatesTableViewController ()
 
@@ -17,7 +18,6 @@
 @implementation TemplatesTableViewController {
     DaoManager *dao;
     NSMutableArray *templates;
-    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -26,7 +26,6 @@
     }
     [super viewDidLoad];
     dao = [[DaoManager alloc] init];
-    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,8 +81,7 @@
     }
     Template *template = [templates objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [dao.context deleteObject:template];
-        [dao saveContext];
+        [[SendTool sharedInstance] delete:template];
         [templates removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -8,6 +8,7 @@
 
 #import "AccountsTableViewController.h"
 #import "DaoManager.h"
+#import "SendTool.h"
 
 @interface AccountsTableViewController ()
 
@@ -17,7 +18,6 @@
     DaoManager *dao;
     NSMutableArray *accounts;
     Account *selectedAccount;
-    NSString *userId;
 }
 
 - (void)viewDidLoad {
@@ -25,8 +25,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [[DaoManager alloc] init];
-    userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    dao = [DaoManager sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -76,10 +75,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Account *account=[accounts objectAtIndex:indexPath.row];
+    Account *account = [accounts objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [dao.context deleteObject:account];
-        [dao saveContext];
+        [[SendTool sharedInstance] delete:account];
         [accounts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
