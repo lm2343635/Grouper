@@ -11,6 +11,8 @@
 		E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */; };
 		E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */; };
 		E4039EE01DE0730C00D39DDB /* GroupTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* GroupTool.m */; };
+		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
+		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
@@ -71,8 +73,6 @@
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
-		E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */; };
-		E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */; };
 		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
 		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
 		E4ADFD811DC84EFE009F3E37 /* SenderDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4ADFD801DC84EFE009F3E37 /* SenderDao.m */; };
@@ -123,6 +123,10 @@
 		E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
 		E4039EDE1DE0730C00D39DDB /* GroupTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTool.h; sourceTree = "<group>"; };
 		E4039EDF1DE0730C00D39DDB /* GroupTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTool.m; sourceTree = "<group>"; };
+		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
+		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
+		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E425D5741D28FD3C000324A3 /* QRScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanView.h; sourceTree = "<group>"; };
 		E425D5751D28FD3C000324A3 /* QRScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanView.m; sourceTree = "<group>"; };
 		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
@@ -243,10 +247,6 @@
 		E497059D1CDF22B20092B164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
-		E49E7CC81DC7343400E9E43A /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
-		E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
-		E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E49E7CD41DC7343400E9E43A /* Photo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataClass.h"; sourceTree = "<group>"; };
 		E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Photo+CoreDataClass.m"; sourceTree = "<group>"; };
 		E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Photo+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -600,10 +600,10 @@
 				E4BF18361E164232003340FB /* Receiver+CoreDataClass.m */,
 				E4BF18371E164232003340FB /* Receiver+CoreDataProperties.h */,
 				E4BF18381E164232003340FB /* Receiver+CoreDataProperties.m */,
-				E49E7CC81DC7343400E9E43A /* Record+CoreDataClass.h */,
-				E49E7CC91DC7343400E9E43A /* Record+CoreDataClass.m */,
-				E49E7CCA1DC7343400E9E43A /* Record+CoreDataProperties.h */,
-				E49E7CCB1DC7343400E9E43A /* Record+CoreDataProperties.m */,
+				E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */,
+				E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */,
+				E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */,
+				E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */,
 				E47EF80A1E0F9DD9006C4B3B /* Sender+CoreDataClass.h */,
 				E47EF80B1E0F9DD9006C4B3B /* Sender+CoreDataClass.m */,
 				E47EF80C1E0F9DD9006C4B3B /* Sender+CoreDataProperties.h */,
@@ -841,8 +841,8 @@
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
+				E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */,
 				E430E7621E2219B400CF9660 /* CommonTool.m in Sources */,
-				E49E7CE11DC7343400E9E43A /* Record+CoreDataProperties.m in Sources */,
 				E4BF183A1E164232003340FB /* Receiver+CoreDataProperties.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
@@ -875,7 +875,6 @@
 				E43DDB8D1E404F8A00C8BDAE /* MembersManager.m in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
 				E46516AD1E31F1F100A3E8E2 /* Shop+CoreDataProperties.m in Sources */,
-				E49E7CE01DC7343400E9E43A /* Record+CoreDataClass.m in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E46516AE1E31F1F100A3E8E2 /* Account+CoreDataClass.m in Sources */,
@@ -884,6 +883,7 @@
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
+				E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */,
 				E47EF80F1E0F9DD9006C4B3B /* Sender+CoreDataProperties.m in Sources */,
 				E47EF80E1E0F9DD9006C4B3B /* Sender+CoreDataClass.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,

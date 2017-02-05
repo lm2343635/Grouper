@@ -2,8 +2,8 @@
 //  Record+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by 李大爷的电脑 on 05/02/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "Record+CoreDataProperties.h"
@@ -14,7 +14,6 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Record"];
 }
 
-@dynamic creator;
 @dynamic money;
 @dynamic remark;
 @dynamic time;

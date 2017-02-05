@@ -11,6 +11,7 @@
 #import "SelectRecordItemTableViewController.h"
 #import "AlertTool.h"
 #import "DateTool.h"
+#import "SendTool.h"
 #import "DateSelectorView.h"
 
 @interface AddRecordViewController ()
@@ -19,7 +20,7 @@
 
 @implementation AddRecordViewController {
     DaoManager *dao;
-    
+    User *currentUser;
     NSUInteger selectItemType;
     BOOL saveRecordType;
     
@@ -33,6 +34,8 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
+    currentUser = [dao.userDao currentUser];
+    
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     saveRecordType = NO;
@@ -164,19 +167,16 @@
         photo = (Photo *)[dao getObjectById:pid];
     }
     
-    NSManagedObjectID *rid = [dao.recordDao saveWithMoney:money
-                                                andRemark:_remarkTextView.text
-                                                  andTime:_selectedTime
-                                        andClassification:_selectedClassification
-                                               andAccount:_selectedAccount
-                                                  andShop:_selectedShop
-                                                 andPhoto:photo];
-    if (DEBUG) {
-        NSLog(@"Create record with rid = %@", rid);
-    }
-    if (rid) {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    Record *record = [dao.recordDao saveWithMoney:money
+                                        andRemark:_remarkTextView.text
+                                          andTime:_selectedTime
+                                andClassification:_selectedClassification
+                                       andAccount:_selectedAccount
+                                          andShop:_selectedShop
+                                         andPhoto:photo
+                                          creator:currentUser.uid];
+    [[SendTool sharedInstance] update:record];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)selectClassification:(id)sender {
