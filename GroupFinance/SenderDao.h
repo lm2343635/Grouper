@@ -17,6 +17,10 @@
                        type:(NSString *)type
                 forReceiver:(NSString *)receiver;
 
-- (NSArray *)findResend;
+// Find all sender object
+- (NSArray *)findAll;
+
+// Find normal message sender object
+- (NSArray *)findNormal;
 
 @end

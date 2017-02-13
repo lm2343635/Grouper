@@ -11,7 +11,7 @@
 #import "SelectRecordItemTableViewController.h"
 #import "AlertTool.h"
 #import "DateTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 #import "DateSelectorView.h"
 
 @interface AddRecordViewController ()
@@ -175,7 +175,7 @@
                                           andShop:_selectedShop
                                          andPhoto:photo
                                           creator:currentUser.uid];
-    [[SendTool sharedInstance] update:record];
+    [[SendManager sharedInstance] update:record];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

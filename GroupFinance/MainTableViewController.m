@@ -9,6 +9,7 @@
 #import "MainTableViewController.h"
 #import "GroupTool.h"
 #import "InternetTool.h"
+#import "SendManager.h"
 #import "ReceiveTool.h"
 #import "DaoManager.h"
 #import "MembersManager.h"
@@ -294,9 +295,18 @@
                     [self dataSync];
                 }];
             }
+            // If client can get access to all untrusted server(therdhold is n),
+            // send a confirm message to unstrusted servers.
+            long now = (long)[[NSDate date] timeIntervalSince1970];
+            // If client sent control message before 3600s, send control message again
+            if (now - group.controlMessageSendTime > 1 * 3600) {
+                [[SendManager sharedInstance] confirm];
+                // Update control message sene time.
+                group.controlMessageSendTime = now;
+            }
+            
         }
     }
-
 }
 
 #pragma mark - Notification

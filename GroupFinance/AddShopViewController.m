@@ -9,7 +9,7 @@
 #import "AddShopViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface AddShopViewController ()
 
@@ -44,7 +44,7 @@
     // Save shop.
     Shop *shop = [dao.shopDao saveWithName:sname creator:currentUser.uid];
     // Send shares.
-    [[SendTool sharedInstance] update:shop];
+    [[SendManager sharedInstance] update:shop];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

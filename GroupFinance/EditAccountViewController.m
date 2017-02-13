@@ -8,7 +8,7 @@
 
 #import "EditAccountViewController.h"
 #import "AlertTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface EditAccountViewController ()
 
@@ -54,7 +54,7 @@
     [dao saveContext];
     
     // Send shares.
-    [[SendTool sharedInstance] update:_account];
+    [[SendManager sharedInstance] update:_account];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

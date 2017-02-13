@@ -6,13 +6,13 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "SendTool.h"
+#import "SendManager.h"
 #import "SecretSharing.h"
 #import "InternetTool.h"
 #import "GroupTool.h"
 #import <SYNCPropertyMapper/SYNCPropertyMapper.h>
 
-@implementation SendTool {
+@implementation SendManager {
     NSDictionary *managers;
     DaoManager *dao;
     // Sender object
@@ -20,10 +20,10 @@
 }
 
 + (instancetype)sharedInstance {
-    static SendTool *instance;
+    static SendManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[SendTool alloc] init];
+        instance = [[SendManager alloc] init];
     });
     return instance;
 }
@@ -76,6 +76,23 @@
                                         type:@"delete"
                                  forReceiver:@"*"];
     // At last, we send the delete message to multiple untrusted servers.
+    [self sendShares];
+}
+
+- (void)confirm {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSMutableArray *sendtimes = [[NSMutableArray alloc] init];
+    // Find all normal messages.
+    for (Sender *normal in [dao.senderDao findNormal]) {
+        [sendtimes addObject:normal.sendtime];
+    }
+    // Create control message by sendtimes.
+    sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:@{@"sendtimes": sendtimes}]
+                                     object: nil
+                                       type:@"confirm"
+                                forReceiver:@"*"];
     [self sendShares];
 }
 

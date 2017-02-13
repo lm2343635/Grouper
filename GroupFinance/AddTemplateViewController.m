@@ -9,7 +9,7 @@
 #import "AddTemplateViewController.h"
 #import "SelectRecordItemTableViewController.h"
 #import "AlertTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface AddTemplateViewController ()
 
@@ -120,7 +120,7 @@
                                              andAccount:_selectedAccount
                                                 andShop:_selectedShop
                                                 creator:currentUser.uid];
-    [[SendTool sharedInstance] update:template];
+    [[SendManager sharedInstance] update:template];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

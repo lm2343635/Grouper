@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DaoManager.h"
 
-@interface SendTool : NSObject
+@interface SendManager : NSObject
 
 @property (nonatomic) NSInteger sent;
 
@@ -20,5 +20,8 @@
 
 // Send delete message for a sync entity.
 - (void)delete:(SyncEntity *)object;
+
+// Send confirm message;
+- (void)confirm;
 
 @end

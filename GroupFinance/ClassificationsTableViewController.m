@@ -8,7 +8,7 @@
 
 #import "ClassificationsTableViewController.h"
 #import "DaoManager.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface ClassificationsTableViewController ()
 
@@ -78,7 +78,7 @@
     }
     Classification *classification = [classifications objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendTool sharedInstance] delete:classification];
+        [[SendManager sharedInstance] delete:classification];
         [classifications removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

@@ -9,7 +9,7 @@
 #import "AddAccountViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface AddAccountViewController ()
 
@@ -42,7 +42,7 @@
         return;
     }
     Account *account = [dao.accountDao saveWithName:aname creator:currentUser.uid];
-    [[SendTool sharedInstance] update:account];
+    [[SendManager sharedInstance] update:account];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

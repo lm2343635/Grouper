@@ -29,12 +29,19 @@
     return sender;
 }
 
-- (NSArray *)findResend {
+- (NSArray *)findNormal {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"resend=%@", [NSNumber numberWithBool:YES]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"object!=nil"];
     return [self findByPredicate:predicate withEntityName:SenderEntityName];
+}
+
+- (NSArray *)findAll {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findAllWithEntityName:SenderEntityName];
 }
 
 @end

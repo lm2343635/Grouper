@@ -8,7 +8,7 @@
 
 #import "EditClassificationViewController.h"
 #import "AlertTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface EditClassificationViewController ()
 
@@ -54,7 +54,7 @@
     [dao saveContext];
     
     // Send shares to untrusted servers.
-    [[SendTool sharedInstance] update:_classification];
+    [[SendManager sharedInstance] update:_classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

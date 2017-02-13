@@ -9,7 +9,7 @@
 #import "TemplatesTableViewController.h"
 #import "AddRecordViewController.h"
 #import "DaoManager.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface TemplatesTableViewController ()
 
@@ -30,7 +30,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    templates=[NSMutableArray arrayWithArray:[dao.templateDao findAll]];
+    templates = [NSMutableArray arrayWithArray:[dao.templateDao findAll]];
     [self.tableView reloadData];
 }
 
@@ -50,7 +50,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Template *template = [templates objectAtIndex:indexPath.row];
@@ -64,24 +64,24 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSUInteger viewControllersCount = self.navigationController.viewControllers.count;
     UIViewController *lastController = [self.navigationController.viewControllers objectAtIndex:viewControllersCount-2];
-    if([lastController isKindOfClass:AddRecordViewController.class]) {
+    if ([lastController isKindOfClass:AddRecordViewController.class]) {
         [lastController setValue:[templates objectAtIndex:indexPath.row] forKey:@"template"];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Template *template = [templates objectAtIndex:indexPath.row];
-    if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendTool sharedInstance] delete:template];
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [[SendManager sharedInstance] delete:template];
         [templates removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationAutomatic];

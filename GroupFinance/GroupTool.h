@@ -29,6 +29,8 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 
 @property (nonatomic) NSInteger initial;
 
+@property (nonatomic) NSInteger controlMessageSendTime;
+
 - (NSUInteger)addServerAddress:(NSString *)address withAccessKey:(NSString *)accessKey;
 
 + (instancetype)sharedInstance;

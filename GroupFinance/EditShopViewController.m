@@ -8,7 +8,7 @@
 
 #import "EditShopViewController.h"
 #import "AlertTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface EditShopViewController ()
 
@@ -54,7 +54,7 @@
     [dao saveContext];
     
     // Send shares to untrusted servers.
-    [[SendTool sharedInstance] update:_shop];
+    [[SendManager sharedInstance] update:_shop];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

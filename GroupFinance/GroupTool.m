@@ -151,4 +151,18 @@
     return _initial;
 }
 
+@synthesize controlMessageSendTime = _controlMessageSendTime;
+
+- (void)setControlMessageSendTime:(NSInteger)controlMessageSendTime {
+    _controlMessageSendTime = controlMessageSendTime;
+    [defaults setInteger:controlMessageSendTime forKey:NSStringFromSelector(@selector(controlMessageSendTime))];
+}
+
+- (NSInteger)controlMessageSendTime {
+    if (_controlMessageSendTime == 0) {
+        _controlMessageSendTime = [defaults integerForKey:NSStringFromSelector(@selector(controlMessageSendTime))];
+    }
+    return _controlMessageSendTime;
+}
+
 @end

@@ -17,7 +17,7 @@
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
 		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
-		E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendTool.m */; };
+		E42C58D91DCC53C4009A2596 /* SendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendManager.m */; };
 		E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */; };
 		E4305A4F1E36283D00010B52 /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */; };
 		E4305A511E36363000010B52 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4305A501E36363000010B52 /* ContentViewController.swift */; };
@@ -134,8 +134,8 @@
 		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
 		E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTool.swift; sourceTree = "<group>"; };
 		E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupFinance-Bridging-Header.h"; sourceTree = "<group>"; };
-		E42C58D71DCC53C4009A2596 /* SendTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendTool.h; sourceTree = "<group>"; };
-		E42C58D81DCC53C4009A2596 /* SendTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendTool.m; sourceTree = "<group>"; };
+		E42C58D71DCC53C4009A2596 /* SendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendManager.h; sourceTree = "<group>"; };
+		E42C58D81DCC53C4009A2596 /* SendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendManager.m; sourceTree = "<group>"; };
 		E4305A4A1E36283D00010B52 /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
 		E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
 		E4305A4C1E36283D00010B52 /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -519,23 +519,25 @@
 			children = (
 				E46D57671DB4D21900116C4E /* GLibFacade.c */,
 				E46D57681DB4D21900116C4E /* GLibFacade.h */,
+				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
+				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
+				E43DDB8B1E404F8A00C8BDAE /* MembersManager.h */,
+				E43DDB8C1E404F8A00C8BDAE /* MembersManager.m */,
 				E4923E7E1E31DEDB003C4183 /* Message.h */,
 				E4923E7F1E31DEDB003C4183 /* Message.m */,
 				E4BF182C1E163F3A003340FB /* ReceiveTool.h */,
 				E4BF182D1E163F3A003340FB /* ReceiveTool.m */,
 				E46D57701DB4D65800116C4E /* SecretSharing.h */,
 				E46D57711DB4D65800116C4E /* SecretSharing.m */,
-				E42C58D71DCC53C4009A2596 /* SendTool.h */,
-				E42C58D81DCC53C4009A2596 /* SendTool.m */,
+				E42C58D71DCC53C4009A2596 /* SendManager.h */,
+				E42C58D81DCC53C4009A2596 /* SendManager.m */,
+				E43DDB8E1E40510B00C8BDAE /* ServersManager.h */,
+				E43DDB8F1E40510B00C8BDAE /* ServersManager.m */,
 				E46D57691DB4D21900116C4E /* shamir.c */,
 				E46D576A1DB4D21900116C4E /* shamir.h */,
 				E46D576B1DB4D21900116C4E /* strtok.c */,
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
-				E43DDB8B1E404F8A00C8BDAE /* MembersManager.h */,
-				E43DDB8C1E404F8A00C8BDAE /* MembersManager.m */,
-				E43DDB8E1E40510B00C8BDAE /* ServersManager.h */,
-				E43DDB8F1E40510B00C8BDAE /* ServersManager.m */,
 			);
 			name = Synchronization;
 			sourceTree = "<group>";
@@ -568,8 +570,6 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
-				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
-				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
 				E446C0FF1DCF75E600EC5966 /* InternetResponse.h */,
 				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
 				E48DE06F1DCF660300A7A5DB /* InternetTool.h */,
@@ -878,7 +878,7 @@
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E46516AE1E31F1F100A3E8E2 /* Account+CoreDataClass.m in Sources */,
-				E42C58D91DCC53C4009A2596 /* SendTool.m in Sources */,
+				E42C58D91DCC53C4009A2596 /* SendManager.m in Sources */,
 				E4BF18391E164232003340FB /* Receiver+CoreDataClass.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,

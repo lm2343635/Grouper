@@ -8,7 +8,7 @@
 
 #import "AccountsTableViewController.h"
 #import "DaoManager.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface AccountsTableViewController ()
 
@@ -77,7 +77,7 @@
     }
     Account *account = [accounts objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendTool sharedInstance] delete:account];
+        [[SendManager sharedInstance] delete:account];
         [accounts removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

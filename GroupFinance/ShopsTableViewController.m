@@ -8,7 +8,7 @@
 
 #import "ShopsTableViewController.h"
 #import "DaoManager.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface ShopsTableViewController ()
 
@@ -76,7 +76,7 @@
     }
     Shop *shop = [shops objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendTool sharedInstance] delete:shop];
+        [[SendManager sharedInstance] delete:shop];
         [shops removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

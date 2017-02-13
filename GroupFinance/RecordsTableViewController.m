@@ -10,7 +10,7 @@
 #import "RecordsTableViewController.h"
 #import "DaoManager.h"
 #import "DateTool.h"
-#import "SendTool.h"
+#import "SendManager.h"
 
 @interface RecordsTableViewController ()
 
@@ -87,7 +87,7 @@
     }
     Record *record = [records objectAtIndex:indexPath.row];
     if(editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendTool sharedInstance] delete:record];
+        [[SendManager sharedInstance] delete:record];
         [records removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:YES];

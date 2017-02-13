@@ -10,6 +10,7 @@
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <AFNetworking/AFNetworking.h>
 #import "MCManager.h"
+
 @import DATAStack;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
