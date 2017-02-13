@@ -22,7 +22,10 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
+    //Register Remote Notification, support iOS version after 8.0
+    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
     group = [[GroupTool alloc] init];
     if (DEBUG) {
         NSLog(@"Number of group menbers is %ld", (long)group.members);
@@ -70,7 +73,13 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-        NSLog(@"Register remote notification success, token = %@", deviceToken);
+    }
+    NSString *token = [[[[deviceToken description]
+                          stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                         stringByReplacingOccurrencesOfString: @">" withString: @""]
+                        stringByReplacingOccurrencesOfString: @" " withString: @""];
+    if (DEBUG) {
+        NSLog(@"Device token from APNs server is %@", token);
     }
 }
 

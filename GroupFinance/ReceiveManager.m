@@ -6,14 +6,14 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "ReceiveTool.h"
+#import "ReceiveManager.h"
 #import "GroupTool.h"
 #import "DaoManager.h"
 #import "InternetTool.h"
 #import "SecretSharing.h"
 #import "GroupFinance-Swift.h"
 
-@implementation ReceiveTool {
+@implementation ReceiveManager {
     GroupTool *group;
     DaoManager *dao;
     NSDictionary *managers;
@@ -24,10 +24,10 @@
 }
 
 + (instancetype)sharedInstance {
-    static ReceiveTool *instance;
+    static ReceiveManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[ReceiveTool alloc] init];
+        instance = [[ReceiveManager alloc] init];
     });
     return instance;
 }

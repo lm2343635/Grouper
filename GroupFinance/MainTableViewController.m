@@ -10,7 +10,7 @@
 #import "GroupTool.h"
 #import "InternetTool.h"
 #import "SendManager.h"
-#import "ReceiveTool.h"
+#import "ReceiveManager.h"
 #import "DaoManager.h"
 #import "MembersManager.h"
 #import "GroupFinance-Swift.h"
@@ -262,7 +262,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [syncImageView startRotate:2 withClockwise:NO];
-    [[ReceiveTool sharedInstance] receiveWithCompletion:^{
+    [[ReceiveManager sharedInstance] receiveWithCompletion:^{
         [syncImageView stopRotate];
     }];
 }

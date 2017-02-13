@@ -10,7 +10,7 @@
 
 typedef void (^Completion)(void);
 
-@interface ReceiveTool : NSObject
+@interface ReceiveManager: NSObject
 
 @property (nonatomic) NSInteger received;
 
