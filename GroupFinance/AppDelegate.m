@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "DaoManager.h"
 #import "GroupTool.h"
+#import "DeviceTokenManager.h"
 
 @interface AppDelegate ()
 
@@ -16,6 +16,7 @@
 
 @implementation AppDelegate {
     GroupTool *group;
+    DeviceTokenManager *deviceTokenManager;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -26,7 +27,9 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    group = [[GroupTool alloc] init];
+    group = [GroupTool sharedInstance];
+    deviceTokenManager = [DeviceTokenManager sharedInstance];
+    
     if (DEBUG) {
         NSLog(@"Number of group menbers is %ld", (long)group.members);
         NSLog(@"Group id is %@, group name is %@, group owner is %@", group.groupId, group.groupName, group.owner);
@@ -81,6 +84,8 @@
     if (DEBUG) {
         NSLog(@"Device token from APNs server is %@", token);
     }
+    deviceTokenManager.deviceToken = token;
+    [deviceTokenManager sendDeviceToken];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

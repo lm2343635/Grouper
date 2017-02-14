@@ -10,25 +10,25 @@
 
 @implementation InternetResponse
 - (instancetype) initWithResponseObject:(id)responseObject {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     self = [super init];
-    if(self) {
+    if (self) {
         _data = [NSJSONSerialization JSONObjectWithData:responseObject
                                                 options:NSJSONReadingAllowFragments
                                                   error:nil];
     }
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Get Message from server: %@", self.data);
     }
     return self;
 }
 
 - (instancetype)initWithError:(NSError *)error {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-        NSLog(@"InternetResponse init with an error, error.code = %ld", error.code);
+        NSLog(@"InternetResponse init with an error, error.code = %ld", (long)error.code);
     }
     self = [super init];
     
@@ -41,8 +41,8 @@
     }
     
     if (DEBUG) {
-        NSLog(@"AFNetworkingOperationFailingURLResponseErrorKey: %@", error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey]);
-        NSLog(@"AFNetworkingOperationFailingURLResponseDataErrorKey: %@", [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding]);
+        NSLog(@"AFNetworkingOperationFailingURLResponseErrorKey:\n%@", error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey]);
+        NSLog(@"AFNetworkingOperationFailingURLResponseDataErrorKey:\n%@", [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding]);
     }
     if(self) {
         _data = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
@@ -54,24 +54,23 @@
 }
 
 - (BOOL)statusOK {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return [[_data valueForKey:@"status"] intValue] == 200;
 }
 
 - (id)getResponseResult {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return [_data valueForKey:@"result"];
 }
 
 - (int)errorCode {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    
     int erroCode = [[_data valueForKey:@"errorCode"] intValue];
     return erroCode;
 }

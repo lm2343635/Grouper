@@ -15,6 +15,9 @@
 @implementation SendManager {
     NSDictionary *managers;
     DaoManager *dao;
+    GroupTool *group;
+    User *currentUser;
+    
     // Sender object
     Sender *sender;
 }
@@ -36,6 +39,8 @@
     if (self) {
         dao = [DaoManager sharedInstance];
         managers = [InternetTool getSessionManagers];
+        group = [GroupTool sharedInstance];
+        currentUser = [dao.userDao currentUser];
     }
     return self;
 }
@@ -96,6 +101,47 @@
     [self sendShares];
 }
 
+#pragma mark - Key Value Observe
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                       context:(void *)context {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([keyPath isEqualToString:@"sent"]) {
+        if (self.sent == managers.count) {
+            [self removeObserver:self forKeyPath:@"sent"];
+            if (DEBUG) {
+                NSLog(@"%ld shares sent successfully in %@", (unsigned long)managers.count, [NSDate date]);
+            }
+            // Push remote notification to receiver if this message is a normal message.
+            if ([sender.type isEqualToString:@"update"]) {
+                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", currentUser.name, sender.object]
+                                          to:@"*"];
+            } else if ([sender.type isEqualToString:@"delete"]) {
+                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", currentUser.name, sender.object]
+                                          to:@"*"];
+
+            }
+        }
+    }
+}
+
+#pragma mark - Service
+// Create a json string from an object.
+- (NSString *)JSONStringFromObject:(NSObject *)object {
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:object
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:&error];
+    if (error) {
+        NSLog(@"Create json with error: %@", error.localizedDescription);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
 - (void)sendShares {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -141,36 +187,30 @@
     }
 }
 
-#pragma mark - Key Value Observe
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
+- (void)pushRemoteNotification:(NSString *)content to:(NSString *)reveiver {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if ([keyPath isEqualToString:@"sent"]) {
-        if (self.sent == managers.count) {
-            [self removeObserver:self forKeyPath:@"sent"];
-            if (DEBUG) {
-                NSLog(@"%ld shares sent successfully in %@", managers.count, [NSDate date]);
-            }
-        }
-    }
-}
+    NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+    [managers[address0] POST:[InternetTool createUrl:@"user/notify" withServerAddress:address0]
+                  parameters:@{
+                               @"content": content,
+                               @"receiver": reveiver
+                               }
+                    progress:nil
+                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                         if ([response statusOK]) {
 
-#pragma mark - Service
-// Create a json string from an object.
-- (NSString *)JSONStringFromObject:(NSObject *)object {
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:object
-                                                   options:NSJSONWritingPrettyPrinted
-                                                     error:&error];
-    if (error) {
-        NSLog(@"Create json with error: %@", error.localizedDescription);
-        return nil;
-    }
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                         }
+                     }
+                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                         InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                         switch ([response errorCode]) {
+                             default:
+                                 break;
+                         }
+                     }];
 }
 
 @end

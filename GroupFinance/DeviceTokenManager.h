@@ -10,4 +10,10 @@
 
 @interface DeviceTokenManager : NSObject
 
+@property (nonatomic, strong) NSString *deviceToken;
+
++ (instancetype)sharedInstance;
+
+- (void)sendDeviceToken;
+
 @end
