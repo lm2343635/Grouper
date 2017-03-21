@@ -14,8 +14,10 @@ typedef void (^Completion)(void);
 
 @property (nonatomic) NSInteger received;
 
+// Get single instance.
 + (instancetype)sharedInstance;
 
+// Receive message and do something in completion block.
 - (void)receiveWithCompletion:(Completion)completion;
 
 @end

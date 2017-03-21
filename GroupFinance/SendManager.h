@@ -13,6 +13,7 @@
 
 @property (nonatomic) NSInteger sent;
 
+// Get single instance.
 + (instancetype)sharedInstance;
 
 // Send update message for a sync entity.

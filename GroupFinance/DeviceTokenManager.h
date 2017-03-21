@@ -12,8 +12,10 @@
 
 @property (nonatomic, strong) NSString *deviceToken;
 
+// Get single instance.
 + (instancetype)sharedInstance;
 
+// Send device token from APNs server to untrusted server.
 - (void)sendDeviceToken;
 
 @end

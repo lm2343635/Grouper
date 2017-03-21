@@ -12,8 +12,10 @@
 
 typedef void (^MemberRefreshCompletion)(BOOL);
 
+// Get single instance.
 + (instancetype)sharedInstance;
 
+// Refresh member list.
 - (void)refreshMemberListWithCompletion:(MemberRefreshCompletion)completion;
 
 @end

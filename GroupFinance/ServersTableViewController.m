@@ -32,15 +32,15 @@
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
     user = [dao.userDao currentUser];
+    group = [GroupTool sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    group = [GroupTool sharedInstance];
     servers = group.servers;
-
+    
     switch (group.initial) {
         case NotInitial:
             _noServerLabel.hidden = NO;
