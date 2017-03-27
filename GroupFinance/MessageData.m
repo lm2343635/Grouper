@@ -7,7 +7,7 @@
 
 
 
-#import "Message.h"
+#import "MessageData.h"
 
 NSString *const kMessageContent = @"content";
 NSString *const kMessageMessageId = @"message_id";
@@ -17,11 +17,11 @@ NSString *const kMessageSendtime = @"sendtime";
 NSString *const kMessageSequence = @"sequence";
 NSString *const kMessageType = @"type";
 
-@interface Message ()
+@interface MessageData ()
 
 @end
 
-@implementation Message
+@implementation MessageData
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary sender:(NSString *)sender {
 	self = [super init];

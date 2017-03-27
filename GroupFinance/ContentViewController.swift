@@ -19,7 +19,7 @@ let symbols = ["{", "}", "[", "]", ":", ","]
 
 class ContentViewController: UIViewController {
 
-    var message: Message!
+    var message: MessageData!
     let prettyLabel = M80AttributedLabel()
     
     override func viewDidLoad() {

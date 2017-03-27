@@ -113,10 +113,10 @@
         return;
     }
     // Compare with local share id table, discard those downloaded.
-    NSArray *receivers = [dao.receiverDao findInShareIds:ids];
+    NSArray *shares = [dao.shareDao findInShareIds:ids];
     NSMutableArray *shareIds = [[NSMutableArray alloc] init];
     for (NSString *shareId in ids) {
-        if (![self shareId:shareId existInReceivers:receivers]) {
+        if (![self shareId:shareId existInShares:shares]) {
             [shareIds addObject:shareId];
         }
     }
@@ -152,9 +152,9 @@
                     }];
 }
 
-- (BOOL)shareId:(NSString *)shareId existInReceivers:(NSArray *)receivers {
-    for (Receiver *receiver in receivers) {
-        if ([receiver.shareId isEqualToString:shareId]) {
+- (BOOL)shareId:(NSString *)shareId existInShares:(NSArray *)shares {
+    for (Share *share in shares) {
+        if ([share.shareId isEqualToString:shareId]) {
             return YES;
         }
     }
@@ -194,7 +194,7 @@
             // Sync successfully, update receiver table.
             if ([sync syncWithMessage:message sender:[data valueForKey:@"sender"]]) {
                 for (NSString *shareId in shareIds) {
-                    [dao.receiverDao saveWithShareId:shareId];
+                    [dao.shareDao saveWithShareId:shareId];
                 }
             }
         }

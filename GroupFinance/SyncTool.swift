@@ -11,6 +11,7 @@ import DATAStack
 
 @objc class SyncTool: NSObject {
     
+    let dao = DaoManager.sharedInstance()
     var dataStack: DATAStack
     
     init(dataStack: DATAStack) {
@@ -22,7 +23,7 @@ import DATAStack
         if messageDictionary == nil {
             return false
         }
-        let message = Message(dictionary: messageDictionary, sender: sender)!
+        let message = MessageData(dictionary: messageDictionary, sender: sender)!
         let content = serializeJSON(message.content)
         if content == nil {
             return false
@@ -41,6 +42,11 @@ import DATAStack
             } catch _ {
                 return false
             }
+        case "confirm":
+            let sendtimes = content?["sendtimes"] as! [Any]
+//            let receivers = dao?.receiverDao.find(inSendtimes: sendtimes)
+//            print("sendtimes = \(sendtimes)")
+//            print("receivers = \(receivers)")
         default:
             return false
         }

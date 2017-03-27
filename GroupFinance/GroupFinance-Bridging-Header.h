@@ -6,5 +6,6 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "Message.h"
+#import "MessageData.h"
+#import "DaoManager.h"
 #import <M80AttributedLabel/M80AttributedLabel.h>

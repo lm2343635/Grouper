@@ -15,7 +15,7 @@
 #import "TemplateDao.h"
 #import "SenderDao.h"
 #import "UserDao.h"
-#import "ReceiverDao.h"
+#import "ShareDao.h"
 #import "AppDelegate.h"
 
 @interface DaoManager : NSObject
@@ -31,7 +31,7 @@
 @property (strong, nonatomic) TemplateDao *templateDao;
 @property (strong, nonatomic) SenderDao *senderDao;
 @property (strong, nonatomic) UserDao *userDao;
-@property (strong, nonatomic) ReceiverDao *receiverDao;
+@property (strong, nonatomic) ShareDao *shareDao;
 
 //Get single instance of DaoManager
 + (instancetype)sharedInstance;

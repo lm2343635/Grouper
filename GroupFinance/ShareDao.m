@@ -1,25 +1,24 @@
 //
-//  ReceiverDao.m
+//  ShareDao.m
 //  GroupFinance
 //
-//  Created by lidaye on 15/01/2017.
+//  Created by lidaye on 27/03/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "ReceiverDao.h"
+#import "ShareDao.h"
 
-@implementation ReceiverDao
+@implementation ShareDao
 
-- (Receiver *)saveWithShareId:(NSString *)shareId {
+- (Share *)saveWithShareId:(NSString *)shareId {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    Receiver *receiver = [NSEntityDescription insertNewObjectForEntityForName:ReceiverEntityName
+    Share *share = [NSEntityDescription insertNewObjectForEntityForName:ShareEntityName
                                                        inManagedObjectContext:self.context];
-    receiver.shareId = shareId;
-    receiver.receiveTime = [NSDate date];
+    share.shareId = shareId;
     [self saveContext];
-    return receiver;
+    return share;
 }
 
 - (NSArray *)findInShareIds:(NSArray *)shareIds {
@@ -27,21 +26,21 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     return [self findByPredicate:[NSPredicate predicateWithFormat:@"shareId IN %@", shareIds]
-                  withEntityName:ReceiverEntityName];
+                  withEntityName:ShareEntityName];
 }
 
 - (BOOL)deleteAll {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:ReceiverEntityName];
+    NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:ShareEntityName];
     NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchrequest];
     NSError *error = nil;
     [self.context.persistentStoreCoordinator executeRequest:deleteRequest
                                                 withContext:self.context
                                                       error:&error];
     if (error) {
-        NSLog(@"Delete all %@ with error: %@", ReceiverEntityName, error.localizedDescription);
+        NSLog(@"Delete all %@ with error: %@", ShareEntityName, error.localizedDescription);
         return NO;
     }
     return YES;

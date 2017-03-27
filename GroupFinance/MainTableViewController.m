@@ -16,7 +16,7 @@
 #import "GroupFinance-Swift.h"
 #import "CommonTool.h"
 #import "UIImageView+Extension.h"
-#import "Message.h"
+#import "MessageData.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface MainTableViewController ()
@@ -174,7 +174,7 @@
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
         }
     } else if (indexPath.section == 1) {
-        Message *message = [messages objectAtIndex:indexPath.row];
+        MessageData *message = [messages objectAtIndex:indexPath.row];
         
         User *user = [dao.userDao getByUserId:message.sender];
         cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"

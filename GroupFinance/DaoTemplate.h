@@ -16,7 +16,8 @@
 #import "Template+CoreDataClass.h"
 #import "Sender+CoreDataClass.h"
 #import "User+CoreDataClass.h"
-#import "Receiver+CoreDataClass.h"
+#import "Share+CoreDataClass.h"
+#import "Message+CoreDataClass.h"
 
 @interface DaoTemplate : NSObject
 

@@ -5,11 +5,9 @@
 //	Copyright © 2017. All rights reserved.
 //
 
-//	Model file Generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
-
 #import <UIKit/UIKit.h>
 
-@interface Message : NSObject
+@interface MessageData : NSObject
 
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *messageId;
