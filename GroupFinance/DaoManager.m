@@ -42,6 +42,7 @@
         _senderDao = [[SenderDao alloc] initWithManagedObjectContext:_context];
         _userDao = [[UserDao alloc] initWithManagedObjectContext:_context];
         _shareDao = [[ShareDao alloc] initWithManagedObjectContext:_context];
+        _messageDao = [[MessageDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
 }

@@ -93,6 +93,9 @@
     for (Sender *normal in [dao.senderDao findNormal]) {
         [sendtimes addObject:normal.sendtime];
     }
+    if (sendtimes.count == 0) {
+        return;
+    }
     // Create control message by sendtimes.
     sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:@{@"sendtimes": sendtimes}]
                                      object: nil

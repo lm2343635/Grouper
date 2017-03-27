@@ -6,8 +6,13 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "DaoTemplate.h"
+#import "MessageData.h"
 
-@interface MessageDao : NSObject
+#define MessageEntityName @"Message"
+
+@interface MessageDao : DaoTemplate
+
+- (Message *)saveWithMessageData:(MessageData *)messageData;
 
 @end

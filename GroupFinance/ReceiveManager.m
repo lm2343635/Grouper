@@ -174,11 +174,13 @@
         NSMutableArray *shares = [[NSMutableArray alloc] init];
         NSMutableArray *shareIds = [[NSMutableArray alloc] init];
         NSObject *data = [content valueForKey:@"data"];
-        NSString *mid = [data valueForKey:@"mid"];
+        // Get messageId
+        NSString *messageId = [data valueForKey:@"mid"];
         [shares addObject:[data valueForKey:@"share"]];
         [shareIds addObject:[content valueForKey:@"id"]];
+        // Find other shares with same messageId.
         for (int index = 1; index < contentsGroup.count; index++) {
-            NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:mid];
+            NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:messageId];
             [shares addObject:[[pairedContent valueForKey:@"data"] valueForKey:@"share"]];
             // If got enough shares, only add share id.
             if (shares.count >= group.threshold) {
@@ -187,29 +189,54 @@
         }
         // Only getting more than k(threshold) shares, Grouper can recover and sync to persistent store.
         if (shares.count >= group.threshold) {
-            NSString *message = [SecretSharing recoverShareWith:shares];
+            NSString *messageString = [SecretSharing recoverShareWith:shares];
             if (DEBUG) {
-                NSLog(@"Message is recovered at %@\n%@", [NSDate date], message);
+                NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
             }
-            // Sync successfully, update receiver table.
-            if ([sync syncWithMessage:message sender:[data valueForKey:@"sender"]]) {
-                for (NSString *shareId in shareIds) {
-                    [dao.shareDao saveWithShareId:shareId];
-                }
+            [self handleMessage:messageString withSender:[data valueForKey:@"sender"]];
+            // Save share id in Share entity.
+            for (NSString *shareId in shareIds) {
+                [dao.shareDao saveWithShareId:shareId];
             }
         }
         syncCompletion();
     }
 }
 
-- (NSObject *)pushPairedContentFrom:(NSUInteger)index withMessageId:(NSString *)mid {
+- (void)handleMessage:(NSString *)messageString withSender:(NSString *)sender {
+    // Transfer JSON string to dictionary.
+    NSError *error = nil;
+    NSDictionary *messageObject = [NSJSONSerialization JSONObjectWithData:[messageString dataUsingEncoding:NSUTF8StringEncoding]
+                                                              options:NSJSONReadingMutableContainers
+                                                                error:&error];
+    if (error) {
+        NSLog(@"Error serialize message %@", error.localizedDescription);
+    }
+    MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject sender:sender];
+    // If message contains object related info, use SyncTool to sync it to persistent store.
+    if ([messageData.type isEqualToString:@"update"] ||
+        [messageData.type isEqualToString:@"delete"]) {
+        // If sync successfully, message data.
+        if ([sync syncWithMessageData: messageData]) {
+            // Save message data in Message eneity.
+            [dao.messageDao saveWithMessageData:messageData];
+
+        }
+    } else if ([messageData.type isEqualToString:@"confirm"]) {
+        
+    } else if ([messageData.type isEqualToString:@"resend"]) {
+        
+    }
+}
+
+- (NSObject *)pushPairedContentFrom:(NSUInteger)index withMessageId:(NSString *)messageId {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSMutableArray *contents = [contentsGroup objectAtIndex:index];
     for (NSObject *content in contents) {
         NSObject *data = [content valueForKey:@"data"];
-        if ([mid isEqualToString:[data valueForKey:@"mid"]]) {
+        if ([messageId isEqualToString:[data valueForKey:@"mid"]]) {
             return content;
         }
     }

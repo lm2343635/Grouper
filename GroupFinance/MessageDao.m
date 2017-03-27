@@ -10,4 +10,16 @@
 
 @implementation MessageDao
 
+- (Message *)saveWithMessageData:(MessageData *)messageData {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    Message *message = [NSEntityDescription insertNewObjectForEntityForName:MessageEntityName inManagedObjectContext:self.context];
+    message.messageId = messageData.messageId;
+    message.sendtime = [NSNumber numberWithLongLong:messageData.sendtime];
+    [self saveContext];
+    return message;
+}
+
+
 @end

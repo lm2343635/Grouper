@@ -14,7 +14,7 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Message"];
 }
 
-@dynamic mid;
+@dynamic messageId;
 @dynamic sendtime;
 
 @end

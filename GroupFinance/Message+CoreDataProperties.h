@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSFetchRequest<Message *> *)fetchRequest;
 
-@property (nullable, nonatomic, copy) NSString *mid;
+@property (nullable, nonatomic, copy) NSString *messageId;
 @property (nullable, nonatomic, copy) NSNumber *sendtime;
 
 @end

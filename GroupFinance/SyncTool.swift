@@ -18,12 +18,7 @@ import DATAStack
         self.dataStack = dataStack
     }
     
-    public func syncWithMessage(_ messageString:String, sender: String) -> Bool {
-        let messageDictionary = serializeJSON(messageString)
-        if messageDictionary == nil {
-            return false
-        }
-        let message = MessageData(dictionary: messageDictionary, sender: sender)!
+    public func syncWithMessageData(_ message:MessageData) -> Bool {
         let content = serializeJSON(message.content)
         if content == nil {
             return false
@@ -42,11 +37,6 @@ import DATAStack
             } catch _ {
                 return false
             }
-        case "confirm":
-            let sendtimes = content?["sendtimes"] as! [Any]
-//            let receivers = dao?.receiverDao.find(inSendtimes: sendtimes)
-//            print("sendtimes = \(sendtimes)")
-//            print("receivers = \(receivers)")
         default:
             return false
         }
