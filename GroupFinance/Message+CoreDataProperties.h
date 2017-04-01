@@ -2,7 +2,7 @@
 //  Message+CoreDataProperties.h
 //  GroupFinance
 //
-//  Created by lidaye on 27/03/2017.
+//  Created by lidaye on 01/04/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -17,6 +17,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *messageId;
 @property (nullable, nonatomic, copy) NSNumber *sendtime;
+@property (nullable, nonatomic, copy) NSString *objectId;
+@property (nullable, nonatomic, copy) NSString *content;
+@property (nullable, nonatomic, copy) NSString *object;
+@property (nullable, nonatomic, copy) NSString *type;
+@property (nullable, nonatomic, copy) NSString *receiver;
+@property (nullable, nonatomic, copy) NSString *sender;
 
 @end
 

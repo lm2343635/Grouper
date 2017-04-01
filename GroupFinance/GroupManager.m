@@ -6,12 +6,12 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "MembersManager.h"
+#import "GroupManager.h"
 #import "GroupTool.h"
 #import "DaoManager.h"
 #import "InternetTool.h"
 
-@implementation MembersManager {
+@implementation GroupManager {
     GroupTool *group;
     DaoManager *dao;
     NSDictionary *managers;
@@ -19,10 +19,10 @@
 }
 
 + (instancetype)sharedInstance {
-    static MembersManager *instance;
+    static GroupManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[MembersManager alloc] init];
+        instance = [[GroupManager alloc] init];
     });
     return instance;
 }
@@ -57,10 +57,10 @@
                             NSObject *result = [response getResponseResult];
                             NSArray *users = [result valueForKey:@"users"];
                             for (NSObject *user in users) {
-                                if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
+                                if ([currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
                                     continue;
                                 }
-                                [dao.userDao saveOrUpdateWithJSONObject:user fromUntrustedServer:YES];
+                                [dao.userDao saveOrUpdate:user];
                             }
                             
                             group.members = users.count;

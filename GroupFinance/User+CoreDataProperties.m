@@ -2,8 +2,8 @@
 //  User+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 25/12/2016.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 01/04/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
 #import "User+CoreDataProperties.h"
@@ -19,6 +19,6 @@
 @dynamic name;
 @dynamic picture;
 @dynamic pictureUrl;
-@dynamic uid;
+@dynamic userId;
 
 @end

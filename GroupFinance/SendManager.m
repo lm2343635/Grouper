@@ -17,9 +17,7 @@
     DaoManager *dao;
     GroupTool *group;
     User *currentUser;
-    
-    // Sender object
-    Sender *sender;
+    Message *message;
 }
 
 + (instancetype)sharedInstance {
@@ -60,10 +58,12 @@
     // Transfer sync entity to dictionary.
     NSDictionary *dictionary = [object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     // Create update message and save to sender entity.
-    sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:dictionary]
-                                      object: NSStringFromClass(object.class)
-                                        type:@"update"
-                                 forReceiver:@"*"];
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
+                                   objectName:NSStringFromClass(object.class)
+                                     objectId:object.remoteID
+                                         type:@"update"
+                                         from:currentUser.userId
+                                           to:@"*"];
     // At last, we send the update message to multiple untrusted servers.
     [self sendShares];
 }
@@ -76,10 +76,12 @@
     [dao.context deleteObject:object];
     // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
     // Then, we create a delete message and save to sender entity.
-    sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]
-                                      object: NSStringFromClass(object.class)
-                                        type:@"delete"
-                                 forReceiver:@"*"];
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]
+                                   objectName:NSStringFromClass(object.class)
+                                     objectId:object.remoteID
+                                         type:@"delete"
+                                         from:currentUser.userId
+                                           to:@"*"];
     // At last, we send the delete message to multiple untrusted servers.
     [self sendShares];
 }
@@ -90,17 +92,19 @@
     }
     NSMutableArray *sendtimes = [[NSMutableArray alloc] init];
     // Find all normal messages.
-    for (Sender *normal in [dao.senderDao findNormal]) {
+    for (Message *normal in [dao.messageDao findNormal]) {
         [sendtimes addObject:normal.sendtime];
     }
     if (sendtimes.count == 0) {
         return;
     }
     // Create control message by sendtimes.
-    sender = [dao.senderDao saveWithContent:[self JSONStringFromObject:@{@"sendtimes": sendtimes}]
-                                     object: nil
-                                       type:@"confirm"
-                                forReceiver:@"*"];
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sendtimes": sendtimes}]
+                                   objectName:nil
+                                     objectId:nil
+                                         type:@"confirm"
+                                         from:currentUser.userId
+                                           to:@"*"];
     [self sendShares];
 }
 
@@ -119,11 +123,11 @@
                 NSLog(@"%ld shares sent successfully in %@", (unsigned long)managers.count, [NSDate date]);
             }
             // Push remote notification to receiver if this message is a normal message.
-            if ([sender.type isEqualToString:@"update"]) {
-                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", currentUser.name, sender.object]
+            if ([message.type isEqualToString:@"update"]) {
+                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", currentUser.name, message.object]
                                           to:@"*"];
-            } else if ([sender.type isEqualToString:@"delete"]) {
-                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", currentUser.name, sender.object]
+            } else if ([message.type isEqualToString:@"delete"]) {
+                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", currentUser.name, message.object]
                                           to:@"*"];
 
             }
@@ -150,7 +154,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Creat json string
-    NSString *json = [self JSONStringFromObject:[sender hyp_dictionary]];
+    NSString *json = [self JSONStringFromObject:[message hyp_dictionary]];
     if (DEBUG) {
         NSLog(@"Send message: %@", json);
     }
@@ -167,8 +171,8 @@
         [managers[address] POST:[InternetTool createUrl:@"transfer/put" withServerAddress:address]
                      parameters:@{
                                   @"share": shares[address],
-                                  @"receiver": @"",
-                                  @"mid": sender.messageId
+                                  @"receiver": message.receiver,
+                                  @"messageId": message.messageId
                                   }
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

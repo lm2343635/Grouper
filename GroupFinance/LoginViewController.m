@@ -50,7 +50,7 @@
     _loginButton.hidden = YES;
     
     [defaults setObject:result.token.tokenString forKey:@"token"];
-    [defaults setObject:result.token.userID forKey:@"uid"];
+    [defaults setObject:result.token.userID forKey:@"userId"];
 
     FBSDKGraphRequest *request = [[FBSDKGraphRequest alloc] initWithGraphPath:result.token.userID
                                                                    parameters:@{
@@ -62,7 +62,7 @@
             NSLog(@"Get facebook user info: %@", result);
         }
         //Save user info from facebook.
-        [dao.userDao saveOrUpdateWithJSONObject:result fromUntrustedServer:NO];
+        [dao.userDao saveFromFacebook:result];
         [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
     }];
 }

@@ -13,6 +13,21 @@
 
 @interface MessageDao : DaoTemplate
 
+// Create a new messsage by the device itself.
+- (Message *)saveWithContent:(NSString *)content
+                  objectName:(NSString *)objectName
+                    objectId:(NSString *)objectId
+                        type:(NSString *)type
+                        from:(NSString *)sender
+                          to:(NSString *)receiver;
+
+// Save a existed message from other devices.
 - (Message *)saveWithMessageData:(MessageData *)messageData;
+
+// Find all message.
+- (NSArray *)findAll;
+
+// Find normal message sender object.
+- (NSArray *)findNormal;
 
 @end

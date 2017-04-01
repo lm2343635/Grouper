@@ -14,7 +14,6 @@
 #import "Record+CoreDataClass.h"
 #import "Photo+CoreDataClass.h"
 #import "Template+CoreDataClass.h"
-#import "Sender+CoreDataClass.h"
 #import "User+CoreDataClass.h"
 #import "Share+CoreDataClass.h"
 #import "Message+CoreDataClass.h"
@@ -25,25 +24,26 @@
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context;
 
+// Save changes to persistent store.
 - (void)saveContext;
 
-//通过谓词和实体名称查询一个托管对象
+// Find a persistent object by prodicate and entity name.
 - (NSManagedObject *)getByPredicate:(NSPredicate *)predicate
                     withEntityName:(NSString *)entityName;
 
-//通过谓词、排序规则和实体名称查询一个托管对象
+// Find a persistent object by prodicate, sort descriptor and entity name.
 - (NSManagedObject *)getByPredicate:(NSPredicate *)predicate
                     withEntityName:(NSString *)entityName
                            orderBy:(NSSortDescriptor *)sortDescriptor;
 
-//查询所有托管对象
+// Find all persistent objects by entity name.
 - (NSArray *)findAllWithEntityName:(NSString *)entityName;
 
-//通过谓词和实体名称查询一个托管对象数组
+// Find persistent objects by prodicate and entity name.
 - (NSArray *)findByPredicate:(NSPredicate *)predicate
              withEntityName:(NSString *)entityName;
 
-//通过谓词、排序规则和实体名称查询一个托管对象数组
+// Find persistent objects by prodicate, sort descriptor and entity name.
 - (NSArray *)findByPredicate:(NSPredicate *)predicate
              withEntityName:(NSString *)entityName
                     orderBy:(NSSortDescriptor *)sortDescriptor;

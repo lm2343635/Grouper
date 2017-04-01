@@ -10,7 +10,7 @@
 #import "DaoManager.h"
 #import "GroupTool.h"
 #import "InternetTool.h"
-#import "MembersManager.h"
+#import "GroupManager.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface MembersTableViewController ()
@@ -20,7 +20,7 @@
 @implementation MembersTableViewController {
     DaoManager * dao;
     GroupTool *group;
-    MembersManager *membersManager;
+    GroupManager *groupManager;
     
     NSArray *members;
     User *owner;
@@ -36,11 +36,11 @@
     [super viewDidLoad];
     group = [GroupTool sharedInstance];
     dao = [DaoManager sharedInstance];
-    membersManager = [MembersManager sharedInstance];
+    groupManager = [GroupManager sharedInstance];
     currentUser = [dao.userDao currentUser];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [membersManager refreshMemberListWithCompletion:^(BOOL success) {
+        [groupManager refreshMemberListWithCompletion:^(BOOL success) {
             [self.tableView.mj_header endRefreshing];
             if (success) {
                 if (group.members > 0) {

@@ -51,7 +51,7 @@
     }
     
     //Set root view controller.
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"uid"] == nil) {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] == nil) {
         [self setRootViewControllerWithIdentifer:@"loginViewController"];
     } else {
         [self setRootViewControllerWithIdentifer:@"mainTabBarController"];

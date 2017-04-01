@@ -57,7 +57,7 @@
 
     [manager POST:[NSString stringWithFormat:@"http://%@/group/restore", _addressTextField.text]
        parameters:@{
-                    @"uid": currentUser.uid,
+                    @"uid": currentUser.userId,
                     @"accesskey": _accessKeyTextField.text
                     }
          progress:nil

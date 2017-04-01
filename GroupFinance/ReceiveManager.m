@@ -175,7 +175,7 @@
         NSMutableArray *shareIds = [[NSMutableArray alloc] init];
         NSObject *data = [content valueForKey:@"data"];
         // Get messageId
-        NSString *messageId = [data valueForKey:@"mid"];
+        NSString *messageId = [data valueForKey:@"messageId"];
         [shares addObject:[data valueForKey:@"share"]];
         [shareIds addObject:[content valueForKey:@"id"]];
         // Find other shares with same messageId.
@@ -236,7 +236,7 @@
     NSMutableArray *contents = [contentsGroup objectAtIndex:index];
     for (NSObject *content in contents) {
         NSObject *data = [content valueForKey:@"data"];
-        if ([messageId isEqualToString:[data valueForKey:@"mid"]]) {
+        if ([messageId isEqualToString:[data valueForKey:@"messageId"]]) {
             return content;
         }
     }

@@ -49,7 +49,7 @@
     }
     // Update classification.
     _classification.cname = cname;
-    _classification.updater = currentUser.uid;
+    _classification.updater = currentUser.userId;
     _classification.updateAt = [NSDate date];
     [dao saveContext];
     

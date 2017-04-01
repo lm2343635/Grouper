@@ -12,7 +12,11 @@
 
 @interface UserDao : DaoTemplate
 
-- (User *)saveOrUpdateWithJSONObject:(NSObject *)object fromUntrustedServer:(BOOL)source;
+// Save user info from facebook.
+- (User *)saveFromFacebook:(id)object;
+
+// Save other user's info from ustrusted servers.
+- (User *)saveOrUpdate:(NSObject *)object;
 
 - (User *)getByUserId:(NSString *)userId;
 

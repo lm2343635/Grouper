@@ -2,7 +2,7 @@
 //  Message+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 27/03/2017.
+//  Created by lidaye on 01/04/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -16,5 +16,11 @@
 
 @dynamic messageId;
 @dynamic sendtime;
+@dynamic objectId;
+@dynamic content;
+@dynamic object;
+@dynamic type;
+@dynamic receiver;
+@dynamic sender;
 
 @end

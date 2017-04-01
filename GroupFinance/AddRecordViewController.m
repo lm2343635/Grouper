@@ -174,7 +174,7 @@
                                        andAccount:_selectedAccount
                                           andShop:_selectedShop
                                          andPhoto:photo
-                                          creator:currentUser.uid];
+                                          creator:currentUser.userId];
     [[SendManager sharedInstance] update:record];
     [self.navigationController popViewControllerAnimated:YES];
 }

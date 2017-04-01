@@ -214,9 +214,10 @@
     
     //Send owner information
     for (NSString *address in managers.allKeys) {
+
         [managers[address] POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
                      parameters:@{
-                                  @"uid": user.uid,
+                                  @"userId": user.userId,
                                   @"name": user.name,
                                   @"email": user.email,
                                   @"gender": user.gender,
@@ -342,7 +343,7 @@
             //Set threshold, owner and update number of group memebers
             group.serverCount = group.servers.allKeys.count;
             group.threshold = _thresholdTextField.text.integerValue;
-            group.owner = user.uid;
+            group.owner = user.userId;
             group.members ++;
             //Hide initial group button and add server bar button
             _initialGroupButton.hidden = YES;

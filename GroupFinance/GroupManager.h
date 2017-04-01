@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MembersManager : NSObject
+@interface GroupManager : NSObject
 
 typedef void (^MemberRefreshCompletion)(BOOL);
 

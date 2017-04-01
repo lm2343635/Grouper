@@ -12,7 +12,7 @@
 #import "SendManager.h"
 #import "ReceiveManager.h"
 #import "DaoManager.h"
-#import "MembersManager.h"
+#import "GroupManager.h"
 #import "GroupFinance-Swift.h"
 #import "CommonTool.h"
 #import "UIImageView+Extension.h"
@@ -26,7 +26,7 @@
 @implementation MainTableViewController {
     GroupTool *group;
     DaoManager *dao;
-    MembersManager *membersManager;
+    GroupManager *groupManager;
     NSDictionary *managers;
     
     NSDateFormatter *dateFormatter;
@@ -49,7 +49,7 @@
     group = [GroupTool sharedInstance];
     dao = [DaoManager sharedInstance];
     managers = [InternetTool getSessionManagers];
-    membersManager = [MembersManager sharedInstance];
+    groupManager = [GroupManager sharedInstance];
     
     dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterMediumStyle;
@@ -291,7 +291,7 @@
                     NSLog(@"Accessed %d servers, call sync method.", accessedServers);
                 }
                 // Refresh members list before data sync
-                [membersManager refreshMemberListWithCompletion:^(BOOL success) {
+                [groupManager refreshMemberListWithCompletion:^(BOOL success) {
                     [self dataSync];
                 }];
             }

@@ -41,7 +41,7 @@
     dao = [DaoManager sharedInstance];
     currentUser = [dao.userDao currentUser];
 
-    isOwner = [group.owner isEqualToString:currentUser.uid];
+    isOwner = [group.owner isEqualToString:currentUser.userId];
     
     _delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [_delegate.mcManager setupPeerAndSessionWithDisplayName:currentUser.name];
@@ -181,7 +181,7 @@
         [self sendMessage:@{
                             @"task": @"sendUserInfo",
                             @"userInfo": @{
-                                        @"uid": currentUser.uid,
+                                        @"userId": currentUser.userId,
                                         @"email": currentUser.email,
                                         @"name": currentUser.name,
                                         @"gender": currentUser.gender,
@@ -273,10 +273,10 @@
                                 NSObject *result = [response getResponseResult];
                                 NSArray *users = [result valueForKey:@"users"];
                                 for(NSObject *user in users) {
-                                    if ([currentUser.uid isEqualToString:[user valueForKey:@"id"]]) {
+                                    if ([currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
                                         continue;
                                     }
-                                    [dao.userDao saveOrUpdateWithJSONObject:user fromUntrustedServer:YES];
+                                    [dao.userDao saveOrUpdate:user];
                                 }
                             }
                         }
