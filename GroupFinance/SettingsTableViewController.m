@@ -10,6 +10,7 @@
 #import "GroupTool.h"
 #import "AlertTool.h"
 #import "DaoManager.h"
+#import "SendManager.h"
 
 @interface SettingsTableViewController ()
 
@@ -18,7 +19,7 @@
 @implementation SettingsTableViewController {
     GroupTool *group;
     DaoManager *dao;
-    
+    SendManager *send;
     UIAlertController *clearAlertController;
 }
 
@@ -26,7 +27,7 @@
     [super viewDidLoad];
     group = [GroupTool sharedInstance];
     dao = [DaoManager sharedInstance];
-    
+    send = [SendManager sharedInstance];
     [self initClearAlertController];
 }
 
@@ -91,9 +92,25 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSLog(@"indexPath.section == %ld && indexPath.row == %ld", (long)indexPath.section, (long)indexPath.row);
-    if (indexPath.section == 2 && indexPath.row == 1) {
-        [self presentViewController:clearAlertController animated:YES completion:nil];
+    switch (indexPath.section) {
+        case 2:
+            switch (indexPath.row) {
+                case 1:
+                    [self presentViewController:clearAlertController animated:YES completion:nil];
+                    break;
+                case 2:
+                    [send confirm];
+                    [AlertTool showAlertWithTitle:@"Tip"
+                                       andContent:@"Confirm message has been sent."
+                                 inViewController:self];
+                    break;
+                default:
+                    break;
+            }
+            break;
+            
+        default:
+            break;
     }
 }
 

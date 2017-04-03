@@ -27,7 +27,10 @@
 // Find all message.
 - (NSArray *)findAll;
 
-// Find normal message sender object.
+// Find all normal message.
 - (NSArray *)findNormal;
+
+// Find normal message sent by a sender(userId).
+- (NSArray *)findNormalWithSender:(NSString *)sender;
 
 @end

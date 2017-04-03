@@ -73,7 +73,7 @@
         receiverAvatarImageView.image = [UIImage imageWithData:sender.picture];
         receiverNameLabel.text = message.receiver;
     }
-    infoLabel.text = [NSString stringWithFormat:@"Send at %@ | %@ | %@",
+    infoLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@",
                       [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime.longLongValue / 1000.0]],
                       message.type, message.object];
     return cell;

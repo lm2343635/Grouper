@@ -56,8 +56,16 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"object!=nil"];
-    return [self findByPredicate:predicate withEntityName:MessageEntityName];
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"object!=nil"]
+                  withEntityName:MessageEntityName];
+}
+
+- (NSArray *)findNormalWithSender:(NSString *)sender {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"object!=nil and sender=%@", sender]
+                  withEntityName:MessageEntityName];
 }
 
 - (NSArray *)findAll {

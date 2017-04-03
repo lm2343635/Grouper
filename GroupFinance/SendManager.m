@@ -91,8 +91,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSMutableArray *sendtimes = [[NSMutableArray alloc] init];
-    // Find all normal messages.
-    for (Message *normal in [dao.messageDao findNormal]) {
+    // Find normal messages sent by current user.
+    for (Message *normal in [dao.messageDao findNormalWithSender:currentUser.userId]) {
         [sendtimes addObject:normal.sendtime];
     }
     if (sendtimes.count == 0) {

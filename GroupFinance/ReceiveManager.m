@@ -205,13 +205,8 @@
 
 - (void)handleMessage:(NSString *)messageString {
     // Transfer JSON string to dictionary.
-    NSError *error = nil;
-    NSDictionary *messageObject = [NSJSONSerialization JSONObjectWithData:[messageString dataUsingEncoding:NSUTF8StringEncoding]
-                                                              options:NSJSONReadingMutableContainers
-                                                                error:&error];
-    if (error) {
-        NSLog(@"Error serialize message %@", error.localizedDescription);
-    }
+    NSDictionary *messageObject =[self parseJSONString:messageString];
+    // Create message data object.
     MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
     // If message contains object related info, use SyncTool to sync it to persistent store.
     if ([messageData.type isEqualToString:@"update"] ||
@@ -222,7 +217,9 @@
             [dao.messageDao saveWithMessageData:messageData];
         }
     } else if ([messageData.type isEqualToString:@"confirm"]) {
-        
+        NSDictionary *content = [self parseJSONString:messageData.content];
+        NSArray *sendtimes = [content valueForKey:@"sendtimes"];
+
     } else if ([messageData.type isEqualToString:@"resend"]) {
         
     }
@@ -240,6 +237,18 @@
         }
     }
     return nil;
+}
+
+- (NSDictionary *)parseJSONString:(NSString *)string {
+    NSError *error = nil;
+    NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
+                                                               options:NSJSONReadingMutableContainers
+                                                                 error:&error];
+    if (error) {
+        NSLog(@"Error serialize message %@", error.localizedDescription);
+        return nil;
+    }
+    return dictionary;
 }
 
 #pragma mark - Key Value Observe
