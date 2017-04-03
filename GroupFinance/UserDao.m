@@ -70,4 +70,13 @@
                          orderBy:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO]];
 }
 
+- (NSArray *)findAll {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:nil
+                  withEntityName:UserEntityName
+                         orderBy:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO]];
+}
+
 @end

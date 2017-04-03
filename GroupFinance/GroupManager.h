@@ -10,6 +10,9 @@
 
 @interface GroupManager : NSObject
 
+@property (nonatomic, strong) NSMutableArray *members;
+@property (nonatomic, strong) NSMutableDictionary *membersDict;
+
 typedef void (^MemberRefreshCompletion)(BOOL);
 
 // Get single instance.

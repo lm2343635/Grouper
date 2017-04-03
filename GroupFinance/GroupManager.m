@@ -34,6 +34,7 @@
         group = [GroupTool sharedInstance];
         dao = [DaoManager sharedInstance];
         currentUser = [dao.userDao currentUser];
+        [self updateMember];
     }
     return self;
 }
@@ -62,8 +63,10 @@
                                 }
                                 [dao.userDao saveOrUpdate:user];
                             }
-                            
+                            // Update number of group members.
                             group.members = users.count;
+                            // Update group members
+                            [self updateMember];
                             completion(YES);
                         }
                     }
@@ -79,6 +82,17 @@
                         }
                     }];
     
+}
+
+- (void)updateMember {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    _members = [NSMutableArray arrayWithArray:[dao.userDao findAll]];
+    _membersDict = [[NSMutableDictionary alloc] init];
+    for (User *member in _members) {
+        [_membersDict setObject:member forKey:member.userId];
+    }
 }
 
 @end

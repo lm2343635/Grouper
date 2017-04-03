@@ -51,6 +51,7 @@
     managers = [InternetTool getSessionManagers];
     groupManager = [GroupManager sharedInstance];
     
+    // Init date formatter.
     dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;

@@ -22,6 +22,10 @@
 
 - (User *)currentUser;
 
+// Find all members except owner.
 - (NSArray *)findMembersExceptOwner:(NSString *)ownerId;
+
+// Find all members.
+- (NSArray *)findAll;
 
 @end

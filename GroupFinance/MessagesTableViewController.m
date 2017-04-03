@@ -8,6 +8,7 @@
 
 #import "MessagesTableViewController.h"
 #import "DaoManager.h"
+#import "GroupManager.h"
 
 @interface MessagesTableViewController ()
 
@@ -16,6 +17,8 @@
 @implementation MessagesTableViewController {
     DaoManager *dao;
     NSMutableArray *messages;
+    GroupManager *group;
+    NSDateFormatter *dateFormatter;
 }
 
 - (void)viewDidLoad {
@@ -25,6 +28,12 @@
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
     messages = [NSMutableArray arrayWithArray:[dao.messageDao findNormal]];
+    group = [GroupManager sharedInstance];
+    
+    // Init date formatter.
+    dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    dateFormatter.timeStyle = NSDateFormatterShortStyle;
 }
 
 
@@ -49,14 +58,24 @@
     }
     Message *message = [messages objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier" forIndexPath:indexPath];
+    UIImageView *senderAvatarImageView = (UIImageView *)[cell viewWithTag:1];
     UILabel *senderNameLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *receiverNameLabel = (UILabel *)[cell viewWithTag:3];
-    UILabel *info1Label = (UILabel *)[cell viewWithTag:5];
-    UILabel *info2Label = (UILabel *)[cell viewWithTag:6];
-    senderNameLabel.text = message.sender;
-    receiverNameLabel.text = message.receiver;
-    info1Label.text = [NSString stringWithFormat:@"Send at %@", message.sendtime];
-    info2Label.text = [NSString stringWithFormat:@"%@, %@", message.type, message.object];
+    UIImageView *receiverAvatarImageView = (UIImageView *)[cell viewWithTag:1];
+    UILabel *infoLabel = (UILabel *)[cell viewWithTag:5];
+    User *sender = group.membersDict[message.sender];
+    if (sender != nil) {
+        senderAvatarImageView.image = [UIImage imageWithData:sender.picture];
+        senderNameLabel.text = sender.name;
+    }
+    User *receiver = group.membersDict[message.receiver];
+    if (receiver != nil) {
+        receiverAvatarImageView.image = [UIImage imageWithData:sender.picture];
+        receiverNameLabel.text = message.receiver;
+    }
+    infoLabel.text = [NSString stringWithFormat:@"Send at %@ | %@ | %@",
+                      [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime.longLongValue / 1000.0]],
+                      message.type, message.object];
     return cell;
 }
 

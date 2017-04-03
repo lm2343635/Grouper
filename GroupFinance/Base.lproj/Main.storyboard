@@ -2067,16 +2067,16 @@
         <scene sceneID="erf-HP-cb5">
             <objects>
                 <tableViewController id="Rdd-44-ZGf" customClass="MessagesTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="KRT-ho-DQX">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="KRT-ho-DQX">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.96068316698074341" green="0.96084421873092651" blue="0.96066063642501831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="messageIdentifier" rowHeight="80" id="x53-pg-52l">
-                                <rect key="frame" x="0.0" y="28" width="320" height="80"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="messageIdentifier" id="x53-pg-52l">
+                                <rect key="frame" x="0.0" y="28" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x53-pg-52l" id="vez-l2-bu4">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mXq-wj-0Kr">
@@ -2115,9 +2115,9 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sendtime &amp; Revicetime" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="H8j-na-9h3">
-                                            <rect key="frame" x="16" y="47" width="296" height="14"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sendtime &amp; Type &amp; Ojectict" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="H8j-na-9h3">
+                                            <rect key="frame" x="16" y="47" width="296" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -2139,8 +2139,8 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type, Ojectict &amp; ObjectId" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pUU-q7-mxp">
-                                            <rect key="frame" x="16" y="62" width="296" height="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pUU-q7-mxp">
+                                            <rect key="frame" x="16" y="62" width="296" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
