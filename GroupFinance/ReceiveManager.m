@@ -193,7 +193,7 @@
             if (DEBUG) {
                 NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
             }
-            [self handleMessage:messageString withSender:[data valueForKey:@"sender"]];
+            [self handleMessage:messageString];
             // Save share id in Share entity.
             for (NSString *shareId in shareIds) {
                 [dao.shareDao saveWithShareId:shareId];
@@ -203,7 +203,7 @@
     }
 }
 
-- (void)handleMessage:(NSString *)messageString withSender:(NSString *)sender {
+- (void)handleMessage:(NSString *)messageString {
     // Transfer JSON string to dictionary.
     NSError *error = nil;
     NSDictionary *messageObject = [NSJSONSerialization JSONObjectWithData:[messageString dataUsingEncoding:NSUTF8StringEncoding]
@@ -212,7 +212,7 @@
     if (error) {
         NSLog(@"Error serialize message %@", error.localizedDescription);
     }
-    MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject sender:sender];
+    MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
     // If message contains object related info, use SyncTool to sync it to persistent store.
     if ([messageData.type isEqualToString:@"update"] ||
         [messageData.type isEqualToString:@"delete"]) {
@@ -220,7 +220,6 @@
         if ([sync syncWithMessageData: messageData]) {
             // Save message data in Message eneity.
             [dao.messageDao saveWithMessageData:messageData];
-
         }
     } else if ([messageData.type isEqualToString:@"confirm"]) {
         

@@ -103,7 +103,7 @@
             return group.initial == InitialFinished? group.serverCount: 1;
             break;
         case 1:
-            return messages.count;
+            return messages.count + 1;
             break;
         default:
             return 0;
@@ -158,7 +158,6 @@
     }
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
-        
         if (group.initial == InitialFinished) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
             UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
@@ -174,20 +173,26 @@
             cell.textLabel.textAlignment = NSTextAlignmentCenter;
         }
     } else if (indexPath.section == 1) {
-        MessageData *message = [messages objectAtIndex:indexPath.row];
-        
-        User *user = [dao.userDao getByUserId:message.sender];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
-                                               forIndexPath:indexPath];
-        UIImageView *avatarImageView = (UIImageView *)[cell viewWithTag:1];
-        UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
-        avatarImageView.image = [UIImage imageWithData:user.picture];
-        sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime / 1000.0]]];
-
-        UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];
-        UILabel *typeLabel = (UILabel *)[cell viewWithTag:4];
-        receiveInfoLabel.text = [NSString stringWithFormat:@"%@ received at %@", message.object, [dateFormatter stringFromDate:[NSDate date]]];
-        typeLabel.text = message.type;
+        // Show All Message button if it is last cell.
+        if (indexPath.row == messages.count) {
+            cell = [tableView dequeueReusableCellWithIdentifier:@"allMessageIdentifier"
+                                                   forIndexPath:indexPath];
+        } else {
+            MessageData *message = [messages objectAtIndex:indexPath.row];
+            
+            User *user = [dao.userDao getByUserId:message.sender];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
+                                                   forIndexPath:indexPath];
+            UIImageView *avatarImageView = (UIImageView *)[cell viewWithTag:1];
+            UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
+            avatarImageView.image = [UIImage imageWithData:user.picture];
+            sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime / 1000.0]]];
+            
+            UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];
+            UILabel *typeLabel = (UILabel *)[cell viewWithTag:4];
+            receiveInfoLabel.text = [NSString stringWithFormat:@"%@ received at %@", message.object, [dateFormatter stringFromDate:[NSDate date]]];
+            typeLabel.text = message.type;
+        }
     }
 
     return cell;
@@ -198,7 +203,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (indexPath.section == 1) {
+    if (indexPath.section == 1 && indexPath.row != messages.count) {
         selectedMessage = [messages objectAtIndex:indexPath.row];
         [self performSegueWithIdentifier:@"contentSegue" sender:self];
     }

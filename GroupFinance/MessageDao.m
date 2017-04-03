@@ -17,6 +17,12 @@
     Message *message = [NSEntityDescription insertNewObjectForEntityForName:MessageEntityName inManagedObjectContext:self.context];
     message.messageId = messageData.messageId;
     message.sendtime = [NSNumber numberWithLongLong:messageData.sendtime];
+    message.sender = messageData.sender;
+    message.receiver = messageData.receiver;
+    message.content = messageData.content;
+    message.object = messageData.object;
+    message.objectId = messageData.objectId;
+    message.type = messageData.type;
     [self saveContext];
     return message;
 }
@@ -32,6 +38,9 @@
     }
     Message *message = [NSEntityDescription insertNewObjectForEntityForName:MessageEntityName
                                                      inManagedObjectContext:self.context];
+    // Generate a messageId by UUID if Grouper create a new message in a device.
+    message.messageId = [[NSUUID UUID] UUIDString];
+    // Fill other attributes
     message.object = objectName;
     message.objectId = objectId;
     message.content = content;

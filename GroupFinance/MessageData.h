@@ -12,12 +12,13 @@
 @property (nonatomic, strong) NSString *content;
 @property (nonatomic, strong) NSString *messageId;
 @property (nonatomic, strong) NSString *object;
+@property (nonatomic, strong) NSString *objectId;
+@property (nonatomic, strong) NSString *sender;
 @property (nonatomic, strong) NSString *receiver;
 @property (nonatomic, assign) long long sendtime;
 @property (nonatomic, strong) NSString *type;
-@property (nonatomic, strong) NSString *sender;
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary sender:(NSString *)sender;
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
 - (NSDictionary *)toDictionary;
 

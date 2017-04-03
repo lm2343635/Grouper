@@ -62,6 +62,7 @@
 		E476B0A31DE3FC3700FBCB24 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */; };
 		E476B0A61DE40F5C00FBCB24 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A51DE40F5C00FBCB24 /* MCManager.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
+		E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */; };
 		E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */; };
 		E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */; };
 		E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA61DCC724500B20B20 /* UserDao.m */; };
@@ -226,6 +227,8 @@
 		E476B0A51DE40F5C00FBCB24 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
+		E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
+		E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewController.m; sourceTree = "<group>"; };
 		E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
 		E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataClass.m"; sourceTree = "<group>"; };
 		E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -411,9 +414,11 @@
 		E430E7631E2385A600CF9660 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				E4305A501E36363000010B52 /* ContentViewController.swift */,
 				E430E7641E2385D900CF9660 /* MainTableViewController.h */,
 				E430E7651E2385D900CF9660 /* MainTableViewController.m */,
-				E4305A501E36363000010B52 /* ContentViewController.swift */,
+				E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */,
+				E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -526,10 +531,10 @@
 				E491395C1E51EA750003ECCA /* DeviceTokenManager.m */,
 				E46D57671DB4D21900116C4E /* GLibFacade.c */,
 				E46D57681DB4D21900116C4E /* GLibFacade.h */,
-				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
-				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
 				E43DDB8B1E404F8A00C8BDAE /* GroupManager.h */,
 				E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */,
+				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
+				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
 				E4923E7E1E31DEDB003C4183 /* MessageData.h */,
 				E4923E7F1E31DEDB003C4183 /* MessageData.m */,
 				E4BF182C1E163F3A003340FB /* ReceiveManager.h */,
@@ -853,6 +858,7 @@
 				E430E7621E2219B400CF9660 /* CommonTool.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
+				E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */,
 				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
 				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,

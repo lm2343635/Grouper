@@ -3,15 +3,14 @@
 //
 //	Create by 萌 李 on 20/1/2017
 //	Copyright © 2017. All rights reserved.
-//	Model file generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
-
-
 
 #import "MessageData.h"
 
 NSString *const kMessageContent = @"content";
 NSString *const kMessageMessageId = @"message_id";
 NSString *const kMessageObject = @"object";
+NSString *const kMessageObjectId = @"objectId";
+NSString *const kMessageSender = @"sender";
 NSString *const kMessageReceiver = @"receiver";
 NSString *const kMessageSendtime = @"sendtime";
 NSString *const kMessageSequence = @"sequence";
@@ -23,7 +22,7 @@ NSString *const kMessageType = @"type";
 
 @implementation MessageData
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary sender:(NSString *)sender {
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
 	self = [super init];
 	if (![dictionary[kMessageContent] isKindOfClass:[NSNull class]]){
 		self.content = dictionary[kMessageContent];
@@ -33,7 +32,13 @@ NSString *const kMessageType = @"type";
 	}	
 	if (![dictionary[kMessageObject] isKindOfClass:[NSNull class]]){
 		self.object = dictionary[kMessageObject];
-	}	
+	}
+    if (![dictionary[kMessageObjectId] isKindOfClass:[NSNull class]]){
+        self.objectId = dictionary[kMessageObjectId];
+    }
+    if (![dictionary[kMessageSender] isKindOfClass:[NSNull class]]){
+        self.sender = dictionary[kMessageSender];
+    }
 	if (![dictionary[kMessageReceiver] isKindOfClass:[NSNull class]]){
 		self.receiver = dictionary[kMessageReceiver];
 	}	
@@ -43,7 +48,6 @@ NSString *const kMessageType = @"type";
 	if (![dictionary[kMessageType] isKindOfClass:[NSNull class]]){
 		self.type = dictionary[kMessageType];
 	}
-    self.sender = sender;
 	return self;
 }
 
@@ -58,6 +62,12 @@ NSString *const kMessageType = @"type";
 	if (self.object != nil){
         dictionary[kMessageObject] = self.object;
 	}
+    if (self.objectId != nil){
+        dictionary[kMessageObjectId] = self.objectId;
+    }
+    if (self.sender != nil){
+        dictionary[kMessageSender] = self.sender;
+    }
 	if (self.receiver != nil){
 		dictionary[kMessageReceiver] = self.receiver;
 	}
