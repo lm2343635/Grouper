@@ -75,4 +75,22 @@
     return [self findAllWithEntityName:MessageEntityName];
 }
 
+- (NSArray *)findSendtimesIn:(NSArray *)sendtimes {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:MessageEntityName];
+    [request setResultType:NSDictionaryResultType];
+    [request setPropertiesToFetch:[NSArray arrayWithObjects:@"sendtime", nil]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"sendtime IN %@", sendtimes]];
+    NSError *error = nil;
+    NSArray *objects = [self.context executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error: %@",error);
+        return nil;
+    }
+    NSMutableArray *existedSendtimes = [[NSMutableArray alloc] init];
+    for (NSObject *object in objects) {
+        [existedSendtimes addObject:[object valueForKey:@"sendtime"]];
+    }
+    return existedSendtimes;
+}
+
 @end

@@ -219,7 +219,9 @@
     } else if ([messageData.type isEqualToString:@"confirm"]) {
         NSDictionary *content = [self parseJSONString:messageData.content];
         NSArray *sendtimes = [content valueForKey:@"sendtimes"];
-
+        
+        NSLog(@"%@", [dao.messageDao findSendtimesIn:sendtimes]);
+        
     } else if ([messageData.type isEqualToString:@"resend"]) {
         
     }

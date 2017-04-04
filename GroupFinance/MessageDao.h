@@ -33,4 +33,6 @@
 // Find normal message sent by a sender(userId).
 - (NSArray *)findNormalWithSender:(NSString *)sender;
 
+- (NSArray *)findSendtimesIn:(NSArray *)sendtimes;
+
 @end
