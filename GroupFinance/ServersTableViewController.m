@@ -7,9 +7,9 @@
 //
 
 #import "ServersTableViewController.h"
-#import "GroupTool.h"
-#import "InternetTool.h"
+#import "GroupManager.h"
 #import "DaoManager.h"
+#import "InternetTool.h"
 #import "AlertTool.h"
 #import "CommonTool.h"
 
@@ -19,9 +19,9 @@
 
 @implementation ServersTableViewController {
     NSDictionary *managers;
-    GroupTool *group;
-    NSDictionary *servers;
+    GroupManager *group;
     DaoManager *dao;
+    NSDictionary *servers;
     User *user;
 }
 
@@ -32,16 +32,16 @@
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
     user = [dao.userDao currentUser];
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    servers = group.servers;
+    servers = group.defaults.servers;
     
-    switch (group.initial) {
+    switch (group.defaults.initial) {
         case NotInitial:
             _noServerLabel.hidden = NO;
             _groupInformationView.hidden = YES;
@@ -65,14 +65,14 @@
     }
     
     //Show group id and group name if group state is not uninitial.
-    if (group.initial != NotInitial) {
+    if (group.defaults.initial != NotInitial) {
         _groupInformationView.hidden = NO;
-        _groupIdTextField.text = group.groupId;
-        _groupNameTextField.text = group.groupName;
+        _groupIdTextField.text = group.defaults.groupId;
+        _groupNameTextField.text = group.defaults.groupName;
     }
     
-    if (group.initial == InitialFinished || group.initial == RestoringServer) {
-        _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.threshold];
+    if (group.defaults.initial == InitialFinished || group.defaults.initial == RestoringServer) {
+        _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
         [_thresholdTextField setEnabled:NO];
     }
     
@@ -117,7 +117,7 @@
     }
     //Validate threshold when user wants to create a new group.
     //Threshold need not to validate when user wants to restore an existed group.
-    if (group.initial == AddingNewServer) {
+    if (group.defaults.initial == AddingNewServer) {
         if ([_thresholdTextField.text isEqualToString:@""]) {
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:@"Recover threshold cannot be empty!"
@@ -131,7 +131,7 @@
             return;
         }
         int threshold = _thresholdTextField.text.intValue;
-        if (threshold < 1 || threshold > group.servers.allKeys.count) {
+        if (threshold < 1 || threshold > group.defaults.servers.allKeys.count) {
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:@"Recover threshold be more than 0 and less than the number of servers."
                          inViewController:self];
@@ -142,10 +142,10 @@
         }
     }
     //Check the number of untrusted servers if user wants to initialize by restoring an existed group.
-    else if (group.initial == RestoringServer) {
-        if (group.servers.allKeys.count != group.serverCount) {
+    else if (group.defaults.initial == RestoringServer) {
+        if (group.defaults.servers.allKeys.count != group.defaults.serverCount) {
             [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:[NSString stringWithFormat:@"%ld servers needed to initialize by restoring your group.", (long)group.serverCount]
+                               andContent:[NSString stringWithFormat:@"%ld servers needed to initialize by restoring your group.", (long)group.defaults.serverCount]
                          inViewController:self];
             return;
         }
@@ -157,7 +157,7 @@
     UIAlertAction *initialize = [UIAlertAction actionWithTitle:@"Yes"
                                                          style:UIAlertActionStyleDestructive
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           switch (group.initial) {
+                                                           switch (group.defaults.initial) {
                                                                case RestoringServer:
                                                                    [self restoreUntrustedServers];
                                                                    break;
@@ -187,10 +187,10 @@
     _initialGroupButton.hidden = YES;
     _restoreServerBarButtonItem.enabled = NO;
     //Change initial state.
-    group.initial = InitialFinished;
+    group.defaults.initial = InitialFinished;
     
     [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.groupName]
+                       andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.defaults.groupName]
                  inViewController:self];
 }
 
@@ -322,7 +322,7 @@
             NSLog(@"Send owner's information to %ld untrusted servers successfully.", (long)self.setOwner);
         }
         //Send owner's information to all untrusted servers successfully.
-        if (self.setOwner == group.servers.count) {
+        if (self.setOwner == group.defaults.servers.count) {
             if (DEBUG) {
                 NSLog(@"Send owner's information to all untrusted servers successfully!");
             }
@@ -334,28 +334,28 @@
         if (DEBUG) {
             NSLog(@"Send init message to %ld untrusted servers successfully.", (long)self.setThreshold);
         }
-        if (self.setThreshold == group.servers.count) {
+        if (self.setThreshold == group.defaults.servers.count) {
             if (DEBUG) {
                 NSLog(@"Send init message to all untrusted servers successfully!");
             }
             [self removeObserver:self forKeyPath:@"setThreshold"];
             
             //Set threshold, owner and update number of group memebers
-            group.serverCount = group.servers.allKeys.count;
-            group.threshold = _thresholdTextField.text.integerValue;
-            group.owner = user.userId;
-            group.members ++;
+            group.defaults.serverCount = group.defaults.servers.allKeys.count;
+            group.defaults.threshold = _thresholdTextField.text.integerValue;
+            group.defaults.owner = user.userId;
+            group.defaults.members ++;
             //Hide initial group button and add server bar button
             _initialGroupButton.hidden = YES;
             _addServerBarButtonItem.enabled = NO;
             //Change initial state.
-            group.initial = InitialFinished;
+            group.defaults.initial = InitialFinished;
             
-            _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.threshold];
+            _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
             [_thresholdTextField setEnabled:NO];
             
             [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.groupName]
+                               andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.defaults.groupName]
                          inViewController:self];
         }
     }

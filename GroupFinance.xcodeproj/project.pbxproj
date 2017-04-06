@@ -10,7 +10,7 @@
 		3E9BFF9DF44FD097026810A5 /* Pods_GroupFinance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710458120C337F8796D1E807 /* Pods_GroupFinance.framework */; };
 		E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */; };
 		E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */; };
-		E4039EE01DE0730C00D39DDB /* GroupTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* GroupTool.m */; };
+		E4039EE01DE0730C00D39DDB /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* Defaults.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
@@ -123,8 +123,8 @@
 		E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersTableViewController.m; sourceTree = "<group>"; };
 		E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
 		E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
-		E4039EDE1DE0730C00D39DDB /* GroupTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupTool.h; sourceTree = "<group>"; };
-		E4039EDF1DE0730C00D39DDB /* GroupTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTool.m; sourceTree = "<group>"; };
+		E4039EDE1DE0730C00D39DDB /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
+		E4039EDF1DE0730C00D39DDB /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -167,6 +167,7 @@
 		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E446C0FF1DCF75E600EC5966 /* InternetResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetResponse.h; sourceTree = "<group>"; };
 		E446C1001DCF75E600EC5966 /* InternetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetResponse.m; sourceTree = "<group>"; };
+		E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.4.xcdatamodel; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
 		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
 		E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditClassificationViewController.h; sourceTree = "<group>"; };
@@ -533,8 +534,8 @@
 				E46D57681DB4D21900116C4E /* GLibFacade.h */,
 				E43DDB8B1E404F8A00C8BDAE /* GroupManager.h */,
 				E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */,
-				E4039EDE1DE0730C00D39DDB /* GroupTool.h */,
-				E4039EDF1DE0730C00D39DDB /* GroupTool.m */,
+				E4039EDE1DE0730C00D39DDB /* Defaults.h */,
+				E4039EDF1DE0730C00D39DDB /* Defaults.m */,
 				E4923E7E1E31DEDB003C4183 /* MessageData.h */,
 				E4923E7F1E31DEDB003C4183 /* MessageData.m */,
 				E4BF182C1E163F3A003340FB /* ReceiveManager.h */,
@@ -905,7 +906,7 @@
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E46516AC1E31F1F100A3E8E2 /* Shop+CoreDataClass.m in Sources */,
 				E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */,
-				E4039EE01DE0730C00D39DDB /* GroupTool.m in Sources */,
+				E4039EE01DE0730C00D39DDB /* Defaults.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
@@ -1208,12 +1209,13 @@
 		E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */,
 				E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */,
 				E48DBCAA1E88F67C00EC94D1 /* Model_0.2.xcdatamodel */,
 				E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */,
 				E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */,
 			);
-			currentVersion = E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */;
+			currentVersion = E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

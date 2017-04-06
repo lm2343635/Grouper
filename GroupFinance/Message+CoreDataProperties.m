@@ -2,7 +2,7 @@
 //  Message+CoreDataProperties.m
 //  GroupFinance
 //
-//  Created by lidaye on 01/04/2017.
+//  Created by lidaye on 06/04/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -14,13 +14,15 @@
 	return [[NSFetchRequest alloc] initWithEntityName:@"Message"];
 }
 
-@dynamic messageId;
-@dynamic sendtime;
-@dynamic objectId;
 @dynamic content;
+@dynamic messageId;
 @dynamic object;
-@dynamic type;
+@dynamic objectId;
 @dynamic receiver;
 @dynamic sender;
+@dynamic sendtime;
+@dynamic type;
+@dynamic node;
+@dynamic sequence;
 
 @end

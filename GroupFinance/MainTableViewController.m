@@ -7,16 +7,15 @@
 //
 
 #import "MainTableViewController.h"
-#import "GroupTool.h"
-#import "InternetTool.h"
+#import "GroupManager.h"
 #import "SendManager.h"
 #import "ReceiveManager.h"
 #import "DaoManager.h"
-#import "GroupManager.h"
-#import "GroupFinance-Swift.h"
+#import "InternetTool.h"
 #import "CommonTool.h"
-#import "UIImageView+Extension.h"
 #import "MessageData.h"
+#import "GroupFinance-Swift.h"
+#import "UIImageView+Extension.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface MainTableViewController ()
@@ -24,9 +23,8 @@
 @end
 
 @implementation MainTableViewController {
-    GroupTool *group;
     DaoManager *dao;
-    GroupManager *groupManager;
+    GroupManager *group;
     NSDictionary *managers;
     
     NSDateFormatter *dateFormatter;
@@ -46,10 +44,9 @@
     }
     [super viewDidLoad];
     
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     managers = [InternetTool getSessionManagers];
-    groupManager = [GroupManager sharedInstance];
     
     // Init date formatter.
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -101,7 +98,7 @@
     }
     switch (section) {
         case 0:
-            return group.initial == InitialFinished? group.serverCount: 1;
+            return group.defaults.initial == InitialFinished? group.defaults.serverCount: 1;
             break;
         case 1:
             return messages.count + 1;
@@ -159,10 +156,10 @@
     }
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
-        if (group.initial == InitialFinished) {
+        if (group.defaults.initial == InitialFinished) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
             UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
-            serverAddressLabel.text = [group.servers.allKeys objectAtIndex:indexPath.row];
+            serverAddressLabel.text = [group.defaults.servers.allKeys objectAtIndex:indexPath.row];
             
             [stateImageViews setObject:(UIImageView *)[cell viewWithTag:2]
                                 forKey:serverAddressLabel.text];
@@ -230,7 +227,7 @@
            forKeyPath:@"checkState"
               options:NSKeyValueObservingOptionNew
               context:nil];
-    for (NSString *address in group.servers.allKeys) {
+    for (NSString *address in group.defaults.servers.allKeys) {
         [managers[address] GET:[InternetTool createUrl:@"user/state" withServerAddress:address]
                     parameters:nil
                       progress:nil
@@ -282,7 +279,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if ([keyPath isEqualToString:@"checkState"]) {
-        if (self.checkState == group.serverCount) {
+        if (self.checkState == group.defaults.serverCount) {
             if (DEBUG) {
                 NSLog(@"All servers' state have been checked.");
             }
@@ -292,12 +289,12 @@
             if (DEBUG) {
                 NSLog(@"Grouper access to %d untrusted servers.", accessedServers);
             }
-            if (accessedServers >= group.threshold && group.initial == InitialFinished) {
+            if (accessedServers >= group.defaults.threshold && group.defaults.initial == InitialFinished) {
                 if (DEBUG) {
                     NSLog(@"Accessed %d servers, call sync method.", accessedServers);
                 }
                 // Refresh members list before data sync
-                [groupManager refreshMemberListWithCompletion:^(BOOL success) {
+                [group refreshMemberListWithCompletion:^(BOOL success) {
                     [self dataSync];
                 }];
             }
@@ -305,10 +302,10 @@
             // send a confirm message to unstrusted servers.
             long now = (long)[[NSDate date] timeIntervalSince1970];
             // If client sent control message before 3600s, send control message again
-            if (now - group.controlMessageSendTime > 1 * 3600) {
+            if (now - group.defaults.controlMessageSendTime > 1 * 3600) {
                 [[SendManager sharedInstance] confirm];
                 // Update control message sene time.
-                group.controlMessageSendTime = now;
+                group.defaults.controlMessageSendTime = now;
             }
             
         }

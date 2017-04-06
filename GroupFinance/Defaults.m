@@ -6,17 +6,17 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "GroupTool.h"
+#import "Defaults.h"
 
-@implementation GroupTool {
+@implementation Defaults {
     NSUserDefaults *defaults;
 }
 
 + (instancetype)sharedInstance {
-    static GroupTool *instance;
+    static Defaults *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[GroupTool alloc] init];
+        instance = [[Defaults alloc] init];
     });
     return instance;
 }
@@ -66,7 +66,7 @@
 
 - (NSString *)groupId {
     if (_groupId == nil) {
-        _groupId = [defaults objectForKey:NSStringFromSelector(@selector(groupId))];
+        _groupId = [defaults stringForKey:NSStringFromSelector(@selector(groupId))];
     }
     return _groupId;
 }
@@ -80,7 +80,7 @@
 
 - (NSString *)groupName {
     if (_groupName == nil) {
-        _groupName = [defaults objectForKey:NSStringFromSelector(@selector(groupName))];
+        _groupName = [defaults stringForKey:NSStringFromSelector(@selector(groupName))];
     }
     return _groupName;
 }
@@ -135,6 +135,19 @@
         _threshold = [defaults integerForKey:NSStringFromSelector(@selector(threshold))];
     }
     return _threshold;
+}
+
+@synthesize node = _node;
+- (NSString *)node {
+    if (_node == nil) {
+        _node = [defaults stringForKey:NSStringFromSelector(@selector(node))];
+        if (_node == nil) {
+            NSString *uuid = [[NSUUID UUID] UUIDString];
+            [defaults setObject:uuid forKey:NSStringFromSelector(@selector(node))];
+            _node = uuid;
+        }
+    }
+    return _node;
 }
 
 @synthesize initial = _initial;

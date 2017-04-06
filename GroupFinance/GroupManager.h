@@ -7,9 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Defaults.h"
 
 @interface GroupManager : NSObject
 
+@property (nonatomic, strong) Defaults *defaults;
 @property (nonatomic, strong) NSMutableArray *members;
 @property (nonatomic, strong) NSMutableDictionary *membersDict;
 

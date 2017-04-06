@@ -7,12 +7,10 @@
 //
 
 #import "GroupManager.h"
-#import "GroupTool.h"
 #import "DaoManager.h"
 #import "InternetTool.h"
 
 @implementation GroupManager {
-    GroupTool *group;
     DaoManager *dao;
     NSDictionary *managers;
     User *currentUser;
@@ -31,9 +29,9 @@
     self = [super init];
     if (self) {
         managers = [InternetTool getSessionManagers];
-        group = [GroupTool sharedInstance];
         dao = [DaoManager sharedInstance];
         currentUser = [dao.userDao currentUser];
+        _defaults = [Defaults sharedInstance];
         [self updateMember];
     }
     return self;
@@ -43,11 +41,11 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (group.initial != InitialFinished) {
+    if (_defaults.initial != InitialFinished) {
         completion(NO);
         return;
     }
-    NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+    NSString *address0 = [_defaults.servers.allKeys objectAtIndex:0];
     //Reload user info
     [managers[address0] GET:[InternetTool createUrl:@"user/list" withServerAddress:address0]
                  parameters:nil
@@ -64,7 +62,7 @@
                                 [dao.userDao saveOrUpdate:user];
                             }
                             // Update number of group members.
-                            group.members = users.count;
+                            _defaults.members = users.count;
                             // Update group members
                             [self updateMember];
                             completion(YES);
