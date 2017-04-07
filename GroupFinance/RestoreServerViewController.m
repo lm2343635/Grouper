@@ -7,10 +7,10 @@
 //
 
 #import "RestoreServerViewController.h"
+#import "GroupManager.h"
+#import "DaoManager.h"
 #import "AlertTool.h"
 #import "InternetTool.h"
-#import "GroupTool.h"
-#import "DaoManager.h"
 
 @interface RestoreServerViewController ()
 
@@ -18,7 +18,7 @@
 
 @implementation RestoreServerViewController {
     AFHTTPSessionManager *manager;
-    GroupTool *group;
+    GroupManager *group;
     DaoManager *dao;
     User *currentUser;
 }
@@ -29,7 +29,7 @@
     }
     [super viewDidLoad];
     manager = [InternetTool getSessionManager];
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     currentUser = [dao.userDao currentUser];
 }
@@ -46,7 +46,7 @@
                      inViewController:self];
         return;
     }
-    for (NSString *address in group.servers.allKeys) {
+    for (NSString *address in group.defaults.servers.allKeys) {
         if ([_addressTextField.text isEqualToString:address]) {
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:@"This server is exist!"
@@ -65,18 +65,18 @@
               InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
               if ([response statusOK]) {
                   NSObject *result = [response getResponseResult];
-                  [group addServerAddress:_addressTextField.text
-                            withAccessKey:_accessKeyTextField.text];
+                  [group.defaults addServerAddress:_addressTextField.text
+                                     withAccessKey:_accessKeyTextField.text];
                   //Restore group info.
-                  if (group.initial == NotInitial) {
+                  if (group.defaults.initial == NotInitial) {
                       NSObject *groupInfo = [result valueForKey:@"group"];
-                      group.groupId = [groupInfo valueForKey:@"id"];
-                      group.groupName = [groupInfo valueForKey:@"name"];
-                      group.members = [[groupInfo valueForKey:@"members"] integerValue];
-                      group.owner = [groupInfo valueForKey:@"oid"];
-                      group.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
-                      group.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
-                      group.initial = RestoringServer;
+                      group.defaults.groupId = [groupInfo valueForKey:@"id"];
+                      group.defaults.groupName = [groupInfo valueForKey:@"name"];
+                      group.defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
+                      group.defaults.owner = [groupInfo valueForKey:@"oid"];
+                      group.defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
+                      group.defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
+                      group.defaults.initial = RestoringServer;
                   }
                   [self.navigationController popViewControllerAnimated:YES];
               }

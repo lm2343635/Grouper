@@ -8,8 +8,8 @@
 
 #import "AddMemberViewController.h"
 #import "DaoManager.h"
+#import "GroupManager.h"
 #import "AppDelegate.h"
-#import "GroupTool.h"
 #import "InternetTool.h"
 #import "AlertTool.h"
 
@@ -26,7 +26,7 @@
 @implementation AddMemberViewController {
     DaoManager *dao;
     User *currentUser;
-    GroupTool *group;
+    GroupManager *group;
     BOOL isOwner;
     NSMutableDictionary *serverInfoForUser;
     MCPeerID *invitePeer;
@@ -37,11 +37,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
 
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     currentUser = [dao.userDao currentUser];
 
-    isOwner = [group.owner isEqualToString:currentUser.userId];
+    isOwner = [group.defaults.owner isEqualToString:currentUser.userId];
     
     _delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [_delegate.mcManager setupPeerAndSessionWithDisplayName:currentUser.name];
@@ -201,7 +201,7 @@
         //Init serverInfoForUser
         serverInfoForUser = [[NSMutableDictionary alloc] init];
         //Send user info to untrusted servers.
-        for (NSString *address in group.servers.allKeys) {
+        for (NSString *address in group.defaults.servers.allKeys) {
             AFHTTPSessionManager *manager = [InternetTool getSessionManagerWithServerAddress:address];
             [manager POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
                parameters:parameters
@@ -226,10 +226,10 @@
         }
     } else if ([task isEqualToString:@"sendServerInfo"] && !isOwner) {
         //Receive server information and access key from group owner.
-        group.servers = [message valueForKey:@"serverInfo"];
+        group.defaults.servers = [message valueForKey:@"serverInfo"];
         [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
         //Download group members and group info.
-        NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+        NSString *address0 = [group.defaults.servers.allKeys objectAtIndex:0];
         //Refresh session managers.
         [InternetTool refreshSessionManagers];
         NSDictionary *managers = [InternetTool getSessionManagers];
@@ -242,18 +242,18 @@
                                 NSObject *result = [response getResponseResult];
                                 NSObject *groupInfo = [result valueForKey:@"group"];
                                 //Update group information
-                                group.groupId = [groupInfo valueForKey:@"id"];
-                                group.groupName = [groupInfo valueForKey:@"name"];
-                                group.members = [[groupInfo valueForKey:@"members"] integerValue];
-                                group.owner = [groupInfo valueForKey:@"oid"];
-                                group.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
-                                group.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
+                                group.defaults.groupId = [groupInfo valueForKey:@"id"];
+                                group.defaults.groupName = [groupInfo valueForKey:@"name"];
+                                group.defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
+                                group.defaults.owner = [groupInfo valueForKey:@"oid"];
+                                group.defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
+                                group.defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
                                 
                                 //Set init state
-                                group.initial = InitialFinished;
+                                group.defaults.initial = InitialFinished;
                                 
                                 [AlertTool showAlertWithTitle:@"Tip"
-                                                   andContent:[NSString stringWithFormat:@"You have joined to %@.", group.groupName]
+                                                   andContent:[NSString stringWithFormat:@"You have joined to %@.", group.defaults.groupName]
                                              inViewController:self];
                             }
                         }
@@ -325,7 +325,7 @@
             NSLog(@"Send user's information to %ld untrusted servers successfully.", (long)self.sent);
         }
         //Send owner's information to all untrusted servers successfully.
-        if (self.sent == group.servers.count) {
+        if (self.sent == group.defaults.servers.count) {
             if (DEBUG) {
                 NSLog(@"Send user's information to all untrusted servers successfully!");
             }

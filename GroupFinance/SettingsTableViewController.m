@@ -7,17 +7,17 @@
 //
 
 #import "SettingsTableViewController.h"
-#import "GroupTool.h"
-#import "AlertTool.h"
 #import "DaoManager.h"
+#import "GroupManager.h"
 #import "SendManager.h"
+#import "AlertTool.h"
 
 @interface SettingsTableViewController ()
 
 @end
 
 @implementation SettingsTableViewController {
-    GroupTool *group;
+    GroupManager *group;
     DaoManager *dao;
     SendManager *send;
     UIAlertController *clearAlertController;
@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     send = [SendManager sharedInstance];
     [self initClearAlertController];
@@ -51,7 +51,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (group.groupId == nil &&
+    if (group.defaults.groupId == nil &&
         ([identifier isEqualToString:@"templatesSegue"] || [identifier isEqualToString:@"classificationsSegue"]
          || [identifier isEqualToString:@"shopsSegue"] || [identifier isEqualToString:@"accountsSegue"])) {
         [AlertTool showAlertWithTitle:@"Tip"

@@ -7,9 +7,9 @@
 //
 
 #import "AddServerViewController.h"
+#import "GroupManager.h"
 #import "AlertTool.h"
 #import "InternetTool.h"
-#import "GroupTool.h"
 
 @interface AddServerViewController ()
 
@@ -17,7 +17,7 @@
 
 @implementation AddServerViewController {
     AFHTTPSessionManager *manager;
-    GroupTool *group;
+    GroupManager *group;
 }
 
 - (void)viewDidLoad {
@@ -26,11 +26,11 @@
     }
     [super viewDidLoad];
     manager = [InternetTool getSessionManager];
-    group = [[GroupTool alloc] init];
+    group = [GroupManager sharedInstance];
     //If group id and group name has been set, autofill them and disable editing.
-    if (group.groupId != nil && group.groupName != nil) {
-        _groupIdTextField.text = group.groupId;
-        _groupNameTextField.text = group.groupName;
+    if (group.defaults.groupId != nil && group.defaults.groupName != nil) {
+        _groupIdTextField.text = group.defaults.groupId;
+        _groupNameTextField.text = group.defaults.groupName;
         _groupIdTextField.enabled = NO;
         _groupNameTextField.enabled = NO;
     }
@@ -48,7 +48,7 @@
                      inViewController:self];
         return;
     }
-    for (NSString *address in group.servers.allKeys) {
+    for (NSString *address in group.defaults.servers.allKeys) {
         if ([_serverAddressTextField.text isEqualToString:address]) {
             [AlertTool showAlertWithTitle:@"Tip"
                                andContent:@"This server is exist!"
@@ -66,13 +66,13 @@
               InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
               if ([response statusOK]) {
                   NSObject *result = [response getResponseResult];
-                  [group addServerAddress:_serverAddressTextField.text
-                            withAccessKey:[result valueForKey:@"masterkey"]];
+                  [group.defaults addServerAddress:_serverAddressTextField.text
+                                     withAccessKey:[result valueForKey:@"masterkey"]];
                   //Set group id and group name.
-                  if (group.initial == NotInitial) {
-                      group.groupId = _groupIdTextField.text;
-                      group.groupName = _groupNameTextField.text;
-                      group.initial = AddingNewServer;
+                  if (group.defaults.initial == NotInitial) {
+                      group.defaults.groupId = _groupIdTextField.text;
+                      group.defaults.groupName = _groupNameTextField.text;
+                      group.defaults.initial = AddingNewServer;
                   }
                   [self.navigationController popViewControllerAnimated:YES];
               }

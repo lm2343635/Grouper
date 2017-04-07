@@ -8,7 +8,7 @@
 
 #import "MembersTableViewController.h"
 #import "DaoManager.h"
-#import "GroupTool.h"
+#import "GroupManager.h"
 #import "InternetTool.h"
 #import "GroupManager.h"
 #import <MJRefresh/MJRefresh.h>
@@ -19,7 +19,7 @@
 
 @implementation MembersTableViewController {
     DaoManager * dao;
-    GroupTool *group;
+    GroupManager *group;
     GroupManager *groupManager;
     
     NSArray *members;
@@ -34,7 +34,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     groupManager = [GroupManager sharedInstance];
     currentUser = [dao.userDao currentUser];
@@ -53,7 +53,7 @@
         }];
     }];
     
-    if (group.initial == InitialFinished) {
+    if (group.defaults.initial == InitialFinished) {
         _noMembersView.hidden = YES;
         [self loadMembersInfo];
     }
@@ -86,7 +86,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (group.initial != InitialFinished) {
+    if (group.defaults.initial != InitialFinished) {
         return 0;
     }
     return (section == 0)? 1: members.count;
@@ -114,7 +114,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return (group.initial != InitialFinished)? nil: @" ";
+    return (group.defaults.initial != InitialFinished)? nil: @" ";
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -145,8 +145,8 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    members = [dao.userDao findMembersExceptOwner:group.owner];
-    owner = [dao.userDao getByUserId:group.owner];
+    members = [dao.userDao findMembersExceptOwner:group.defaults.owner];
+    owner = [dao.userDao getByUserId:group.defaults.owner];
     for (User *member in members) {
         member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
     }

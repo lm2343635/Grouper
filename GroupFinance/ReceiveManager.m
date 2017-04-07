@@ -7,14 +7,14 @@
 //
 
 #import "ReceiveManager.h"
-#import "GroupTool.h"
+#import "GroupManager.h"
 #import "DaoManager.h"
 #import "InternetTool.h"
 #import "SecretSharing.h"
 #import "GroupFinance-Swift.h"
 
 @implementation ReceiveManager {
-    GroupTool *group;
+    GroupManager *group;
     DaoManager *dao;
     NSDictionary *managers;
     NSMutableArray *contentsGroup;
@@ -36,7 +36,7 @@
     self = [super init];
     if (self) {
         managers = [InternetTool getSessionManagers];
-        group = [GroupTool sharedInstance];
+        group = [GroupManager sharedInstance];
         dao = [DaoManager sharedInstance];
         sync = [[SyncTool alloc] initWithDataStack:[dao getDataStack]];
     }
@@ -60,7 +60,7 @@
     }
     syncCompletion = completion;
     // Only initail finished group can receive shares.
-    if (group.initial != InitialFinished) {
+    if (group.defaults.initial != InitialFinished) {
         return;
     }
     self.received = 0;
@@ -77,7 +77,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Download share id list from untrusted servers.
-    for (NSString *address in group.servers.allKeys) {
+    for (NSString *address in group.defaults.servers.allKeys) {
         [managers[address] GET:[InternetTool createUrl:@"transfer/list" withServerAddress:address]
                     parameters:nil
                       progress:nil
@@ -183,12 +183,12 @@
             NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:messageId];
             [shares addObject:[[pairedContent valueForKey:@"data"] valueForKey:@"share"]];
             // If got enough shares, only add share id.
-            if (shares.count >= group.threshold) {
+            if (shares.count >= group.defaults.threshold) {
                 [shareIds addObject:[pairedContent valueForKey:@"id"]];
             }
         }
         // Only getting more than k(threshold) shares, Grouper can recover and sync to persistent store.
-        if (shares.count >= group.threshold) {
+        if (shares.count >= group.defaults.threshold) {
             NSString *messageString = [SecretSharing recoverShareWith:shares];
             if (DEBUG) {
                 NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);

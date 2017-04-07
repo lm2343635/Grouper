@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "GroupTool.h"
+#import "GroupManager.h"
 #import "DeviceTokenManager.h"
 
 @interface AppDelegate ()
@@ -15,7 +15,7 @@
 @end
 
 @implementation AppDelegate {
-    GroupTool *group;
+    GroupManager *group;
     DeviceTokenManager *deviceTokenManager;
 }
 
@@ -27,14 +27,14 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    group = [GroupTool sharedInstance];
+    group = [GroupManager sharedInstance];
     deviceTokenManager = [DeviceTokenManager sharedInstance];
     
     if (DEBUG) {
         NSLog(@"Number of group menbers is %ld", (long)group.members);
-        NSLog(@"Group id is %@, group name is %@, group owner is %@", group.groupId, group.groupName, group.owner);
-        for (NSString *address in group.servers.allKeys) {
-            NSLog(@"Untrusted server %@, access key is %@", address, group.servers[address]);
+        NSLog(@"Group id is %@, group name is %@, group owner is %@", group.defaults.groupId, group.defaults.groupName, group.defaults.owner);
+        for (NSString *address in group.defaults.servers.allKeys) {
+            NSLog(@"Untrusted server %@, access key is %@", address, group.defaults.servers[address]);
         }
     }
     
@@ -138,11 +138,10 @@
 
 - (void)refreshSessionManagers {
     NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
-    group = [[GroupTool alloc] init];
-    for (NSString *address in group.servers.allKeys) {
+    for (NSString *address in group.defaults.servers.allKeys) {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         //Set access key in request header.
-        [manager.requestSerializer setValue:[group.servers valueForKey:address] forHTTPHeaderField:@"key"];
+        [manager.requestSerializer setValue:[group.defaults.servers valueForKey:address] forHTTPHeaderField:@"key"];
         manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
         [managers setObject:manager forKey:address];
     }

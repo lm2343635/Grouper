@@ -6,13 +6,13 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
+#import "GroupManager.h"
 #import "DeviceTokenManager.h"
 #import "InternetTool.h"
-#import "GroupTool.h"
 
 @implementation DeviceTokenManager {
     NSDictionary *managers;
-    GroupTool *group;
+    GroupManager *group;
     NSUserDefaults *defaults;
 }
 
@@ -29,7 +29,7 @@
     self = [super init];
     if (self) {
         managers = [InternetTool getSessionManagers];
-        group = [GroupTool sharedInstance];
+        group = [GroupManager sharedInstance];
         defaults = [NSUserDefaults standardUserDefaults];
     }
     return self;
@@ -42,7 +42,7 @@
     if (_deviceToken == nil) {
         return;
     }
-    for (NSString *address in group.servers.allKeys) {
+    for (NSString *address in group.defaults.servers.allKeys) {
         [managers[address] POST:[InternetTool createUrl:@"user/deviceToken" withServerAddress:address]
                      parameters:@{@"deviceToken": _deviceToken}
                        progress:nil

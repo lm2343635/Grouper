@@ -6,16 +6,16 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
+#import "GroupManager.h"
 #import "SendManager.h"
 #import "SecretSharing.h"
 #import "InternetTool.h"
-#import "GroupTool.h"
 #import <SYNCPropertyMapper/SYNCPropertyMapper.h>
 
 @implementation SendManager {
     NSDictionary *managers;
     DaoManager *dao;
-    GroupTool *group;
+    GroupManager *group;
     User *currentUser;
     Message *message;
 }
@@ -37,7 +37,7 @@
     if (self) {
         dao = [DaoManager sharedInstance];
         managers = [InternetTool getSessionManagers];
-        group = [GroupTool sharedInstance];
+        group = [GroupManager sharedInstance];
         currentUser = [dao.userDao currentUser];
     }
     return self;
@@ -198,7 +198,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *address0 = [group.servers.allKeys objectAtIndex:0];
+    NSString *address0 = [group.defaults.servers.allKeys objectAtIndex:0];
     [managers[address0] POST:[InternetTool createUrl:@"user/notify" withServerAddress:address0]
                   parameters:@{
                                @"content": content,
