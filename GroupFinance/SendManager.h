@@ -11,6 +11,10 @@
 
 @interface SendManager : NSObject
 
+// Message sequence.
+@property (nonatomic) NSInteger sequence;
+
+// How many servers has been sent.
 @property (nonatomic) NSInteger sent;
 
 // Get single instance.

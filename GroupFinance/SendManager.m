@@ -17,6 +17,8 @@
     DaoManager *dao;
     GroupManager *group;
     
+    NSUserDefaults *defaults;
+
     User *currentUser;
     Message *message;
 }
@@ -40,11 +42,34 @@
         dao = [DaoManager sharedInstance];
         group = [GroupManager sharedInstance];
         
+        defaults = [NSUserDefaults standardUserDefaults];
         currentUser = [dao.userDao currentUser];
+        [self sequence];
     }
     return self;
 }
 
+#pragma mark - Sequence
+@synthesize sequence = _sequence;
+
+- (void)setSequence:(NSInteger)sequence {
+    _sequence = sequence;
+    [defaults setInteger:sequence forKey:NSStringFromSelector(@selector(sequence))];
+}
+
+- (NSInteger)sequence {
+    if (_sequence == 0) {
+        _sequence = [defaults integerForKey:NSStringFromSelector(@selector(sequence))];
+    }
+    return _sequence;
+}
+
+- (NSInteger)generateNewSequence {
+    _sequence = _sequence + 1;
+    return _sequence;
+}
+
+#pragma mark - Create Message
 - (void)update:(SyncEntity *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -65,7 +90,9 @@
                                      objectId:object.remoteID
                                          type:@"update"
                                          from:currentUser.userId
-                                           to:@"*"];
+                                           to:@"*"
+                                     sequence:[self generateNewSequence]
+                                         node:group.defaults.node];
     // At last, we send the update message to multiple untrusted servers.
     [self sendShares];
 }
@@ -83,7 +110,9 @@
                                      objectId:object.remoteID
                                          type:@"delete"
                                          from:currentUser.userId
-                                           to:@"*"];
+                                           to:@"*"
+                                     sequence:[self generateNewSequence]
+                                         node:group.defaults.node];
     // At last, we send the delete message to multiple untrusted servers.
     [self sendShares];
 }
@@ -92,21 +121,26 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSMutableArray *sendtimes = [[NSMutableArray alloc] init];
+    NSMutableArray *sequences = [[NSMutableArray alloc] init];
     // Find normal messages sent by current user.
     for (Message *normal in [dao.messageDao findNormalWithSender:currentUser.userId]) {
-        [sendtimes addObject:normal.sendtime];
+        [sequences addObject:normal.sequence];
     }
-    if (sendtimes.count == 0) {
+    if (sequences.count == 0) {
         return;
     }
     // Create control message by sendtimes.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sendtimes": sendtimes}]
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{
+                                                @"node": group.defaults.node,
+                                                @"sequences": sequences
+                                            }]
                                    objectName:nil
                                      objectId:nil
                                          type:@"confirm"
                                          from:currentUser.userId
-                                           to:@"*"];
+                                           to:@"*"
+                                     sequence:[self generateNewSequence]
+                                         node:group.defaults.node];
     [self sendShares];
 }
 

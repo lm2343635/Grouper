@@ -7,6 +7,7 @@
 //
 
 #import "MessageDao.h"
+#import "Defaults.h"
 
 @implementation MessageDao
 
@@ -16,13 +17,15 @@
     }
     Message *message = [NSEntityDescription insertNewObjectForEntityForName:MessageEntityName inManagedObjectContext:self.context];
     message.messageId = messageData.messageId;
-    message.sendtime = [NSNumber numberWithLongLong:messageData.sendtime];
+    message.sendtime = [NSNumber numberWithLong:messageData.sendtime];
     message.sender = messageData.sender;
     message.receiver = messageData.receiver;
     message.content = messageData.content;
     message.object = messageData.object;
     message.objectId = messageData.objectId;
     message.type = messageData.type;
+    message.sequence = [NSNumber numberWithLong:messageData.sequence];
+    message.node = messageData.node;
     [self saveContext];
     return message;
 }
@@ -32,7 +35,9 @@
                     objectId:(NSString *)objectId
                         type:(NSString *)type
                         from:(NSString *)sender
-                          to:(NSString *)receiver {
+                          to:(NSString *)receiver
+                    sequence:(long)sequence
+                        node:(NSString *)node {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -44,10 +49,12 @@
     message.object = objectName;
     message.objectId = objectId;
     message.content = content;
-    message.sendtime = [NSNumber numberWithLongLong:(long long)([[NSDate date] timeIntervalSince1970] * 1000)];
+    message.sendtime = [NSNumber numberWithLong:(long)[[NSDate date] timeIntervalSince1970]];
     message.type = type;
     message.sender = sender;
     message.receiver = receiver;
+    message.sequence = [NSNumber numberWithLong:sequence];
+    message.node = node;
     [self saveContext];
     return message;
 }

@@ -19,7 +19,9 @@
                     objectId:(NSString *)objectId
                         type:(NSString *)type
                         from:(NSString *)sender
-                          to:(NSString *)receiver;
+                          to:(NSString *)receiver
+                    sequence:(long)sequence
+                        node:(NSString *)node;
 
 // Save a existed message from other devices.
 - (Message *)saveWithMessageData:(MessageData *)messageData;

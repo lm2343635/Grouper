@@ -74,7 +74,7 @@
         receiverNameLabel.text = message.receiver;
     }
     infoLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@",
-                      [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime.longLongValue / 1000.0]],
+                      [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime.longValue]],
                       message.type, message.object];
     return cell;
 }

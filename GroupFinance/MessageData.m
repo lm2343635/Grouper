@@ -1,7 +1,7 @@
 //
 //	Message.m
 //
-//	Create by 萌 李 on 20/1/2017
+//	Create by Meng Li on 20/1/2017
 //	Copyright © 2017. All rights reserved.
 
 #import "MessageData.h"
@@ -15,6 +15,8 @@ NSString *const kMessageReceiver = @"receiver";
 NSString *const kMessageSendtime = @"sendtime";
 NSString *const kMessageSequence = @"sequence";
 NSString *const kMessageType = @"type";
+NSString *const kSequenceType = @"sequence";
+NSString *const kNodeType = @"node";
 
 @interface MessageData ()
 
@@ -43,11 +45,17 @@ NSString *const kMessageType = @"type";
 		self.receiver = dictionary[kMessageReceiver];
 	}	
 	if (![dictionary[kMessageSendtime] isKindOfClass:[NSNull class]]){
-		self.sendtime = [dictionary[kMessageSendtime] longLongValue];
+		self.sendtime = [dictionary[kMessageSendtime] longValue];
 	}
 	if (![dictionary[kMessageType] isKindOfClass:[NSNull class]]){
 		self.type = dictionary[kMessageType];
 	}
+    if (![dictionary[kSequenceType] isKindOfClass:[NSNull class]]) {
+        self.sequence = [dictionary[kSequenceType] longValue];
+    }
+    if (![dictionary[kNodeType] isKindOfClass:[NSNull class ]]) {
+        self.node = dictionary[kNodeType];
+    }
 	return self;
 }
 
@@ -75,6 +83,10 @@ NSString *const kMessageType = @"type";
 	if (self.type != nil){
 		dictionary[kMessageType] = self.type;
 	}
+    dictionary[kSequenceType] = @(self.sequence);
+    if (self.node != nil) {
+        dictionary[kNodeType] = self.node;
+    }
 	return dictionary;
 
 }

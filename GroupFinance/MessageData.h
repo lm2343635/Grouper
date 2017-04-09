@@ -15,8 +15,10 @@
 @property (nonatomic, strong) NSString *objectId;
 @property (nonatomic, strong) NSString *sender;
 @property (nonatomic, strong) NSString *receiver;
-@property (nonatomic, assign) long long sendtime;
+@property (nonatomic, assign) long sendtime;
 @property (nonatomic, strong) NSString *type;
+@property (nonatomic, assign) long sequence;
+@property (nonatomic, strong) NSString *node;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
