@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define ReceivedTag @"received"
+
 typedef void (^Completion)(void);
 
 @interface ReceiveManager: NSObject

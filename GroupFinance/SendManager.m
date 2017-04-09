@@ -88,7 +88,7 @@
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
-                                         type:@"update"
+                                         type:MessageTypeUpdate
                                          from:currentUser.userId
                                            to:@"*"
                                      sequence:[self generateNewSequence]
@@ -108,7 +108,7 @@
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
-                                         type:@"delete"
+                                         type:MessageTypeDelete
                                          from:currentUser.userId
                                            to:@"*"
                                      sequence:[self generateNewSequence]
@@ -129,16 +129,35 @@
     if (sequences.count == 0) {
         return;
     }
-    // Create control message by sendtimes.
+    // Create confirm message by sequences.
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{
                                                 @"node": group.defaults.node,
                                                 @"sequences": sequences
                                             }]
                                    objectName:nil
                                      objectId:nil
-                                         type:@"confirm"
+                                         type:MessageTypeConfirm
                                          from:currentUser.userId
                                            to:@"*"
+                                     sequence:[self generateNewSequence]
+                                         node:group.defaults.node];
+    [self sendShares];
+}
+
+- (void)resend:(NSArray *)sequences forNode:(NSString *)node to:(NSString *)receiver {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Create resend message by not existed sequences and node identifier.
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{
+                                                @"node": node,
+                                                @"sequences": sequences
+                                            }]
+                                   objectName:nil
+                                     objectId:nil
+                                         type:MessageTypeResend
+                                         from:currentUser.userId
+                                           to:receiver
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
     [self sendShares];

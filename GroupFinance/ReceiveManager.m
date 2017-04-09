@@ -6,8 +6,9 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "NetManager.h"
 #import "ReceiveManager.h"
+#import "NetManager.h"
+#import "SendManager.h"
 #import "GroupManager.h"
 #import "DaoManager.h"
 #import "SecretSharing.h"
@@ -15,6 +16,7 @@
 
 @implementation ReceiveManager {
     NetManager *net;
+    SendManager *send;
     GroupManager *group;
     DaoManager *dao;
 
@@ -36,6 +38,7 @@
     self = [super init];
     if (self) {
         net = [NetManager sharedInstance];
+        send = [SendManager sharedInstance];
         group = [GroupManager sharedInstance];
         dao = [DaoManager sharedInstance];
         sync = [[SyncTool alloc] initWithDataStack:[dao getDataStack]];
@@ -48,7 +51,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     @try {
-        [self removeObserver:self forKeyPath:@"received"];
+        [self removeObserver:self forKeyPath:ReceivedTag];
     } @catch(id anException) {
         //do nothing, obviously it wasn't attached because an exception was thrown
     }
@@ -65,7 +68,7 @@
     }
     self.received = 0;
     [self addObserver:self
-           forKeyPath:@"received"
+           forKeyPath:ReceivedTag
               options:NSKeyValueObservingOptionOld
               context:nil];
     contentsGroup = [[NSMutableArray alloc] init];
@@ -209,21 +212,23 @@
     // Create message data object.
     MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
     // If message contains object related info, use SyncTool to sync it to persistent store.
-    if ([messageData.type isEqualToString:@"update"] ||
-        [messageData.type isEqualToString:@"delete"]) {
+    if ([messageData.type isEqualToString:MessageTypeUpdate] ||
+        [messageData.type isEqualToString:MessageTypeDelete]) {
         // If sync successfully, message data.
         if ([sync syncWithMessageData: messageData]) {
             // Save message data in Message eneity.
             [dao.messageDao saveWithMessageData:messageData];
         }
-    } else if ([messageData.type isEqualToString:@"confirm"]) {
+    } else if ([messageData.type isEqualToString:MessageTypeConfirm]) {
         NSDictionary *content = [self parseJSONString:messageData.content];
         NSString *node = [content valueForKey:@"node"];
-        NSArray *sequences = [content valueForKey:@"sequences"];
+        NSMutableArray *sequences = [content valueForKey:@"sequences"];
+        // Remove exsited sequences in persistent store.
+        [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
+                                                                       forNode:node]];
+        [send resend:sequences forNode:node to:messageData.sender];
         
-//        NSLog(@"%@", [dao.messageDao findSendtimesIn:sendtimes]);
-        
-    } else if ([messageData.type isEqualToString:@"resend"]) {
+    } else if ([messageData.type isEqualToString:MessageTypeResend]) {
         
     }
 }
@@ -262,7 +267,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if ([keyPath isEqualToString:@"received"]) {
+    if ([keyPath isEqualToString:ReceivedTag]) {
         if (DEBUG) {
             NSLog(@"%ld group of shares received.", (long)self.received);
         }
@@ -270,7 +275,7 @@
             if (DEBUG) {
                 NSLog(@"All of %ld group of shares received successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
             }
-            [self removeObserver:self forKeyPath:@"received"];
+            [self removeObserver:self forKeyPath:ReceivedTag];
             [self recoverShares];
         }
     }

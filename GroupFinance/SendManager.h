@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "DaoManager.h"
 
+#define MessageTypeUpdate @"update"
+#define MessageTypeDelete @"delete"
+#define MessageTypeConfirm @"confirm"
+#define MessageTypeResend @"resend"
+
 @interface SendManager : NSObject
 
 // Message sequence.
@@ -28,5 +33,8 @@
 
 // Send confirm message;
 - (void)confirm;
+
+// Send resend message to receiver with not existed sequences and node identifier.
+- (void)resend:(NSArray *)sequences forNode:(NSString *)node to:(NSString *)receiver;
 
 @end
