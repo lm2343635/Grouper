@@ -6,16 +6,17 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
+#import "NetManager.h"
 #import "GroupManager.h"
 #import "SendManager.h"
 #import "SecretSharing.h"
-#import "InternetTool.h"
 #import <SYNCPropertyMapper/SYNCPropertyMapper.h>
 
 @implementation SendManager {
-    NSDictionary *managers;
+    NetManager *net;
     DaoManager *dao;
     GroupManager *group;
+    
     User *currentUser;
     Message *message;
 }
@@ -35,9 +36,10 @@
     }
     self = [super init];
     if (self) {
+        net = [NetManager sharedInstance];
         dao = [DaoManager sharedInstance];
-        managers = [InternetTool getSessionManagers];
         group = [GroupManager sharedInstance];
+        
         currentUser = [dao.userDao currentUser];
     }
     return self;
@@ -117,10 +119,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if ([keyPath isEqualToString:@"sent"]) {
-        if (self.sent == managers.count) {
+        if (self.sent == net.managers.count) {
             [self removeObserver:self forKeyPath:@"sent"];
             if (DEBUG) {
-                NSLog(@"%ld shares sent successfully in %@", (unsigned long)managers.count, [NSDate date]);
+                NSLog(@"%ld shares sent successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
             }
             // Push remote notification to receiver if this message is a normal message.
             if ([message.type isEqualToString:@"update"]) {
@@ -167,8 +169,8 @@
               options:NSKeyValueObservingOptionOld
               context:nil];
     // Send shares to multiple untrusted servers.
-    for (NSString *address in managers.allKeys) {
-        [managers[address] POST:[InternetTool createUrl:@"transfer/put" withServerAddress:address]
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
                      parameters:@{
                                   @"share": shares[address],
                                   @"receiver": message.receiver,
@@ -198,8 +200,8 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *address0 = [group.defaults.servers.allKeys objectAtIndex:0];
-    [managers[address0] POST:[InternetTool createUrl:@"user/notify" withServerAddress:address0]
+    NSString *address0 = [net.managers.allKeys objectAtIndex:0];
+    [net.managers[address0] POST:[NetManager createUrl:@"user/notify" withServerAddress:address0]
                   parameters:@{
                                @"content": content,
                                @"receiver": reveiver

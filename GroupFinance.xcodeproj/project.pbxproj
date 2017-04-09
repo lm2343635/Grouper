@@ -72,7 +72,7 @@
 		E48DBCB61E88FBDB00EC94D1 /* Message+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DBCB21E88FBDB00EC94D1 /* Message+CoreDataProperties.m */; };
 		E48DBCB91E88FC0F00EC94D1 /* ShareDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DBCB81E88FC0F00EC94D1 /* ShareDao.m */; };
 		E48DBCBC1E88FC4200EC94D1 /* MessageDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DBCBB1E88FC4200EC94D1 /* MessageDao.m */; };
-		E48DE0711DCF660300A7A5DB /* InternetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DE0701DCF660300A7A5DB /* InternetTool.m */; };
+		E48DE0711DCF660300A7A5DB /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DE0701DCF660300A7A5DB /* NetManager.m */; };
 		E491395D1E51EA750003ECCA /* DeviceTokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E491395C1E51EA750003ECCA /* DeviceTokenManager.m */; };
 		E4923E801E31DEDB003C4183 /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = E4923E7F1E31DEDB003C4183 /* MessageData.m */; };
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
@@ -249,8 +249,8 @@
 		E48DBCB81E88FC0F00EC94D1 /* ShareDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDao.m; sourceTree = "<group>"; };
 		E48DBCBA1E88FC4200EC94D1 /* MessageDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDao.h; sourceTree = "<group>"; };
 		E48DBCBB1E88FC4200EC94D1 /* MessageDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDao.m; sourceTree = "<group>"; };
-		E48DE06F1DCF660300A7A5DB /* InternetTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetTool.h; sourceTree = "<group>"; };
-		E48DE0701DCF660300A7A5DB /* InternetTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetTool.m; sourceTree = "<group>"; };
+		E48DE06F1DCF660300A7A5DB /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
+		E48DE0701DCF660300A7A5DB /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
 		E491395B1E51EA750003ECCA /* DeviceTokenManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceTokenManager.h; sourceTree = "<group>"; };
 		E491395C1E51EA750003ECCA /* DeviceTokenManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceTokenManager.m; sourceTree = "<group>"; };
 		E4923E7E1E31DEDB003C4183 /* MessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageData.h; sourceTree = "<group>"; };
@@ -528,16 +528,18 @@
 		E4923E811E31E8E6003C4183 /* Synchronization */ = {
 			isa = PBXGroup;
 			children = (
+				E4039EDE1DE0730C00D39DDB /* Defaults.h */,
+				E4039EDF1DE0730C00D39DDB /* Defaults.m */,
 				E491395B1E51EA750003ECCA /* DeviceTokenManager.h */,
 				E491395C1E51EA750003ECCA /* DeviceTokenManager.m */,
 				E46D57671DB4D21900116C4E /* GLibFacade.c */,
 				E46D57681DB4D21900116C4E /* GLibFacade.h */,
 				E43DDB8B1E404F8A00C8BDAE /* GroupManager.h */,
 				E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */,
-				E4039EDE1DE0730C00D39DDB /* Defaults.h */,
-				E4039EDF1DE0730C00D39DDB /* Defaults.m */,
 				E4923E7E1E31DEDB003C4183 /* MessageData.h */,
 				E4923E7F1E31DEDB003C4183 /* MessageData.m */,
+				E48DE06F1DCF660300A7A5DB /* NetManager.h */,
+				E48DE0701DCF660300A7A5DB /* NetManager.m */,
 				E4BF182C1E163F3A003340FB /* ReceiveManager.h */,
 				E4BF182D1E163F3A003340FB /* ReceiveManager.m */,
 				E46D57701DB4D65800116C4E /* SecretSharing.h */,
@@ -585,8 +587,6 @@
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
 				E446C0FF1DCF75E600EC5966 /* InternetResponse.h */,
 				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
-				E48DE06F1DCF660300A7A5DB /* InternetTool.h */,
-				E48DE0701DCF660300A7A5DB /* InternetTool.m */,
 				E476B0A41DE40F5C00FBCB24 /* MCManager.h */,
 				E476B0A51DE40F5C00FBCB24 /* MCManager.m */,
 			);
@@ -863,7 +863,7 @@
 				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
 				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
-				E48DE0711DCF660300A7A5DB /* InternetTool.m in Sources */,
+				E48DE0711DCF660300A7A5DB /* NetManager.m in Sources */,
 				E48DBCB31E88FBDB00EC94D1 /* Share+CoreDataClass.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,

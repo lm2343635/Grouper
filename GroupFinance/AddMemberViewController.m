@@ -7,10 +7,10 @@
 //
 
 #import "AddMemberViewController.h"
+#import "NetManager.h"
 #import "DaoManager.h"
 #import "GroupManager.h"
 #import "AppDelegate.h"
-#import "InternetTool.h"
 #import "AlertTool.h"
 
 @interface AddMemberViewController ()
@@ -24,9 +24,11 @@
 @end
 
 @implementation AddMemberViewController {
+    NetManager *net;
     DaoManager *dao;
-    User *currentUser;
     GroupManager *group;
+    
+    User *currentUser;
     BOOL isOwner;
     NSMutableDictionary *serverInfoForUser;
     MCPeerID *invitePeer;
@@ -37,8 +39,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
 
+    net = [NetManager sharedInstance];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
+    
     currentUser = [dao.userDao currentUser];
 
     isOwner = [group.defaults.owner isEqualToString:currentUser.userId];
@@ -201,9 +205,8 @@
         //Init serverInfoForUser
         serverInfoForUser = [[NSMutableDictionary alloc] init];
         //Send user info to untrusted servers.
-        for (NSString *address in group.defaults.servers.allKeys) {
-            AFHTTPSessionManager *manager = [InternetTool getSessionManagerWithServerAddress:address];
-            [manager POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
+        for (NSString *address in net.managers.allKeys) {
+            [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                parameters:parameters
                  progress:nil
                   success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -229,11 +232,10 @@
         group.defaults.servers = [message valueForKey:@"serverInfo"];
         [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
         //Download group members and group info.
-        NSString *address0 = [group.defaults.servers.allKeys objectAtIndex:0];
+        NSString *address0 = [net.managers.allKeys objectAtIndex:0];
         //Refresh session managers.
-        [InternetTool refreshSessionManagers];
-        NSDictionary *managers = [InternetTool getSessionManagers];
-        [managers[address0] GET:[InternetTool createUrl:@"group/info" withServerAddress:address0]
+        [net refreshSessionManagers];
+        [net.managers[address0] GET:[NetManager createUrl:@"group/info" withServerAddress:address0]
                      parameters:nil
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -264,7 +266,7 @@
                             }
                         }];
         //Reload user info
-        [managers[address0] GET:[InternetTool createUrl:@"user/list" withServerAddress:address0]
+        [net.managers[address0] GET:[NetManager createUrl:@"user/list" withServerAddress:address0]
                      parameters:nil
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

@@ -6,12 +6,12 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
+#import "NetManager.h"
 #import "GroupManager.h"
 #import "DeviceTokenManager.h"
-#import "InternetTool.h"
 
 @implementation DeviceTokenManager {
-    NSDictionary *managers;
+    NetManager *net;
     GroupManager *group;
     NSUserDefaults *defaults;
 }
@@ -28,7 +28,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        managers = [InternetTool getSessionManagers];
+        net = [NetManager sharedInstance];
         group = [GroupManager sharedInstance];
         defaults = [NSUserDefaults standardUserDefaults];
     }
@@ -42,8 +42,8 @@
     if (_deviceToken == nil) {
         return;
     }
-    for (NSString *address in group.defaults.servers.allKeys) {
-        [managers[address] POST:[InternetTool createUrl:@"user/deviceToken" withServerAddress:address]
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] POST:[NetManager createUrl:@"user/deviceToken" withServerAddress:address]
                      parameters:@{@"deviceToken": _deviceToken}
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

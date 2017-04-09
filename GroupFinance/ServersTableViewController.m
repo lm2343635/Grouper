@@ -9,7 +9,7 @@
 #import "ServersTableViewController.h"
 #import "GroupManager.h"
 #import "DaoManager.h"
-#import "InternetTool.h"
+#import "NetManager.h"
 #import "AlertTool.h"
 #import "CommonTool.h"
 
@@ -18,7 +18,7 @@
 @end
 
 @implementation ServersTableViewController {
-    NSDictionary *managers;
+    NetManager *net;
     GroupManager *group;
     DaoManager *dao;
     NSDictionary *servers;
@@ -30,9 +30,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
+    net = [NetManager sharedInstance];
     dao = [DaoManager sharedInstance];
-    user = [dao.userDao currentUser];
     group = [GroupManager sharedInstance];
+    
+    user = [dao.userDao currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -209,13 +211,11 @@
               context:nil];
     
     //Refresh session manager.
-    [InternetTool refreshSessionManagers];
-    managers = [InternetTool getSessionManagers];
+    [net refreshSessionManagers];
     
     //Send owner information
-    for (NSString *address in managers.allKeys) {
-
-        [managers[address] POST:[InternetTool createUrl:@"user/add" withServerAddress:address]
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                      parameters:@{
                                   @"userId": user.userId,
                                   @"name": user.name,
@@ -262,10 +262,10 @@
               options:NSKeyValueObservingOptionOld
               context:nil];
     
-    for (NSString *address in managers.allKeys) {
-        [managers[address] POST:[InternetTool createUrl:@"group/init" withServerAddress:address]
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] POST:[NetManager createUrl:@"group/init" withServerAddress:address]
                      parameters:@{
-                                  @"servers": [NSNumber numberWithInteger:managers.allKeys.count],
+                                  @"servers": [NSNumber numberWithInteger:net.managers.allKeys.count],
                                   @"threshold": [NSNumber numberWithInt:_thresholdTextField.text.intValue]
                                   }
                        progress:nil

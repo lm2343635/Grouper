@@ -7,16 +7,16 @@
 //
 
 #import "AddServerViewController.h"
+#import "NetManager.h"
 #import "GroupManager.h"
 #import "AlertTool.h"
-#import "InternetTool.h"
 
 @interface AddServerViewController ()
 
 @end
 
 @implementation AddServerViewController {
-    AFHTTPSessionManager *manager;
+    NetManager *net;
     GroupManager *group;
 }
 
@@ -25,8 +25,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    manager = [InternetTool getSessionManager];
+    
+    net = [NetManager sharedInstance];
     group = [GroupManager sharedInstance];
+    
     //If group id and group name has been set, autofill them and disable editing.
     if (group.defaults.groupId != nil && group.defaults.groupName != nil) {
         _groupIdTextField.text = group.defaults.groupId;
@@ -56,7 +58,7 @@
             return;
         }
     }
-    [manager POST:[NSString stringWithFormat:@"http://%@/group/register", _serverAddressTextField.text]
+    [net.manager POST:[NSString stringWithFormat:@"http://%@/group/register", _serverAddressTextField.text]
        parameters:@{
                     @"id": _groupIdTextField.text,
                     @"name": _groupNameTextField.text

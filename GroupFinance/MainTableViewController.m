@@ -7,11 +7,11 @@
 //
 
 #import "MainTableViewController.h"
+#import "NetManager.h"
 #import "GroupManager.h"
 #import "SendManager.h"
 #import "ReceiveManager.h"
 #import "DaoManager.h"
-#import "InternetTool.h"
 #import "CommonTool.h"
 #import "MessageData.h"
 #import "GroupFinance-Swift.h"
@@ -23,9 +23,9 @@
 @end
 
 @implementation MainTableViewController {
+    NetManager *net;
     DaoManager *dao;
     GroupManager *group;
-    NSDictionary *managers;
     
     NSDateFormatter *dateFormatter;
     int accessedServers;
@@ -44,9 +44,9 @@
     }
     [super viewDidLoad];
     
+    net = [NetManager sharedInstance];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
-    managers = [InternetTool getSessionManagers];
     
     // Init date formatter.
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -74,7 +74,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    managers = [InternetTool getSessionManagers];
+
 }
 
 #pragma mark - Table view data source]
@@ -227,8 +227,9 @@
            forKeyPath:@"checkState"
               options:NSKeyValueObservingOptionNew
               context:nil];
-    for (NSString *address in group.defaults.servers.allKeys) {
-        [managers[address] GET:[InternetTool createUrl:@"user/state" withServerAddress:address]
+
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] GET:[NetManager createUrl:@"user/state" withServerAddress:address]
                     parameters:nil
                       progress:nil
                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

@@ -8,11 +8,11 @@
 
 #import "GroupManager.h"
 #import "DaoManager.h"
-#import "InternetTool.h"
+#import "NetManager.h"
 
 @implementation GroupManager {
     DaoManager *dao;
-    NSDictionary *managers;
+    NetManager *net;
     User *currentUser;
 }
 
@@ -28,7 +28,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        managers = [InternetTool getSessionManagers];
+        net = [NetManager sharedInstance];
         dao = [DaoManager sharedInstance];
         currentUser = [dao.userDao currentUser];
         _defaults = [Defaults sharedInstance];
@@ -47,7 +47,7 @@
     }
     NSString *address0 = [_defaults.servers.allKeys objectAtIndex:0];
     //Reload user info
-    [managers[address0] GET:[InternetTool createUrl:@"user/list" withServerAddress:address0]
+    [net.managers[address0] GET:[NetManager createUrl:@"user/list" withServerAddress:address0]
                  parameters:nil
                    progress:nil
                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

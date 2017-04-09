@@ -9,8 +9,6 @@
 #import "MembersTableViewController.h"
 #import "DaoManager.h"
 #import "GroupManager.h"
-#import "InternetTool.h"
-#import "GroupManager.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface MembersTableViewController ()
@@ -18,15 +16,12 @@
 @end
 
 @implementation MembersTableViewController {
-    DaoManager * dao;
+    DaoManager *dao;
     GroupManager *group;
-    GroupManager *groupManager;
     
     NSArray *members;
     User *owner;
     User *currentUser;
-    
-    NSDictionary *managers;
 }
 
 - (void)viewDidLoad {
@@ -36,11 +31,11 @@
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
-    groupManager = [GroupManager sharedInstance];
+    
     currentUser = [dao.userDao currentUser];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [groupManager refreshMemberListWithCompletion:^(BOOL success) {
+        [group refreshMemberListWithCompletion:^(BOOL success) {
             [self.tableView.mj_header endRefreshing];
             if (success) {
                 if (group.members > 0) {
@@ -64,7 +59,6 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
-    managers = [InternetTool getSessionManagers];
 }
 
 #pragma mark - Table view data source

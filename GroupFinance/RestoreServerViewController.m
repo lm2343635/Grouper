@@ -9,15 +9,15 @@
 #import "RestoreServerViewController.h"
 #import "GroupManager.h"
 #import "DaoManager.h"
+#import "NetManager.h"
 #import "AlertTool.h"
-#import "InternetTool.h"
 
 @interface RestoreServerViewController ()
 
 @end
 
 @implementation RestoreServerViewController {
-    AFHTTPSessionManager *manager;
+    NetManager *net;
     GroupManager *group;
     DaoManager *dao;
     User *currentUser;
@@ -28,7 +28,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    manager = [InternetTool getSessionManager];
+    net = [NetManager sharedInstance];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     currentUser = [dao.userDao currentUser];
@@ -55,7 +55,7 @@
         }
     }
 
-    [manager POST:[NSString stringWithFormat:@"http://%@/group/restore", _addressTextField.text]
+    [net.manager POST:[NSString stringWithFormat:@"http://%@/group/restore", _addressTextField.text]
        parameters:@{
                     @"uid": currentUser.userId,
                     @"accesskey": _accessKeyTextField.text

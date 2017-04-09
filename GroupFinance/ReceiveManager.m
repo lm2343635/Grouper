@@ -6,20 +6,20 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
+#import "NetManager.h"
 #import "ReceiveManager.h"
 #import "GroupManager.h"
 #import "DaoManager.h"
-#import "InternetTool.h"
 #import "SecretSharing.h"
 #import "GroupFinance-Swift.h"
 
 @implementation ReceiveManager {
+    NetManager *net;
     GroupManager *group;
     DaoManager *dao;
-    NSDictionary *managers;
+
     NSMutableArray *contentsGroup;
     SyncTool *sync;
-    
     Completion syncCompletion;
 }
 
@@ -35,7 +35,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        managers = [InternetTool getSessionManagers];
+        net = [NetManager sharedInstance];
         group = [GroupManager sharedInstance];
         dao = [DaoManager sharedInstance];
         sync = [[SyncTool alloc] initWithDataStack:[dao getDataStack]];
@@ -77,8 +77,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Download share id list from untrusted servers.
-    for (NSString *address in group.defaults.servers.allKeys) {
-        [managers[address] GET:[InternetTool createUrl:@"transfer/list" withServerAddress:address]
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] GET:[NetManager createUrl:@"transfer/list" withServerAddress:address]
                     parameters:nil
                       progress:nil
                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -128,7 +128,7 @@
     }
     
     // Download share contents if there is any share id.
-    [managers[address] POST:[InternetTool createUrl:@"transfer/get" withServerAddress:address]
+    [net.managers[address] POST:[NetManager createUrl:@"transfer/get" withServerAddress:address]
                  parameters:[NSDictionary dictionaryWithObjectsAndKeys: [NSSet setWithArray:shareIds], @"id", nil]
                    progress:nil
                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -265,9 +265,9 @@
         if (DEBUG) {
             NSLog(@"%ld group of shares received.", (long)self.received);
         }
-        if (self.received == managers.count) {
+        if (self.received == net.managers.count) {
             if (DEBUG) {
-                NSLog(@"All of %ld group of shares received successfully in %@", (unsigned long)managers.count, [NSDate date]);
+                NSLog(@"All of %ld group of shares received successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
             }
             [self removeObserver:self forKeyPath:@"received"];
             [self recoverShares];

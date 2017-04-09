@@ -43,12 +43,7 @@
     //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application
                              didFinishLaunchingWithOptions:launchOptions];
-    
-    //Init AFHTTPSessionManager.
-    [self sessionManager];
-    if (group.members > 0) {
-        [self sessionManagers];
-    }
+
     
     //Set root view controller.
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] == nil) {
@@ -126,37 +121,7 @@
     return _dataStack;
 }
 
-#pragma mark - AFNetworking
-@synthesize sessionManagers = _sessionManagers;
 
-- (NSDictionary *)sessionManagers {
-    if (_sessionManagers == nil) {
-        [self refreshSessionManagers];
-    }
-    return _sessionManagers;
-}
-
-- (void)refreshSessionManagers {
-    NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
-    for (NSString *address in group.defaults.servers.allKeys) {
-        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        //Set access key in request header.
-        [manager.requestSerializer setValue:[group.defaults.servers valueForKey:address] forHTTPHeaderField:@"key"];
-        manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
-        [managers setObject:manager forKey:address];
-    }
-    _sessionManagers = managers;
-}
-
-@synthesize sessionManager = _sessionManager;
-
-- (AFHTTPSessionManager *)sessionManager {
-    if(_sessionManager == nil) {
-        _sessionManager = [AFHTTPSessionManager manager];
-        _sessionManager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
-    }
-    return _sessionManager;
-}
 
 #pragma mark - Service
 - (void)setRootViewControllerWithIdentifer:(NSString *)identifer {
