@@ -204,6 +204,18 @@
     return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
+// Send existed messages.
+- (void)sendMessages:(NSArray *)messages {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    for (int i = 0; i < messages.count; i ++) {
+        message = [messages objectAtIndex:i];
+        
+    }
+}
+
+// Send shares.
 - (void)sendShares {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));

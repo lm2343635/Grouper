@@ -32,10 +32,13 @@
 // Find all normal message.
 - (NSArray *)findNormal;
 
-// Find normal message sent by a sender(userId).
+// Find normal messages sent by a sender(userId).
 - (NSArray *)findNormalWithSender:(NSString *)sender;
 
-// Find sequences in a sequences array and node identifier.
-- (NSArray *)findExistedSequencesIn:(NSArray *)sequences forNode:(NSString *)node;
+// Find messages in a sequences array with node identifier.
+- (NSArray *)findInSequences:(NSArray *)sequences withNode:(NSString *)node;
+
+// Find sequences in a sequences array with node identifier.
+- (NSArray *)findExistedSequencesIn:(NSArray *)sequences withNode:(NSString *)node;
 
 @end

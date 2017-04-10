@@ -225,11 +225,17 @@
         NSMutableArray *sequences = [content valueForKey:@"sequences"];
         // Remove exsited sequences in persistent store.
         [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
-                                                                       forNode:node]];
+                                                                      withNode:node]];
         [send resend:sequences forNode:node to:messageData.sender];
         
     } else if ([messageData.type isEqualToString:MessageTypeResend]) {
-        
+        NSDictionary *content = [self parseJSONString:messageData.content];
+        NSString *node = [content valueForKey:@"node"];
+        // If node identifier is same with which in local persistent store, resend messages.
+        if ([node isEqualToString:group.defaults.node]) {
+            NSMutableArray *sequences = [content valueForKey:@"sequences"];
+            NSArray *messages = [dao.messageDao findInSequences:sequences withNode:node];
+        }
     }
 }
 

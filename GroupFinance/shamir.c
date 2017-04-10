@@ -90,14 +90,14 @@ void seed_random(void) {
 */
 
 int modular_exponentiation(int base,int exp,int mod) {
-    if (exp == 0)
+    if (exp == 0) {
         return 1;
-	else if (exp%2 == 0) {
+    } else if (exp%2 == 0) {
         int mysqrt = modular_exponentiation(base, exp/2, mod);
         return (mysqrt*mysqrt)%mod;
-    }
-    else
+    } else {
         return (base * modular_exponentiation(base, exp-1, mod))%mod;
+    }
 }
 
 
@@ -130,7 +130,7 @@ int * split_number(int number, int n, int t) {
 		int y = coef[0];
 		/* Calculate the shares */
 		for (i = 1; i < t; ++i) {
-			int temp = modular_exponentiation(x+1, i, prime);
+			int temp = modular_exponentiation(x + 1, i, prime);
 			y = (y + (coef[i] * temp % prime)) % prime;
 		}
 		/* Sometimes we're getting negative numbers, and need to fix that */
@@ -412,15 +412,13 @@ char * generate_share_strings(char * secret, int n, int t) {
 /* Trim spaces at end of string */
 void trim_trailing_whitespace(char *str) {
 	unsigned long l;
-	
-	if (str == NULL)
+    if (str == NULL) {
 		return;
-	
+    }
 	l = strlen(str);
-	
-	if (l < 1)
+    if (l < 1) {
 		return;
-	
+    }
 	while ( (l > 0) && (( str[l - 1] == ' ' ) ||
 		( str[l - 1] == '\n' ) || 
 		( str[l - 1] == '\r' ) || 

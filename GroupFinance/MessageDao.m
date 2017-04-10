@@ -82,7 +82,18 @@
     return [self findAllWithEntityName:MessageEntityName];
 }
 
-- (NSArray *)findExistedSequencesIn:(NSArray *)sequences forNode:(NSString *)node {
+- (NSArray *)findInSequences:(NSArray *)sequences withNode:(NSString *)node {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"sequence IN %@ and node = %@", sequences, node]
+                  withEntityName:MessageEntityName];
+}
+
+- (NSArray *)findExistedSequencesIn:(NSArray *)sequences withNode:(NSString *)node {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:MessageEntityName];
     [request setResultType:NSDictionaryResultType];
     [request setPropertiesToFetch:[NSArray arrayWithObjects:@"sequence", nil]];
