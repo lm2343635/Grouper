@@ -16,14 +16,13 @@
 
 @interface SendManager : NSObject
 
-// Message sequence.
-@property (nonatomic) NSInteger sequence;
-
 // How many servers has been sent.
 @property (nonatomic) NSInteger sent;
 
 // Get single instance.
 + (instancetype)sharedInstance;
+
+// ******************* Create message and send shares to untrusted servers. *******************
 
 // Send update message for a sync entity.
 - (void)update:(SyncEntity *)object;
@@ -36,5 +35,10 @@
 
 // Send resend message to receiver with not existed sequences and node identifier.
 - (void)resend:(NSArray *)sequences forNode:(NSString *)node to:(NSString *)receiver;
+
+// ******************* Other *******************
+
+// Send existed messages.
+- (void)sendExistedMessages:(NSArray *)messages;
 
 @end

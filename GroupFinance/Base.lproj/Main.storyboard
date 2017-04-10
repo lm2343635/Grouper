@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -2051,7 +2051,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zXv-et-Tcs">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Shop Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zXv-et-Tcs">
                                 <rect key="frame" x="0.0" y="80" width="320" height="50"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -2064,8 +2064,8 @@
                         <color key="backgroundColor" red="0.93715614080429077" green="0.93731337785720825" blue="0.93713396787643433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="zXv-et-Tcs" firstAttribute="top" secondItem="jf3-ou-JCB" secondAttribute="bottom" constant="16" id="MZi-NW-K5l"/>
-                            <constraint firstItem="zXv-et-Tcs" firstAttribute="leading" secondItem="ugG-LH-HON" secondAttribute="leadingMargin" constant="-20" id="Nv8-yK-RSt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="zXv-et-Tcs" secondAttribute="trailing" constant="-20" id="hbB-lz-kt5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zXv-et-Tcs" secondAttribute="trailing" constant="-16" id="NFn-8n-Zhr"/>
+                            <constraint firstItem="zXv-et-Tcs" firstAttribute="leading" secondItem="ugG-LH-HON" secondAttribute="leadingMargin" constant="-16" id="b1t-wu-Bea"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Shop" id="KyG-px-eRu">
@@ -2137,7 +2137,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sendtime | Type | Object" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="H8j-na-9h3">
-                                            <rect key="frame" x="16" y="47" width="296" height="14"/>
+                                            <rect key="frame" x="16" y="47" width="288" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -2172,7 +2172,6 @@
                                         <constraint firstItem="H8j-na-9h3" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="7a0-7R-LAq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="pUU-q7-mxp" secondAttribute="trailing" id="7wB-L2-ye2"/>
                                         <constraint firstItem="mXq-wj-0Kr" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="1" id="9Ln-bA-3DN"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="H8j-na-9h3" secondAttribute="trailing" id="9tW-2T-IJ8"/>
                                         <constraint firstItem="A84-ck-ST1" firstAttribute="leading" secondItem="mXq-wj-0Kr" secondAttribute="trailing" constant="8" id="CVr-Uz-GIE"/>
                                         <constraint firstItem="H8j-na-9h3" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="39" id="EeL-0m-nq5"/>
                                         <constraint firstItem="SyT-jK-SX2" firstAttribute="leading" secondItem="Qe0-sX-6EC" secondAttribute="trailing" constant="8" id="HDS-VM-hkn"/>
@@ -2182,6 +2181,7 @@
                                         <constraint firstItem="mXq-wj-0Kr" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="aVh-M5-q98"/>
                                         <constraint firstItem="Qe0-sX-6EC" firstAttribute="centerX" secondItem="vez-l2-bu4" secondAttribute="centerX" id="gg2-Iv-ogg"/>
                                         <constraint firstItem="Qe0-sX-6EC" firstAttribute="leading" secondItem="A84-ck-ST1" secondAttribute="trailing" constant="8" id="ha1-xO-Skh"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="H8j-na-9h3" secondAttribute="trailing" constant="8" id="i6Z-9V-yaH"/>
                                         <constraint firstItem="pUU-q7-mxp" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="nBt-Io-N8s"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="xfJ-bu-c7k" secondAttribute="trailing" constant="8" id="q48-hC-eVS"/>
                                         <constraint firstItem="xfJ-bu-c7k" firstAttribute="leading" secondItem="SyT-jK-SX2" secondAttribute="trailing" constant="5.5" id="vCN-aW-MiW"/>
@@ -2206,6 +2206,9 @@
                                 <segment title="Control"/>
                             </segments>
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="changeMessageType:" destination="Rdd-44-ZGf" eventType="valueChanged" id="Crm-js-vub"/>
+                            </connections>
                         </segmentedControl>
                     </navigationItem>
                     <connections>

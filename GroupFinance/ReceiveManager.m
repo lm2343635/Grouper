@@ -207,6 +207,9 @@
 }
 
 - (void)handleMessage:(NSString *)messageString {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     // Transfer JSON string to dictionary.
     NSDictionary *messageObject =[self parseJSONString:messageString];
     // Create message data object.
@@ -233,8 +236,11 @@
         NSString *node = [content valueForKey:@"node"];
         // If node identifier is same with which in local persistent store, resend messages.
         if ([node isEqualToString:group.defaults.node]) {
-            NSMutableArray *sequences = [content valueForKey:@"sequences"];
-            NSArray *messages = [dao.messageDao findInSequences:sequences withNode:node];
+            NSArray *sequences = [content valueForKey:@"sequences"];
+            // Send existed messages to untrusted server again,
+            // so that those members who did not recevied the messages can rececied again.
+            [send sendExistedMessages:[dao.messageDao findInSequences:sequences
+                                                             withNode:node]];
         }
     }
 }

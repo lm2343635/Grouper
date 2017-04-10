@@ -10,4 +10,6 @@
 
 @interface MessagesTableViewController : UITableViewController
 
+- (IBAction)changeMessageType:(UISegmentedControl *)sender;
+
 @end

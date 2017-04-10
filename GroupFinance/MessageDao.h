@@ -32,6 +32,9 @@
 // Find all normal message.
 - (NSArray *)findNormal;
 
+// Find all control message;
+- (NSArray *)findControl;
+
 // Find normal messages sent by a sender(userId).
 - (NSArray *)findNormalWithSender:(NSString *)sender;
 

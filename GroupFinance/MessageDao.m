@@ -67,6 +67,14 @@
                   withEntityName:MessageEntityName];
 }
 
+- (NSArray *)findControl {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"object=nil"]
+                  withEntityName:MessageEntityName];
+}
+
 - (NSArray *)findNormalWithSender:(NSString *)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));

@@ -150,6 +150,21 @@
     return _node;
 }
 
+@synthesize sequence = _sequence;
+
+- (void)setSequence:(NSInteger)sequence {
+    _sequence = sequence;
+    [defaults setInteger:sequence forKey:NSStringFromSelector(@selector(sequence))];
+}
+
+- (NSInteger)sequence {
+    if (_sequence == 0) {
+        _sequence = [defaults integerForKey:NSStringFromSelector(@selector(sequence))];
+    }
+    return _sequence;
+}
+
+
 @synthesize initial = _initial;
 
 - (void)setInitial:(NSInteger)initial {

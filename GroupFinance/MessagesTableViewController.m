@@ -57,11 +57,12 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     Message *message = [messages objectAtIndex:indexPath.row];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier" forIndexPath:indexPath];
     UIImageView *senderAvatarImageView = (UIImageView *)[cell viewWithTag:1];
     UILabel *senderNameLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *receiverNameLabel = (UILabel *)[cell viewWithTag:3];
-    UIImageView *receiverAvatarImageView = (UIImageView *)[cell viewWithTag:1];
+    UIImageView *receiverAvatarImageView = (UIImageView *)[cell viewWithTag:4];
     UILabel *infoLabel = (UILabel *)[cell viewWithTag:5];
     User *sender = group.membersDict[message.sender];
     if (sender != nil) {
@@ -70,12 +71,21 @@
     }
     User *receiver = group.membersDict[message.receiver];
     if (receiver != nil) {
-        receiverAvatarImageView.image = [UIImage imageWithData:sender.picture];
-        receiverNameLabel.text = message.receiver;
+        receiverAvatarImageView.image = [UIImage imageWithData:receiver.picture];
+        receiverNameLabel.text = receiver.name;
     }
-    infoLabel.text = [NSString stringWithFormat:@"%@ | %@ | %@",
-                      [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime.longValue]],
-                      message.type, message.object];
+
+    NSMutableString *info = [NSMutableString stringWithFormat:@"%@ | %@",
+                   [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime.longValue]],
+                   message.type];
+    
+    // If this message is a normal message(object and objectId is not null), add object name in infoLabel.
+    if (message.object != nil) {
+        [info appendString:[NSString stringWithFormat:@" | %@", message.object]];
+    }
+    // Add sequence.
+    [info appendString:[NSString stringWithFormat:@" | %@", message.sequence]];
+    infoLabel.text = info;
     return cell;
 }
 
@@ -99,6 +109,24 @@
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+}
+
+#pragma mark - Action
+- (IBAction)changeMessageType:(UISegmentedControl *)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            messages = [NSMutableArray arrayWithArray:[dao.messageDao findNormal]];
+            break;
+        case 1:
+            messages = [NSMutableArray arrayWithArray:[dao.messageDao findControl]];
+            break;
+        default:
+            break;
+    }
+    [self.tableView reloadData];
 }
 
 @end
