@@ -222,32 +222,31 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    self.checkState = 0;
-    [self addObserver:self
-           forKeyPath:@"checkState"
-              options:NSKeyValueObservingOptionNew
-              context:nil];
-
-    for (NSString *address in net.managers.allKeys) {
-        [net.managers[address] GET:[NetManager createUrl:@"user/state" withServerAddress:address]
-                    parameters:nil
-                      progress:nil
-                       success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                           InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                           if ([response statusOK]) {
-                               BOOL state = [[[response getResponseResult] valueForKey:@"ok"] boolValue];
-                               if (state) {
-                                   accessedServers ++;
-                               }
-                               [self showState:state forServer:address];
-                               self.checkState ++;
-                           }
-                       }
-                       failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                           [self showState:NO forServer:address];
-                           self.checkState ++;
-                       }];
-    }
+    [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
+        for (NSString *address in serverStates.allKeys) {
+            [self showState:[serverStates[address] boolValue] forServer:address];
+        }
+        
+        if (sync) {
+            [syncImageView startRotate:2 withClockwise:NO];
+            // Refresh members list before data sync
+            [group refreshMemberListWithCompletion:^(BOOL success) {
+                [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+                    [syncImageView stopRotate];
+                }];
+            }];
+            
+            // If client can get access to all untrusted server(therdhold is n),
+            // send a confirm message to unstrusted servers.
+            long now = (long)[[NSDate date] timeIntervalSince1970];
+            // If client sent control message before 3600s, send control message again
+            if (now - group.defaults.controlMessageSendTime > 1 * 3600) {
+                [[SendManager sharedInstance] confirm];
+                // Update control message sene time.
+                group.defaults.controlMessageSendTime = now;
+            }
+        }
+    }];
 }
 
 - (void)showState:(BOOL)state forServer:(NSString *)address {
@@ -259,58 +258,6 @@
     stateImageView.highlighted = !state;
     stateImageView.hidden = NO;
     [loadingActivityIndicatorView stopAnimating];
-}
-
-- (void)dataSync {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    [syncImageView startRotate:2 withClockwise:NO];
-    [[ReceiveManager sharedInstance] receiveWithCompletion:^{
-        [syncImageView stopRotate];
-    }];
-}
-
-#pragma mark - Key Value Observe
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    if ([keyPath isEqualToString:@"checkState"]) {
-        if (self.checkState == group.defaults.serverCount) {
-            if (DEBUG) {
-                NSLog(@"All servers' state have been checked.");
-            }
-            [self removeObserver:self forKeyPath:@"checkState"];
-            // If threshold is k in a secret sharing scheme f(k, n),
-            // sync method can be invoked after accessing more than k untrusted servers.
-            if (DEBUG) {
-                NSLog(@"Grouper access to %d untrusted servers.", accessedServers);
-            }
-            if (accessedServers >= group.defaults.threshold && group.defaults.initial == InitialFinished) {
-                if (DEBUG) {
-                    NSLog(@"Accessed %d servers, call sync method.", accessedServers);
-                }
-                // Refresh members list before data sync
-                [group refreshMemberListWithCompletion:^(BOOL success) {
-                    [self dataSync];
-                }];
-            }
-            // If client can get access to all untrusted server(therdhold is n),
-            // send a confirm message to unstrusted servers.
-            long now = (long)[[NSDate date] timeIntervalSince1970];
-            // If client sent control message before 3600s, send control message again
-            if (now - group.defaults.controlMessageSendTime > 1 * 3600) {
-                [[SendManager sharedInstance] confirm];
-                // Update control message sene time.
-                group.defaults.controlMessageSendTime = now;
-            }
-            
-        }
-    }
 }
 
 #pragma mark - Notification

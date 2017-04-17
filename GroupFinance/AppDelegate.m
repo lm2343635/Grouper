@@ -23,6 +23,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
     //Register Remote Notification, support iOS version after 8.0
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
@@ -39,6 +40,9 @@
     }
     
     _mcManager = [[MCManager alloc] init];
+    
+    // Indicate to the system that your app wishes to perform background fetch
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
     //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application
@@ -58,14 +62,12 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
@@ -109,6 +111,14 @@
     // Add user logic here.
     return handled;
 }
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSLog(@"Background fetch started...");
+}
+
 
 #pragma mark - DataStack
 @synthesize dataStack = _dataStack;

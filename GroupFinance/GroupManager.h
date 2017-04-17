@@ -12,15 +12,23 @@
 @interface GroupManager : NSObject
 
 @property (nonatomic, strong) Defaults *defaults;
+
+// Members array.
 @property (nonatomic, strong) NSMutableArray *members;
+
+// Members dictionary, key is userId, value is member object.
 @property (nonatomic, strong) NSMutableDictionary *membersDict;
 
 typedef void (^MemberRefreshCompletion)(BOOL);
+typedef void (^CheckServerCompletion)(NSDictionary *, BOOL);
 
 // Get single instance.
 + (instancetype)sharedInstance;
 
 // Refresh member list.
 - (void)refreshMemberListWithCompletion:(MemberRefreshCompletion)completion;
+
+// Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.
+- (void)checkServerState:(CheckServerCompletion)completion;
 
 @end
