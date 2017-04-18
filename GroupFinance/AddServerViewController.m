@@ -7,7 +7,6 @@
 //
 
 #import "AddServerViewController.h"
-#import "NetManager.h"
 #import "GroupManager.h"
 #import "AlertTool.h"
 
@@ -16,7 +15,6 @@
 @end
 
 @implementation AddServerViewController {
-    NetManager *net;
     GroupManager *group;
 }
 
@@ -25,8 +23,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    
-    net = [NetManager sharedInstance];
+
     group = [GroupManager sharedInstance];
     
     //If group id and group name has been set, autofill them and disable editing.

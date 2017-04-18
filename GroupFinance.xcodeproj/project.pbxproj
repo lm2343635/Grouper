@@ -536,6 +536,8 @@
 				E46D57681DB4D21900116C4E /* GLibFacade.h */,
 				E43DDB8B1E404F8A00C8BDAE /* GroupManager.h */,
 				E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */,
+				E446C0FF1DCF75E600EC5966 /* InternetResponse.h */,
+				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
 				E4923E7E1E31DEDB003C4183 /* MessageData.h */,
 				E4923E7F1E31DEDB003C4183 /* MessageData.m */,
 				E48DE06F1DCF660300A7A5DB /* NetManager.h */,
@@ -585,8 +587,6 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
-				E446C0FF1DCF75E600EC5966 /* InternetResponse.h */,
-				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
 				E476B0A41DE40F5C00FBCB24 /* MCManager.h */,
 				E476B0A51DE40F5C00FBCB24 /* MCManager.m */,
 			);

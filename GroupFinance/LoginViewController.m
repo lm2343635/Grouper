@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "DaoManager.h"
+#import "GroupManager.h"
 
 @interface LoginViewController ()
 
@@ -16,6 +17,7 @@
 @implementation LoginViewController {
     DaoManager *dao;
     NSUserDefaults *defaults;
+    GroupManager *group;
 }
 
 - (void)viewDidLoad {
@@ -25,6 +27,8 @@
     [super viewDidLoad];
     defaults = [NSUserDefaults standardUserDefaults];
     dao = [[DaoManager alloc] init];
+    group = [GroupManager sharedInstance];
+    
     //Set Facebook Oauth permission.
     _loginButton.readPermissions = @[@"public_profile", @"email", @"user_friends"];
 }
@@ -61,8 +65,11 @@
         if (DEBUG) {
             NSLog(@"Get facebook user info: %@", result);
         }
-        //Save user info from facebook.
+        // Save user info from facebook.
         [dao.userDao saveFromFacebook:result];
+        // Update current user in GroupManager.
+        [group refreshCurrentUser];
+        
         [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];
     }];
 }

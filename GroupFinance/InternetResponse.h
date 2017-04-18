@@ -21,15 +21,17 @@ typedef NS_OPTIONS(NSUInteger, ErrorCode) {
     
     ErrorGroupExsit = 1011,
     ErrorGroupRegister = 1012,
-    ErrorUserNotInGroup = 1031,
+    ErrorUserNotMatch = 1031,
+    ErrorGroupInitialized = 1041,
 
     ErrorAddUser = 2011,
+    ErrorPushNoPrivilege = 2051,
     
     ErrorNoReceiverFound = 3011,
     ErrorPutShare = 3012,
     ErrorSendSelfForbidden = 3013,
     ErrorNoShareFound = 3031,
-    ErrorShareNoPrivilege = 3032
+    ErrorMessageIdShareFormat = 3051
     
 };
 

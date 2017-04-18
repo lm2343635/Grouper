@@ -8,8 +8,6 @@
 
 #import "ServersTableViewController.h"
 #import "GroupManager.h"
-#import "DaoManager.h"
-#import "NetManager.h"
 #import "AlertTool.h"
 #import "CommonTool.h"
 
@@ -18,11 +16,8 @@
 @end
 
 @implementation ServersTableViewController {
-    NetManager *net;
     GroupManager *group;
-    DaoManager *dao;
     NSDictionary *servers;
-    User *user;
 }
 
 - (void)viewDidLoad {
@@ -30,19 +25,15 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    net = [NetManager sharedInstance];
-    dao = [DaoManager sharedInstance];
     group = [GroupManager sharedInstance];
-    
-    user = [dao.userDao currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    // Get servers from NSUserDefault.
     servers = group.defaults.servers;
-    
     switch (group.defaults.initial) {
         case NotInitial:
             _noServerLabel.hidden = NO;
@@ -117,8 +108,8 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    //Validate threshold when user wants to create a new group.
-    //Threshold need not to validate when user wants to restore an existed group.
+    int threshold = 0;
+    // Check threshold if user is adding new servers.
     if (group.defaults.initial == AddingNewServer) {
         if ([_thresholdTextField.text isEqualToString:@""]) {
             [AlertTool showAlertWithTitle:@"Tip"
@@ -132,24 +123,10 @@
                          inViewController:self];
             return;
         }
-        int threshold = _thresholdTextField.text.intValue;
-        if (threshold < 1 || threshold > group.defaults.servers.allKeys.count) {
-            [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:@"Recover threshold be more than 0 and less than the number of servers."
-                         inViewController:self];
-            return;
-        }
+        threshold = _thresholdTextField.text.intValue;
+        
         if ([_thresholdTextField isFirstResponder]) {
             [_thresholdTextField resignFirstResponder];
-        }
-    }
-    //Check the number of untrusted servers if user wants to initialize by restoring an existed group.
-    else if (group.defaults.initial == RestoringServer) {
-        if (group.defaults.servers.allKeys.count != group.defaults.serverCount) {
-            [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:[NSString stringWithFormat:@"%ld servers needed to initialize by restoring your group.", (long)group.defaults.serverCount]
-                         inViewController:self];
-            return;
         }
     }
 
@@ -159,18 +136,31 @@
     UIAlertAction *initialize = [UIAlertAction actionWithTitle:@"Yes"
                                                          style:UIAlertActionStyleDestructive
                                                        handler:^(UIAlertAction * _Nonnull action) {
-                                                           switch (group.defaults.initial) {
-                                                               case RestoringServer:
-                                                                   [self restoreUntrustedServers];
-                                                                   break;
-                                                               case AddingNewServer:
-                                                                   [self registerOwnerInUntrustedServers];
-                                                                   break;
-                                                               default:
-                                                                   break;
-                                                           }
+        // Disable intial group button when submitting.
+        _initialGroupButton.enabled = NO;
                                                            
-                                                       }];
+        // Initialize group.
+        [group initializeGroup:threshold withCompletion:^(BOOL success, NSString *message) {
+            if (success) {
+                // Hide initial group button, disable add and store server bar button.
+                _initialGroupButton.hidden = YES;
+                _addServerBarButtonItem.enabled = NO;
+                _restoreServerBarButtonItem.enabled = NO;
+  
+                // Change text of threshold text field and disabled it.
+                _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
+                [_thresholdTextField setEnabled:NO];
+            } else {
+                // Enable initial group button if failed.
+                _initialGroupButton.enabled = YES;
+            }
+            if (message != nil) {
+                [AlertTool showAlertWithTitle:@"Tip"
+                                   andContent:message
+                             inViewController:self];
+            }
+        }];
+    }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
                                                      style:UIAlertActionStyleCancel
                                                    handler:nil];
@@ -180,106 +170,6 @@
 }
 
 #pragma mark - Service
-
-- (void)restoreUntrustedServers {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    //Hide initial group button and add server bar button
-    _initialGroupButton.hidden = YES;
-    _restoreServerBarButtonItem.enabled = NO;
-    //Change initial state.
-    group.defaults.initial = InitialFinished;
-    
-    [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.defaults.groupName]
-                 inViewController:self];
-}
-
-- (void)registerOwnerInUntrustedServers {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-
-    _initialGroupButton.enabled = NO;
-    
-    //Set count for HTTP request.
-    self.setOwner = 0;
-    [self addObserver:self
-           forKeyPath:@"setOwner"
-              options:NSKeyValueObservingOptionOld
-              context:nil];
-    
-    //Refresh session manager.
-    [net refreshSessionManagers];
-    
-    //Send owner information
-    for (NSString *address in net.managers.allKeys) {
-        [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
-                     parameters:@{
-                                  @"userId": user.userId,
-                                  @"name": user.name,
-                                  @"email": user.email,
-                                  @"gender": user.gender,
-                                  @"pictureUrl": user.pictureUrl,
-                                  @"owner": @YES
-                                  }
-                       progress:nil
-                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                            if ([response statusOK]) {
-                                self.setOwner ++;
-                            }
-                        }
-                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                            _initialGroupButton.enabled = YES;
-                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                            switch ([response errorCode]) {
-                                case ErrorMasterKey:
-                                    [AlertTool showAlertWithTitle:@"Warning"
-                                                       andContent:@"Your master key is wrong!"
-                                                 inViewController:self];
-                                    break;
-                                case ErrorAddUser:
-                                    [AlertTool showAlertWithTitle:@"Warning"
-                                                       andContent:@"Add owner failed in server, try again later."
-                                                 inViewController:self];
-                                    break;
-                                default:
-                                    break;
-                            }
-                        }];
-    }
-}
-
-- (void)submitServerCountAndThreshold {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    self.setThreshold = 0;
-    [self addObserver:self
-           forKeyPath:@"setThreshold"
-              options:NSKeyValueObservingOptionOld
-              context:nil];
-    
-    for (NSString *address in net.managers.allKeys) {
-        [net.managers[address] POST:[NetManager createUrl:@"group/init" withServerAddress:address]
-                     parameters:@{
-                                  @"servers": [NSNumber numberWithInteger:net.managers.allKeys.count],
-                                  @"threshold": [NSNumber numberWithInt:_thresholdTextField.text.intValue]
-                                  }
-                       progress:nil
-                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                            if ([response statusOK]) {
-                                self.setThreshold ++;
-                            }
-                        }
-                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                            
-                        }];
-    }
-}
 
 //Create done button for keyboard
 - (void)setCloseKeyboardAccessoryForSender:(id)sender {
@@ -306,58 +196,6 @@
     }
     if ([_thresholdTextField isFirstResponder]) {
         [_thresholdTextField resignFirstResponder];
-    }
-}
-
-#pragma mark - Key Value Observe
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@', keyPath is %@", self.class, NSStringFromSelector(_cmd), keyPath);
-    }
-    if ([keyPath isEqualToString:@"setOwner"]) {
-        if (DEBUG) {
-            NSLog(@"Send owner's information to %ld untrusted servers successfully.", (long)self.setOwner);
-        }
-        //Send owner's information to all untrusted servers successfully.
-        if (self.setOwner == group.defaults.servers.count) {
-            if (DEBUG) {
-                NSLog(@"Send owner's information to all untrusted servers successfully!");
-            }
-            [self removeObserver:self forKeyPath:@"setOwner"];
-            //Send init message to untrusted servers.
-            [self submitServerCountAndThreshold];
-        }
-    } else if ([keyPath isEqualToString:@"setThreshold"]) {
-        if (DEBUG) {
-            NSLog(@"Send init message to %ld untrusted servers successfully.", (long)self.setThreshold);
-        }
-        if (self.setThreshold == group.defaults.servers.count) {
-            if (DEBUG) {
-                NSLog(@"Send init message to all untrusted servers successfully!");
-            }
-            [self removeObserver:self forKeyPath:@"setThreshold"];
-            
-            //Set threshold, owner and update number of group memebers
-            group.defaults.serverCount = group.defaults.servers.allKeys.count;
-            group.defaults.threshold = _thresholdTextField.text.integerValue;
-            group.defaults.owner = user.userId;
-            group.defaults.members ++;
-            //Hide initial group button and add server bar button
-            _initialGroupButton.hidden = YES;
-            _addServerBarButtonItem.enabled = NO;
-            //Change initial state.
-            group.defaults.initial = InitialFinished;
-            
-            _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
-            [_thresholdTextField setEnabled:NO];
-            
-            [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:[NSString stringWithFormat:@"%@ has been initialized successfully!", group.defaults.groupName]
-                         inViewController:self];
-        }
     }
 }
 
