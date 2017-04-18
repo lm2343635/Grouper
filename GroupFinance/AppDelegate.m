@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "GroupManager.h"
+#import "ReceiveManager.h"
 #import "DeviceTokenManager.h"
 
 @interface AppDelegate ()
@@ -42,7 +43,7 @@
     _mcManager = [[MCManager alloc] init];
     
     // Indicate to the system that your app wishes to perform background fetch
-    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1800];
 
     //Init facebook OAuth.
     [[FBSDKApplicationDelegate sharedInstance] application:application
@@ -115,8 +116,20 @@
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+        NSLog(@"Background fetch started...");
     }
-    NSLog(@"Background fetch started...");
+    [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
+        if (sync) {
+            // Refresh members list before data sync
+            [group refreshMemberListWithCompletion:^(BOOL success) {
+                [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+                    if (DEBUG) {
+                        NSLog(@"Background fetch ended...");
+                    }
+                }];
+            }];
+        }
+    }];
 }
 
 
@@ -130,8 +143,6 @@
     _dataStack = [[DATAStack alloc] initWithModelName:@"Model"];
     return _dataStack;
 }
-
-
 
 #pragma mark - Service
 - (void)setRootViewControllerWithIdentifer:(NSString *)identifer {
