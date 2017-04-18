@@ -21,6 +21,7 @@
 
 typedef void (^MemberRefreshCompletion)(BOOL);
 typedef void (^CheckServerCompletion)(NSDictionary *, BOOL);
+typedef void (^AddNewServerCompletion)(BOOL, NSString *);
 
 // Get single instance.
 + (instancetype)sharedInstance;
@@ -30,5 +31,10 @@ typedef void (^CheckServerCompletion)(NSDictionary *, BOOL);
 
 // Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.
 - (void)checkServerState:(CheckServerCompletion)completion;
+
+- (void)addNewServer:(NSString *)address
+       withGroupName:(NSString *)groupName
+          andGroupId:(NSString *)groupId
+          completion:(AddNewServerCompletion)completion;
 
 @end

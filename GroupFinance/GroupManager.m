@@ -144,4 +144,60 @@
     }
 }
 
+- (void)addNewServer:(NSString *)address
+       withGroupName:(NSString *)groupName
+          andGroupId:(NSString *)groupId
+          completion:(AddNewServerCompletion)completion {
+    // Check address, groupName and groupId is empty or not.
+    if ([groupId isEqualToString:@""] || [groupName isEqualToString:@""] || [address isEqualToString:@""]) {
+        completion(NO, @"Group id, group name and server address cannot be empty!");
+        return;
+    }
+    // Check the server address is existed in servers dictionary or not.
+    for (NSString *address in _defaults.servers.allKeys) {
+        if ([address isEqualToString:address]) {
+            completion(NO, @"This server address is exist!");
+            return;
+        }
+    }
+    [net.manager POST:[NSString stringWithFormat:@"http://%@/group/register", address]
+           parameters:@{
+                        @"id": groupId,
+                        @"name": groupName
+                        }
+             progress:nil
+              success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                  InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                  if ([response statusOK]) {
+                      NSObject *result = [response getResponseResult];
+                      // Save group's master key.
+                      [_defaults addServerAddress:address
+                                    withAccessKey:[result valueForKey:@"masterkey"]];
+                      // Set group id and group name if group state is NotInitial.
+                      if (_defaults.initial == NotInitial) {
+                          _defaults.groupId = groupId;
+                          _defaults.groupName = groupName;
+                          _defaults.initial = AddingNewServer;
+                      }
+                      completion(YES, nil);
+                  }
+              }
+              failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                  InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                  switch ([response errorCode]) {
+                      case ErrorNotConnectedToInternet:
+                          completion(NO, @"Cannot find this server!");
+                          break;
+                      case ErrorGroupExsit:
+                          completion(NO, @"Group id has been registered by other users in this server!");
+                          break;
+                      case ErrorGroupRegister:
+                          completion(NO, @"Register group error, try again later.");
+                          break;
+                      default:
+                          break;
+                  }
+              }];
+}
+
 @end
