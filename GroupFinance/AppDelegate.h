@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <AFNetworking/AFNetworking.h>
-#import "MCManager.h"
 
 @import DATAStack;
 
@@ -18,7 +16,6 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) DATAStack *dataStack;
-@property (strong, nonatomic) MCManager *mcManager;
 
 @end
 

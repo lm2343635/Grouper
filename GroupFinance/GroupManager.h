@@ -7,11 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DaoManager.h"
 #import "Defaults.h"
+#import "MultipeerConnectivityManager.h"
 
-@interface GroupManager : NSObject
+#define DidReceiveJoinGroupMessage @"DidReceiveJoinGroupMessage"
+
+@interface GroupManager : NSObject <MCBrowserViewControllerDelegate>
 
 @property (nonatomic, strong) Defaults *defaults;
+
+@property (nonatomic) BOOL isOwner;
+@property (nonatomic, strong) NSMutableArray *connectedPeers;
+
+// Current user.
+@property (nonatomic, strong) User *currentUser;
 
 // Members array.
 @property (nonatomic, strong) NSMutableArray *members;
@@ -29,6 +39,16 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Refresh current user if user info changes.
 // Example: Current user is nil when the app is lunched at first, but current user will be inserted if user login.
 - (void)refreshCurrentUser;
+
+// *********************** Inivte Members ************************
+
+// Open device browser.
+- (void)openDeviceBroswerIn:(UIViewController *)controller;
+
+// Send invite message to a peer.
+- (void)sendInviteMessageTo:(MCPeerID *)peer;
+
++ (NSString *)getJoinGroupMessage:(NSNotification *)notification;
 
 //************************ Group Init Related ************************
     

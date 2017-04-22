@@ -40,8 +40,6 @@
         }
     }
     
-    _mcManager = [[MCManager alloc] init];
-    
     // Indicate to the system that your app wishes to perform background fetch
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1800];
 

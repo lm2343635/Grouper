@@ -6,9 +6,9 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "MCManager.h"
+#import "MultipeerConnectivityManager.h"
 
-@implementation MCManager
+@implementation MultipeerConnectivityManager
 
 - (instancetype)init {
     if (DEBUG) {
@@ -35,7 +35,7 @@
                                @"peerID": peerID,
                                @"state": [NSNumber numberWithInt:state]
                                };
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidChangeStateNotification"
+    [[NSNotificationCenter defaultCenter] postNotificationName:MCDidChangeStateNotification
                                                         object:nil
                                                       userInfo:dictionary];
 }
@@ -50,7 +50,7 @@ didReceiveData:(NSData *)data
                                @"data": data,
                                @"peerID": peerID
                                };
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidReceiveDataNotification"
+    [[NSNotificationCenter defaultCenter] postNotificationName:MCDidReceiveDataNotification
                                                         object:nil
                                                       userInfo:dictionary];
 }
@@ -67,7 +67,7 @@ didStartReceivingResourceWithName:(NSString *)resourceName
                                @"peerID": peerID,
                                @"progress": progress
                                };
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MCDidStartReceivingResourceNotification"
+    [[NSNotificationCenter defaultCenter] postNotificationName:MCDidStartReceivingResourceNotification
                                                         object:nil
                                                       userInfo:dictionary];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -91,7 +91,7 @@ didFinishReceivingResourceWithName:(NSString *)resourceName
                                @"peerID": peerID,
                                @"localURL": localURL
                                };
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"didFinishReceivingResourceNotification"
+    [[NSNotificationCenter defaultCenter] postNotificationName:MCDidFinishReceivingResourceNotification
                                                         object:nil
                                                       userInfo:dictionary];
 }
@@ -119,7 +119,7 @@ didReceiveStream:(NSInputStream *)stream
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:@"grouper"
+    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:ServiceType
                                                                         session:_session];
 }
 
@@ -128,7 +128,7 @@ didReceiveStream:(NSInputStream *)stream
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if (shouldAdvertise) {
-        _advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:@"grouper"
+        _advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:ServiceType
                                                                     discoveryInfo:nil
                                                                           session:_session];
         [_advertiserAssistant start];
@@ -146,7 +146,7 @@ didReceiveStream:(NSInputStream *)stream
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"MCReceivingProgressNotification"
+    [[NSNotificationCenter defaultCenter] postNotificationName:MCReceivingProgressNotification
                                                         object:nil
                                                       userInfo:@{@"progress": (NSProgress *)object}];
 }

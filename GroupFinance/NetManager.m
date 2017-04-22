@@ -43,6 +43,7 @@
 
 - (void)refreshSessionManagers {
     NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
+    
     for (NSString *address in defaults.servers.allKeys) {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         //Set access key in request header.

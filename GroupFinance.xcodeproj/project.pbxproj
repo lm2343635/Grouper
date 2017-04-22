@@ -60,7 +60,7 @@
 		E46D576F1DB4D21900116C4E /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D576B1DB4D21900116C4E /* strtok.c */; };
 		E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E46D57711DB4D65800116C4E /* SecretSharing.m */; };
 		E476B0A31DE3FC3700FBCB24 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */; };
-		E476B0A61DE40F5C00FBCB24 /* MCManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A51DE40F5C00FBCB24 /* MCManager.m */; };
+		E476B0A61DE40F5C00FBCB24 /* MultipeerConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A51DE40F5C00FBCB24 /* MultipeerConnectivityManager.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
 		E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */; };
 		E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */; };
@@ -224,8 +224,8 @@
 		E46D57711DB4D65800116C4E /* SecretSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretSharing.m; sourceTree = "<group>"; };
 		E476B0A11DE3FC3700FBCB24 /* AddMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
 		E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
-		E476B0A41DE40F5C00FBCB24 /* MCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MCManager.h; sourceTree = "<group>"; };
-		E476B0A51DE40F5C00FBCB24 /* MCManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MCManager.m; sourceTree = "<group>"; };
+		E476B0A41DE40F5C00FBCB24 /* MultipeerConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerConnectivityManager.h; sourceTree = "<group>"; };
+		E476B0A51DE40F5C00FBCB24 /* MultipeerConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerConnectivityManager.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
 		E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
@@ -528,6 +528,8 @@
 		E4923E811E31E8E6003C4183 /* Synchronization */ = {
 			isa = PBXGroup;
 			children = (
+				E476B0A41DE40F5C00FBCB24 /* MultipeerConnectivityManager.h */,
+				E476B0A51DE40F5C00FBCB24 /* MultipeerConnectivityManager.m */,
 				E4039EDE1DE0730C00D39DDB /* Defaults.h */,
 				E4039EDF1DE0730C00D39DDB /* Defaults.m */,
 				E491395B1E51EA750003ECCA /* DeviceTokenManager.h */,
@@ -587,8 +589,6 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
-				E476B0A41DE40F5C00FBCB24 /* MCManager.h */,
-				E476B0A51DE40F5C00FBCB24 /* MCManager.m */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -846,7 +846,7 @@
 				E46516A31E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
-				E476B0A61DE40F5C00FBCB24 /* MCManager.m in Sources */,
+				E476B0A61DE40F5C00FBCB24 /* MultipeerConnectivityManager.m in Sources */,
 				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
 				E4305A511E36363000010B52 /* ContentViewController.swift in Sources */,
 				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,

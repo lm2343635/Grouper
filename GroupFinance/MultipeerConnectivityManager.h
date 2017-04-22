@@ -9,7 +9,15 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-@interface MCManager : NSObject <MCSessionDelegate>
+#define ServiceType @"grouper"
+
+#define MCDidChangeStateNotification @"MCDidChangeStateNotification"
+#define MCDidReceiveDataNotification @"MCDidReceiveDataNotification"
+#define MCDidStartReceivingResourceNotification @"MCDidStartReceivingResourceNotification"
+#define MCDidFinishReceivingResourceNotification @"MCDidFinishReceivingResourceNotification"
+#define MCReceivingProgressNotification @"MCReceivingProgressNotification"
+
+@interface MultipeerConnectivityManager : NSObject <MCSessionDelegate>
 
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) MCSession *session;

@@ -7,21 +7,27 @@
 //
 
 #import "GroupManager.h"
-#import "DaoManager.h"
 #import "NetManager.h"
 #import "ReceiveManager.h"
+
 
 @implementation GroupManager {
     DaoManager *dao;
     NetManager *net;
-    User *currentUser;
+    
+    // Invite new member related.
+    MultipeerConnectivityManager *multipeerConnectivity;
+    NSMutableDictionary *serverInfoForUser;
     
     // Check server state related.
     int accessed, checked;
     NSMutableDictionary *serverStates;
+    MCPeerID *invitePeer;
+    
     
     // Register owner related.
     int registered, submitted;
+    
 }
 
 + (instancetype)sharedInstance {
@@ -38,9 +44,15 @@
     if (self) {
         net = [NetManager sharedInstance];
         dao = [DaoManager sharedInstance];
-        currentUser = [dao.userDao currentUser];
+        
+        _currentUser = [dao.userDao currentUser];
         _defaults = [Defaults sharedInstance];
         [self updateMember];
+        
+        // If current user is not nil, setup multipeer connectivity related variables.
+        if (_currentUser != nil) {
+            [self setupMutipeerConnectivity];
+        }
     }
     return self;
 }
@@ -49,7 +61,257 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    currentUser = [dao.userDao currentUser];
+    _currentUser = [dao.userDao currentUser];
+    if (_currentUser != nil) {
+        [self setupMutipeerConnectivity];
+    }
+}
+
+- (void)setupMutipeerConnectivity {
+    // Init multipeerConnectivity manager.
+    multipeerConnectivity = [[MultipeerConnectivityManager alloc] init];
+    // Set device's display name by current user's name.
+    [multipeerConnectivity setupPeerAndSessionWithDisplayName:_currentUser.name];
+    [multipeerConnectivity advertiseSelf:YES];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(peerDidChangeStateWithNotification:)
+                                                 name:MCDidChangeStateNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveDataWithNotification:)
+                                                 name:MCDidReceiveDataNotification
+                                               object:nil];
+    _connectedPeers = [[NSMutableArray alloc] init];
+    _isOwner = [_defaults.owner isEqualToString:_currentUser.userId];
+}
+
+#pragma mark - Invite Member
+
+- (void)openDeviceBroswerIn:(UIViewController *)controller {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [multipeerConnectivity setupMCBrowser];
+    [multipeerConnectivity.browserViewController setDelegate:self];
+    [controller presentViewController:multipeerConnectivity.browserViewController animated:YES completion:nil];
+}
+
+- (void)sendInviteMessageTo:(MCPeerID *)peer {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Save peer to global varibale invite peer.
+    invitePeer = peer;
+    // Send invite message.
+    [self sendMessage:@{@"task": @"invite"} to:invitePeer];
+}
+
++ (NSString *)getJoinGroupMessage:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [notification.userInfo valueForKey:@"message"];
+}
+
+- (void)sendMessage:(NSDictionary *)message to:(MCPeerID *)peer {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSData *data = [NSJSONSerialization dataWithJSONObject:message
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:nil];
+    NSError *error;
+    [multipeerConnectivity.session sendData:data
+                                    toPeers:[NSArray arrayWithObject:peer]
+                                   withMode:MCSessionSendDataReliable
+                                      error:&error];
+    if(error) {
+        NSLog(@"Error in sending: %@", error.localizedDescription);
+    }
+}
+
+#pragma mark - Notification 
+
+- (void)peerDidChangeStateWithNotification:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    MCPeerID *peerID = [notification.userInfo objectForKey:@"peerID"];
+    MCSessionState state = [[notification.userInfo objectForKey:@"state"] intValue];
+    if (state != MCSessionStateConnecting) {
+        if (state == MCSessionStateConnected) {
+            [_connectedPeers addObject:peerID];
+        } else if (state == MCSessionStateNotConnected) {
+            if (_connectedPeers.count > 0) {
+                [_connectedPeers removeObject:peerID];
+            }
+        }
+        // TODO: Update user interface.
+        // You can use KVO in your UIViewController to update table using group.connectedPeers.
+        // Or you can update in viewWillAppear: method.
+    }
+}
+
+- (void)didReceiveDataWithNotification:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    MCPeerID *peerID = [[notification userInfo] objectForKey:@"peerID"];
+    NSString *peerDisplayName = peerID.displayName;
+    NSData *data = [[notification userInfo] objectForKey:@"data"];
+    NSDictionary *message = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingMutableContainers
+                                                              error:nil];
+    if (DEBUG) {
+        NSLog(@"Received message from %@: %@", peerDisplayName, message);
+    }
+    NSString *task = [message valueForKey:@"task"];
+    if ([task isEqualToString:@"invite"] && !_isOwner) {
+        [self sendMessage:@{
+                            @"task": @"sendUserInfo",
+                            @"userInfo": @{
+                                    @"userId": _currentUser.userId,
+                                    @"email": _currentUser.email,
+                                    @"name": _currentUser.name,
+                                    @"gender": _currentUser.gender,
+                                    @"pictureUrl": _currentUser.pictureUrl,
+                                    }
+                            }
+                       to:peerID];
+    } else if ([task isEqualToString:@"sendUserInfo"] && _isOwner) {
+        submitted = 0;
+        
+        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[message valueForKey:@"userInfo"]];
+        [parameters setValue:@NO forKey:@"owner"];
+        //Init serverInfoForUser
+        serverInfoForUser = [[NSMutableDictionary alloc] init];
+        //Send user info to untrusted servers.
+        for (NSString *address in net.managers.allKeys) {
+            [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
+                             parameters:parameters
+                               progress:nil
+                                success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                    InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                                    if ([response statusOK]) {
+                                        NSObject *result = [response getResponseResult];
+                                        NSString *accesskey = [result valueForKey:@"accesskey"];
+                                        [serverInfoForUser setValue:accesskey forKey:address];
+                                        NSLog(@"%@ serverInfoForUser %@", address, serverInfoForUser);
+                                        // All task finished, submitted flag plus 1
+                                        submitted ++;
+                                        
+                                        // Send owner's information to all untrusted servers successfully.
+                                        if (submitted == _defaults.serverCount) {
+                                            if (DEBUG) {
+                                                NSLog(@"Send user's information to all untrusted servers successfully!");
+                                                //Send access keys and server information to joiner.
+                                                NSLog(@"serverInfoForUser = %@", serverInfoForUser);
+                                                NSLog(@"invitePeer = %@", invitePeer);
+                                            }
+                                            // Send server information to new member.
+                                            [self sendMessage:@{
+                                                                @"task": @"sendServerInfo",
+                                                                @"serverInfo": serverInfoForUser
+                                                                }
+                                                           to:invitePeer];
+                                        }
+                                    }
+                                }
+                                failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                    InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                                    switch ([response errorCode]) {
+                                            
+                                    }
+                                }];
+        }
+    } else if ([task isEqualToString:@"sendServerInfo"] && !_isOwner) {
+        // Receive server information and access key from group owner.
+        _defaults.servers = [message valueForKey:@"serverInfo"];
+        // Refresh session managers.
+        [net refreshSessionManagers];
+        
+        // Send joinSuccess messgae to group owner.
+        [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
+        
+        //Download group members and group info from server 0.
+        NSString *address0 = [net.managers.allKeys objectAtIndex:0];
+        [net.managers[address0] GET:[NetManager createUrl:@"group/info" withServerAddress:address0]
+                         parameters:nil
+                           progress:nil
+                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                                if ([response statusOK]) {
+                                    NSObject *result = [response getResponseResult];
+                                    NSObject *groupInfo = [result valueForKey:@"group"];
+                                    // Update group information
+                                    _defaults.groupId = [groupInfo valueForKey:@"id"];
+                                    _defaults.groupName = [groupInfo valueForKey:@"name"];
+                                    _defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
+                                    _defaults.owner = [groupInfo valueForKey:@"oid"];
+                                    _defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
+                                    _defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
+                                    
+                                    // Set initial state to InitialFinished
+                                    _defaults.initial = InitialFinished;
+                                    
+                                    // Send notification with joined success message.
+                                    [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveJoinGroupMessage
+                                                                                        object:nil
+                                                                                      userInfo:@{@"message": [NSString stringWithFormat:@"You have joined to %@.", _defaults.groupName]}];
+                                }
+                            }
+                            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                                switch ([response errorCode]) {
+                                        
+                                }
+                            }];
+        // Reload user info
+        [net.managers[address0] GET:[NetManager createUrl:@"user/list" withServerAddress:address0]
+                         parameters:nil
+                           progress:nil
+                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                                if ([response statusOK]) {
+                                    NSObject *result = [response getResponseResult];
+                                    NSArray *users = [result valueForKey:@"users"];
+                                    for(NSObject *user in users) {
+                                        if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
+                                            continue;
+                                        }
+                                        [dao.userDao saveOrUpdate:user];
+                                    }
+                                }
+                            }
+                            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                                switch ([response errorCode]) {
+                                        
+                                }
+                            }];
+        
+    } else if ([task isEqualToString:@"joinSuccess"] && _isOwner) {
+        // Joined group successfully. Add this user to user list.
+        // Send notification with joined success message.
+        [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveJoinGroupMessage
+                                                            object:nil
+                                                          userInfo:@{@"message": [NSString stringWithFormat:@"Invite user %@ successfully!", invitePeer.displayName]}];
+    }
+}
+
+#pragma mark - MCBrowserViewControllerDelegate
+-(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [multipeerConnectivity.browserViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [multipeerConnectivity.browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Group Init Related
@@ -144,7 +406,7 @@
     
     [net.manager POST:[NSString stringWithFormat:@"http://%@/group/restore", address]
            parameters:@{
-                        @"userId": currentUser.userId,
+                        @"userId": _currentUser.userId,
                         @"accesskey": key
                         }
              progress:nil
@@ -210,11 +472,11 @@
         for (NSString *address in net.managers.allKeys) {
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                              parameters:@{
-                                          @"userId": currentUser.userId,
-                                          @"name": currentUser.name,
-                                          @"email": currentUser.email,
-                                          @"gender": currentUser.gender,
-                                          @"pictureUrl": currentUser.pictureUrl,
+                                          @"userId": _currentUser.userId,
+                                          @"name": _currentUser.name,
+                                          @"email": _currentUser.email,
+                                          @"gender": _currentUser.gender,
+                                          @"pictureUrl": _currentUser.pictureUrl,
                                           @"owner": @YES
                                           }
                                progress:nil
@@ -290,7 +552,7 @@
                                     //Set threshold, owner and update number of group memebers
                                     _defaults.serverCount = _defaults.servers.allKeys.count;
                                     _defaults.threshold = threshold;
-                                    _defaults.owner = currentUser.userId;
+                                    _defaults.owner = _currentUser.userId;
                                     _defaults.members ++;
 
                                     //Change initial state.
@@ -332,7 +594,7 @@
                                 NSObject *result = [response getResponseResult];
                                 NSArray *users = [result valueForKey:@"users"];
                                 for (NSObject *user in users) {
-                                    if ([currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
+                                    if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
                                         continue;
                                     }
                                     [dao.userDao saveOrUpdate:user];
