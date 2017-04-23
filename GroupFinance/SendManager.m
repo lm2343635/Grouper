@@ -6,18 +6,16 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
+#import "SendManager.h"
 #import "NetManager.h"
 #import "GroupManager.h"
-#import "SendManager.h"
 #import "SecretSharing.h"
-#import <SYNCPropertyMapper/SYNCPropertyMapper.h>
 
 @implementation SendManager {
     NetManager *net;
     DaoManager *dao;
     GroupManager *group;
 
-    User *currentUser;
     Message *message;
 }
 
@@ -39,8 +37,6 @@
         net = [NetManager sharedInstance];
         dao = [DaoManager sharedInstance];
         group = [GroupManager sharedInstance];
-
-        currentUser = [dao.userDao currentUser];
     }
     return self;
 }
@@ -59,13 +55,13 @@
 //    }
     
     // Transfer sync entity to dictionary.
-    NSDictionary *dictionary = [object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+    NSDictionary *dictionary = [object export]; //[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     // Create update message and save to sender entity.
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
                                          type:MessageTypeUpdate
-                                         from:currentUser.userId
+                                         from:group.currentUser.userId
                                            to:@"*"
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -85,7 +81,7 @@
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
                                          type:MessageTypeDelete
-                                         from:currentUser.userId
+                                         from:group.currentUser.userId
                                            to:@"*"
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -99,7 +95,7 @@
     }
     NSMutableArray *sequences = [[NSMutableArray alloc] init];
     // Find normal messages sent by current user.
-    for (Message *normal in [dao.messageDao findNormalWithSender:currentUser.userId]) {
+    for (Message *normal in [dao.messageDao findNormalWithSender:group.currentUser.userId]) {
         [sequences addObject:normal.sequence];
     }
     if (sequences.count == 0) {
@@ -113,7 +109,7 @@
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
-                                         from:currentUser.userId
+                                         from:group.currentUser.userId
                                            to:@"*"
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -132,7 +128,7 @@
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend
-                                         from:currentUser.userId
+                                         from:group.currentUser.userId
                                            to:receiver
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -155,10 +151,10 @@
             }
             // Push remote notification to receiver if this message is a normal message.
             if ([message.type isEqualToString:@"update"]) {
-                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", currentUser.name, message.object]
+                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
                                           to:@"*"];
             } else if ([message.type isEqualToString:@"delete"]) {
-                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", currentUser.name, message.object]
+                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
                                           to:@"*"];
 
             }

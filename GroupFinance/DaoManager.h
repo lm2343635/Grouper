@@ -20,7 +20,7 @@
 
 @interface DaoManager : NSObject
 
-@property (nonatomic, readonly) DATAStack *dataStack;
+@property (nonatomic, readonly) DataStack *dataStack;
 @property (nonatomic, readonly) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) AccountDao *accountDao;
@@ -43,6 +43,6 @@
 - (void)saveContext;
 
 //Get data stack from dao manager
-- (DATAStack *)getDataStack;
+- (DataStack *)getDataStack;
 
 @end

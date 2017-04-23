@@ -134,11 +134,11 @@
 #pragma mark - DataStack
 @synthesize dataStack = _dataStack;
 
-- (DATAStack *)dataStack {
+- (DataStack *)dataStack {
     if (_dataStack) {
         return _dataStack;
     }
-    _dataStack = [[DATAStack alloc] initWithModelName:@"Model"];
+    _dataStack = [[DataStack alloc] initWithModelName:@"Model"];
     return _dataStack;
 }
 

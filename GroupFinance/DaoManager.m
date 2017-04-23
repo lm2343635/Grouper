@@ -70,7 +70,7 @@
     }
 }
 
-- (DATAStack *)getDataStack {
+- (DataStack *)getDataStack {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }

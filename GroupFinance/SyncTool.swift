@@ -7,14 +7,13 @@
 //
 
 import Sync
-import DATAStack
 
 @objc class SyncTool: NSObject {
     
     let dao = DaoManager.sharedInstance()
-    var dataStack: DATAStack
+    var dataStack: DataStack
     
-    init(dataStack: DATAStack) {
+    init(dataStack: DataStack) {
         self.dataStack = dataStack
     }
     
@@ -28,7 +27,7 @@ import DATAStack
             Sync.changes([content!],
                          inEntityNamed: message.object,
                          dataStack: dataStack,
-                         operations: [.Insert, .Update],
+                         operations: [.insert, .update],
                          completion: nil)
         case "delete":
             do {

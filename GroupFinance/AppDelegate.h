@@ -9,13 +9,13 @@
 #import <UIKit/UIKit.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 
-@import DATAStack;
+@import Sync;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) DATAStack *dataStack;
+@property (strong, nonatomic) DataStack *dataStack;
 
 @end
 
