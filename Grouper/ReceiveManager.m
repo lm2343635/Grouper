@@ -12,7 +12,7 @@
 #import "GroupManager.h"
 #import "DaoManager.h"
 #import "SecretSharing.h"
-#import "GroupFinance-Swift.h"
+#import "Grouper-Swift.h"
 
 @implementation ReceiveManager {
     NetManager *net;

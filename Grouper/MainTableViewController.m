@@ -14,7 +14,7 @@
 #import "DaoManager.h"
 #import "CommonTool.h"
 #import "MessageData.h"
-#import "GroupFinance-Swift.h"
+#import "Grouper-Swift.h"
 #import "UIImageView+Extension.h"
 #import <MJRefresh/MJRefresh.h>
 

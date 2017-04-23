@@ -1,6 +1,6 @@
 use_frameworks!
 
-target 'GroupFinance' do
+target 'Grouper' do
     pod 'Sync', '~> 3'
     pod 'FBSDKCoreKit', '~> 4'
     pod 'FBSDKLoginKit', '~> 4'

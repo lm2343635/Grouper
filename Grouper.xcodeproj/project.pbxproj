@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3E9BFF9DF44FD097026810A5 /* Pods_GroupFinance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710458120C337F8796D1E807 /* Pods_GroupFinance.framework */; };
+		3E9BFF9DF44FD097026810A5 /* Pods_Grouper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710458120C337F8796D1E807 /* Pods_Grouper.framework */; };
 		E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */; };
 		E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */; };
 		E4039EE01DE0730C00D39DDB /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* Defaults.m */; };
@@ -29,8 +29,8 @@
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D791CCB5845000DFB1A /* Main.storyboard */; };
 		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
-		E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */; };
-		E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */; };
+		E4400D8B1CCB5845000DFB1A /* GrouperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GrouperTests.m */; };
+		E4400D961CCB5845000DFB1A /* GrouperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GrouperUITests.m */; };
 		E446C1011DCF75E600EC5966 /* InternetResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E446C1001DCF75E600EC5966 /* InternetResponse.m */; };
 		E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */; };
 		E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */; };
@@ -104,21 +104,21 @@
 			containerPortal = E4400D651CCB5845000DFB1A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E4400D6C1CCB5845000DFB1A;
-			remoteInfo = GroupFinance;
+			remoteInfo = Grouper;
 		};
 		E4400D921CCB5845000DFB1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E4400D651CCB5845000DFB1A /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = E4400D6C1CCB5845000DFB1A;
-			remoteInfo = GroupFinance;
+			remoteInfo = Grouper;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3A5070CBDE318AFF455E23F3 /* Pods-GroupFinance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupFinance.release.xcconfig"; path = "Pods/Target Support Files/Pods-GroupFinance/Pods-GroupFinance.release.xcconfig"; sourceTree = "<group>"; };
-		710458120C337F8796D1E807 /* Pods_GroupFinance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GroupFinance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8B0B7F1ED6537206984CEF56 /* Pods-GroupFinance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GroupFinance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GroupFinance/Pods-GroupFinance.debug.xcconfig"; sourceTree = "<group>"; };
+		3A5070CBDE318AFF455E23F3 /* Pods-Grouper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grouper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grouper/Pods-Grouper.release.xcconfig"; sourceTree = "<group>"; };
+		710458120C337F8796D1E807 /* Pods_Grouper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grouper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B0B7F1ED6537206984CEF56 /* Pods-Grouper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grouper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grouper/Pods-Grouper.debug.xcconfig"; sourceTree = "<group>"; };
 		E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersTableViewController.h; sourceTree = "<group>"; };
 		E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersTableViewController.m; sourceTree = "<group>"; };
 		E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
@@ -135,7 +135,6 @@
 		E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersTableViewController.h; sourceTree = "<group>"; };
 		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
 		E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTool.swift; sourceTree = "<group>"; };
-		E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GroupFinance-Bridging-Header.h"; sourceTree = "<group>"; };
 		E42C58D71DCC53C4009A2596 /* SendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendManager.h; sourceTree = "<group>"; };
 		E42C58D81DCC53C4009A2596 /* SendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendManager.m; sourceTree = "<group>"; };
 		E4305A4A1E36283D00010B52 /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -152,22 +151,23 @@
 		E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupManager.m; sourceTree = "<group>"; };
 		E43DDB8E1E40510B00C8BDAE /* ServersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersManager.h; sourceTree = "<group>"; };
 		E43DDB8F1E40510B00C8BDAE /* ServersManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersManager.m; sourceTree = "<group>"; };
-		E4400D6D1CCB5845000DFB1A /* GroupFinance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GroupFinance.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4400D6D1CCB5845000DFB1A /* Grouper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grouper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E4400D741CCB5845000DFB1A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E4400D7A1CCB5845000DFB1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E4400D7F1CCB5845000DFB1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4400D811CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4400D861CCB5845000DFB1A /* GroupFinanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceTests.m; sourceTree = "<group>"; };
+		E4400D861CCB5845000DFB1A /* GrouperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4400D8A1CCB5845000DFB1A /* GrouperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouperTests.m; sourceTree = "<group>"; };
 		E4400D8C1CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GroupFinanceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupFinanceUITests.m; sourceTree = "<group>"; };
+		E4400D911CCB5845000DFB1A /* GrouperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4400D951CCB5845000DFB1A /* GrouperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouperUITests.m; sourceTree = "<group>"; };
 		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E446C0FF1DCF75E600EC5966 /* InternetResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetResponse.h; sourceTree = "<group>"; };
 		E446C1001DCF75E600EC5966 /* InternetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetResponse.m; sourceTree = "<group>"; };
 		E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.4.xcdatamodel; sourceTree = "<group>"; };
+		E4546A431EAC7C1E004DB5FD /* Grouper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grouper-Bridging-Header.h"; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
 		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
 		E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditClassificationViewController.h; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		E4923E7F1E31DEDB003C4183 /* MessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageData.m; sourceTree = "<group>"; };
 		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
-		E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GroupFinance.entitlements; sourceTree = "<group>"; };
+		E4939F9B1D97CE36006CA612 /* Grouper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grouper.entitlements; sourceTree = "<group>"; };
 		E497059D1CDF22B20092B164 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyProfileTableViewController.h; sourceTree = "<group>"; };
 		E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyProfileTableViewController.m; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */,
-				3E9BFF9DF44FD097026810A5 /* Pods_GroupFinance.framework in Frameworks */,
+				3E9BFF9DF44FD097026810A5 /* Pods_Grouper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,8 +335,8 @@
 		012B0A8F29F5D3D4BB7A3FF2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				8B0B7F1ED6537206984CEF56 /* Pods-GroupFinance.debug.xcconfig */,
-				3A5070CBDE318AFF455E23F3 /* Pods-GroupFinance.release.xcconfig */,
+				8B0B7F1ED6537206984CEF56 /* Pods-Grouper.debug.xcconfig */,
+				3A5070CBDE318AFF455E23F3 /* Pods-Grouper.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -351,7 +351,7 @@
 				E4B0FF4D1D0C244D000F0421 /* libz.tbd */,
 				E4B0FF4B1D0C2446000F0421 /* libsqlite3.tbd */,
 				E4F1CB331CFAFCF500461B3F /* MobileCoreServices.framework */,
-				710458120C337F8796D1E807 /* Pods_GroupFinance.framework */,
+				710458120C337F8796D1E807 /* Pods_Grouper.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -427,9 +427,9 @@
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
-				E4400D6F1CCB5845000DFB1A /* GroupFinance */,
-				E4400D891CCB5845000DFB1A /* GroupFinanceTests */,
-				E4400D941CCB5845000DFB1A /* GroupFinanceUITests */,
+				E4400D6F1CCB5845000DFB1A /* Grouper */,
+				E4400D891CCB5845000DFB1A /* GrouperTests */,
+				E4400D941CCB5845000DFB1A /* GrouperUITests */,
 				E4400D6E1CCB5845000DFB1A /* Products */,
 				0A96C9409F0E310C101BF950 /* Frameworks */,
 				012B0A8F29F5D3D4BB7A3FF2 /* Pods */,
@@ -439,17 +439,17 @@
 		E4400D6E1CCB5845000DFB1A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E4400D6D1CCB5845000DFB1A /* GroupFinance.app */,
-				E4400D861CCB5845000DFB1A /* GroupFinanceTests.xctest */,
-				E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */,
+				E4400D6D1CCB5845000DFB1A /* Grouper.app */,
+				E4400D861CCB5845000DFB1A /* GrouperTests.xctest */,
+				E4400D911CCB5845000DFB1A /* GrouperUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E4400D6F1CCB5845000DFB1A /* GroupFinance */ = {
+		E4400D6F1CCB5845000DFB1A /* Grouper */ = {
 			isa = PBXGroup;
 			children = (
-				E4939F9B1D97CE36006CA612 /* GroupFinance.entitlements */,
+				E4939F9B1D97CE36006CA612 /* Grouper.entitlements */,
 				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E457B4261CF1A22A00139C4C /* Dao */,
 				E430E7631E2385A600CF9660 /* Main */,
@@ -466,34 +466,34 @@
 				E4400D811CCB5845000DFB1A /* Info.plist */,
 				E4400D701CCB5845000DFB1A /* Supporting Files */,
 			);
-			path = GroupFinance;
+			path = Grouper;
 			sourceTree = "<group>";
 		};
 		E4400D701CCB5845000DFB1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4546A431EAC7C1E004DB5FD /* Grouper-Bridging-Header.h */,
 				E4400D711CCB5845000DFB1A /* main.m */,
-				E42B7DAA1E1E3C980037BAAE /* GroupFinance-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E4400D891CCB5845000DFB1A /* GroupFinanceTests */ = {
+		E4400D891CCB5845000DFB1A /* GrouperTests */ = {
 			isa = PBXGroup;
 			children = (
-				E4400D8A1CCB5845000DFB1A /* GroupFinanceTests.m */,
+				E4400D8A1CCB5845000DFB1A /* GrouperTests.m */,
 				E4400D8C1CCB5845000DFB1A /* Info.plist */,
 			);
-			path = GroupFinanceTests;
+			path = GrouperTests;
 			sourceTree = "<group>";
 		};
-		E4400D941CCB5845000DFB1A /* GroupFinanceUITests */ = {
+		E4400D941CCB5845000DFB1A /* GrouperUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E4400D951CCB5845000DFB1A /* GroupFinanceUITests.m */,
+				E4400D951CCB5845000DFB1A /* GrouperUITests.m */,
 				E4400D971CCB5845000DFB1A /* Info.plist */,
 			);
-			path = GroupFinanceUITests;
+			path = GrouperUITests;
 			sourceTree = "<group>";
 		};
 		E457B4261CF1A22A00139C4C /* Dao */ = {
@@ -644,9 +644,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E4400D6C1CCB5845000DFB1A /* GroupFinance */ = {
+		E4400D6C1CCB5845000DFB1A /* Grouper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinance" */;
+			buildConfigurationList = E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "Grouper" */;
 			buildPhases = (
 				0A96C2303E69E6859371F92F /* [CP] Check Pods Manifest.lock */,
 				E4400D691CCB5845000DFB1A /* Sources */,
@@ -659,14 +659,14 @@
 			);
 			dependencies = (
 			);
-			name = GroupFinance;
-			productName = GroupFinance;
-			productReference = E4400D6D1CCB5845000DFB1A /* GroupFinance.app */;
+			name = Grouper;
+			productName = Grouper;
+			productReference = E4400D6D1CCB5845000DFB1A /* Grouper.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E4400D851CCB5845000DFB1A /* GroupFinanceTests */ = {
+		E4400D851CCB5845000DFB1A /* GrouperTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceTests" */;
+			buildConfigurationList = E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GrouperTests" */;
 			buildPhases = (
 				E4400D821CCB5845000DFB1A /* Sources */,
 				E4400D831CCB5845000DFB1A /* Frameworks */,
@@ -677,14 +677,14 @@
 			dependencies = (
 				E4400D881CCB5845000DFB1A /* PBXTargetDependency */,
 			);
-			name = GroupFinanceTests;
-			productName = GroupFinanceTests;
-			productReference = E4400D861CCB5845000DFB1A /* GroupFinanceTests.xctest */;
+			name = GrouperTests;
+			productName = GrouperTests;
+			productReference = E4400D861CCB5845000DFB1A /* GrouperTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		E4400D901CCB5845000DFB1A /* GroupFinanceUITests */ = {
+		E4400D901CCB5845000DFB1A /* GrouperUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceUITests" */;
+			buildConfigurationList = E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GrouperUITests" */;
 			buildPhases = (
 				E4400D8D1CCB5845000DFB1A /* Sources */,
 				E4400D8E1CCB5845000DFB1A /* Frameworks */,
@@ -695,9 +695,9 @@
 			dependencies = (
 				E4400D931CCB5845000DFB1A /* PBXTargetDependency */,
 			);
-			name = GroupFinanceUITests;
-			productName = GroupFinanceUITests;
-			productReference = E4400D911CCB5845000DFB1A /* GroupFinanceUITests.xctest */;
+			name = GrouperUITests;
+			productName = GrouperUITests;
+			productReference = E4400D911CCB5845000DFB1A /* GrouperUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -732,7 +732,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E4400D681CCB5845000DFB1A /* Build configuration list for PBXProject "GroupFinance" */;
+			buildConfigurationList = E4400D681CCB5845000DFB1A /* Build configuration list for PBXProject "Grouper" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -745,9 +745,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E4400D6C1CCB5845000DFB1A /* GroupFinance */,
-				E4400D851CCB5845000DFB1A /* GroupFinanceTests */,
-				E4400D901CCB5845000DFB1A /* GroupFinanceUITests */,
+				E4400D6C1CCB5845000DFB1A /* Grouper */,
+				E4400D851CCB5845000DFB1A /* GrouperTests */,
+				E4400D901CCB5845000DFB1A /* GrouperUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -807,7 +807,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GroupFinance/Pods-GroupFinance-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grouper/Pods-Grouper-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CFEB62FA5936312E9A64EBCD /* [CP] Embed Pods Frameworks */ = {
@@ -822,7 +822,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GroupFinance/Pods-GroupFinance-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grouper/Pods-Grouper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -921,7 +921,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4400D8B1CCB5845000DFB1A /* GroupFinanceTests.m in Sources */,
+				E4400D8B1CCB5845000DFB1A /* GrouperTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -929,7 +929,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4400D961CCB5845000DFB1A /* GroupFinanceUITests.m in Sources */,
+				E4400D961CCB5845000DFB1A /* GrouperUITests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -938,12 +938,12 @@
 /* Begin PBXTargetDependency section */
 		E4400D881CCB5845000DFB1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E4400D6C1CCB5845000DFB1A /* GroupFinance */;
+			target = E4400D6C1CCB5845000DFB1A /* Grouper */;
 			targetProxy = E4400D871CCB5845000DFB1A /* PBXContainerItemProxy */;
 		};
 		E4400D931CCB5845000DFB1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E4400D6C1CCB5845000DFB1A /* GroupFinance */;
+			target = E4400D6C1CCB5845000DFB1A /* Grouper */;
 			targetProxy = E4400D921CCB5845000DFB1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1056,28 +1056,28 @@
 		};
 		E4400D9B1CCB5845000DFB1A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8B0B7F1ED6537206984CEF56 /* Pods-GroupFinance.debug.xcconfig */;
+			baseConfigurationReference = 8B0B7F1ED6537206984CEF56 /* Pods-Grouper.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = GroupFinance/GroupFinance.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Grouper/Grouper.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = GroupFinance/Info.plist;
+				INFOPLIST_FILE = Grouper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.Grouper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GroupFinance/GroupFinance-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Grouper/Grouper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1086,12 +1086,12 @@
 		};
 		E4400D9C1CCB5845000DFB1A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3A5070CBDE318AFF455E23F3 /* Pods-GroupFinance.release.xcconfig */;
+			baseConfigurationReference = 3A5070CBDE318AFF455E23F3 /* Pods-Grouper.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = GroupFinance/GroupFinance.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Grouper/Grouper.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1099,16 +1099,16 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
-				INFOPLIST_FILE = GroupFinance/Info.plist;
+				INFOPLIST_FILE = Grouper/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.GroupFinance;
+				PRODUCT_BUNDLE_IDENTIFIER = pw.fczm.app.Grouper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "GroupFinance/GroupFinance-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Grouper/Grouper-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1119,11 +1119,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = GroupFinanceTests/Info.plist;
+				INFOPLIST_FILE = GrouperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceTests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GrouperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroupFinance.app/GroupFinance";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grouper.app/Grouper";
 			};
 			name = Debug;
 		};
@@ -1132,11 +1132,11 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = GroupFinanceTests/Info.plist;
+				INFOPLIST_FILE = GrouperTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceTests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GrouperTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/GroupFinance.app/GroupFinance";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grouper.app/Grouper";
 			};
 			name = Release;
 		};
@@ -1144,11 +1144,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = GroupFinanceUITests/Info.plist;
+				INFOPLIST_FILE = GrouperUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GrouperUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = GroupFinance;
+				TEST_TARGET_NAME = Grouper;
 			};
 			name = Debug;
 		};
@@ -1156,18 +1156,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = GroupFinanceUITests/Info.plist;
+				INFOPLIST_FILE = GrouperUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GroupFinanceUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.ut.softlab.GrouperUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = GroupFinance;
+				TEST_TARGET_NAME = Grouper;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E4400D681CCB5845000DFB1A /* Build configuration list for PBXProject "GroupFinance" */ = {
+		E4400D681CCB5845000DFB1A /* Build configuration list for PBXProject "Grouper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4400D981CCB5845000DFB1A /* Debug */,
@@ -1176,7 +1176,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinance" */ = {
+		E4400D9A1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "Grouper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4400D9B1CCB5845000DFB1A /* Debug */,
@@ -1185,7 +1185,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceTests" */ = {
+		E4400D9D1CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GrouperTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4400D9E1CCB5845000DFB1A /* Debug */,
@@ -1194,7 +1194,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GroupFinanceUITests" */ = {
+		E4400DA01CCB5845000DFB1A /* Build configuration list for PBXNativeTarget "GrouperUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E4400DA11CCB5845000DFB1A /* Debug */,
