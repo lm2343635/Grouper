@@ -1,5 +1,5 @@
 .DS_Store
 UserInterfaceState.xcuserstate
-GroupFinance.xcworkspace/
+*.xcworkspace/
 Podfile.lock
 Pods/
