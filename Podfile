@@ -9,6 +9,7 @@ target 'Grouper' do
     pod 'UIImageView+Extension', '~> 0.2'
     pod 'M80AttributedLabel', '~> 1.6'
     pod 'UILabel+Copyable', '~> 1.0'
+    pod 'BRYXBanner', '~> 0.7'
 end
 
 post_install do |installer|

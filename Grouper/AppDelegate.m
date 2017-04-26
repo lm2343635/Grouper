@@ -10,6 +10,8 @@
 #import "GroupManager.h"
 #import "ReceiveManager.h"
 #import "DeviceTokenManager.h"
+#import "Grouper-Bridging-Header.h"
+#import "Grouper-Swift.h"
 
 @interface AppDelegate ()
 
@@ -100,6 +102,9 @@
     NSString *category = [aps valueForKey:@"category"];
     if ([category isEqualToString:@"message"]) {
         [self sync];
+        [BannerTool showWithTitle:nil
+                         subtitle:[aps valueForKey:@"alert"]
+                            image:nil];
     }
 }
 
@@ -158,7 +163,7 @@
             [group refreshMemberListWithCompletion:^(BOOL success) {
                 [[ReceiveManager sharedInstance] receiveWithCompletion:^{
                     if (DEBUG) {
-                        NSLog(@"Background fetch ended...");
+                        NSLog(@"Sync ended...");
                     }
                 }];
             }];

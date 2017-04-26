@@ -7,7 +7,6 @@
 //
 
 #import "MainTableViewController.h"
-#import "NetManager.h"
 #import "GroupManager.h"
 #import "SendManager.h"
 #import "ReceiveManager.h"
@@ -23,7 +22,6 @@
 @end
 
 @implementation MainTableViewController {
-    NetManager *net;
     DaoManager *dao;
     GroupManager *group;
     
@@ -44,7 +42,6 @@
     }
     [super viewDidLoad];
     
-    net = [NetManager sharedInstance];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     

@@ -90,6 +90,7 @@
 		E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB451CFB0B2D00461B3F /* PhotoDao.m */; };
 		E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB481CFB13BF00461B3F /* RecordsTableViewController.m */; };
 		E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB4B1CFB167200461B3F /* DateTool.m */; };
+		E4F2A83A1EB055F000671F90 /* BannerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2A8391EB055F000671F90 /* BannerTool.swift */; };
 		E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A921D03F036006F5DF2 /* EditRecordViewController.m */; };
 		E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */; };
 		E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */; };
@@ -292,6 +293,7 @@
 		E4F1CB481CFB13BF00461B3F /* RecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewController.m; sourceTree = "<group>"; };
 		E4F1CB4A1CFB167200461B3F /* DateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTool.h; sourceTree = "<group>"; };
 		E4F1CB4B1CFB167200461B3F /* DateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTool.m; sourceTree = "<group>"; };
+		E4F2A8391EB055F000671F90 /* BannerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerTool.swift; sourceTree = "<group>"; };
 		E4F60A911D03F036006F5DF2 /* EditRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditRecordViewController.h; sourceTree = "<group>"; };
 		E4F60A921D03F036006F5DF2 /* EditRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditRecordViewController.m; sourceTree = "<group>"; };
 		E4F60A941D040C05006F5DF2 /* AddTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTemplateViewController.h; sourceTree = "<group>"; };
@@ -458,13 +460,13 @@
 				E40C44141CCF25640006D208 /* Settings */,
 				E4F1CB2C1CFAF28500461B3F /* Support */,
 				E4923E811E31E8E6003C4183 /* Core */,
+				E4400D701CCB5845000DFB1A /* Supporting Files */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
 				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
 				E4400D791CCB5845000DFB1A /* Main.storyboard */,
 				E497059D1CDF22B20092B164 /* Assets.xcassets */,
 				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
 				E4400D811CCB5845000DFB1A /* Info.plist */,
-				E4400D701CCB5845000DFB1A /* Supporting Files */,
 			);
 			path = Grouper;
 			sourceTree = "<group>";
@@ -589,6 +591,7 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
+				E4F2A8391EB055F000671F90 /* BannerTool.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -835,6 +838,7 @@
 				E46D576F1DB4D21900116C4E /* strtok.c in Sources */,
 				E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */,
 				E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */,
+				E4F2A83A1EB055F000671F90 /* BannerTool.swift in Sources */,
 				E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */,
 				E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */,
 				E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */,
