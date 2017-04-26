@@ -457,7 +457,7 @@
 				E427764A1DD044F400FB1D33 /* Members */,
 				E40C44141CCF25640006D208 /* Settings */,
 				E4F1CB2C1CFAF28500461B3F /* Support */,
-				E4923E811E31E8E6003C4183 /* Synchronization */,
+				E4923E811E31E8E6003C4183 /* Core */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
 				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
 				E4400D791CCB5845000DFB1A /* Main.storyboard */,
@@ -525,7 +525,7 @@
 			name = Dao;
 			sourceTree = "<group>";
 		};
-		E4923E811E31E8E6003C4183 /* Synchronization */ = {
+		E4923E811E31E8E6003C4183 /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				E476B0A41DE40F5C00FBCB24 /* MultipeerConnectivityManager.h */,
@@ -558,7 +558,7 @@
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
 			);
-			name = Synchronization;
+			name = Core;
 			sourceTree = "<group>";
 		};
 		E4F1CB1F1CFAE4B800461B3F /* Record */ = {

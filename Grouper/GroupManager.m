@@ -27,7 +27,6 @@
     
     // Register owner related.
     int registered, submitted;
-    
 }
 
 + (instancetype)sharedInstance {

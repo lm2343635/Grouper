@@ -169,6 +169,12 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
+    // If there is no messages, end the method.
+    if (messages.count == 0) {
+        return;
+    }
+    
     /**
      Create a mutable dictionary to save messageId-share dictionary for different multiple untrusted servers.
      It's structure should be like this:
@@ -304,7 +310,8 @@
     [net.managers[address0] POST:[NetManager createUrl:@"user/notify" withServerAddress:address0]
                   parameters:@{
                                @"content": content,
-                               @"receiver": reveiver
+                               @"receiver": reveiver,
+                               @"category": @"message"
                                }
                     progress:nil
                      success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

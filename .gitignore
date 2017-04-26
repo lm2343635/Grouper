@@ -1,5 +1,7 @@
+# macOS
 .DS_Store
-UserInterfaceState.xcuserstate
+
+# Pod
 *.xcworkspace/
 Podfile.lock
 Pods/

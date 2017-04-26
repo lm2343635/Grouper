@@ -74,9 +74,9 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *token = [[[[deviceToken description]
-                          stringByReplacingOccurrencesOfString: @"<" withString: @""]
-                         stringByReplacingOccurrencesOfString: @">" withString: @""]
-                        stringByReplacingOccurrencesOfString: @" " withString: @""];
+                            stringByReplacingOccurrencesOfString:@"<" withString:@""]
+                            stringByReplacingOccurrencesOfString:@">" withString:@""]
+                            stringByReplacingOccurrencesOfString:@" " withString:@""];
     if (DEBUG) {
         NSLog(@"Device token from APNs server is %@", token);
     }
@@ -94,7 +94,12 @@
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-        
+        NSLog(@"didReceiveRemoteNotification, userInfo = %@", userInfo);
+    }
+    NSDictionary *aps = [userInfo valueForKey:@"aps"];
+    NSString *category = [aps valueForKey:@"category"];
+    if ([category isEqualToString:@"message"]) {
+        [self sync];
     }
 }
 
@@ -111,23 +116,13 @@
     return handled;
 }
 
+// Background fetch.
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
         NSLog(@"Background fetch started...");
     }
-    [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
-        if (sync) {
-            // Refresh members list before data sync
-            [group refreshMemberListWithCompletion:^(BOOL success) {
-                [[ReceiveManager sharedInstance] receiveWithCompletion:^{
-                    if (DEBUG) {
-                        NSLog(@"Background fetch ended...");
-                    }
-                }];
-            }];
-        }
-    }];
+    [self sync];
 }
 
 
@@ -151,6 +146,24 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:identifer];
     [self.window makeKeyAndVisible];
+}
+
+- (void)sync {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
+        if (sync) {
+            // Refresh members list before data sync
+            [group refreshMemberListWithCompletion:^(BOOL success) {
+                [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+                    if (DEBUG) {
+                        NSLog(@"Background fetch ended...");
+                    }
+                }];
+            }];
+        }
+    }];
 }
 
 @end
