@@ -15,7 +15,11 @@
     NetManager *net;
     DaoManager *dao;
     GroupManager *group;
+    
+    // Number of sent messages
+    int sent;
 
+    // Current message.
     Message *message;
 }
 
@@ -135,33 +139,6 @@
     [self sendShares];
 }
 
-#pragma mark - Key Value Observe
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    if ([keyPath isEqualToString:@"sent"]) {
-        if (self.sent == net.managers.count) {
-            [self removeObserver:self forKeyPath:@"sent"];
-            if (DEBUG) {
-                NSLog(@"%ld shares sent successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
-            }
-            // Push remote notification to receiver if this message is a normal message.
-            if ([message.type isEqualToString:@"update"]) {
-                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
-                                          to:@"*"];
-            } else if ([message.type isEqualToString:@"delete"]) {
-                [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
-                                          to:@"*"];
-
-            }
-        }
-    }
-}
-
 #pragma mark - Send existed messages.
 
 // Send existed messages.
@@ -207,6 +184,10 @@
         }
     }
 
+    // Get reveiver.
+    NSString *receiver = ((Message *)[messages objectAtIndex:0]).receiver;
+    
+    sent = 0;
     // Send messageId-share dictionary to multiple untrusted sercers.
     for (NSString *address in messageIdShares) {
         [net.managers[address] POST:[NetManager createUrl:@"transfer/reput" withServerAddress:address]
@@ -220,13 +201,17 @@
                                        **/
                                       @"shares": [self JSONStringFromObject:messageIdShares[address]],
                                       // All messages' receiver should be same. Get a receiver from the first message.
-                                      @"receiver": ((Message *)[messages objectAtIndex:0]).receiver
+                                      @"receiver": receiver
                                       }
                            progress:nil
                             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                 InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                                 if ([response statusOK]) {
-
+                                    sent++;
+                                    if (sent == net.managers.count) {
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has resent messages to you.", group.currentUser.name]
+                                                                  to:receiver];
+                                    }
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -266,12 +251,8 @@
     }
     // Create shares by secret sharing scheme.
     NSDictionary *shares = [SecretSharing generateSharesWith:json];
-    // User KVO to observe the status of sending shares.
-    self.sent = 0;
-    [self addObserver:self
-           forKeyPath:@"sent"
-              options:NSKeyValueObservingOptionOld
-              context:nil];
+
+    sent = 0;
     // Send shares to multiple untrusted servers.
     for (NSString *address in net.managers.allKeys) {
         [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
@@ -284,9 +265,28 @@
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                             InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                             if ([response statusOK]) {
-                                self.sent ++;
                                 if (DEBUG) {
                                     NSLog(@"Sent share %@ in %@", shares[address], [NSDate date]);
+                                }
+                                sent ++;
+                                if (sent == net.managers.count) {
+                                    if (DEBUG) {
+                                        NSLog(@"%ld shares sent successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
+                                    }
+                                    // Push remote notification to receiver if this message is a normal message.
+                                    if ([message.type isEqualToString:@"update"]) {
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
+                                                                  to:@"*"];
+                                    } else if ([message.type isEqualToString:@"delete"]) {
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
+                                                                  to:@"*"];
+                                    } else if ([message.type isEqualToString:@"confirm"]) {
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
+                                                                  to:@"*"];
+                                    } else if ([message.type isEqualToString:@"resend"]) {
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
+                                                                  to:message.receiver];
+                                    }
                                 }
                             }
                         }
