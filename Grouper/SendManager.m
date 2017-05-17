@@ -190,28 +190,51 @@
     sent = 0;
     // Send messageId-share dictionary to multiple untrusted sercers.
     for (NSString *address in messageIdShares) {
-        [net.managers[address] POST:[NetManager createUrl:@"transfer/reput" withServerAddress:address]
-                         parameters:@{
-                                      /**
-                                        Transfer messageId-share dictionary to JSON string like this format.
-                                        {
-                                            "messageId": "share content",
-                                            "messageId": "share content"
-                                        }
-                                       **/
-                                      @"shares": [self JSONStringFromObject:messageIdShares[address]],
-                                      // All messages' receiver should be same. Get a receiver from the first message.
-                                      @"receiver": receiver
-                                      }
+        NSDictionary *messageIdShare = messageIdShares[address];
+        [net.managers[address] POST:[NetManager createUrl:@"transfer/confirm" withServerAddress:address]
+                         parameters:[NSDictionary dictionaryWithObjectsAndKeys: [NSSet setWithArray:messageIdShare.allKeys], @"messageId", nil]
                            progress:nil
                             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                 InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                                 if ([response statusOK]) {
-                                    sent++;
-                                    if (sent == net.managers.count) {
-                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has resent messages to you.", group.currentUser.name]
-                                                                  to:receiver];
+                                    NSObject *result = [response getResponseResult];
+                                    NSArray *notExistedMessageIds = [result valueForKey:@"messageIds"];
+                                    NSMutableDictionary *sendMessageIdShare = [[NSMutableDictionary alloc] init];
+                                    for (NSString *messageId in notExistedMessageIds) {
+                                        [sendMessageIdShare setValue:messageIdShare[messageId] forKey:messageId];
                                     }
+                                    // Send message-share which is not existed in untrusted servers.
+                                    [net.managers[address] POST:[NetManager createUrl:@"transfer/reput" withServerAddress:address]
+                                                     parameters:@{
+                                                                  /**
+                                                                   Transfer messageId-share dictionary to JSON string like this format.
+                                                                   {
+                                                                   "messageId": "share content",
+                                                                   "messageId": "share content"
+                                                                   }
+                                                                   **/
+                                                                  @"shares": [self JSONStringFromObject:sendMessageIdShare],
+                                                                  // All messages' receiver should be same. Get a receiver from the first message.
+                                                                  @"receiver": receiver
+                                                                  }
+                                                       progress:nil
+                                                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                                                            if ([response statusOK]) {
+                                                                sent++;
+                                                                if (sent == net.managers.count) {
+                                                                    [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has resent messages to you.", group.currentUser.name]
+                                                                                              to:receiver];
+                                                                }
+                                                            }
+                                                        }
+                                                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                                                            switch ([response errorCode]) {
+                                                                default:
+                                                                    break;
+                                                            }
+                                                        }];
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -221,6 +244,7 @@
                                         break;
                                 }
                             }];
+        
     }
 }
 
