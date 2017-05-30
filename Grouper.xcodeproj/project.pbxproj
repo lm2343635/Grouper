@@ -271,6 +271,7 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2.0.xcdatamodel; sourceTree = "<group>"; };
 		E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.3.xcdatamodel; sourceTree = "<group>"; };
 		E4BF182C1E163F3A003340FB /* ReceiveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveManager.h; sourceTree = "<group>"; };
 		E4BF182D1E163F3A003340FB /* ReceiveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveManager.m; sourceTree = "<group>"; };
@@ -1213,13 +1214,14 @@
 		E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */,
 				E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */,
 				E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */,
 				E48DBCAA1E88F67C00EC94D1 /* Model_0.2.xcdatamodel */,
 				E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */,
 				E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */,
 			);
-			currentVersion = E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */;
+			currentVersion = E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

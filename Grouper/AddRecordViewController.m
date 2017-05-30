@@ -158,7 +158,7 @@
     int moneyInt = (int)_moneyTextFeild.text.doubleValue;
     NSNumber *money = [NSNumber numberWithInt: saveRecordType==YES ? moneyInt: -moneyInt];
     Photo *photo = nil;
-    //如果用户拍过照就要新建Photo对象
+    // Create new photo object if user has taken a photo.
     if (_photoImage != nil) {
         NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)];
         if (DEBUG) {
@@ -174,7 +174,7 @@
                                        andAccount:_selectedAccount
                                           andShop:_selectedShop
                                          andPhoto:photo
-                                          creator:currentUser.userId];
+                                          creator:currentUser.email];
     [[SendManager sharedInstance] update:record];
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -1,8 +1,8 @@
 //
 //  User+CoreDataProperties.m
-//  GroupFinance
+//  Grouper
 //
-//  Created by lidaye on 01/04/2017.
+//  Created by lidaye on 30/05/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -15,10 +15,7 @@
 }
 
 @dynamic email;
-@dynamic gender;
+@dynamic node;
 @dynamic name;
-@dynamic picture;
-@dynamic pictureUrl;
-@dynamic userId;
 
 @end

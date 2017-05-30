@@ -10,46 +10,45 @@
 
 @implementation UserDao
 
-// Save user info from facebook.
-- (User *)saveFromFacebook:(id)object {
+// Save user info.
+- (User *)saveWithEmail:(NSString *)email
+                forName:(NSString *)name
+                 inNode:(NSString *)node {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     User *user = [NSEntityDescription insertNewObjectForEntityForName:UserEntityName
                                                inManagedObjectContext:self.context];
-    user.userId = [object valueForKey:@"id"];
-    user.email = [object valueForKey:@"email"];
-    user.name = [object valueForKey:@"name"];
-    user.gender = [object valueForKey:@"gender"];
-    user.pictureUrl = [[[object valueForKey:@"picture"] valueForKey:@"data"] valueForKey:@"url"];
+    user.email = email;
+    user.name = name;
+    user.node = node;
     [self saveContext];
     return user;
 }
 
-// Save other user's info from ustrusted servers.
-- (User *)saveOrUpdate:(NSObject *)object {
+// Update user's info.
+- (User *)updateName:(NSString *)name
+                node:(NSString *)node
+             byEmail:(NSString *)email {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    User *user = [self getByUserId:[object valueForKey:@"userId"]];
+    User *user = [self getByEmail:email];
     if(user == nil) {
         user = [NSEntityDescription insertNewObjectForEntityForName:UserEntityName
                                              inManagedObjectContext:self.context];
     }
-    user.userId = [object valueForKey:@"userId"];
-    user.email = [object valueForKey:@"email"];
-    user.name = [object valueForKey:@"name"];
-    user.gender = [object valueForKey:@"gender"];
-    user.pictureUrl = [object valueForKey:@"picture"];
+    user.name = name;
+    user.node = node;
     [self saveContext];
     return user;
 }
 
-- (User *)getByUserId:(NSString *)userId {
+- (User *)getByEmail:(NSString *)email {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"userId=%@", userId];
+    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"email=%@", email];
     return (User *)[self getByPredicate:predicate withEntityName:UserEntityName];
 }
 
@@ -58,14 +57,14 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [self getByUserId:[defaults valueForKey:@"userId"]];
+    return [self getByEmail:[defaults valueForKey:@"email"]];
 }
 
-- (NSArray *)findMembersExceptOwner:(NSString *)ownerId {
+- (NSArray *)findMembersExceptOwner:(NSString *)email {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return [self findByPredicate:[NSPredicate predicateWithFormat:@"userId!=%@", ownerId]
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"email!=%@", email]
                   withEntityName:UserEntityName
                          orderBy:[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:NO]];
 }

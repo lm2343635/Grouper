@@ -12,13 +12,17 @@
 
 @interface UserDao : DaoTemplate
 
-// Save user info from facebook.
-- (User *)saveFromFacebook:(id)object;
+// Save user info.
+- (User *)saveWithEmail:(NSString *)email
+                forName:(NSString *)name
+                 inNode:(NSString *)node;
 
-// Save other user's info from ustrusted servers.
-- (User *)saveOrUpdate:(NSObject *)object;
+// Update user's info.
+- (User *)updateName:(NSString *)name
+                node:(NSString *)node
+             byEmail:(NSString *)email;
 
-- (User *)getByUserId:(NSString *)userId;
+- (User *)getByEmail:(NSString *)email;
 
 - (User *)currentUser;
 
