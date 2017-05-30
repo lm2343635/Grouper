@@ -66,12 +66,10 @@
     UILabel *infoLabel = (UILabel *)[cell viewWithTag:5];
     User *sender = group.membersDict[message.sender];
     if (sender != nil) {
-        senderAvatarImageView.image = [UIImage imageWithData:sender.picture];
         senderNameLabel.text = sender.name;
     }
     User *receiver = group.membersDict[message.receiver];
     if (receiver != nil) {
-        receiverAvatarImageView.image = [UIImage imageWithData:receiver.picture];
         receiverNameLabel.text = receiver.name;
     }
 

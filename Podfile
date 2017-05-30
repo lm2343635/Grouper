@@ -2,8 +2,6 @@ use_frameworks!
 
 target 'Grouper' do
     pod 'Sync', '~> 3'
-    pod 'FBSDKCoreKit', '~> 4'
-    pod 'FBSDKLoginKit', '~> 4'
     pod 'AFNetworking', '~> 3.1'
     pod 'MJRefresh', '~> 3.1'
     pod 'UIImageView+Extension', '~> 0.2'

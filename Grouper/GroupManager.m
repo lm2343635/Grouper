@@ -81,7 +81,7 @@
                                                  name:MCDidReceiveDataNotification
                                                object:nil];
     _connectedPeers = [[NSMutableArray alloc] init];
-    _isOwner = [_defaults.owner isEqualToString:_currentUser.userId];
+    _isOwner = [_defaults.owner isEqualToString:_currentUser.email];
 }
 
 #pragma mark - Invite Member
@@ -169,11 +169,13 @@
         [self sendMessage:@{
                             @"task": @"sendUserInfo",
                             @"userInfo": @{
-                                    @"userId": _currentUser.userId,
-                                    @"email": _currentUser.email,
-                                    @"name": _currentUser.name,
-                                    @"gender": _currentUser.gender,
-                                    @"pictureUrl": _currentUser.pictureUrl,
+                                    
+                                    // TODO List
+//                                    @"userId": _currentUser.userId,
+//                                    @"email": _currentUser.email,
+//                                    @"name": _currentUser.name,
+//                                    @"gender": _currentUser.gender,
+//                                    @"pictureUrl": _currentUser.pictureUrl,
                                     }
                             }
                        to:peerID];
@@ -274,12 +276,14 @@
                                 if ([response statusOK]) {
                                     NSObject *result = [response getResponseResult];
                                     NSArray *users = [result valueForKey:@"users"];
-                                    for(NSObject *user in users) {
-                                        if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
-                                            continue;
-                                        }
-                                        [dao.userDao saveOrUpdate:user];
-                                    }
+                                    // TODO List
+                                    
+//                                    for(NSObject *user in users) {
+//                                        if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
+//                                            continue;
+//                                        }
+//                                        [dao.userDao saveOrUpdate:user];
+//                                    }
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -405,7 +409,8 @@
     
     [net.manager POST:[NSString stringWithFormat:@"http://%@/group/restore", address]
            parameters:@{
-                        @"userId": _currentUser.userId,
+                        // TODO List
+//                        @"userId": _currentUser.userId,
                         @"accesskey": key
                         }
              progress:nil
@@ -471,12 +476,13 @@
         for (NSString *address in net.managers.allKeys) {
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                              parameters:@{
-                                          @"userId": _currentUser.userId,
-                                          @"name": _currentUser.name,
-                                          @"email": _currentUser.email,
-                                          @"gender": _currentUser.gender,
-                                          @"pictureUrl": _currentUser.pictureUrl,
-                                          @"owner": @YES
+                                          // TODO List
+//                                          @"userId": _currentUser.userId,
+//                                          @"name": _currentUser.name,
+//                                          @"email": _currentUser.email,
+//                                          @"gender": _currentUser.gender,
+//                                          @"pictureUrl": _currentUser.pictureUrl,
+//                                          @"owner": @YES
                                           }
                                progress:nil
                                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
@@ -551,7 +557,7 @@
                                     //Set threshold, owner and update number of group memebers
                                     _defaults.serverCount = _defaults.servers.allKeys.count;
                                     _defaults.threshold = threshold;
-                                    _defaults.owner = _currentUser.userId;
+                                    _defaults.owner = _currentUser.email;
                                     _defaults.members ++;
 
                                     //Change initial state.
@@ -584,6 +590,8 @@
     }
     NSString *address0 = [_defaults.servers.allKeys objectAtIndex:0];
     //Reload user info
+    
+    // TODO List
     [net.managers[address0] GET:[NetManager createUrl:@"user/list" withServerAddress:address0]
                      parameters:nil
                        progress:nil
@@ -592,12 +600,12 @@
                             if ([response statusOK]) {
                                 NSObject *result = [response getResponseResult];
                                 NSArray *users = [result valueForKey:@"users"];
-                                for (NSObject *user in users) {
-                                    if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
-                                        continue;
-                                    }
-                                    [dao.userDao saveOrUpdate:user];
-                                }
+//                                for (NSObject *user in users) {
+//                                    if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
+//                                        continue;
+//                                    }
+//                                    [dao.userDao saveOrUpdate:user];
+//                                }
                                 // Update number of group members.
                                 _defaults.members = users.count;
                                 // Update group members
@@ -626,7 +634,7 @@
     _members = [NSMutableArray arrayWithArray:[dao.userDao findAll]];
     _membersDict = [[NSMutableDictionary alloc] init];
     for (User *member in _members) {
-        [_membersDict setObject:member forKey:member.userId];
+        [_membersDict setObject:member forKey:member.email];
     }
 }
 

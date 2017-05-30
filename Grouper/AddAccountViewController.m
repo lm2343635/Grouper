@@ -41,7 +41,7 @@
                      inViewController:self];
         return;
     }
-    Account *account = [dao.accountDao saveWithName:aname creator:currentUser.userId];
+    Account *account = [dao.accountDao saveWithName:aname creator:currentUser.email];
     [[SendManager sharedInstance] update:account];
     [self.navigationController popViewControllerAnimated:YES];
 }

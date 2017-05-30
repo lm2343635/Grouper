@@ -119,7 +119,7 @@
                                       andClassification:_selectedClassification
                                              andAccount:_selectedAccount
                                                 andShop:_selectedShop
-                                                creator:currentUser.userId];
+                                                creator:currentUser.email];
     [[SendManager sharedInstance] update:template];
     [self.navigationController popViewControllerAnimated:YES];
 }

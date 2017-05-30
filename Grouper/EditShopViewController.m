@@ -49,7 +49,7 @@
     }
     // Update shop.
     _shop.sname = sname;
-    _shop.updater = currentUser.userId;
+    _shop.updater = currentUser.email;
     _shop.updateAt = [NSDate date];
     [dao saveContext];
     

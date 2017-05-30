@@ -93,14 +93,13 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"membersIdentifier"
                                                             forIndexPath:indexPath];
     User *user = (indexPath.section == 0)? owner: [members objectAtIndex:indexPath.row];
-    UIImageView *pictureImageView = (UIImageView *)[cell viewWithTag:1];
+
     UILabel *nameLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *emailLabel = (UILabel *)[cell viewWithTag:3];
-    UIImageView *genderImageView = (UIImageView *)[cell viewWithTag:4];
-    pictureImageView.image = [UIImage imageWithData:user.picture];
+
     nameLabel.text = user.name;
     emailLabel.text = user.email;
-    genderImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"gender_%@", user.gender]];
+
     return cell;
 }
 
@@ -140,11 +139,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     members = [dao.userDao findMembersExceptOwner:group.defaults.owner];
-    owner = [dao.userDao getByUserId:group.defaults.owner];
-    for (User *member in members) {
-        member.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:member.pictureUrl]];
-    }
-    owner.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:owner.pictureUrl]];
+    owner = [dao.userDao getByEmail:group.defaults.owner];
+    
 }
 
 @end

@@ -65,7 +65,7 @@
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
                                          type:MessageTypeUpdate
-                                         from:group.currentUser.userId
+                                         from:group.currentUser.email
                                            to:@"*"
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -85,7 +85,7 @@
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
                                          type:MessageTypeDelete
-                                         from:group.currentUser.userId
+                                         from:group.currentUser.email
                                            to:@"*"
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -99,7 +99,7 @@
     }
     NSMutableArray *sequences = [[NSMutableArray alloc] init];
     // Find normal messages sent by current user.
-    for (Message *normal in [dao.messageDao findNormalWithSender:group.currentUser.userId]) {
+    for (Message *normal in [dao.messageDao findNormalWithSender:group.currentUser.email]) {
         [sequences addObject:normal.sequence];
     }
     if (sequences.count == 0) {
@@ -113,7 +113,7 @@
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
-                                         from:group.currentUser.userId
+                                         from:group.currentUser.email
                                            to:@"*"
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];
@@ -132,7 +132,7 @@
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend
-                                         from:group.currentUser.userId
+                                         from:group.currentUser.email
                                            to:receiver
                                      sequence:[self generateNewSequence]
                                          node:group.defaults.node];

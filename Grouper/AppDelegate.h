@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
 
 @import Sync;
 

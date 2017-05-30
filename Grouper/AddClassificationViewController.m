@@ -40,7 +40,7 @@
         return;
     }
     User *user = [dao.userDao currentUser];
-    Classification *classification = [dao.classificationDao saveWithName:cname creator:user.userId];
+    Classification *classification = [dao.classificationDao saveWithName:cname creator:user.email];
     [[SendManager sharedInstance] update:classification];
     [self.navigationController popViewControllerAnimated:YES];
 }

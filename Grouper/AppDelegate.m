@@ -45,11 +45,6 @@
     // Indicate to the system that your app wishes to perform background fetch
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1800];
 
-    //Init facebook OAuth.
-    [[FBSDKApplicationDelegate sharedInstance] application:application
-                             didFinishLaunchingWithOptions:launchOptions];
-
-    
     //Set root view controller.
     if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] == nil) {
         [self setRootViewControllerWithIdentifer:@"loginViewController"];
@@ -106,19 +101,6 @@
                          subtitle:[aps valueForKey:@"alert"]
                             image:nil];
     }
-}
-
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    BOOL handled = [[FBSDKApplicationDelegate sharedInstance] application:application
-                                                                  openURL:url
-                                                        sourceApplication:options[UIApplicationOpenURLOptionsSourceApplicationKey]
-                                                               annotation:options[UIApplicationOpenURLOptionsAnnotationKey]
-                    ];
-    // Add user logic here.
-    return handled;
 }
 
 // Background fetch.

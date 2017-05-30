@@ -175,12 +175,12 @@
         } else {
             MessageData *message = [messages objectAtIndex:indexPath.row];
             
-            User *user = [dao.userDao getByUserId:message.sender];
+            User *user = [dao.userDao getByEmail:message.sender];
             cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
                                                    forIndexPath:indexPath];
             UIImageView *avatarImageView = (UIImageView *)[cell viewWithTag:1];
             UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
-            avatarImageView.image = [UIImage imageWithData:user.picture];
+
             sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
             
             UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];

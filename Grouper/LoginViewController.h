@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
-@interface LoginViewController : UIViewController <FBSDKLoginButtonDelegate>
+@interface LoginViewController : UIViewController
 
-@property (weak, nonatomic) IBOutlet FBSDKLoginButton *loginButton;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+
+- (IBAction)setUserInfo:(id)sender;
 
 @end

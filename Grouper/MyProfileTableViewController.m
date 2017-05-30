@@ -7,8 +7,6 @@
 //
 
 #import "MyProfileTableViewController.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 #import "DaoManager.h"
 
 @interface MyProfileTableViewController ()
@@ -28,19 +26,10 @@
 
     dao = [DaoManager sharedInstance];
     user = [dao.userDao currentUser];
-    
-    if (user.picture == nil) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            user.picture = [NSData dataWithContentsOfURL:[NSURL URLWithString:user.pictureUrl]];
-        });
-        dispatch_async(dispatch_get_main_queue(), ^{
-             _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
-        });
-    }
-    _profilePhotoImageView.image = [UIImage imageWithData:user.picture];
+
     _nameLabel.text = user.name;
     _emailLabel.text = user.email;
-    _genderLabel.text = user.gender;
+
 }
 
 #pragma mark - Action
@@ -48,8 +37,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    FBSDKLoginManager *loginManager = [[FBSDKLoginManager alloc] init];
-    [loginManager logOut];
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:NO forKey:@"login"];
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -49,7 +49,7 @@
     }
     // Update account.
     _account.aname = aname;
-    _account.updater = currentUser.userId;
+    _account.updater = currentUser.email;
     _account.updateAt = [NSDate date];
     [dao saveContext];
     
