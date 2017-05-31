@@ -40,6 +40,8 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Example: Current user is nil when the app is lunched at first, but current user will be inserted if user login.
 - (void)refreshCurrentUser;
 
+- (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name;
+
 // *********************** Inivte Members ************************
 
 // Open device browser.

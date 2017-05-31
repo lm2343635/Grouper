@@ -43,14 +43,9 @@
         net = [NetManager sharedInstance];
         dao = [DaoManager sharedInstance];
         
-        _currentUser = [dao.userDao getByEmail:_defaults.me];
         _defaults = [Defaults sharedInstance];
         [self updateMember];
-        
-        // If current user is not nil, setup multipeer connectivity related variables.
-        if (_currentUser != nil) {
-            [self setupMutipeerConnectivity];
-        }
+        [self refreshCurrentUser];
     }
     return self;
 }
@@ -60,6 +55,21 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _currentUser = [dao.userDao getByEmail:_defaults.me];
+    // If current user is not nil, setup multipeer connectivity related variables.
+    if (_currentUser != nil) {
+        [self setupMutipeerConnectivity];
+    }
+}
+
+- (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    _currentUser = [dao.userDao saveWithEmail:email
+                                      forName:name
+                                       inNode:_defaults.node];
+    _defaults.me = email;
+    // If current user is not nil, setup multipeer connectivity related variables.
     if (_currentUser != nil) {
         [self setupMutipeerConnectivity];
     }
