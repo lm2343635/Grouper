@@ -7,15 +7,14 @@
 //
 
 #import "MyProfileTableViewController.h"
-#import "DaoManager.h"
+#import "Grouper.h"
 
 @interface MyProfileTableViewController ()
 
 @end
 
 @implementation MyProfileTableViewController {
-    DaoManager *dao;
-    User *user;
+    GroupManager *group;
 }
 
 - (void)viewDidLoad {
@@ -24,11 +23,10 @@
     }
     [super viewDidLoad];
 
-    dao = [DaoManager sharedInstance];
-    user = [dao.userDao currentUser];
+    group = [GroupManager sharedInstance];
 
-    _nameLabel.text = user.name;
-    _emailLabel.text = user.email;
+    _nameLabel.text = group.currentUser.name;
+    _emailLabel.text = group.currentUser.email;
 
 }
 

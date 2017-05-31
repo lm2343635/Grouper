@@ -24,8 +24,11 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 
 // ************************* Attributes **************************
 
-// User id of owner
-@property (nonatomic) NSString *owner;
+// Email of current user
+@property (nonatomic, strong) NSString *me;
+
+// Email of owner
+@property (nonatomic, strong) NSString *owner;
 
 // Number of menbers
 @property (nonatomic) NSInteger members;

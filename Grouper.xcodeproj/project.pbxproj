@@ -126,6 +126,7 @@
 		E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
 		E4039EDE1DE0730C00D39DDB /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		E4039EDF1DE0730C00D39DDB /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
+		E40A9BC51EDE81AB009B472E /* Grouper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grouper.h; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -560,6 +561,7 @@
 				E46D576B1DB4D21900116C4E /* strtok.c */,
 				E46D576C1DB4D21900116C4E /* strtok.h */,
 				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
+				E40A9BC51EDE81AB009B472E /* Grouper.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";

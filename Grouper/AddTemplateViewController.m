@@ -9,7 +9,7 @@
 #import "AddTemplateViewController.h"
 #import "SelectRecordItemTableViewController.h"
 #import "AlertTool.h"
-#import "SendManager.h"
+#import "Grouper.h"
 
 @interface AddTemplateViewController ()
 
@@ -27,7 +27,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [dao.userDao currentUser];
+    currentUser = [[GroupManager sharedInstance] currentUser];
     
     if (_recordType == nil) {
         _recordType=[NSNumber numberWithBool:NO];

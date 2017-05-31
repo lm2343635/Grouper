@@ -7,9 +7,8 @@
 //
 
 #import "AddShopViewController.h"
-#import "DaoManager.h"
 #import "AlertTool.h"
-#import "SendManager.h"
+#import "Grouper.h"
 
 @interface AddShopViewController ()
 
@@ -26,7 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [dao.userDao currentUser];
+    currentUser = [[GroupManager sharedInstance] currentUser];
 }
 
 #pragma mark - Action

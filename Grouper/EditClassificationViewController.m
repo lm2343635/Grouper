@@ -8,7 +8,7 @@
 
 #import "EditClassificationViewController.h"
 #import "AlertTool.h"
-#import "SendManager.h"
+#import "Grouper.h"
 
 @interface EditClassificationViewController ()
 
@@ -25,7 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [dao.userDao currentUser];
+    currentUser = [[GroupManager sharedInstance] currentUser];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

@@ -9,7 +9,7 @@
 #import "AddClassificationViewController.h"
 #import "DaoManager.h"
 #import "AlertTool.h"
-#import "SendManager.h"
+#import "Grouper.h"
 
 @interface AddClassificationViewController ()
 
@@ -39,9 +39,10 @@
                      inViewController:self];
         return;
     }
-    User *user = [dao.userDao currentUser];
+    User *user = [[GroupManager sharedInstance] currentUser];
     Classification *classification = [dao.classificationDao saveWithName:cname creator:user.email];
     [[SendManager sharedInstance] update:classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

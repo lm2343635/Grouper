@@ -29,6 +29,20 @@
     return self;
 }
 
+@synthesize me = _me;
+
+- (void)setMe:(NSString *)me {
+    _me = me;
+    [defaults setObject:me forKey:NSStringFromSelector(@selector(me))];
+}
+
+- (NSString *)me {
+    if (_me == nil) {
+        _me = [defaults objectForKey:NSStringFromSelector(@selector(me))];
+    }
+    return _me;
+}
+
 @synthesize owner = _owner;
 
 - (void)setOwner:(NSString *)owner {

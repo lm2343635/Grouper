@@ -12,6 +12,7 @@
 #import "AlertTool.h"
 #import "DateTool.h"
 #import "SendManager.h"
+#import "GroupManager.h"
 #import "DateSelectorView.h"
 
 @interface AddRecordViewController ()
@@ -34,7 +35,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [dao.userDao currentUser];
+    currentUser = [[GroupManager sharedInstance] currentUser];
     
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;

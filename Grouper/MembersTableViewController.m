@@ -7,8 +7,7 @@
 //
 
 #import "MembersTableViewController.h"
-#import "DaoManager.h"
-#import "GroupManager.h"
+#import "Grouper.h"
 #import <MJRefresh/MJRefresh.h>
 
 @interface MembersTableViewController ()
@@ -31,9 +30,7 @@
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
-    
-    currentUser = [dao.userDao currentUser];
-    
+
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [group refreshMemberListWithCompletion:^(BOOL success) {
             [self.tableView.mj_header endRefreshing];

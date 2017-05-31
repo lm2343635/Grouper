@@ -10,7 +10,6 @@
 #import "NetManager.h"
 #import "ReceiveManager.h"
 
-
 @implementation GroupManager {
     DaoManager *dao;
     NetManager *net;
@@ -44,7 +43,7 @@
         net = [NetManager sharedInstance];
         dao = [DaoManager sharedInstance];
         
-        _currentUser = [dao.userDao currentUser];
+        _currentUser = [dao.userDao getByEmail:_defaults.me];
         _defaults = [Defaults sharedInstance];
         [self updateMember];
         
@@ -60,7 +59,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _currentUser = [dao.userDao currentUser];
+    _currentUser = [dao.userDao getByEmail:_defaults.me];
     if (_currentUser != nil) {
         [self setupMutipeerConnectivity];
     }

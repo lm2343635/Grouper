@@ -52,14 +52,6 @@
     return (User *)[self getByPredicate:predicate withEntityName:UserEntityName];
 }
 
-- (User *)currentUser {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    return [self getByEmail:[defaults valueForKey:@"email"]];
-}
-
 - (NSArray *)findMembersExceptOwner:(NSString *)email {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
