@@ -15,7 +15,6 @@
 		E41FD0FB1EE29DFC00DDDBA3 /* InitGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
-		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
 		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
@@ -136,8 +135,6 @@
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E425D5741D28FD3C000324A3 /* QRScanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRScanView.h; sourceTree = "<group>"; };
-		E425D5751D28FD3C000324A3 /* QRScanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRScanView.m; sourceTree = "<group>"; };
 		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersTableViewController.h; sourceTree = "<group>"; };
 		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
@@ -374,8 +371,6 @@
 				E457B4181CF19E3500139C4C /* AddAccountViewController.m */,
 				E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */,
 				E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */,
-				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
-				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
 				E457B4111CF19E2000139C4C /* AddShopViewController.h */,
 				E457B4121CF19E2000139C4C /* AddShopViewController.m */,
 				E4F60A941D040C05006F5DF2 /* AddTemplateViewController.h */,
@@ -390,12 +385,6 @@
 				E457B4151CF19E2A00139C4C /* EditShopViewController.m */,
 				E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */,
 				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
-				E425D5741D28FD3C000324A3 /* QRScanView.h */,
-				E425D5751D28FD3C000324A3 /* QRScanView.m */,
-				E458BB581E10EDA500699D23 /* RestoreServerViewController.h */,
-				E458BB591E10EDA500699D23 /* RestoreServerViewController.m */,
-				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
-				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
 				E4939F981D97CD42006CA612 /* SettingsTableViewController.h */,
 				E4939F991D97CD42006CA612 /* SettingsTableViewController.m */,
 				E457B4201CF19E5D00139C4C /* ShopsTableViewController.h */,
@@ -578,6 +567,12 @@
 				E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */,
 				E41FD0F91EE29DFC00DDDBA3 /* InitGroupTableViewController.h */,
 				E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */,
+				E458BB581E10EDA500699D23 /* RestoreServerViewController.h */,
+				E458BB591E10EDA500699D23 /* RestoreServerViewController.m */,
+				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
+				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
+				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
+				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
 			);
 			name = Init;
 			sourceTree = "<group>";
@@ -926,7 +921,6 @@
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */,
 				E457B4191CF19E3500139C4C /* AddAccountViewController.m in Sources */,
-				E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */,
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E46516AC1E31F1F100A3E8E2 /* Shop+CoreDataClass.m in Sources */,

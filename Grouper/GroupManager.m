@@ -487,13 +487,8 @@
         for (NSString *address in net.managers.allKeys) {
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                              parameters:@{
-                                          // TODO List
-//                                          @"userId": _currentUser.userId,
-//                                          @"name": _currentUser.name,
-//                                          @"email": _currentUser.email,
-//                                          @"gender": _currentUser.gender,
-//                                          @"pictureUrl": _currentUser.pictureUrl,
-//                                          @"owner": @YES
+                                          @"node": _currentUser.node,
+                                          @"owner": @YES
                                           }
                                progress:nil
                                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
