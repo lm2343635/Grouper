@@ -40,6 +40,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Example: Current user is nil when the app is lunched at first, but current user will be inserted if user login.
 - (void)refreshCurrentUser;
 
+// Save global user email and name.
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name;
 
 // *********************** Inivte Members ************************
@@ -50,6 +51,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Send invite message to a peer.
 - (void)sendInviteMessageTo:(MCPeerID *)peer;
 
+// Get group message.
 + (NSString *)getJoinGroupMessage:(NSNotification *)notification;
 
 //************************ Group Init Related ************************
@@ -66,7 +68,9 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
                   completion:(SucessMessageCompletion)completion;
 
 // Initialize group.
-- (void)initializeGroup:(int)threshold withCompletion:(SucessMessageCompletion)completion;;
+- (void)initializeGroup:(int)threshold
+               interval:(int)interval
+         withCompletion:(SucessMessageCompletion)completion;
 
 //************************ Synchronization Related ************************
 

@@ -26,6 +26,10 @@
     }
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
+    
+    //Set keyboard accessory for threshold text field
+    [self setCloseKeyboardAccessoryForSender:_thresholdTextField];
+    [self setCloseKeyboardAccessoryForSender:_intervalTextField];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -68,10 +72,7 @@
         _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
         [_thresholdTextField setEnabled:NO];
     }
-    
-    //Set keyboard accessory for threshold text field
-    [self setCloseKeyboardAccessoryForSender:_thresholdTextField];
-    
+
     [self.tableView reloadData];
 }
 
@@ -108,22 +109,29 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    int threshold = 0;
+    int threshold = 0, interval = 0;
     // Check threshold if user is adding new servers.
     if (group.defaults.initial == AddingNewServer) {
         if ([_thresholdTextField.text isEqualToString:@""]) {
             [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:@"Recover threshold cannot be empty!"
+                               andContent:@"Threshold cannot be empty!"
                          inViewController:self];
             return;
         }
         if (![CommonTool isInteger:_thresholdTextField.text]) {
             [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:@"Recover threshold should be an integer!"
+                               andContent:@"Threshold should be an integer!"
+                         inViewController:self];
+            return;
+        }
+        if (![CommonTool isInteger:_intervalTextField.text]) {
+            [AlertTool showAlertWithTitle:@"Tip"
+                               andContent:@"Inteval time should be an integer!"
                          inViewController:self];
             return;
         }
         threshold = _thresholdTextField.text.intValue;
+        interval = _intervalTextField.text.intValue;
         
         if ([_thresholdTextField isFirstResponder]) {
             [_thresholdTextField resignFirstResponder];
@@ -140,7 +148,7 @@
         _initialGroupButton.enabled = NO;
                                                            
         // Initialize group.
-        [group initializeGroup:threshold withCompletion:^(BOOL success, NSString *message) {
+        [group initializeGroup:threshold interval:interval withCompletion:^(BOOL success, NSString *message) {
             if (success) {
                 // Hide initial group button, disable add and store server bar button.
                 _initialGroupButton.hidden = YES;
@@ -184,7 +192,7 @@
     UIBarButtonItem *doneButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                                                     target:self
                                                                                     action:@selector(editFinish)];
-    doneButtonItem.tintColor = [UIColor colorWithRed:38/255.0 green:186/255.0 blue:152/255.0 alpha:1.0];
+    doneButtonItem.tintColor = [UIColor colorWithRed:119/255.0 green:215/255.0 blue:240/255.0 alpha:1.0];
     NSArray * buttonsArray = [NSArray arrayWithObjects:spaceButtonItem, doneButtonItem, nil];
     [topView setItems:buttonsArray];
     [sender setInputAccessoryView:topView];

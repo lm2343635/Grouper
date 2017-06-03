@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *groupIdTextField;
 @property (weak, nonatomic) IBOutlet UITextField *groupNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *thresholdTextField;
+@property (weak, nonatomic) IBOutlet UITextField *intervalTextField;
 
 @property (weak, nonatomic) IBOutlet UIView *groupInformationView;
 @property (weak, nonatomic) IBOutlet UILabel *noServerLabel;

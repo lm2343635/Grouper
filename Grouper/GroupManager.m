@@ -467,7 +467,9 @@
               }];
 }
 
-- (void)initializeGroup:(int)threshold withCompletion:(SucessMessageCompletion)completion {
+- (void)initializeGroup:(int)threshold
+               interval:(int)interval
+         withCompletion:(SucessMessageCompletion)completion {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -501,7 +503,9 @@
                                     // DO NOT USER _defaults.serverCount DIRECTLY!!!!!!!! It has not be set before submit server count to untrusted server.
                                     // Use _defaults.servers.allKeys.count here.
                                     if (registered == _defaults.servers.allKeys.count) {
-                                        [self submitServerCountAndThreshold:threshold withCompletion:completion];
+                                        [self submitServerThreshold:threshold
+                                                           interval:interval
+                                                     withCompletion:completion];
                                     }
                                 }
                                 failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -534,7 +538,9 @@
 }
 
 // Submit server count and threshold to multiple unstruste servers.
-- (void)submitServerCountAndThreshold:(int)threshold withCompletion:(SucessMessageCompletion)completion {
+- (void)submitServerThreshold:(int)threshold
+                     interval:(int)interval
+               withCompletion:(SucessMessageCompletion)completion {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -547,7 +553,8 @@
                          parameters:@{
                                       // User _defaults.servers.allKeys.count here RATHER THAN _defaults.serverCount, because group has not been initialized successfully.
                                       @"servers": [NSNumber numberWithInteger:_defaults.servers.allKeys.count],
-                                      @"threshold": [NSNumber numberWithInt:threshold]
+                                      @"threshold": [NSNumber numberWithInt:threshold],
+                                      @"interval": [NSNumber numberWithInt:interval]
                                       }
                            progress:nil
                             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
