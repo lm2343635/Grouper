@@ -46,11 +46,12 @@
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1800];
 
     //Set root view controller.
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] == nil) {
-        [self setRootViewControllerWithIdentifer:@"loginViewController"];
-    } else {
-        [self setRootViewControllerWithIdentifer:@"mainTabBarController"];
-    }
+
+//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] == nil) {
+//        
+//    } else {
+//        [self setRootViewControllerWithIdentifer:@"mainTabBarController"];
+//    }
     return YES;
 }
 

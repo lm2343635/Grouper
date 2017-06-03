@@ -11,6 +11,8 @@
 		E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */; };
 		E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */; };
 		E4039EE01DE0730C00D39DDB /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* Defaults.m */; };
+		E41FD0F81EE2969A00DDDBA3 /* Init.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */; };
+		E41FD0FB1EE29DFC00DDDBA3 /* InitGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E425D5761D28FD3C000324A3 /* QRScanView.m in Sources */ = {isa = PBXBuildFile; fileRef = E425D5751D28FD3C000324A3 /* QRScanView.m */; };
@@ -81,7 +83,7 @@
 		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
 		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
 		E4BF182E1E163F3A003340FB /* ReceiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF182D1E163F3A003340FB /* ReceiveManager.m */; };
-		E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */; };
+		E4DE20241D0D6EFC00A80E65 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
@@ -127,6 +129,9 @@
 		E4039EDE1DE0730C00D39DDB /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		E4039EDF1DE0730C00D39DDB /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
 		E40A9BC51EDE81AB009B472E /* Grouper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grouper.h; sourceTree = "<group>"; };
+		E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Init.storyboard; sourceTree = "<group>"; };
+		E41FD0F91EE29DFC00DDDBA3 /* InitGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitGroupTableViewController.h; sourceTree = "<group>"; };
+		E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitGroupTableViewController.m; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -276,8 +281,8 @@
 		E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.3.xcdatamodel; sourceTree = "<group>"; };
 		E4BF182C1E163F3A003340FB /* ReceiveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveManager.h; sourceTree = "<group>"; };
 		E4BF182D1E163F3A003340FB /* ReceiveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveManager.m; sourceTree = "<group>"; };
-		E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E4DE20221D0D6EFC00A80E65 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
 		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
@@ -383,8 +388,6 @@
 				E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */,
 				E457B4141CF19E2A00139C4C /* EditShopViewController.h */,
 				E457B4151CF19E2A00139C4C /* EditShopViewController.m */,
-				E4DE20221D0D6EFC00A80E65 /* LoginViewController.h */,
-				E4DE20231D0D6EFC00A80E65 /* LoginViewController.m */,
 				E49BFB591D379FCA00BCE598 /* MyProfileTableViewController.h */,
 				E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */,
 				E425D5741D28FD3C000324A3 /* QRScanView.h */,
@@ -458,6 +461,7 @@
 				E457B4261CF1A22A00139C4C /* Dao */,
 				E430E7631E2385A600CF9660 /* Main */,
 				E4F1CB1F1CFAE4B800461B3F /* Record */,
+				E4BBB74A1EE29445002E4406 /* Init */,
 				E427764A1DD044F400FB1D33 /* Members */,
 				E40C44141CCF25640006D208 /* Settings */,
 				E4F1CB2C1CFAF28500461B3F /* Support */,
@@ -465,6 +469,7 @@
 				E4400D701CCB5845000DFB1A /* Supporting Files */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
 				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
+				E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */,
 				E4400D791CCB5845000DFB1A /* Main.storyboard */,
 				E497059D1CDF22B20092B164 /* Assets.xcassets */,
 				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
@@ -564,6 +569,17 @@
 				E40A9BC51EDE81AB009B472E /* Grouper.h */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		E4BBB74A1EE29445002E4406 /* Init */ = {
+			isa = PBXGroup;
+			children = (
+				E4DE20221D0D6EFC00A80E65 /* UserInfoViewController.h */,
+				E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */,
+				E41FD0F91EE29DFC00DDDBA3 /* InitGroupTableViewController.h */,
+				E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */,
+			);
+			name = Init;
 			sourceTree = "<group>";
 		};
 		E4F1CB1F1CFAE4B800461B3F /* Record */ = {
@@ -765,6 +781,7 @@
 			files = (
 				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
+				E41FD0F81EE2969A00DDDBA3 /* Init.storyboard in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -851,12 +868,13 @@
 				E4923E801E31DEDB003C4183 /* MessageData.m in Sources */,
 				E446C1011DCF75E600EC5966 /* InternetResponse.m in Sources */,
 				E46516A31E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m in Sources */,
+				E41FD0FB1EE29DFC00DDDBA3 /* InitGroupTableViewController.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
 				E476B0A61DE40F5C00FBCB24 /* MultipeerConnectivityManager.m in Sources */,
 				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
 				E4305A511E36363000010B52 /* ContentViewController.swift in Sources */,
-				E4DE20241D0D6EFC00A80E65 /* LoginViewController.m in Sources */,
+				E4DE20241D0D6EFC00A80E65 /* UserInfoViewController.m in Sources */,
 				E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */,
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E48DBCB41E88FBDB00EC94D1 /* Share+CoreDataProperties.m in Sources */,
