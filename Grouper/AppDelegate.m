@@ -42,16 +42,17 @@
         }
     }
     
-    // Indicate to the system that your app wishes to perform background fetch
+    // Indicate to the system that your app wishes to perform background fetch.
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1800];
 
-    //Set root view controller.
-
-//    if ([[NSUserDefaults standardUserDefaults] objectForKey:@"userId"] == nil) {
-//        
-//    } else {
-//        [self setRootViewControllerWithIdentifer:@"mainTabBarController"];
-//    }
+    // Use storyboard by init state.
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:group.defaults.initial != InitialFinished ? @"Init" : @"Main"
+                                                         bundle:nil];
+    // Set root view controller and make windows visible
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = [storyboard instantiateInitialViewController];
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

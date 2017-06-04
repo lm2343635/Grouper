@@ -570,6 +570,7 @@
                                     //Set threshold, owner and update number of group memebers
                                     _defaults.serverCount = _defaults.servers.allKeys.count;
                                     _defaults.threshold = threshold;
+                                    _defaults.interval = interval;
                                     _defaults.owner = _currentUser.email;
                                     _defaults.members ++;
 

@@ -262,26 +262,16 @@ char ** split_string(char * secret, int n, int t) {
 	int i;
 
 	for (i = 0; i < n; ++i) {
-		/* need two characters to encode each character */
-		/* Need 4 character overhead for share # and quorum # */
-		/* Additional 2 characters are for compatibility with:
-		
-			http://www.christophedavid.org/w/c/w.php/Calculators/ShamirSecretSharing
-		*/
 		shares[i] = (char *) malloc(2*len + 6 + 1);
 		sprintf(shares[i], "%02X%02XAA",(i+1),t);
 	}
 
 	/* Now, handle the secret */
 	for (i = 0; i < len; ++i) {
-		// fprintf(stderr, "char %c: %d\n", secret[i], (unsigned char) secret[i]);
 		int letter = secret[i]; // - '0';
-
-		if (letter < 0)
+        if (letter < 0) {
 			letter = 256 + letter;
-
-		//fprintf(stderr, "char: '%c' int: '%d'\n", secret[i], letter);
-
+        }
 		int * chunks = split_number(letter, n, t);
 		int j;
 

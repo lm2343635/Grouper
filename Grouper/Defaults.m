@@ -151,6 +151,20 @@
     return _threshold;
 }
 
+@synthesize interval = _interval;
+
+- (void)setInterval:(NSInteger)interval {
+    _interval = interval;
+    [defaults setInteger:interval forKey:NSStringFromSelector(@selector(interval))];
+}
+
+- (NSInteger)interval {
+    if (_interval == 0) {
+        _interval = [defaults integerForKey:NSStringFromSelector(@selector(interval))];
+    }
+    return _interval;
+}
+
 @synthesize node = _node;
 - (NSString *)node {
     if (_node == nil) {

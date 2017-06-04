@@ -59,10 +59,10 @@
     Message *message = [messages objectAtIndex:indexPath.row];
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier" forIndexPath:indexPath];
-    UIImageView *senderAvatarImageView = (UIImageView *)[cell viewWithTag:1];
+
     UILabel *senderNameLabel = (UILabel *)[cell viewWithTag:2];
     UILabel *receiverNameLabel = (UILabel *)[cell viewWithTag:3];
-    UIImageView *receiverAvatarImageView = (UIImageView *)[cell viewWithTag:4];
+
     UILabel *infoLabel = (UILabel *)[cell viewWithTag:5];
     User *sender = group.membersDict[message.sender];
     if (sender != nil) {

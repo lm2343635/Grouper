@@ -70,7 +70,9 @@
     
     if (group.defaults.initial == InitialFinished || group.defaults.initial == RestoringServer) {
         _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
+        _intervalTextField.text = [NSString stringWithFormat:@"%ld", (long)group.defaults.interval];
         [_thresholdTextField setEnabled:NO];
+        [_intervalTextField setEnabled:NO];
     }
 
     [self.tableView reloadData];
@@ -109,6 +111,13 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    // If init finished, go to main storyboard.
+    if (group.defaults.initial == InitialFinished) {
+        UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
+        return;
+    }
+    
     int threshold = 0, interval = 0;
     // Check threshold if user is adding new servers.
     if (group.defaults.initial == AddingNewServer) {
@@ -149,24 +158,31 @@
                                                            
         // Initialize group.
         [group initializeGroup:threshold interval:interval withCompletion:^(BOOL success, NSString *message) {
+            _initialGroupButton.enabled = YES;
+            
             if (success) {
-                // Hide initial group button, disable add and store server bar button.
-                _initialGroupButton.hidden = YES;
+                // Hide disable add and store server bar button.
                 _addServerBarButtonItem.enabled = NO;
                 _restoreServerBarButtonItem.enabled = NO;
   
-                // Change text of threshold text field and disabled it.
+                // Change text of threshold and interval text field and disabled it.
                 _thresholdTextField.text = [NSString stringWithFormat:@"Threshold is %ld", (long)group.defaults.threshold];
+                _intervalTextField.text = [NSString stringWithFormat:@"%ld", (long)group.defaults.interval];
                 [_thresholdTextField setEnabled:NO];
-            } else {
-                // Enable initial group button if failed.
-                _initialGroupButton.enabled = YES;
+                [_intervalTextField setEnabled:NO];
+                
+                
+                // If init finished, do not allow to go back and provide start button.
+                self.navigationItem.hidesBackButton = YES;
+                [_initialGroupButton setTitle:@"Start Using App" forState:UIControlStateNormal];
             }
+            
             if (message != nil) {
                 [AlertTool showAlertWithTitle:@"Tip"
                                    andContent:message
                              inViewController:self];
             }
+
         }];
     }];
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"

@@ -53,6 +53,9 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 // Threshold to recover shares from untrusted servers.
 @property (nonatomic) NSInteger threshold;
 
+// Deletion interval time in untrusted servers.
+@property (nonatomic) NSInteger interval;
+
 // Node identifier of this device, it will be generated when the user sign in in this device.
 // Node identifier will not be change after Grouper generated it. When user uninstall Group and reinstall again, a new node identifier will be generated.
 @property (nonatomic, strong) NSString *node;
