@@ -55,6 +55,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _currentUser = [dao.userDao getByEmail:_defaults.me];
+    // If current user is not nil, setup multipeer connectivity related variables.
+    if (_currentUser != nil) {
+        [self setupMutipeerConnectivity];
+    }
+
 }
 
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name {
@@ -71,10 +76,10 @@
                                       forName:name
                                        inNode:_defaults.node];
     _defaults.me = email;
-//    // If current user is not nil, setup multipeer connectivity related variables.
-//    if (_currentUser != nil) {
-//        [self setupMutipeerConnectivity];
-//    }
+    // If current user is not nil, setup multipeer connectivity related variables.
+    if (_currentUser != nil) {
+        [self setupMutipeerConnectivity];
+    }
 }
 
 - (void)setupMutipeerConnectivity {

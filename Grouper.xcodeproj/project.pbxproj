@@ -32,6 +32,7 @@
 		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
 		E4400D8B1CCB5845000DFB1A /* GrouperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GrouperTests.m */; };
 		E4400D961CCB5845000DFB1A /* GrouperUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D951CCB5845000DFB1A /* GrouperUITests.m */; };
+		E44661081EE3DA0300BA4354 /* JoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44661071EE3DA0300BA4354 /* JoinGroupViewController.m */; };
 		E446C1011DCF75E600EC5966 /* InternetResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E446C1001DCF75E600EC5966 /* InternetResponse.m */; };
 		E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */; };
 		E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */; };
@@ -168,6 +169,8 @@
 		E4400D911CCB5845000DFB1A /* GrouperUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouperUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D951CCB5845000DFB1A /* GrouperUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouperUITests.m; sourceTree = "<group>"; };
 		E4400D971CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E44661061EE3DA0300BA4354 /* JoinGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinGroupViewController.h; sourceTree = "<group>"; };
+		E44661071EE3DA0300BA4354 /* JoinGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinGroupViewController.m; sourceTree = "<group>"; };
 		E446C0FF1DCF75E600EC5966 /* InternetResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetResponse.h; sourceTree = "<group>"; };
 		E446C1001DCF75E600EC5966 /* InternetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetResponse.m; sourceTree = "<group>"; };
 		E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.4.xcdatamodel; sourceTree = "<group>"; };
@@ -563,16 +566,18 @@
 		E4BBB74A1EE29445002E4406 /* Init */ = {
 			isa = PBXGroup;
 			children = (
-				E4DE20221D0D6EFC00A80E65 /* UserInfoViewController.h */,
-				E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */,
+				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
+				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
 				E41FD0F91EE29DFC00DDDBA3 /* InitGroupTableViewController.h */,
 				E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */,
+				E44661061EE3DA0300BA4354 /* JoinGroupViewController.h */,
+				E44661071EE3DA0300BA4354 /* JoinGroupViewController.m */,
 				E458BB581E10EDA500699D23 /* RestoreServerViewController.h */,
 				E458BB591E10EDA500699D23 /* RestoreServerViewController.m */,
 				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
 				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
-				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
-				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
+				E4DE20221D0D6EFC00A80E65 /* UserInfoViewController.h */,
+				E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */,
 			);
 			name = Init;
 			sourceTree = "<group>";
@@ -898,6 +903,7 @@
 				E48DBCB51E88FBDB00EC94D1 /* Message+CoreDataClass.m in Sources */,
 				E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */,
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
+				E44661081EE3DA0300BA4354 /* JoinGroupViewController.m in Sources */,
 				E48DBCBC1E88FC4200EC94D1 /* MessageDao.m in Sources */,
 				E46516AF1E31F1F100A3E8E2 /* Account+CoreDataProperties.m in Sources */,
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,

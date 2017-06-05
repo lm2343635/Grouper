@@ -7,8 +7,8 @@
 //
 
 #import "AddMemberViewController.h"
-#import "GroupManager.h"
 #import "AlertTool.h"
+#import "Grouper.h"
 
 @interface AddMemberViewController ()
 
@@ -63,10 +63,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = [[group.connectedPeers objectAtIndex:indexPath.row] displayName];
-    //If this user is the owner of group, he can invite other people.
-    if (group.isOwner) {
-        cell.detailTextLabel.text = @"Invite";
-    }
+    cell.detailTextLabel.text = @"Invite";
     return cell;
 }
 
@@ -75,26 +72,23 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    //If this user is the owner of group, he can invite other people.
-    if (group.isOwner) {
-        MCPeerID *invitePeer = [group.connectedPeers objectAtIndex:indexPath.row];
-        NSString *message = [NSString stringWithFormat:@"Invite %@ to your group.", invitePeer.displayName];
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invite"
-                                                                                 message:message
-                                                                          preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                         style:UIAlertActionStyleCancel
-                                                       handler:nil];
-        UIAlertAction *invite = [UIAlertAction actionWithTitle:@"Yes"
-                                                         style:UIAlertActionStyleDestructive
-                                                       handler:^(UIAlertAction * _Nonnull action) {
-                                                           // Send invite message.
-                                                           [group sendInviteMessageTo:invitePeer];
-                                                       }];
-        [alertController addAction:cancel];
-        [alertController addAction:invite];
-        [self presentViewController:alertController animated:YES completion:nil];
-    }
+    MCPeerID *invitePeer = [group.connectedPeers objectAtIndex:indexPath.row];
+    NSString *message = [NSString stringWithFormat:@"Invite %@ to your group.", invitePeer.displayName];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Invite"
+                                                                             message:message
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                     style:UIAlertActionStyleCancel
+                                                   handler:nil];
+    UIAlertAction *invite = [UIAlertAction actionWithTitle:@"Yes"
+                                                     style:UIAlertActionStyleDestructive
+                                                   handler:^(UIAlertAction * _Nonnull action) {
+                                                       // Send invite message.
+                                                       [group sendInviteMessageTo:invitePeer];
+                                                   }];
+    [alertController addAction:cancel];
+    [alertController addAction:invite];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark - Action

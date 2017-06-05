@@ -121,7 +121,7 @@
             </objects>
             <point key="canvasLocation" x="1411" y="-707"/>
         </scene>
-        <!--Add Member-->
+        <!--Invite a Member-->
         <scene sceneID="3w9-0Z-BqF">
             <objects>
                 <viewController id="H6K-YL-eHC" customClass="AddMemberViewController" sceneMemberID="viewController">
@@ -134,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8A4-ly-hp6">
-                                <rect key="frame" x="0.0" y="30" width="320" height="344"/>
+                                <rect key="frame" x="0.0" y="30" width="320" height="425"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="H6K-YL-eHC" id="99K-PF-Hq3"/>
@@ -148,24 +148,13 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xf2-Xd-O1A">
-                                <rect key="frame" x="13" y="382" width="295" height="73"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="73" id="pV2-Nm-S0l"/>
-                                </constraints>
-                                <string key="text">If you are the owner of your group, you can click this button to connect an user and click his name to invite him. If you want to join a group, click this button to connect  your group's owner.</string>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="InF-9t-5iM">
                                 <rect key="frame" x="13" y="463" width="295" height="40"/>
                                 <color key="backgroundColor" red="0.1140662702" green="0.73383321160000003" blue="0.6994629591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="hNh-pn-Jkf"/>
                                 </constraints>
-                                <state key="normal" title="Invite a member / Join a group">
+                                <state key="normal" title="Browse Devices">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -182,17 +171,14 @@
                         <constraints>
                             <constraint firstItem="PV1-jF-rBi" firstAttribute="top" secondItem="InF-9t-5iM" secondAttribute="bottom" constant="16" id="4cm-7o-fqG"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8A4-ly-hp6" secondAttribute="trailing" constant="-16" id="7Zy-Ns-2LG"/>
-                            <constraint firstItem="PV1-jF-rBi" firstAttribute="top" secondItem="8A4-ly-hp6" secondAttribute="bottom" constant="145" id="CIj-nO-CRB"/>
-                            <constraint firstItem="PV1-jF-rBi" firstAttribute="top" secondItem="xf2-Xd-O1A" secondAttribute="bottom" constant="64" id="HJm-sY-udh"/>
                             <constraint firstItem="8A4-ly-hp6" firstAttribute="top" secondItem="wcs-zU-sdz" secondAttribute="bottom" constant="-34" id="QRI-sH-1gs"/>
+                            <constraint firstItem="PV1-jF-rBi" firstAttribute="top" secondItem="8A4-ly-hp6" secondAttribute="bottom" constant="64" id="Rvh-Fg-9qu"/>
                             <constraint firstItem="InF-9t-5iM" firstAttribute="leading" secondItem="mjT-Nw-G1W" secondAttribute="leadingMargin" constant="-3" id="VmH-HT-w1H"/>
-                            <constraint firstItem="xf2-Xd-O1A" firstAttribute="leading" secondItem="mjT-Nw-G1W" secondAttribute="leadingMargin" constant="-3" id="aKw-zc-bmD"/>
                             <constraint firstItem="8A4-ly-hp6" firstAttribute="leading" secondItem="mjT-Nw-G1W" secondAttribute="leadingMargin" constant="-16" id="ci6-X1-ffN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="InF-9t-5iM" secondAttribute="trailing" constant="-4" id="jrr-kA-3td"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="xf2-Xd-O1A" secondAttribute="trailing" constant="-4" id="rwd-Sh-YFv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Add Member" id="f7m-Sw-L4F"/>
+                    <navigationItem key="navigationItem" title="Invite a Member" id="f7m-Sw-L4F"/>
                     <connections>
                         <outlet property="devicesTableView" destination="8A4-ly-hp6" id="r6M-IJ-cFU"/>
                     </connections>

@@ -10,8 +10,6 @@
 
 @interface AddMemberViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic) NSInteger sent;
-
 @property (weak, nonatomic) IBOutlet UITableView *devicesTableView;
 
 - (IBAction)browseForDevices:(id)sender;

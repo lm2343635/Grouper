@@ -241,6 +241,9 @@
                                             <constraint firstAttribute="trailing" secondItem="urJ-sS-cgV" secondAttribute="trailing" constant="33" id="KjX-SA-sph"/>
                                         </constraints>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <segue destination="6Gk-oB-ZOr" kind="push" id="tu7-qp-46S"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -763,6 +766,72 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DXc-Sd-3gf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1954" y="3128"/>
+        </scene>
+        <!--Join a Group-->
+        <scene sceneID="la8-Lx-wWf">
+            <objects>
+                <viewController id="6Gk-oB-ZOr" customClass="JoinGroupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GLr-rE-AT5"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZTq-Br-IIG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4AX-Y4-LTN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EHr-ak-1q5">
+                                <rect key="frame" x="0.0" y="30" width="320" height="474"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6Gk-oB-ZOr" id="q5q-PT-L52"/>
+                                    <outlet property="delegate" destination="6Gk-oB-ZOr" id="rh1-54-JD9"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Connected Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j0m-Gy-Dlk">
+                                <rect key="frame" x="16" y="64" width="288" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sPL-OX-nGy">
+                                <rect key="frame" x="13" y="512" width="295" height="40"/>
+                                <color key="backgroundColor" red="0.5280413031578064" green="0.87010818719863892" blue="0.95458358526229858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="EfP-Ht-lxs"/>
+                                </constraints>
+                                <state key="normal" title="Browse Devices">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="browseForDevices:" destination="6Gk-oB-ZOr" eventType="touchUpInside" id="j8n-9E-cUF"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.960683167" green="0.96084421870000003" blue="0.96066063639999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="sPL-OX-nGy" secondAttribute="trailing" constant="-4" id="23f-IU-Kfj"/>
+                            <constraint firstItem="sPL-OX-nGy" firstAttribute="leading" secondItem="4AX-Y4-LTN" secondAttribute="leadingMargin" constant="-3" id="4iw-mY-6hf"/>
+                            <constraint firstItem="EHr-ak-1q5" firstAttribute="top" secondItem="GLr-rE-AT5" secondAttribute="bottom" constant="-34" id="8Vm-rd-ZHR"/>
+                            <constraint firstItem="ZTq-Br-IIG" firstAttribute="top" secondItem="EHr-ak-1q5" secondAttribute="bottom" constant="64" id="DK5-op-c99"/>
+                            <constraint firstItem="EHr-ak-1q5" firstAttribute="leading" secondItem="4AX-Y4-LTN" secondAttribute="leadingMargin" constant="-16" id="FvZ-06-SwV"/>
+                            <constraint firstItem="ZTq-Br-IIG" firstAttribute="top" secondItem="sPL-OX-nGy" secondAttribute="bottom" constant="16" id="NGL-8n-3sA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EHr-ak-1q5" secondAttribute="trailing" constant="-16" id="Oy2-M8-IpJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Join a Group" id="a5P-TF-m80"/>
+                    <connections>
+                        <outlet property="devicesTableView" destination="EHr-ak-1q5" id="iHp-WC-xdu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sec-tq-wij" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014.375" y="1879.2253521126761"/>
         </scene>
     </scenes>
     <resources>
