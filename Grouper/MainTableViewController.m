@@ -178,7 +178,7 @@
             User *user = [dao.userDao getByEmail:message.sender];
             cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
                                                    forIndexPath:indexPath];
-            UIImageView *avatarImageView = (UIImageView *)[cell viewWithTag:1];
+
             UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
 
             sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
@@ -227,17 +227,15 @@
         if (sync) {
             [syncImageView startRotate:2 withClockwise:NO];
             // Refresh members list before data sync
-            [group refreshMemberListWithCompletion:^(BOOL success) {
-                [[ReceiveManager sharedInstance] receiveWithCompletion:^{
-                    [syncImageView stopRotate];
-                }];
+            [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+                [syncImageView stopRotate];
             }];
             
             // If client can get access to all untrusted server(therdhold is n),
             // send a confirm message to unstrusted servers.
             long now = (long)[[NSDate date] timeIntervalSince1970];
-            // If client sent control message before 3600s, send control message again
-            if (now - group.defaults.controlMessageSendTime > 1 * 3600) {
+            // If client sent control message before interval time, send control message again
+            if (now - group.defaults.controlMessageSendTime > group.defaults.interval * 60) {
                 [[SendManager sharedInstance] confirm];
                 // Update control message sene time.
                 group.defaults.controlMessageSendTime = now;

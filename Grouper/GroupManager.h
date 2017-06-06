@@ -36,10 +36,6 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Get single instance.
 + (instancetype)sharedInstance;
 
-// Refresh current user if user info changes.
-// Example: Current user is nil when the app is lunched at first, but current user will be inserted if user login.
-- (void)refreshCurrentUser;
-
 // Save global user email and name.
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name;
 
@@ -73,9 +69,6 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
          withCompletion:(SucessMessageCompletion)completion;
 
 //************************ Synchronization Related ************************
-
-// Refresh member list.
-- (void)refreshMemberListWithCompletion:(MemberRefreshCompletion)completion;
 
 // Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.
 - (void)checkServerState:(CheckServerCompletion)completion;

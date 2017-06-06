@@ -143,13 +143,10 @@
     }
     [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
         if (sync) {
-            // Refresh members list before data sync
-            [group refreshMemberListWithCompletion:^(BOOL success) {
-                [[ReceiveManager sharedInstance] receiveWithCompletion:^{
-                    if (DEBUG) {
-                        NSLog(@"Sync ended...");
-                    }
-                }];
+            [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+                if (DEBUG) {
+                    NSLog(@"Sync ended...");
+                }
             }];
         }
     }];

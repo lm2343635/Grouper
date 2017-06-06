@@ -25,6 +25,14 @@
     group = [GroupManager sharedInstance];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Update devices table.
+    [_devicesTableView reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     if (DEBUG) {

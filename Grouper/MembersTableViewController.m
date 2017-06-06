@@ -8,7 +8,6 @@
 
 #import "MembersTableViewController.h"
 #import "Grouper.h"
-#import <MJRefresh/MJRefresh.h>
 
 @interface MembersTableViewController ()
 
@@ -31,20 +30,6 @@
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
 
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [group refreshMemberListWithCompletion:^(BOOL success) {
-            [self.tableView.mj_header endRefreshing];
-            if (success) {
-                if (group.members > 0) {
-                    _noMembersView.hidden = YES;
-                    [self loadMembersInfo];
-                }
-                
-                [self.tableView reloadData];
-            }
-        }];
-    }];
-    
     if (group.defaults.initial == InitialFinished) {
         _noMembersView.hidden = YES;
         [self loadMembersInfo];
@@ -124,10 +109,6 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (group.members == 0) {
-        return;
-    }
-    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - Service

@@ -44,22 +44,21 @@
         dao = [DaoManager sharedInstance];
         
         _defaults = [Defaults sharedInstance];
-        [self updateMember];
-        [self refreshCurrentUser];
-    }
-    return self;
-}
-
-- (void)refreshCurrentUser {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    _currentUser = [dao.userDao getByEmail:_defaults.me];
-    // If current user is not nil, setup multipeer connectivity related variables.
-    if (_currentUser != nil) {
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(peerDidChangeStateWithNotification:)
+                                                     name:MCDidChangeStateNotification
+                                                   object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(didReceiveDataWithNotification:)
+                                                     name:MCDidReceiveDataNotification
+                                                   object:nil];
+        
+        // Set up current user and multipeer connectivity related variables.
+        _currentUser = [dao.userDao getByEmail:_defaults.me];
         [self setupMutipeerConnectivity];
     }
-
+    return self;
 }
 
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name {
@@ -76,26 +75,20 @@
                                       forName:name
                                        inNode:_defaults.node];
     _defaults.me = email;
-    // If current user is not nil, setup multipeer connectivity related variables.
-    if (_currentUser != nil) {
-        [self setupMutipeerConnectivity];
-    }
+    // Setup multipeer connectivity related variables.
+    [self setupMutipeerConnectivity];
 }
 
 - (void)setupMutipeerConnectivity {
+    if (_currentUser == nil) {
+        return;
+    }
     // Init multipeerConnectivity manager.
     multipeerConnectivity = [[MultipeerConnectivityManager alloc] init];
     // Set device's display name by current user's name.
     [multipeerConnectivity setupPeerAndSessionWithDisplayName:_currentUser.name];
     [multipeerConnectivity advertiseSelf:YES];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(peerDidChangeStateWithNotification:)
-                                                 name:MCDidChangeStateNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveDataWithNotification:)
-                                                 name:MCDidReceiveDataNotification
-                                               object:nil];
+
     _connectedPeers = [[NSMutableArray alloc] init];
     _isOwner = [_defaults.owner isEqualToString:_currentUser.email];
 }
@@ -153,6 +146,7 @@
     }
     MCPeerID *peerID = [notification.userInfo objectForKey:@"peerID"];
     MCSessionState state = [[notification.userInfo objectForKey:@"state"] intValue];
+    NSLog(@"%ld", (long)state);
     if (state != MCSessionStateConnecting) {
         if (state == MCSessionStateConnected) {
             [_connectedPeers addObject:peerID];
@@ -185,14 +179,9 @@
         [self sendMessage:@{
                             @"task": @"sendUserInfo",
                             @"userInfo": @{
-                                    
-                                    // TODO List
-//                                    @"userId": _currentUser.userId,
-//                                    @"email": _currentUser.email,
-//                                    @"name": _currentUser.name,
-//                                    @"gender": _currentUser.gender,
-//                                    @"pictureUrl": _currentUser.pictureUrl,
-                                    }
+                                    @"email": _currentUser.email,
+                                    @"name": _currentUser.name,
+                                }
                             }
                        to:peerID];
     } else if ([task isEqualToString:@"sendUserInfo"] && _isOwner) {
@@ -598,64 +587,6 @@
 }
 
 #pragma mark - Synchronization Related.
-
-- (void)refreshMemberListWithCompletion:(MemberRefreshCompletion)completion {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    if (_defaults.initial != InitialFinished) {
-        completion(NO);
-        return;
-    }
-    NSString *address0 = [_defaults.servers.allKeys objectAtIndex:0];
-    //Reload user info
-    
-    // TODO List
-    [net.managers[address0] GET:[NetManager createUrl:@"user/list" withServerAddress:address0]
-                     parameters:nil
-                       progress:nil
-                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                            if ([response statusOK]) {
-                                NSObject *result = [response getResponseResult];
-                                NSArray *users = [result valueForKey:@"users"];
-//                                for (NSObject *user in users) {
-//                                    if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
-//                                        continue;
-//                                    }
-//                                    [dao.userDao saveOrUpdate:user];
-//                                }
-                                // Update number of group members.
-                                _defaults.members = users.count;
-                                // Update group members
-                                [self updateMember];
-                                completion(YES);
-                            }
-                        }
-                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                            switch ([response errorCode]) {
-                                case ErrorMasterOrAccessKey:
-                                    completion(NO);
-                                    break;
-                                case ErrorNotConnectedToInternet:
-                                    completion(NO);
-                                    break;
-                            }
-                        }];
-    
-}
-
-- (void)updateMember {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    _members = [NSMutableArray arrayWithArray:[dao.userDao findAll]];
-    _membersDict = [[NSMutableDictionary alloc] init];
-    for (User *member in _members) {
-        [_membersDict setObject:member forKey:member.email];
-    }
-}
 
 - (void)checkServerState:(CheckServerCompletion)completion {
     if (DEBUG) {
