@@ -146,7 +146,7 @@
     }
     MCPeerID *peerID = [notification.userInfo objectForKey:@"peerID"];
     MCSessionState state = [[notification.userInfo objectForKey:@"state"] intValue];
-    NSLog(@"%ld", (long)state);
+
     if (state != MCSessionStateConnecting) {
         if (state == MCSessionStateConnected) {
             [_connectedPeers addObject:peerID];
@@ -181,20 +181,26 @@
                             @"userInfo": @{
                                     @"email": _currentUser.email,
                                     @"name": _currentUser.name,
+                                    @"node": _currentUser.node
                                 }
                             }
                        to:peerID];
     } else if ([task isEqualToString:@"sendUserInfo"] && _isOwner) {
         submitted = 0;
+        // Save user info to local database at first.
         
-        NSMutableDictionary *parameters = [[NSMutableDictionary alloc] initWithDictionary:[message valueForKey:@"userInfo"]];
-        [parameters setValue:@NO forKey:@"owner"];
+        // TODO List.
+        NSDictionary *userInfo = [message valueForKey:@"userInfo"];
+        
         //Init serverInfoForUser
         serverInfoForUser = [[NSMutableDictionary alloc] init];
         //Send user info to untrusted servers.
         for (NSString *address in net.managers.allKeys) {
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
-                             parameters:parameters
+                             parameters:@{
+                                          @"node": [userInfo valueForKey:@"node"],
+                                          @"owner": @NO
+                                          }
                                progress:nil
                                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                     InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
@@ -253,7 +259,7 @@
                                     _defaults.groupId = [groupInfo valueForKey:@"id"];
                                     _defaults.groupName = [groupInfo valueForKey:@"name"];
                                     _defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
-                                    _defaults.owner = [groupInfo valueForKey:@"oid"];
+                                    _defaults.owner = [[groupInfo valueForKey:@"owner"] valueForKey:@"uid"];
                                     _defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
                                     _defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
                                     
@@ -272,31 +278,7 @@
                                         
                                 }
                             }];
-        // Reload user info
-        [net.managers[address0] GET:[NetManager createUrl:@"user/list" withServerAddress:address0]
-                         parameters:nil
-                           progress:nil
-                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                                if ([response statusOK]) {
-                                    NSObject *result = [response getResponseResult];
-                                    NSArray *users = [result valueForKey:@"users"];
-                                    // TODO List
-                                    
-//                                    for(NSObject *user in users) {
-//                                        if ([_currentUser.userId isEqualToString:[user valueForKey:@"userId"]]) {
-//                                            continue;
-//                                        }
-//                                        [dao.userDao saveOrUpdate:user];
-//                                    }
-                                }
-                            }
-                            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                                switch ([response errorCode]) {
-                                        
-                                }
-                            }];
+
         
     } else if ([task isEqualToString:@"joinSuccess"] && _isOwner) {
         // Joined group successfully. Add this user to user list.

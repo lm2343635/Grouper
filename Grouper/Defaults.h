@@ -24,10 +24,10 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 
 // ************************* Attributes **************************
 
-// Email of current user
+// Email address of current user
 @property (nonatomic, strong) NSString *me;
 
-// Email of owner
+// Email address of owner
 @property (nonatomic, strong) NSString *owner;
 
 // Number of menbers

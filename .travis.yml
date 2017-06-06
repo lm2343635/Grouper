@@ -1,0 +1,14 @@
+language: objective-c
+osx_image: xcode8.3
+
+before_install:
+  - pod repo update
+
+pods: remove_debug_pods
+pods:
+  rm -rf Pods
+  bundle install
+  bundle exec pod install
+
+build:
+  set -o pipefail && xcodebuild -workspace "Grouper.xcworkspace" -scheme "Grouper" -sdk iphonesimulator -destination 'name=iPhone 6' build CODE_SIGNING_REQUIRED=NO | xcpretty -c
