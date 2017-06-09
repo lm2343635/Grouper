@@ -29,11 +29,6 @@
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
-
-    if (group.defaults.initial == InitialFinished) {
-        _noMembersView.hidden = YES;
-        [self loadMembersInfo];
-    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -41,6 +36,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewWillAppear:animated];
+    [self loadMembersInfo];
 }
 
 #pragma mark - Table view data source
@@ -104,13 +100,6 @@
     return headerView;
 }
 
-#pragma mark - Action
-- (IBAction)refreshMembers:(id)sender {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-}
-
 #pragma mark - Service
 - (void)loadMembersInfo {
     if(DEBUG) {
@@ -118,7 +107,7 @@
     }
     members = [dao.userDao findMembersExceptOwner:group.defaults.owner];
     owner = [dao.userDao getByEmail:group.defaults.owner];
-    
+    [self.tableView reloadData];
 }
 
 @end

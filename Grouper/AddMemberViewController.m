@@ -104,9 +104,12 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:[GroupManager getJoinGroupMessage:notification]
-                 inViewController:self];
+    if ([[notification.userInfo valueForKey:@"invite"] boolValue]) {
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:[NSString stringWithFormat:@"Invite user %@ successfully!", [notification.userInfo valueForKey:@"joiner"]]
+                     inViewController:self];
+    }
+    
 }
 
 @end

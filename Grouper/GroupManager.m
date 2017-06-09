@@ -23,6 +23,8 @@
     NSMutableDictionary *serverStates;
     MCPeerID *invitePeer;
     
+    // Joiner's user info.
+    NSDictionary *joiner;
     
     // Register owner related.
     int registered, submitted;
@@ -114,13 +116,6 @@
     [self sendMessage:@{@"task": @"invite"} to:invitePeer];
 }
 
-+ (NSString *)getJoinGroupMessage:(NSNotification *)notification {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    return [notification.userInfo valueForKey:@"message"];
-}
-
 - (void)sendMessage:(NSDictionary *)message to:(MCPeerID *)peer {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -190,7 +185,7 @@
         // Save user info to local database at first.
         
         // TODO List.
-        NSDictionary *userInfo = [message valueForKey:@"userInfo"];
+        joiner = [message valueForKey:@"userInfo"];
         
         //Init serverInfoForUser
         serverInfoForUser = [[NSMutableDictionary alloc] init];
@@ -198,7 +193,7 @@
         for (NSString *address in net.managers.allKeys) {
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                              parameters:@{
-                                          @"node": [userInfo valueForKey:@"node"],
+                                          @"node": [joiner valueForKey:@"node"],
                                           @"owner": @NO
                                           }
                                progress:nil
@@ -220,25 +215,47 @@
                                                 NSLog(@"serverInfoForUser = %@", serverInfoForUser);
                                                 NSLog(@"invitePeer = %@", invitePeer);
                                             }
+                                            
+                                            // Prepare user list for joiner.
+                                            NSMutableArray *users = [[NSMutableArray alloc] init];
+                                            for (User *user in [dao.userDao findAll]) {
+                                                [users addObject:@{
+                                                                   @"email": user.email,
+                                                                   @"name": user.name,
+                                                                   @"node": user.node
+                                                                   }];
+                                            }
+                                            
                                             // Send server information to new member.
                                             [self sendMessage:@{
                                                                 @"task": @"sendServerInfo",
-                                                                @"serverInfo": serverInfoForUser
+                                                                @"serverInfo": serverInfoForUser,
+                                                                @"users": users
                                                                 }
                                                            to:invitePeer];
+                                            
                                         }
                                     }
                                 }
                                 failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                     InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                                     switch ([response errorCode]) {
-                                            
+                                        default:
+                                            break;
                                     }
                                 }];
         }
     } else if ([task isEqualToString:@"sendServerInfo"] && !_isOwner) {
         // Receive server information and access key from group owner.
         _defaults.servers = [message valueForKey:@"serverInfo"];
+        
+        // Save other group member's user info to persistent store.
+        for (NSDictionary *user in [message valueForKey:@"users"]) {
+            [dao.userDao saveWithEmail:[user valueForKey:@"email"]
+                               forName:[user valueForKey:@"name"]
+                                inNode:[user valueForKey:@"node"]];
+        }
+         
         // Refresh session managers.
         [net refreshSessionManagers];
         
@@ -259,7 +276,7 @@
                                     _defaults.groupId = [groupInfo valueForKey:@"id"];
                                     _defaults.groupName = [groupInfo valueForKey:@"name"];
                                     _defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
-                                    _defaults.owner = [[groupInfo valueForKey:@"owner"] valueForKey:@"uid"];
+                                    _defaults.owner = [[groupInfo valueForKey:@"owner"] valueForKey:@"email"];
                                     _defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
                                     _defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
                                     
@@ -269,7 +286,7 @@
                                     // Send notification with joined success message.
                                     [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveJoinGroupMessage
                                                                                         object:nil
-                                                                                      userInfo:@{@"message": [NSString stringWithFormat:@"You have joined to %@.", _defaults.groupName]}];
+                                                                                      userInfo:@{@"join": @YES}];
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -281,11 +298,16 @@
 
         
     } else if ([task isEqualToString:@"joinSuccess"] && _isOwner) {
+        // Save joiner's user info to persistent store.
+        [dao.userDao saveWithEmail:[joiner valueForKey:@"email"]
+                           forName:[joiner valueForKey:@"name"]
+                            inNode:[joiner valueForKey:@"node"]];
+        
         // Joined group successfully. Add this user to user list.
         // Send notification with joined success message.
         [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveJoinGroupMessage
                                                             object:nil
-                                                          userInfo:@{@"message": [NSString stringWithFormat:@"Invite user %@ successfully!", invitePeer.displayName]}];
+                                                          userInfo:@{@"invite": @YES, @"joiner": invitePeer.displayName}];
     }
 }
 

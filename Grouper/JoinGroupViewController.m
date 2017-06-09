@@ -74,9 +74,11 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:[GroupManager getJoinGroupMessage:notification]
-                 inViewController:self];
+    if ([[notification.userInfo valueForKey:@"join"] boolValue]) {
+        // Go to main story board.
+        UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
+    }    
 }
 
 @end

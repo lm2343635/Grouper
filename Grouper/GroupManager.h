@@ -47,9 +47,6 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Send invite message to a peer.
 - (void)sendInviteMessageTo:(MCPeerID *)peer;
 
-// Get group message.
-+ (NSString *)getJoinGroupMessage:(NSNotification *)notification;
-
 //************************ Group Init Related ************************
     
 // Add a new untrusted server.
