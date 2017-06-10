@@ -25,8 +25,8 @@
     group = [GroupManager sharedInstance];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(didReceiveJoinGroupMessage:)
-                                                 name:DidReceiveJoinGroupMessage
+                                             selector:@selector(didReceiveInviteSuccessMessage:)
+                                                 name:DidReceiveInviteSuccessMessage
                                                object:nil];
 }
 
@@ -100,16 +100,13 @@
 }
 
 #pragma mark - Notification 
-- (void)didReceiveJoinGroupMessage:(NSNotification *)notification {
+- (void)didReceiveInviteSuccessMessage:(NSNotification *)notification {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if ([[notification.userInfo valueForKey:@"invite"] boolValue]) {
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:[NSString stringWithFormat:@"Invite user %@ successfully!", [notification.userInfo valueForKey:@"joiner"]]
-                     inViewController:self];
-    }
-    
+    [AlertTool showAlertWithTitle:@"Tip"
+                       andContent:[NSString stringWithFormat:@"Invite user %@ successfully!", [notification.userInfo valueForKey:@"joiner"]]
+                 inViewController:self];
 }
 
 @end

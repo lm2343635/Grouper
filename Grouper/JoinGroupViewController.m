@@ -23,6 +23,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     group = [GroupManager sharedInstance];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveJoinGroupMessage:)
+                                                 name:DidReceiveJoinGroupMessage
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -74,11 +79,9 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if ([[notification.userInfo valueForKey:@"join"] boolValue]) {
-        // Go to main story board.
-        UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
-    }    
+    // Go to main story board.
+    UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
 }
 
 @end

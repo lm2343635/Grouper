@@ -229,8 +229,9 @@
                                             // Send server information to new member.
                                             [self sendMessage:@{
                                                                 @"task": @"sendServerInfo",
-                                                                @"serverInfo": serverInfoForUser,
-                                                                @"users": users
+                                                                @"servers": serverInfoForUser,
+                                                                @"users": users,
+                                                                @"owner": _defaults.owner
                                                                 }
                                                            to:invitePeer];
                                             
@@ -246,8 +247,9 @@
                                 }];
         }
     } else if ([task isEqualToString:@"sendServerInfo"] && !_isOwner) {
-        // Receive server information and access key from group owner.
-        _defaults.servers = [message valueForKey:@"serverInfo"];
+        // Receive servers and owner.
+        _defaults.servers = [message valueForKey:@"servers"];
+        _defaults.owner = [message valueForKey:@"owner"];
         
         // Save other group member's user info to persistent store.
         for (NSDictionary *user in [message valueForKey:@"users"]) {
@@ -276,7 +278,7 @@
                                     _defaults.groupId = [groupInfo valueForKey:@"id"];
                                     _defaults.groupName = [groupInfo valueForKey:@"name"];
                                     _defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
-                                    _defaults.owner = [[groupInfo valueForKey:@"owner"] valueForKey:@"email"];
+                                    
                                     _defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
                                     _defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
                                     
@@ -286,7 +288,7 @@
                                     // Send notification with joined success message.
                                     [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveJoinGroupMessage
                                                                                         object:nil
-                                                                                      userInfo:@{@"join": @YES}];
+                                                                                      userInfo:nil];
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -305,9 +307,9 @@
         
         // Joined group successfully. Add this user to user list.
         // Send notification with joined success message.
-        [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveJoinGroupMessage
+        [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveInviteSuccessMessage
                                                             object:nil
-                                                          userInfo:@{@"invite": @YES, @"joiner": invitePeer.displayName}];
+                                                          userInfo:@{@"joiner": invitePeer.displayName}];
     }
 }
 
@@ -609,7 +611,7 @@
                                    if (state) {
                                        accessed ++;
                                    }
-                                   //                                   [self showState:state forServer:address];
+                         
                                    [serverStates setValue:[NSNumber numberWithBool:state] forKey:address];
                                    checked ++;
                                    [self checkComplete:completion];

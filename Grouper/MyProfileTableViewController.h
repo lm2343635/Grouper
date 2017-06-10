@@ -10,12 +10,7 @@
 
 @interface MyProfileTableViewController : UITableViewController
 
-@property (weak, nonatomic) IBOutlet UIImageView *profilePhotoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *genderLabel;
-@property (weak, nonatomic) IBOutlet UILabel *birthdayLabel;
-
-- (IBAction)logout:(id)sender;
 
 @end

@@ -30,6 +30,7 @@
     //Set keyboard accessory for threshold text field
     [self setCloseKeyboardAccessoryForSender:_thresholdTextField];
     [self setCloseKeyboardAccessoryForSender:_intervalTextField];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
