@@ -64,11 +64,11 @@
     UILabel *receiverNameLabel = (UILabel *)[cell viewWithTag:3];
 
     UILabel *infoLabel = (UILabel *)[cell viewWithTag:5];
-    User *sender = group.membersDict[message.sender];
+    User *sender = [dao.userDao getByNode:message.sender];
     if (sender != nil) {
         senderNameLabel.text = sender.name;
     }
-    User *receiver = group.membersDict[message.receiver];
+    User *receiver = [dao.userDao getByNode:message.receiver];
     if (receiver != nil) {
         receiverNameLabel.text = receiver.name;
     }

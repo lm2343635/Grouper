@@ -65,10 +65,11 @@
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
                                          type:MessageTypeUpdate
-                                         from:group.currentUser.email
+                                         from:group.currentUser.node
                                            to:@"*"
                                      sequence:[self generateNewSequence]
-                                         node:group.defaults.node];
+                                        email:group.currentUser.email
+                                         name:group.currentUser.name];
     // At last, we send the update message to multiple untrusted servers.
     [self sendShares];
 }
@@ -85,10 +86,11 @@
                                    objectName:NSStringFromClass(object.class)
                                      objectId:object.remoteID
                                          type:MessageTypeDelete
-                                         from:group.currentUser.email
+                                         from:group.currentUser.node
                                            to:@"*"
                                      sequence:[self generateNewSequence]
-                                         node:group.defaults.node];
+                                        email:group.currentUser.email
+                                         name:group.currentUser.name];
     // At last, we send the delete message to multiple untrusted servers.
     [self sendShares];
 }
@@ -113,10 +115,11 @@
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
-                                         from:group.currentUser.email
+                                         from:group.currentUser.node
                                            to:@"*"
                                      sequence:[self generateNewSequence]
-                                         node:group.defaults.node];
+                                        email:group.currentUser.email
+                                         name:group.currentUser.name];
     [self sendShares];
 }
 
@@ -132,10 +135,11 @@
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend
-                                         from:group.currentUser.email
+                                         from:group.currentUser.node
                                            to:receiver
                                      sequence:[self generateNewSequence]
-                                         node:group.defaults.node];
+                                        email:group.currentUser.email
+                                         name:group.currentUser.name];
     [self sendShares];
 }
 

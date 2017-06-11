@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Xcode 7.0" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" parentEntity="SyncEntity" syncable="YES">
         <attribute name="aname" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
@@ -8,8 +8,9 @@
     </entity>
     <entity name="Message" representedClassName="Message" syncable="YES">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="node" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="object" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="receiver" optional="YES" attributeType="String" syncable="YES"/>
@@ -60,7 +61,7 @@
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="60"/>
         <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="60"/>
-        <element name="Message" positionX="-13230" positionY="-4608" width="128" height="195"/>
+        <element name="Message" positionX="-13230" positionY="-4608" width="128" height="210"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="90"/>
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="150"/>
         <element name="Share" positionX="-13230" positionY="-4608" width="128" height="60"/>

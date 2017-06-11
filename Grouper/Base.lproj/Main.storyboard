@@ -830,7 +830,7 @@
                                         <rect key="frame" x="0.0" y="250" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zeF-Wx-Je2" id="egs-yV-Wdb">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting_template" translatesAutoresizingMaskIntoConstraints="NO" id="JNQ-P7-dif">
@@ -858,7 +858,7 @@
                                         <rect key="frame" x="0.0" y="300" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1xE-lf-hT4" id="aiZ-DH-pcH">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting_servers" translatesAutoresizingMaskIntoConstraints="NO" id="d4o-lc-Hon">
@@ -879,7 +879,7 @@
                                         <rect key="frame" x="0.0" y="350" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RaH-24-jaM" id="M9T-Mc-5pG">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting_clear" translatesAutoresizingMaskIntoConstraints="NO" id="gXQ-ia-kOU">
@@ -900,7 +900,7 @@
                                         <rect key="frame" x="0.0" y="400" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g97-hL-xQC" id="cKF-At-OKS">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="setting_confirm" translatesAutoresizingMaskIntoConstraints="NO" id="eFu-4g-GC2">
@@ -1412,18 +1412,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mXq-wj-0Kr">
-                                            <rect key="frame" x="16" y="9" width="30" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="Qfc-ku-PaR"/>
-                                                <constraint firstAttribute="width" constant="30" id="djy-T5-kB1"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
                                         <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="Qe0-sX-6EC">
                                             <rect key="frame" x="145" y="9" width="30" height="30"/>
                                             <constraints>
@@ -1436,26 +1424,14 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="all_receiver" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-bu-c7k">
-                                            <rect key="frame" x="274" y="9" width="30" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="30" id="UjC-WE-BvQ"/>
-                                                <constraint firstAttribute="width" constant="30" id="aXt-6q-VM7"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sendtime | Type | Object" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="H8j-na-9h3">
-                                            <rect key="frame" x="16" y="47" width="288" height="14"/>
+                                            <rect key="frame" x="16" y="44" width="288" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="A84-ck-ST1">
-                                            <rect key="frame" x="54" y="14" width="83" height="21"/>
+                                            <rect key="frame" x="16" y="14" width="121" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="zb4-Ef-5RN"/>
                                             </constraints>
@@ -1464,7 +1440,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Members" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-jK-SX2">
-                                            <rect key="frame" x="183" y="14" width="85.5" height="21"/>
+                                            <rect key="frame" x="183" y="14" width="129" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="BAx-yV-84Q"/>
                                             </constraints>
@@ -1483,20 +1459,16 @@
                                         <constraint firstItem="pUU-q7-mxp" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="54" id="46V-9a-Nxc"/>
                                         <constraint firstItem="H8j-na-9h3" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="7a0-7R-LAq"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="pUU-q7-mxp" secondAttribute="trailing" id="7wB-L2-ye2"/>
-                                        <constraint firstItem="mXq-wj-0Kr" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="1" id="9Ln-bA-3DN"/>
-                                        <constraint firstItem="A84-ck-ST1" firstAttribute="leading" secondItem="mXq-wj-0Kr" secondAttribute="trailing" constant="8" id="CVr-Uz-GIE"/>
-                                        <constraint firstItem="H8j-na-9h3" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="39" id="EeL-0m-nq5"/>
                                         <constraint firstItem="SyT-jK-SX2" firstAttribute="leading" secondItem="Qe0-sX-6EC" secondAttribute="trailing" constant="8" id="HDS-VM-hkn"/>
-                                        <constraint firstItem="xfJ-bu-c7k" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="1" id="PdH-4J-mIT"/>
+                                        <constraint firstItem="H8j-na-9h3" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="36" id="HXg-k3-qJv"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="SyT-jK-SX2" secondAttribute="trailing" id="QbL-uh-cP0"/>
                                         <constraint firstItem="SyT-jK-SX2" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="6" id="Y3O-cx-ygZ"/>
                                         <constraint firstItem="A84-ck-ST1" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="6" id="aUj-v3-ON4"/>
-                                        <constraint firstItem="mXq-wj-0Kr" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="aVh-M5-q98"/>
                                         <constraint firstItem="Qe0-sX-6EC" firstAttribute="centerX" secondItem="vez-l2-bu4" secondAttribute="centerX" id="gg2-Iv-ogg"/>
                                         <constraint firstItem="Qe0-sX-6EC" firstAttribute="leading" secondItem="A84-ck-ST1" secondAttribute="trailing" constant="8" id="ha1-xO-Skh"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="H8j-na-9h3" secondAttribute="trailing" constant="8" id="i6Z-9V-yaH"/>
                                         <constraint firstItem="pUU-q7-mxp" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="nBt-Io-N8s"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="xfJ-bu-c7k" secondAttribute="trailing" constant="8" id="q48-hC-eVS"/>
-                                        <constraint firstItem="xfJ-bu-c7k" firstAttribute="leading" secondItem="SyT-jK-SX2" secondAttribute="trailing" constant="5.5" id="vCN-aW-MiW"/>
+                                        <constraint firstItem="A84-ck-ST1" firstAttribute="leading" secondItem="vez-l2-bu4" secondAttribute="leadingMargin" constant="8" id="wBc-6Q-33c"/>
                                         <constraint firstItem="Qe0-sX-6EC" firstAttribute="top" secondItem="vez-l2-bu4" secondAttribute="topMargin" constant="1" id="x3F-E1-GtC"/>
                                     </constraints>
                                 </tableViewCellContentView>
@@ -2361,7 +2333,6 @@
         <image name="CameraButton" width="91" height="91"/>
         <image name="add_members" width="30" height="30"/>
         <image name="add_record" width="30" height="30"/>
-        <image name="all_receiver" width="30" height="30"/>
         <image name="arrow" width="30" height="30"/>
         <image name="close_record_photo" width="23" height="22"/>
         <image name="date_today" width="32" height="32"/>

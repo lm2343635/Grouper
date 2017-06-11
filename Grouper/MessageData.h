@@ -18,7 +18,8 @@
 @property (nonatomic, assign) long sendtime;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, assign) long sequence;
-@property (nonatomic, strong) NSString *node;
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *name;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

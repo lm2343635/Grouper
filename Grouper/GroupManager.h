@@ -27,9 +27,6 @@
 // Members array.
 @property (nonatomic, strong) NSMutableArray *members;
 
-// Members dictionary, key is userId, value is member object.
-@property (nonatomic, strong) NSMutableDictionary *membersDict;
-
 typedef void (^MemberRefreshCompletion)(BOOL);
 typedef void (^CheckServerCompletion)(NSDictionary *, BOOL);
 typedef void (^SucessMessageCompletion)(BOOL, NSString *);

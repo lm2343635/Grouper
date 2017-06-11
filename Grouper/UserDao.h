@@ -24,6 +24,8 @@
 
 - (User *)getByEmail:(NSString *)email;
 
+- (User *)getByNode:(NSString *)node;
+
 // Find all members except owner.
 - (NSArray *)findMembersExceptOwner:(NSString *)ownerId;
 

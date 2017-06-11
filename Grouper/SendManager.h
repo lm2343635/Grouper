@@ -16,9 +16,6 @@
 
 @interface SendManager : NSObject
 
-// How many servers has been sent.
-@property (nonatomic) NSInteger sent;
-
 // Get single instance.
 + (instancetype)sharedInstance;
 

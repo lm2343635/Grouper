@@ -25,7 +25,8 @@
     message.objectId = messageData.objectId;
     message.type = messageData.type;
     message.sequence = [NSNumber numberWithLong:messageData.sequence];
-    message.node = messageData.node;
+    message.email = messageData.email;
+    message.name = messageData.name;
     [self saveContext];
     return message;
 }
@@ -37,7 +38,8 @@
                         from:(NSString *)sender
                           to:(NSString *)receiver
                     sequence:(long)sequence
-                        node:(NSString *)node {
+                       email:(NSString *)email
+                        name:(NSString *)name {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -54,7 +56,8 @@
     message.sender = sender;
     message.receiver = receiver;
     message.sequence = [NSNumber numberWithLong:sequence];
-    message.node = node;
+    message.email = email;
+    message.name = name;
     [self saveContext];
     return message;
 }

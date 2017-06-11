@@ -48,7 +48,15 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSPredicate *predicate=[NSPredicate predicateWithFormat:@"email=%@", email];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"email=%@", email];
+    return (User *)[self getByPredicate:predicate withEntityName:UserEntityName];
+}
+
+- (User *)getByNode:(NSString *)node {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"node=%@", node];
     return (User *)[self getByPredicate:predicate withEntityName:UserEntityName];
 }
 

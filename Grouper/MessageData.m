@@ -16,7 +16,8 @@ NSString *const kMessageSendtime = @"sendtime";
 NSString *const kMessageSequence = @"sequence";
 NSString *const kMessageType = @"type";
 NSString *const kSequenceType = @"sequence";
-NSString *const kNodeType = @"node";
+NSString *const kEmailType = @"email";
+NSString *const kNameType = @"name";
 
 @interface MessageData ()
 
@@ -53,8 +54,11 @@ NSString *const kNodeType = @"node";
     if (![dictionary[kSequenceType] isKindOfClass:[NSNull class]]) {
         self.sequence = [dictionary[kSequenceType] longValue];
     }
-    if (![dictionary[kNodeType] isKindOfClass:[NSNull class ]]) {
-        self.node = dictionary[kNodeType];
+    if (![dictionary[kEmailType] isKindOfClass:[NSNull class]]) {
+        self.email = dictionary[kEmailType];
+    }
+    if (![dictionary[kNameType] isKindOfClass:[NSNull class]]) {
+        self.name = dictionary[kNameType];
     }
 	return self;
 }
@@ -84,8 +88,11 @@ NSString *const kNodeType = @"node";
 		dictionary[kMessageType] = self.type;
 	}
     dictionary[kSequenceType] = @(self.sequence);
-    if (self.node != nil) {
-        dictionary[kNodeType] = self.node;
+    if (self.email != nil) {
+        dictionary[kEmailType] = self.email;
+    }
+    if (self.name != nil) {
+        dictionary[kNameType] = self.name;
     }
 	return dictionary;
 

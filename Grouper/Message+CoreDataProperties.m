@@ -1,8 +1,8 @@
 //
 //  Message+CoreDataProperties.m
-//  GroupFinance
+//  Grouper
 //
-//  Created by lidaye on 06/04/2017.
+//  Created by lidaye on 11/06/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
@@ -16,13 +16,14 @@
 
 @dynamic content;
 @dynamic messageId;
+@dynamic email;
 @dynamic object;
 @dynamic objectId;
 @dynamic receiver;
 @dynamic sender;
 @dynamic sendtime;
-@dynamic type;
-@dynamic node;
 @dynamic sequence;
+@dynamic type;
+@dynamic name;
 
 @end
