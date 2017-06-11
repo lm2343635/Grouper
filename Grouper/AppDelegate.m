@@ -7,11 +7,9 @@
 //
 
 #import "AppDelegate.h"
-#import "GroupManager.h"
-#import "ReceiveManager.h"
-#import "DeviceTokenManager.h"
 #import "Grouper-Bridging-Header.h"
 #import "Grouper-Swift.h"
+#import "Grouper.h"
 
 @interface AppDelegate ()
 
@@ -19,7 +17,6 @@
 
 @implementation AppDelegate {
     GroupManager *group;
-    DeviceTokenManager *deviceTokenManager;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -32,7 +29,6 @@
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
     group = [GroupManager sharedInstance];
-    deviceTokenManager = [DeviceTokenManager sharedInstance];
     
     if (DEBUG) {
         NSLog(@"Number of group menbers is %ld", (long)group.members);
@@ -79,8 +75,7 @@
     if (DEBUG) {
         NSLog(@"Device token from APNs server is %@", token);
     }
-    deviceTokenManager.deviceToken = token;
-    [deviceTokenManager sendDeviceToken];
+    [group sendDeviceToken:token];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {

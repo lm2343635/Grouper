@@ -641,4 +641,41 @@
     }
 }
 
+#pragma mark - Device Token Related
+- (void)sendDeviceToken:(NSString *)token {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if (token == nil || [token isEqualToString:@""]) {
+        return;
+    }
+    for (NSString *address in net.managers.allKeys) {
+        [net.managers[address] POST:[NetManager createUrl:@"user/deviceToken" withServerAddress:address]
+                         parameters:@{@"deviceToken": token}
+                           progress:nil
+                            success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                                if ([response statusOK]) {
+                                    NSObject *result = [response getResponseResult];
+                                    if ([[result valueForKey:@"success"] intValue] == 1) {
+                                        if (DEBUG) {
+                                            NSLog(@"Send device token to untrusted server %@", address);
+                                        }
+                                    }
+                                }
+                            }
+                            failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                                switch ([response errorCode]) {
+                                    case ErrorAccessKey:
+                                        
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }];
+    }
+    
+}
+
 @end

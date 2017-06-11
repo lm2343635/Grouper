@@ -68,4 +68,9 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.
 - (void)checkServerState:(CheckServerCompletion)completion;
 
+//************************ Device Token Related ************************
+
+// Send device token to untrusted servers
+- (void)sendDeviceToken:(NSString *)token;
+
 @end
