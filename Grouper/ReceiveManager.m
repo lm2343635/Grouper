@@ -19,9 +19,9 @@
     SendManager *send;
     GroupManager *group;
     DaoManager *dao;
-
+    SyncManager *sync;
+    
     NSMutableArray *contentsGroup;
-    SyncTool *sync;
     Completion syncCompletion;
 }
 
@@ -41,7 +41,7 @@
         send = [SendManager sharedInstance];
         group = [GroupManager sharedInstance];
         dao = [DaoManager sharedInstance];
-        sync = [[SyncTool alloc] initWithDataStack:[dao getDataStack]];
+        sync = [[SyncManager alloc] initWithDataStack:[dao getDataStack]];
     }
     return self;
 }
@@ -214,7 +214,16 @@
     NSDictionary *messageObject =[self parseJSONString:messageString];
     // Create message data object.
     MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
-    // If message contains object related info, use SyncTool to sync it to persistent store.
+    
+    // If sender is not existed in this device, save it to persistent store.
+    User *sender = [dao.userDao getByNode:messageData.sender];
+    if (sender == nil) {
+        [dao.userDao saveWithEmail:messageData.email
+                           forName:messageData.name
+                            inNode:messageData.sender];
+    }
+    
+    // If message contains object related info, use SyncManager to sync it to persistent store.
     if ([messageData.type isEqualToString:MessageTypeUpdate] ||
         [messageData.type isEqualToString:MessageTypeDelete]) {
         // If sync successfully, message data.
@@ -224,23 +233,21 @@
         }
     } else if ([messageData.type isEqualToString:MessageTypeConfirm]) {
         NSDictionary *content = [self parseJSONString:messageData.content];
-        NSString *node = [content valueForKey:@"node"];
         NSMutableArray *sequences = [content valueForKey:@"sequences"];
         // Remove exsited sequences in persistent store.
         [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
-                                                                      withNode:node]];
-        [send resend:sequences forNode:node to:messageData.sender];
+                                                                    withSender:messageData.sender]];
+        [send resend:sequences to:messageData.sender];
         
     } else if ([messageData.type isEqualToString:MessageTypeResend]) {
         NSDictionary *content = [self parseJSONString:messageData.content];
-        NSString *node = [content valueForKey:@"node"];
-        // If node identifier is same with which in local persistent store, resend messages.
-        if ([node isEqualToString:group.defaults.node]) {
+        // If node identifier of sender is equql to node identifier of current user, resend messages.
+        if ([messageData.sender isEqualToString:group.currentUser.node]) {
             NSArray *sequences = [content valueForKey:@"sequences"];
             // Send existed messages to untrusted server again,
             // so that those members who did not recevied the messages can rececied again.
             [send sendExistedMessages:[dao.messageDao findInSequences:sequences
-                                                             withNode:node]];
+                                                           withSender:messageData.sender]];
         }
     }
 }

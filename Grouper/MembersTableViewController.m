@@ -100,6 +100,14 @@
     return headerView;
 }
 
+#pragma mark - Action
+- (IBAction)exitMembers:(id)sender {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Service
 - (void)loadMembersInfo {
     if(DEBUG) {

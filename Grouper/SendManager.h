@@ -30,8 +30,8 @@
 // Send confirm message;
 - (void)confirm;
 
-// Send resend message to receiver with not existed sequences and node identifier.
-- (void)resend:(NSArray *)sequences forNode:(NSString *)node to:(NSString *)receiver;
+// Send resend message which contains not existed sequences to receiver.
+- (void)resend:(NSArray *)sequences to:(NSString *)receiver;
 
 // ******************* Other *******************
 

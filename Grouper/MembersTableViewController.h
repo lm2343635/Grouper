@@ -10,4 +10,6 @@
 
 @interface MembersTableViewController : UITableViewController
 
+- (IBAction)exitMembers:(id)sender;
+
 @end

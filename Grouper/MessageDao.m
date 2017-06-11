@@ -93,22 +93,22 @@
     return [self findAllWithEntityName:MessageEntityName];
 }
 
-- (NSArray *)findInSequences:(NSArray *)sequences withNode:(NSString *)node {
+- (NSArray *)findInSequences:(NSArray *)sequences withSender:(NSString *)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return [self findByPredicate:[NSPredicate predicateWithFormat:@"sequence IN %@ and node = %@", sequences, node]
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"sequence IN %@ and sender = %@", sequences, sender]
                   withEntityName:MessageEntityName];
 }
 
-- (NSArray *)findExistedSequencesIn:(NSArray *)sequences withNode:(NSString *)node {
+- (NSArray *)findExistedSequencesIn:(NSArray *)sequences withSender:(NSString *)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:MessageEntityName];
     [request setResultType:NSDictionaryResultType];
     [request setPropertiesToFetch:[NSArray arrayWithObjects:@"sequence", nil]];
-    [request setPredicate:[NSPredicate predicateWithFormat:@"sequence IN %@ and node = %@", sequences, node]];
+    [request setPredicate:[NSPredicate predicateWithFormat:@"sequence IN %@ and sender = %@", sequences, sender]];
     NSError *error = nil;
     NSArray *objects = [self.context executeFetchRequest:request error:&error];
     if (error) {

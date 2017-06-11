@@ -17,7 +17,7 @@
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
 		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
-		E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */; };
+		E42B7DA91E1E3BD60037BAAE /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncManager.swift */; };
 		E42C58D91DCC53C4009A2596 /* SendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendManager.m */; };
 		E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */; };
 		E4305A4F1E36283D00010B52 /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */; };
@@ -98,6 +98,7 @@
 		E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */; };
 		E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */; };
 		E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */; };
+		E4F787031EED2ACD00A33932 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F787021EED2ACD00A33932 /* Members.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,7 +139,7 @@
 		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
 		E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersTableViewController.h; sourceTree = "<group>"; };
 		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
-		E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncTool.swift; sourceTree = "<group>"; };
+		E42B7DA81E1E3BD60037BAAE /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		E42C58D71DCC53C4009A2596 /* SendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendManager.h; sourceTree = "<group>"; };
 		E42C58D81DCC53C4009A2596 /* SendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendManager.m; sourceTree = "<group>"; };
 		E4305A4A1E36283D00010B52 /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -309,6 +310,7 @@
 		E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateDao.m; sourceTree = "<group>"; };
 		E4F60AD11D0448FF006F5DF2 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
+		E4F787021EED2ACD00A33932 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Members.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +461,7 @@
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
 				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
 				E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */,
+				E4F787021EED2ACD00A33932 /* Members.storyboard */,
 				E4400D791CCB5845000DFB1A /* Main.storyboard */,
 				E497059D1CDF22B20092B164 /* Assets.xcassets */,
 				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
@@ -552,7 +555,7 @@
 				E46D576A1DB4D21900116C4E /* shamir.h */,
 				E46D576B1DB4D21900116C4E /* strtok.c */,
 				E46D576C1DB4D21900116C4E /* strtok.h */,
-				E42B7DA81E1E3BD60037BAAE /* SyncTool.swift */,
+				E42B7DA81E1E3BD60037BAAE /* SyncManager.swift */,
 				E40A9BC51EDE81AB009B472E /* Grouper.h */,
 			);
 			name = Core;
@@ -776,6 +779,7 @@
 			files = (
 				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
+				E4F787031EED2ACD00A33932 /* Members.storyboard in Resources */,
 				E41FD0F81EE2969A00DDDBA3 /* Init.storyboard in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);
@@ -873,7 +877,7 @@
 				E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */,
 				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E48DBCB41E88FBDB00EC94D1 /* Share+CoreDataProperties.m in Sources */,
-				E42B7DA91E1E3BD60037BAAE /* SyncTool.swift in Sources */,
+				E42B7DA91E1E3BD60037BAAE /* SyncManager.swift in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */,
 				E430E7621E2219B400CF9660 /* CommonTool.m in Sources */,

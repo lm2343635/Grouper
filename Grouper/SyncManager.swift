@@ -8,7 +8,7 @@
 
 import Sync
 
-@objc class SyncTool: NSObject {
+@objc class SyncManager: NSObject {
     
     let dao = DaoManager.sharedInstance()
     var dataStack: DataStack

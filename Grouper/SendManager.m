@@ -108,10 +108,7 @@
         return;
     }
     // Create confirm message by sequences.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{
-                                                @"node": group.defaults.node,
-                                                @"sequences": sequences
-                                            }]
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
@@ -123,15 +120,12 @@
     [self sendShares];
 }
 
-- (void)resend:(NSArray *)sequences forNode:(NSString *)node to:(NSString *)receiver {
+- (void)resend:(NSArray *)sequences to:(NSString *)receiver {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Create resend message by not existed sequences and node identifier.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{
-                                                @"node": node,
-                                                @"sequences": sequences
-                                            }]
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend

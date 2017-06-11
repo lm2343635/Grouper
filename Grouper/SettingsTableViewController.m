@@ -92,25 +92,16 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    switch (indexPath.section) {
-        case 2:
-            switch (indexPath.row) {
-                case 1:
-                    [self presentViewController:clearAlertController animated:YES completion:nil];
-                    break;
-                case 2:
-                    [send confirm];
-                    [AlertTool showAlertWithTitle:@"Tip"
-                                       andContent:@"Confirm message has been sent."
-                                 inViewController:self];
-                    break;
-                default:
-                    break;
-            }
-            break;
-            
-        default:
-            break;
+    if (indexPath.row == 2) {
+        UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
+        [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
+    } else if (indexPath.row == 10) {
+        [self presentViewController:clearAlertController animated:YES completion:nil];
+    } else if (indexPath.row == 11) {
+        [send confirm];
+        [AlertTool showAlertWithTitle:@"Tip"
+                           andContent:@"Confirm message has been sent."
+                     inViewController:self];
     }
 }
 
