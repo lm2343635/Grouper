@@ -241,13 +241,13 @@
         
     } else if ([messageData.type isEqualToString:MessageTypeResend]) {
         NSDictionary *content = [self parseJSONString:messageData.content];
-        // If node identifier of sender is equql to node identifier of current user, resend messages.
-        if ([messageData.sender isEqualToString:group.currentUser.node]) {
+        // If node identifier of receiver is equql to node identifier of current user, resend messages.
+        if ([messageData.receiver isEqualToString:group.currentUser.node]) {
             NSArray *sequences = [content valueForKey:@"sequences"];
             // Send existed messages to untrusted server again,
             // so that those members who did not recevied the messages can rececied again.
             [send sendExistedMessages:[dao.messageDao findInSequences:sequences
-                                                           withSender:messageData.sender]];
+                                                           withSender:messageData.receiver]];
         }
     }
 }

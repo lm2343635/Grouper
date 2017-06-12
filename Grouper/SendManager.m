@@ -101,9 +101,10 @@
     }
     NSMutableArray *sequences = [[NSMutableArray alloc] init];
     // Find normal messages sent by current user.
-    for (Message *normal in [dao.messageDao findNormalWithSender:group.currentUser.email]) {
+    for (Message *normal in [dao.messageDao findNormalWithSender:group.currentUser.node]) {
         [sequences addObject:normal.sequence];
     }
+    // Skip if no sequence.
     if (sequences.count == 0) {
         return;
     }
@@ -123,6 +124,10 @@
 - (void)resend:(NSArray *)sequences to:(NSString *)receiver {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Skip if no sequence.
+    if (sequences.count == 0) {
+        return;
     }
     // Create resend message by not existed sequences and node identifier.
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
