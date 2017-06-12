@@ -1424,23 +1424,14 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjw-FG-vgU">
-                                            <rect key="frame" x="16" y="9" width="30" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="2Ru-SK-aNV">
-                                            <rect key="frame" x="54" y="8" width="200" height="13.5"/>
+                                            <rect key="frame" x="16" y="8" width="238" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Receive info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="G55-Fl-K9r">
-                                            <rect key="frame" x="54" y="25" width="200" height="13.5"/>
+                                            <rect key="frame" x="16" y="25" width="238" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -1457,14 +1448,14 @@
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="2Ru-SK-aNV" firstAttribute="leading" secondItem="n5w-z3-OMs" secondAttribute="leadingMargin" constant="8" id="39Y-bF-D0X"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="2Ru-SK-aNV" secondAttribute="trailing" constant="58" id="4rT-dy-Qlg"/>
                                         <constraint firstAttribute="topMargin" secondItem="2Ru-SK-aNV" secondAttribute="top" id="7wg-kR-d9h"/>
-                                        <constraint firstItem="G55-Fl-K9r" firstAttribute="leading" secondItem="n5w-z3-OMs" secondAttribute="leadingMargin" constant="46" id="JLP-9g-OmS"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="G55-Fl-K9r" secondAttribute="trailing" constant="58" id="McJ-ue-Jl0"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="lPL-tT-URp" secondAttribute="trailing" id="OQx-5F-rlS"/>
                                         <constraint firstItem="lPL-tT-URp" firstAttribute="top" secondItem="n5w-z3-OMs" secondAttribute="topMargin" constant="6" id="W86-f1-voo"/>
-                                        <constraint firstItem="2Ru-SK-aNV" firstAttribute="leading" secondItem="n5w-z3-OMs" secondAttribute="leadingMargin" constant="46" id="ext-0m-U5g"/>
                                         <constraint firstItem="G55-Fl-K9r" firstAttribute="top" secondItem="n5w-z3-OMs" secondAttribute="topMargin" constant="17" id="kO3-MC-jcl"/>
+                                        <constraint firstItem="G55-Fl-K9r" firstAttribute="leading" secondItem="n5w-z3-OMs" secondAttribute="leadingMargin" constant="8" id="tPB-lY-QIM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -2231,7 +2222,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="NXB-gM-EX7"/>
         <segue reference="xFF-w1-k4n"/>
-        <segue reference="64N-va-3Cb"/>
+        <segue reference="XQV-Hc-gMs"/>
         <segue reference="Mvk-fY-K6M"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -56,7 +56,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Members" id="8Hj-Jw-Ta9">
-                        <barButtonItem key="leftBarButtonItem" image="server_not_access" id="IHd-gz-2gJ">
+                        <barButtonItem key="leftBarButtonItem" image="close" id="IHd-gz-2gJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="exitMembers:" destination="14U-ar-1ph" id="5qW-OY-YxQ"/>
@@ -103,7 +103,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HiN-dy-LtK">
                                 <rect key="frame" x="13" y="512" width="295" height="40"/>
-                                <color key="backgroundColor" red="0.1140662702" green="0.73383321160000003" blue="0.6994629591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.45670777559280396" green="0.85408157110214233" blue="0.94897216558456421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="bs1-rk-5vd"/>
                                 </constraints>
@@ -148,7 +148,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UG7-tT-8Fw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.12865647669999999" green="0.81215649840000004" blue="0.77153962850000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.45670777559280396" green="0.85408157110214233" blue="0.94897216558456421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
@@ -169,7 +169,7 @@
     </scenes>
     <resources>
         <image name="add_members" width="30" height="30"/>
-        <image name="server_not_access" width="30" height="30"/>
+        <image name="close" width="30" height="30"/>
         <image name="tab_members" width="30" height="30"/>
     </resources>
 </document>

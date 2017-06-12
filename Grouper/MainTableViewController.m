@@ -175,7 +175,7 @@
         } else {
             MessageData *message = [messages objectAtIndex:indexPath.row];
             
-            User *user = [dao.userDao getByEmail:message.sender];
+            User *user = [dao.userDao getByNode:message.sender];
             cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
                                                    forIndexPath:indexPath];
 

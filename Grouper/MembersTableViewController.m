@@ -29,6 +29,11 @@
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
+    
+    // Remove inviting member button if this user is not group owner.
+    if (!group.isOwner) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -95,7 +100,7 @@
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.bounds.size.width, 30)];
     headerView.backgroundColor = [UIColor clearColor];
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, headerView.bounds.size.width - 15, headerView.bounds.size.height)];
-    nameLabel.text = (section == 0)? @"Group Owner": @"Group Members";
+    nameLabel.text = (section == 0) ? @"Group Owner" : @"Group Members";
     [headerView addSubview:nameLabel];
     return headerView;
 }
