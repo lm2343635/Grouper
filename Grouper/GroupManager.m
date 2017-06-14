@@ -182,8 +182,6 @@
                        to:peerID];
     } else if ([task isEqualToString:@"sendUserInfo"] && _isOwner) {
         submitted = 0;
-        // Save user info to local database at first.
-        
         // Get joiner's user info and confirm his email.
         joiner = [message valueForKey:@"userInfo"];
         // If this joiner's email is existed in owner's persistent store,

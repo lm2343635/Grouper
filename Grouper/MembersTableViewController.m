@@ -77,12 +77,10 @@
                                                             forIndexPath:indexPath];
     User *user = (indexPath.section == 0)? owner: [members objectAtIndex:indexPath.row];
 
-    UILabel *nameLabel = (UILabel *)[cell viewWithTag:2];
-    UILabel *emailLabel = (UILabel *)[cell viewWithTag:3];
-
-    nameLabel.text = user.name;
-    emailLabel.text = user.email;
-
+    UILabel *nameEmailLabel = (UILabel *)[cell viewWithTag:1];
+    UILabel *nodeLabel = (UILabel *)[cell viewWithTag:2];
+    nameEmailLabel.text = [NSString stringWithFormat:@"%@ (%@)", user.name, user.email];
+    nodeLabel.text = user.node;
     return cell;
 }
 
