@@ -12,6 +12,7 @@
 #import "MultipeerConnectivityManager.h"
 
 #define DidReceiveJoinGroupMessage @"DidReceiveJoinGroupMessage"
+#define DidReceiveInviteFailedMessage @"DidReceiveInviteFailedMessage"
 #define DidReceiveInviteSuccessMessage @"DidReceiveInviteSuccessMessage"
 
 @interface GroupManager : NSObject <MCBrowserViewControllerDelegate>

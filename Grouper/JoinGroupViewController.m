@@ -28,6 +28,10 @@
                                              selector:@selector(didReceiveJoinGroupMessage:)
                                                  name:DidReceiveJoinGroupMessage
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveInviteFailedMessage:)
+                                                 name:DidReceiveInviteFailedMessage
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -82,6 +86,15 @@
     // Go to main story board.
     UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
+}
+
+- (void)didReceiveInviteFailedMessage:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [AlertTool showAlertWithTitle:@"Tip"
+                       andContent:@"Cannot join this group, because your email has been registered."
+                 inViewController:self];
 }
 
 @end

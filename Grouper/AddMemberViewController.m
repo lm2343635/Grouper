@@ -28,6 +28,10 @@
                                              selector:@selector(didReceiveInviteSuccessMessage:)
                                                  name:DidReceiveInviteSuccessMessage
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(didReceiveInviteFailedMessage:)
+                                                 name:DidReceiveInviteFailedMessage
+                                               object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -106,6 +110,15 @@
     }
     [AlertTool showAlertWithTitle:@"Tip"
                        andContent:[NSString stringWithFormat:@"Invite user %@ successfully!", [notification.userInfo valueForKey:@"joiner"]]
+                 inViewController:self];
+}
+
+- (void)didReceiveInviteFailedMessage:(NSNotification *)notification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [AlertTool showAlertWithTitle:@"Tip"
+                       andContent:@"Cannot invite this new joiner, because his email is existed."
                  inViewController:self];
 }
 

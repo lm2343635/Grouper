@@ -184,12 +184,27 @@
         submitted = 0;
         // Save user info to local database at first.
         
-        // TODO List.
+        // Get joiner's user info and confirm his email.
         joiner = [message valueForKey:@"userInfo"];
+        // If this joiner's email is existed in owner's persistent store,
+        // don't allow this joiner to join this group.
+        if ([dao.userDao getByEmail:[joiner valueForKey:@"email"]] != nil) {
+            [self sendMessage:@{
+                                @"task": @"sendServerInfo",
+                                @"existed": @YES,
+                            }
+                           to:invitePeer];
+            // Send notification with failed message.
+            [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveInviteFailedMessage
+                                                                object:nil
+                                                              userInfo:nil];
+            return;
+        }
         
-        //Init serverInfoForUser
+        // The new joiner can be invited to this group, grouper owner register for him in multiple untrusted server.
+        // Init serverInfoForUser
         serverInfoForUser = [[NSMutableDictionary alloc] init];
-        //Send user info to untrusted servers.
+        // Send user info to untrusted servers.
         for (NSString *address in net.managers.allKeys) {
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                              parameters:@{
@@ -229,6 +244,7 @@
                                             // Send server information to new member.
                                             [self sendMessage:@{
                                                                 @"task": @"sendServerInfo",
+                                                                @"existed": @NO,
                                                                 @"servers": serverInfoForUser,
                                                                 @"users": users,
                                                                 @"owner": _defaults.owner
@@ -247,6 +263,15 @@
                                 }];
         }
     } else if ([task isEqualToString:@"sendServerInfo"] && !_isOwner) {
+        // If the new joiner is existed in owner's device,
+        if ([[message valueForKey:@"existed"] boolValue]) {
+            // Send notification with failed message.
+            [[NSNotificationCenter defaultCenter] postNotificationName:DidReceiveInviteFailedMessage
+                                                                object:nil
+                                                              userInfo:nil];
+            return;
+        }
+        
         // Receive servers and owner.
         _defaults.servers = [message valueForKey:@"servers"];
         _defaults.owner = [message valueForKey:@"owner"];
