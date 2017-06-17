@@ -21,7 +21,8 @@
     DaoManager *dao;
     SyncManager *sync;
     
-    NSMutableArray *contentsGroup;
+    int received;
+    NSMutableArray *contents;
     Completion syncCompletion;
 }
 
@@ -46,17 +47,18 @@
     return self;
 }
 
-- (void)dealloc {
+// If new share content has been received, regardless of success and fail, revoke this method.
+- (void)receivedContent {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    @try {
-        [self removeObserver:self forKeyPath:ReceivedTag];
-    } @catch(id anException) {
-        //do nothing, obviously it wasn't attached because an exception was thrown
+    received++;
+    if (received == net.managers.count) {
+        [self recoverShares];
     }
 }
 
+// Receive share and handle message.
 - (void)receiveWithCompletion:(Completion)completion {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -66,19 +68,10 @@
     if (group.defaults.initial != InitialFinished) {
         return;
     }
-    self.received = 0;
-    [self addObserver:self
-           forKeyPath:ReceivedTag
-              options:NSKeyValueObservingOptionOld
-              context:nil];
-    contentsGroup = [[NSMutableArray alloc] init];
-    [self getIdList];
-}
-
-- (void)getIdList {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
+    
+    received = 0;
+    contents = [[NSMutableArray alloc] init];
+    
     // Download share id list from untrusted servers.
     for (NSString *address in net.managers.allKeys) {
         [net.managers[address] GET:[NetManager createUrl:@"transfer/list" withServerAddress:address]
@@ -94,13 +87,10 @@
                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                            switch ([response errorCode]) {
-                               case ErrorAccessKey:
-                                   
-                                   break;
                                default:
                                    break;
                            }
-                           self.received ++;
+                           [self receivedContent];
                        }];
     }
 
@@ -112,7 +102,7 @@
     }
     // If there is no share id, return and received plus 1.
     if (ids.count == 0 || ids == nil) {
-        self.received ++;
+        [self receivedContent];
         return;
     }
     // Compare with local share id table, discard those downloaded.
@@ -126,9 +116,10 @@
     
     // If there is no share id after checking, return and received plus 1.
     if (shareIds.count == 0 || shareIds == nil) {
-        self.received ++;
+        [self receivedContent];
         return;
     }
+    
     
     // Download share contents if there is any share id.
     [net.managers[address] POST:[NetManager createUrl:@"transfer/get" withServerAddress:address]
@@ -137,21 +128,17 @@
                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                         if ([response statusOK]) {
-                            NSMutableArray *contents = [[response getResponseResult] valueForKey:@"contents"];
-                            [contentsGroup addObject:contents];
-                            self.received++;
+                            [contents addObjectsFromArray:[[response getResponseResult] valueForKey:@"contents"]];
+                            [self receivedContent];
                         }
                     }
                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                         InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                         switch ([response errorCode]) {
-                            case ErrorAccessKey:
-                                
-                                break;
                             default:
                                 break;
                         }
-                        self.received++;
+                        [self receivedContent];
                     }];
 }
 
@@ -168,42 +155,46 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (contentsGroup.count == 0) {
+    if (contents.count == 0) {
         syncCompletion();
         return;
     }
-    NSMutableArray *contents0 = [contentsGroup objectAtIndex:0];
-    for (NSObject *content in contents0) {
-        NSMutableArray *shares = [[NSMutableArray alloc] init];
-        NSMutableArray *shareIds = [[NSMutableArray alloc] init];
-        NSObject *data = [content valueForKey:@"data"];
-        // Get messageId
-        NSString *messageId = [data valueForKey:@"messageId"];
-        [shares addObject:[data valueForKey:@"share"]];
-        [shareIds addObject:[content valueForKey:@"id"]];
-        // Find other shares with same messageId.
-        for (int index = 1; index < contentsGroup.count; index++) {
-            NSObject *pairedContent = [self pushPairedContentFrom:index withMessageId:messageId];
-            [shares addObject:[[pairedContent valueForKey:@"data"] valueForKey:@"share"]];
-            // If got enough shares, only add share id.
-            if (shares.count >= group.defaults.threshold) {
-                [shareIds addObject:[pairedContent valueForKey:@"id"]];
-            }
+    
+    NSMutableDictionary *contentGroups = [[NSMutableDictionary alloc] init];
+    for (NSObject *content in contents) {
+        NSString *messageId = [[content valueForKey:@"data"] valueForKey:@"messageId"];
+        NSMutableArray *contentGroup = [contentGroups objectForKey:messageId];
+        // If there is no content group with this messageId in groups, create a new one.
+        if (contentGroup == nil) {
+            contentGroup = [[NSMutableArray alloc] init];
         }
-        // Only getting more than k(threshold) shares, Grouper can recover and sync to persistent store.
-        if (shares.count >= group.defaults.threshold) {
-            NSString *messageString = [SecretSharing recoverShareWith:shares];
-            if (DEBUG) {
-                NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
-            }
-            [self handleMessage:messageString];
-            // Save share id in Share entity.
-            for (NSString *shareId in shareIds) {
-                [dao.shareDao saveWithShareId:shareId];
-            }
-        }
-        syncCompletion();
+        [contentGroup addObject:content];
+        [contentGroups setObject:contentGroup forKey:messageId];
     }
+
+    for (NSString *messageId in contentGroups.allKeys) {
+        NSArray *contentGroup = contentGroups[messageId];
+        // Skip if number of data is less than threshold.
+        if (contentGroup.count < group.defaults.threshold) {
+            continue;
+        }
+        // Recover shares.
+        NSMutableArray *shares = [[NSMutableArray alloc] init];
+        for (NSObject *content in contentGroup) {
+            // Save share id to persistent store.
+            [dao.shareDao saveWithShareId:[content valueForKey:@"id"]];
+            // Extract share from content.
+            [shares addObject:[[content valueForKey:@"data"] valueForKey:@"share"]];
+        }
+        NSString *messageString = [SecretSharing recoverShareWith:shares];
+        if (DEBUG) {
+            NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
+        }
+        [self handleMessage:messageString];
+    }
+    
+    // Finish sync
+    syncCompletion();
 }
 
 - (void)handleMessage:(NSString *)messageString {
@@ -252,20 +243,6 @@
     }
 }
 
-- (NSObject *)pushPairedContentFrom:(NSUInteger)index withMessageId:(NSString *)messageId {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    NSMutableArray *contents = [contentsGroup objectAtIndex:index];
-    for (NSObject *content in contents) {
-        NSObject *data = [content valueForKey:@"data"];
-        if ([messageId isEqualToString:[data valueForKey:@"messageId"]]) {
-            return content;
-        }
-    }
-    return nil;
-}
-
 - (NSDictionary *)parseJSONString:(NSString *)string {
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
@@ -276,28 +253,6 @@
         return nil;
     }
     return dictionary;
-}
-
-#pragma mark - Key Value Observe
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary<NSKeyValueChangeKey,id> *)change
-                       context:(void *)context {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    if ([keyPath isEqualToString:ReceivedTag]) {
-        if (DEBUG) {
-            NSLog(@"%ld group of shares received.", (long)self.received);
-        }
-        if (self.received == net.managers.count) {
-            if (DEBUG) {
-                NSLog(@"All of %ld group of shares received successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
-            }
-            [self removeObserver:self forKeyPath:ReceivedTag];
-            [self recoverShares];
-        }
-    }
 }
 
 @end

@@ -14,8 +14,6 @@ typedef void (^Completion)(void);
 
 @interface ReceiveManager: NSObject
 
-@property (nonatomic) NSInteger received;
-
 // Get single instance.
 + (instancetype)sharedInstance;
 
