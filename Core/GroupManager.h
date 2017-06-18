@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GrouperDaoManager.h"
+#import "CoreDaoManager.h"
 #import "Defaults.h"
 #import "MultipeerConnectivityManager.h"
 
@@ -17,7 +17,11 @@
 
 @interface GroupManager : NSObject <MCBrowserViewControllerDelegate>
 
+// System parameters
 @property (nonatomic, strong) Defaults *defaults;
+
+// App Core Data stack, it should be set when app is lauching.
+@property (nonatomic, strong) DataStack *appDataStack;
 
 @property (nonatomic) BOOL isOwner;
 @property (nonatomic, strong) NSMutableArray *connectedPeers;
@@ -34,6 +38,8 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 
 // Get single instance.
 + (instancetype)sharedInstance;
+
+// *********************** Global Config ************************
 
 // Save global user email and name.
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name;

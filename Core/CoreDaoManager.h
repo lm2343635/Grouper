@@ -12,7 +12,7 @@
 #import "MessageDao.h"
 #import "AppDelegate.h"
 
-@interface GrouperDaoManager : NSObject
+@interface CoreDaoManager : NSObject
 
 @property (nonatomic, readonly) DataStack *dataStack;
 @property (nonatomic, readonly) NSManagedObjectContext *context;

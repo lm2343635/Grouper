@@ -29,6 +29,7 @@
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
     group = [GroupManager sharedInstance];
+    group.appDataStack = [self dataStack];
     
     if (DEBUG) {
         NSLog(@"Number of group members is %ld, threshold is %ld, deletion interval time is %ldm", (long)group.members, (long)group.defaults.threshold, (long)group.defaults.interval);
@@ -119,16 +120,6 @@
     }
     _dataStack = [[DataStack alloc] initWithModelName:@"Model"];
     return _dataStack;
-}
-
-@synthesize grouperDataStack = _grouperDataStack;
-
-- (DataStack *)grouperDataStack {
-    if (_grouperDataStack) {
-        return _grouperDataStack;
-    }
-    _grouperDataStack = [[DataStack alloc] initWithModelName:@"Static"];
-    return _grouperDataStack;
 }
 
 #pragma mark - Service

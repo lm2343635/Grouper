@@ -11,7 +11,8 @@
 #import "ReceiveManager.h"
 
 @implementation GroupManager {
-    GrouperDaoManager *dao;
+    CoreDaoManager *dao;
+    
     NetManager *net;
     
     // Invite new member related.
@@ -43,7 +44,7 @@
     self = [super init];
     if (self) {
         net = [NetManager sharedInstance];
-        dao = [GrouperDaoManager sharedInstance];
+        dao = [CoreDaoManager sharedInstance];
         
         _defaults = [Defaults sharedInstance];
         
@@ -62,6 +63,8 @@
     }
     return self;
 }
+
+#pragma mark - Global Config
 
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name {
     if (DEBUG) {

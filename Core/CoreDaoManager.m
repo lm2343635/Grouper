@@ -6,18 +6,19 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "GrouperDaoManager.h"
+#import "CoreDaoManager.h"
+#import "GroupManager.h"
 
-@implementation GrouperDaoManager
+@implementation CoreDaoManager
 
 + (instancetype)sharedInstance {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    static GrouperDaoManager *instance;
+    static CoreDaoManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[GrouperDaoManager alloc] init];
+        instance = [[CoreDaoManager alloc] init];
     });
     return instance;
 }
@@ -28,16 +29,25 @@
     }
     self = [super init];
     if (self) {
-        //Get NSManagedObjectContent form AppDelegate
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        _dataStack = delegate.grouperDataStack;
-        _context = _dataStack.mainContext;
+        _context = [self dataStack].mainContext;
         //Set context for sync object dao
         _userDao = [[UserDao alloc] initWithManagedObjectContext:_context];
         _shareDao = [[ShareDao alloc] initWithManagedObjectContext:_context];
         _messageDao = [[MessageDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
+}
+
+#pragma mark - Grouper framework's Core Data stack
+
+@synthesize dataStack = _dataStack;
+
+- (DataStack *)dataStack {
+    if (_dataStack) {
+        return _dataStack;
+    }
+    _dataStack = [[DataStack alloc] initWithModelName:@"Static"];
+    return _dataStack;
 }
 
 - (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {

@@ -15,7 +15,6 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) DataStack *dataStack;
-@property (strong, nonatomic) DataStack *grouperDataStack;
 
 @end
 

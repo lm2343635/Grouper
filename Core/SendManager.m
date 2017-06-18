@@ -13,7 +13,7 @@
 
 @implementation SendManager {
     NetManager *net;
-    GrouperDaoManager *dao;
+    CoreDaoManager *dao;
     GroupManager *group;
     
     // Number of sent messages
@@ -39,7 +39,7 @@
     self = [super init];
     if (self) {
         net = [NetManager sharedInstance];
-        dao = [GrouperDaoManager sharedInstance];
+        dao = [CoreDaoManager sharedInstance];
         group = [GroupManager sharedInstance];
     }
     return self;
@@ -79,7 +79,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // At first, we delete the sync entity.
-    [dao.context deleteObject:object];
+    [group.appDataStack.mainContext deleteObject:object];
     // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
     // Then, we create a delete message and save to sender entity.
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]

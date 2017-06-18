@@ -14,7 +14,7 @@
 @end
 
 @implementation MembersTableViewController {
-    GrouperDaoManager *dao;
+    CoreDaoManager *dao;
     GroupManager *group;
     
     NSArray *members;
@@ -28,7 +28,7 @@
     }
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
-    dao = [GrouperDaoManager sharedInstance];
+    dao = [CoreDaoManager sharedInstance];
     
     // Remove inviting member button if this user is not group owner.
     if (!group.isOwner) {
