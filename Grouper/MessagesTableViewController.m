@@ -7,7 +7,7 @@
 //
 
 #import "MessagesTableViewController.h"
-#import "DaoManager.h"
+#import "GrouperDaoManager.h"
 #import "GroupManager.h"
 
 @interface MessagesTableViewController ()
@@ -15,7 +15,7 @@
 @end
 
 @implementation MessagesTableViewController {
-    DaoManager *dao;
+    GrouperDaoManager *dao;
     NSMutableArray *messages;
     GroupManager *group;
     NSDateFormatter *dateFormatter;
@@ -26,7 +26,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    dao = [DaoManager sharedInstance];
+    dao = [GrouperDaoManager sharedInstance];
     messages = [NSMutableArray arrayWithArray:[dao.messageDao findNormal]];
     group = [GroupManager sharedInstance];
     

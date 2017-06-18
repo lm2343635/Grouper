@@ -18,7 +18,7 @@
     NetManager *net;
     SendManager *send;
     GroupManager *group;
-    DaoManager *dao;
+    GrouperDaoManager *dao;
     SyncManager *sync;
     
     int received;
@@ -41,8 +41,8 @@
         net = [NetManager sharedInstance];
         send = [SendManager sharedInstance];
         group = [GroupManager sharedInstance];
-        dao = [DaoManager sharedInstance];
-        sync = [[SyncManager alloc] initWithDataStack:[dao getDataStack]];
+        dao = [GrouperDaoManager sharedInstance];
+        sync = [[SyncManager alloc] initWithDataStack:[[DaoManager sharedInstance] getDataStack]];
     }
     return self;
 }

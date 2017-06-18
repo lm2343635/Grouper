@@ -1,23 +1,23 @@
 //
-//  DaoManager.m
-//  GroupFinance
+//  GrouperDaoManager.m
+//  Grouper
 //
-//  Created by lidaye on 5/22/16.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 18/06/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "DaoManager.h"
+#import "GrouperDaoManager.h"
 
-@implementation DaoManager
+@implementation GrouperDaoManager
 
 + (instancetype)sharedInstance {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    static DaoManager *instance;
+    static GrouperDaoManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[DaoManager alloc] init];
+        instance = [[GrouperDaoManager alloc] init];
     });
     return instance;
 }
@@ -30,15 +30,12 @@
     if (self) {
         //Get NSManagedObjectContent form AppDelegate
         AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        _dataStack = delegate.dataStack;
+        _dataStack = delegate.grouperDataStack;
         _context = _dataStack.mainContext;
         //Set context for sync object dao
-        _accountDao = [[AccountDao alloc] initWithManagedObjectContext:_context];
-        _classificationDao = [[ClassificationDao alloc] initWithManagedObjectContext:_context];
-        _shopDao = [[ShopDao alloc] initWithManagedObjectContext:_context];
-        _recordDao = [[RecordDao alloc] initWithManagedObjectContext:_context];
-        _photoDao = [[PhotoDao alloc] initWithManagedObjectContext:_context];
-        _templateDao = [[TemplateDao alloc] initWithManagedObjectContext:_context];
+        _userDao = [[UserDao alloc] initWithManagedObjectContext:_context];
+        _shareDao = [[ShareDao alloc] initWithManagedObjectContext:_context];
+        _messageDao = [[MessageDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
 }

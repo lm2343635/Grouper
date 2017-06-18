@@ -31,7 +31,7 @@
     group = [GroupManager sharedInstance];
     
     if (DEBUG) {
-        NSLog(@"Number of group menbers is %ld", (long)group.members);
+        NSLog(@"Number of group members is %ld, threshold is %ld, deletion interval time is %ldm", (long)group.members, (long)group.defaults.threshold, (long)group.defaults.interval);
         NSLog(@"Group id is %@, group name is %@, group owner is %@", group.defaults.groupId, group.defaults.groupName, group.defaults.owner);
         for (NSString *address in group.defaults.servers.allKeys) {
             NSLog(@"Untrusted server %@, access key is %@", address, group.defaults.servers[address]);
@@ -119,6 +119,16 @@
     }
     _dataStack = [[DataStack alloc] initWithModelName:@"Model"];
     return _dataStack;
+}
+
+@synthesize grouperDataStack = _grouperDataStack;
+
+- (DataStack *)grouperDataStack {
+    if (_grouperDataStack) {
+        return _grouperDataStack;
+    }
+    _grouperDataStack = [[DataStack alloc] initWithModelName:@"Static"];
+    return _grouperDataStack;
 }
 
 #pragma mark - Service

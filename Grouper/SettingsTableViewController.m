@@ -122,7 +122,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [dao.shareDao deleteAll];
+//    [dao.shareDao deleteAll];
 }
 
 @end

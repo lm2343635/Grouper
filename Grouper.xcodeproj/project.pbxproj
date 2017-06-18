@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3E9BFF9DF44FD097026810A5 /* Pods_Grouper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710458120C337F8796D1E807 /* Pods_Grouper.framework */; };
+		E4112E131EF6975D00F1298D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */; };
+		E4112E1F1EF6981A00F1298D /* Static.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4112E1D1EF6981A00F1298D /* Static.xcdatamodeld */; };
+		E4112E261EF698BD00F1298D /* GrouperDaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E251EF698BD00F1298D /* GrouperDaoManager.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
@@ -94,7 +97,6 @@
 		E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A921D03F036006F5DF2 /* EditRecordViewController.m */; };
 		E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */; };
 		E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */; };
-		E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */; };
 		E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */; };
 		E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */; };
 /* End PBXBuildFile section */
@@ -113,6 +115,15 @@
 		3A5070CBDE318AFF455E23F3 /* Pods-Grouper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grouper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grouper/Pods-Grouper.release.xcconfig"; sourceTree = "<group>"; };
 		710458120C337F8796D1E807 /* Pods_Grouper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grouper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0B7F1ED6537206984CEF56 /* Pods-Grouper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grouper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grouper/Pods-Grouper.debug.xcconfig"; sourceTree = "<group>"; };
+		E4112E0D1EF6975D00F1298D /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		E4112E0E1EF6975D00F1298D /* Model_0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.1.xcdatamodel; sourceTree = "<group>"; };
+		E4112E0F1EF6975D00F1298D /* Model_0.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.2.xcdatamodel; sourceTree = "<group>"; };
+		E4112E101EF6975D00F1298D /* Model_0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.3.xcdatamodel; sourceTree = "<group>"; };
+		E4112E111EF6975D00F1298D /* Model_0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.4.xcdatamodel; sourceTree = "<group>"; };
+		E4112E121EF6975D00F1298D /* Model_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2.0.xcdatamodel; sourceTree = "<group>"; };
+		E4112E1E1EF6981A00F1298D /* Static.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Static.xcdatamodel; sourceTree = "<group>"; };
+		E4112E241EF698BD00F1298D /* GrouperDaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrouperDaoManager.h; sourceTree = "<group>"; };
+		E4112E251EF698BD00F1298D /* GrouperDaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GrouperDaoManager.m; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -127,7 +138,6 @@
 		E430E7611E2219B400CF9660 /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
 		E430E7641E2385D900CF9660 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		E430E7651E2385D900CF9660 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
-		E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.1.xcdatamodel; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* Grouper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grouper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -138,7 +148,6 @@
 		E4400D861CCB5845000DFB1A /* GrouperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D8A1CCB5845000DFB1A /* GrouperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouperTests.m; sourceTree = "<group>"; };
 		E4400D8C1CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.4.xcdatamodel; sourceTree = "<group>"; };
 		E4546A431EAC7C1E004DB5FD /* Grouper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grouper-Bridging-Header.h"; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
 		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
@@ -238,7 +247,6 @@
 		E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "User+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E48A3EA51DCC724500B20B20 /* UserDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDao.h; sourceTree = "<group>"; };
 		E48A3EA61DCC724500B20B20 /* UserDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDao.m; sourceTree = "<group>"; };
-		E48DBCAA1E88F67C00EC94D1 /* Model_0.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.2.xcdatamodel; sourceTree = "<group>"; };
 		E48DBCAB1E88FBDB00EC94D1 /* Share+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Share+CoreDataClass.h"; sourceTree = "<group>"; };
 		E48DBCAC1E88FBDB00EC94D1 /* Share+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Share+CoreDataClass.m"; sourceTree = "<group>"; };
 		E48DBCAD1E88FBDB00EC94D1 /* Share+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Share+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -266,8 +274,6 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2.0.xcdatamodel; sourceTree = "<group>"; };
-		E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.3.xcdatamodel; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
 		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
@@ -292,7 +298,6 @@
 		E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddTemplateViewController.m; sourceTree = "<group>"; };
 		E4F60A971D040C1B006F5DF2 /* TemplatesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplatesTableViewController.h; sourceTree = "<group>"; };
 		E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplatesTableViewController.m; sourceTree = "<group>"; };
-		E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		E4F60ACB1D0413FF006F5DF2 /* TemplateDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateDao.h; sourceTree = "<group>"; };
 		E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateDao.m; sourceTree = "<group>"; };
 		E4F60AD11D0448FF006F5DF2 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
@@ -378,6 +383,15 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		E4112E231EF6987800F1298D /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				E4112E241EF698BD00F1298D /* GrouperDaoManager.h */,
+				E4112E251EF698BD00F1298D /* GrouperDaoManager.m */,
+			);
+			name = Dao;
+			sourceTree = "<group>";
+		};
 		E430E7631E2385A600CF9660 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -455,6 +469,7 @@
 			children = (
 				E486A1901EF6890E00A33AE9 /* Grouper.h */,
 				E486A18C1EF6848500A33AE9 /* Controller */,
+				E4112E231EF6987800F1298D /* Dao */,
 				E486A18D1EF684AF00A33AE9 /* Manager */,
 				E486A18B1EF6845500A33AE9 /* Storyboard */,
 				E486A18E1EF684E500A33AE9 /* Support */,
@@ -598,6 +613,8 @@
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E4112E1D1EF6981A00F1298D /* Static.xcdatamodeld */,
+				E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */,
 				E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */,
 				E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */,
 				E48A3EA11DCC721A00B20B20 /* User+CoreDataProperties.h */,
@@ -622,7 +639,6 @@
 				E465169F1E31EDEB00A3E8E2 /* Classification+CoreDataClass.m */,
 				E46516A01E31EDEB00A3E8E2 /* Classification+CoreDataProperties.h */,
 				E46516A11E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m */,
-				E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */,
 				E49E7CD41DC7343400E9E43A /* Photo+CoreDataClass.h */,
 				E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */,
 				E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */,
@@ -847,6 +863,7 @@
 				E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */,
 				E486A1A81EF689C700A33AE9 /* RestoreServerViewController.m in Sources */,
 				E46516A21E31EDEB00A3E8E2 /* Classification+CoreDataClass.m in Sources */,
+				E4112E1F1EF6981A00F1298D /* Static.xcdatamodeld in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
 				E4F1CB431CFB0B0C00461B3F /* RecordDao.m in Sources */,
 				E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */,
@@ -854,10 +871,10 @@
 				E486A1A61EF689C700A33AE9 /* UserInfoViewController.m in Sources */,
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
 				E486A1B61EF68A4600A33AE9 /* NetManager.m in Sources */,
+				E4112E261EF698BD00F1298D /* GrouperDaoManager.m in Sources */,
 				E48DBCBC1E88FC4200EC94D1 /* MessageDao.m in Sources */,
 				E486A1CF1EF68AD800A33AE9 /* InternetResponse.m in Sources */,
 				E46516AF1E31F1F100A3E8E2 /* Account+CoreDataProperties.m in Sources */,
-				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
@@ -882,6 +899,7 @@
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E486A1B71EF68A4600A33AE9 /* ReceiveManager.m in Sources */,
 				E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */,
+				E4112E131EF6975D00F1298D /* Model.xcdatamodeld in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,
 				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
@@ -1134,18 +1152,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */ = {
+		E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */,
-				E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */,
-				E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */,
-				E48DBCAA1E88F67C00EC94D1 /* Model_0.2.xcdatamodel */,
-				E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */,
-				E4F60A9C1D04121F006F5DF2 /* Model.xcdatamodel */,
+				E4112E0D1EF6975D00F1298D /* Model.xcdatamodel */,
+				E4112E0E1EF6975D00F1298D /* Model_0.1.xcdatamodel */,
+				E4112E0F1EF6975D00F1298D /* Model_0.2.xcdatamodel */,
+				E4112E101EF6975D00F1298D /* Model_0.3.xcdatamodel */,
+				E4112E111EF6975D00F1298D /* Model_0.4.xcdatamodel */,
+				E4112E121EF6975D00F1298D /* Model_2.0.xcdatamodel */,
 			);
-			currentVersion = E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */;
+			currentVersion = E4112E121EF6975D00F1298D /* Model_2.0.xcdatamodel */;
 			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		E4112E1D1EF6981A00F1298D /* Static.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E4112E1E1EF6981A00F1298D /* Static.xcdatamodel */,
+			);
+			currentVersion = E4112E1E1EF6981A00F1298D /* Static.xcdatamodel */;
+			path = Static.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

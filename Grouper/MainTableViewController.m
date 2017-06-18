@@ -175,13 +175,13 @@
         } else {
             MessageData *message = [messages objectAtIndex:indexPath.row];
             
-            User *user = [dao.userDao getByNode:message.sender];
+//            User *user = [dao.userDao getByNode:message.sender];
             cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
                                                    forIndexPath:indexPath];
 
             UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
 
-            sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
+//            sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
             
             UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];
             UILabel *typeLabel = (UILabel *)[cell viewWithTag:4];
@@ -223,7 +223,7 @@
         for (NSString *address in serverStates.allKeys) {
             [self showState:[serverStates[address] boolValue] forServer:address];
         }
-        
+
         if (sync) {
             [syncImageView startRotate:2 withClockwise:NO];
             // Refresh members list before data sync

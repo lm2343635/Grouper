@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DaoManager.h"
+#import "GrouperDaoManager.h"
 #import "Defaults.h"
 #import "MultipeerConnectivityManager.h"
 

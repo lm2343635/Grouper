@@ -11,7 +11,7 @@
 #import "ReceiveManager.h"
 
 @implementation GroupManager {
-    DaoManager *dao;
+    GrouperDaoManager *dao;
     NetManager *net;
     
     // Invite new member related.
@@ -43,7 +43,7 @@
     self = [super init];
     if (self) {
         net = [NetManager sharedInstance];
-        dao = [DaoManager sharedInstance];
+        dao = [GrouperDaoManager sharedInstance];
         
         _defaults = [Defaults sharedInstance];
         
@@ -304,6 +304,7 @@
                                     
                                     _defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
                                     _defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
+                                    _defaults.interval = [[groupInfo valueForKey:@"interval"] integerValue];
                                     
                                     // Set initial state to InitialFinished
                                     _defaults.initial = InitialFinished;

@@ -13,7 +13,7 @@
 
 @implementation SendManager {
     NetManager *net;
-    DaoManager *dao;
+    GrouperDaoManager *dao;
     GroupManager *group;
     
     // Number of sent messages
@@ -39,7 +39,7 @@
     self = [super init];
     if (self) {
         net = [NetManager sharedInstance];
-        dao = [DaoManager sharedInstance];
+        dao = [GrouperDaoManager sharedInstance];
         group = [GroupManager sharedInstance];
     }
     return self;

@@ -6,19 +6,6 @@
     <entity name="Classification" representedClassName="Classification" parentEntity="SyncEntity" syncable="YES">
         <attribute name="cname" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Message" representedClassName="Message" syncable="YES">
-        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="messageId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="object" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="objectId" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="receiver" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sender" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sendtime" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="sequence" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <entity name="Photo" representedClassName="Photo" syncable="YES">
         <attribute name="createDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="data" optional="YES" attributeType="Binary" syncable="YES"/>
@@ -32,9 +19,6 @@
         <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" syncable="YES"/>
         <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" syncable="YES"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" syncable="YES"/>
-    </entity>
-    <entity name="Share" representedClassName="Share" syncable="YES">
-        <attribute name="shareId" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Shop" representedClassName="Shop" parentEntity="SyncEntity" syncable="YES">
         <attribute name="sname" optional="YES" attributeType="String" syncable="YES"/>
@@ -53,21 +37,13 @@
         <relationship name="classification" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Classification" syncable="YES"/>
         <relationship name="shop" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shop" syncable="YES"/>
     </entity>
-    <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="node" optional="YES" attributeType="String" syncable="YES"/>
-    </entity>
     <elements>
         <element name="Account" positionX="-13439" positionY="-4404" width="128" height="60"/>
         <element name="Classification" positionX="-13340" positionY="-4762" width="128" height="60"/>
-        <element name="Message" positionX="-13230" positionY="-4608" width="128" height="210"/>
         <element name="Photo" positionX="-13401" positionY="-4578" width="128" height="90"/>
         <element name="Record" positionX="-12719" positionY="-4347" width="128" height="150"/>
-        <element name="Share" positionX="-13230" positionY="-4608" width="128" height="60"/>
         <element name="Shop" positionX="-13320" positionY="-4185" width="128" height="60"/>
         <element name="SyncEntity" positionX="-13230" positionY="-4608" width="128" height="120"/>
         <element name="Template" positionX="-12908" positionY="-4500" width="128" height="120"/>
-        <element name="User" positionX="-13230" positionY="-4608" width="128" height="90"/>
     </elements>
 </model>
