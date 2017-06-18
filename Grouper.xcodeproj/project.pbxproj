@@ -8,30 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		3E9BFF9DF44FD097026810A5 /* Pods_Grouper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710458120C337F8796D1E807 /* Pods_Grouper.framework */; };
-		E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */; };
-		E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */; };
-		E4039EE01DE0730C00D39DDB /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = E4039EDF1DE0730C00D39DDB /* Defaults.m */; };
-		E41FD0F81EE2969A00DDDBA3 /* Init.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */; };
-		E41FD0FB1EE29DFC00DDDBA3 /* InitGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
-		E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */; };
-		E42B7DA91E1E3BD60037BAAE /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E42B7DA81E1E3BD60037BAAE /* SyncManager.swift */; };
-		E42C58D91DCC53C4009A2596 /* SendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E42C58D81DCC53C4009A2596 /* SendManager.m */; };
 		E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */; };
 		E4305A4F1E36283D00010B52 /* Template+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */; };
 		E4305A511E36363000010B52 /* ContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4305A501E36363000010B52 /* ContentViewController.swift */; };
 		E430E7621E2219B400CF9660 /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7611E2219B400CF9660 /* CommonTool.m */; };
 		E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E430E7651E2385D900CF9660 /* MainTableViewController.m */; };
-		E43DDB8D1E404F8A00C8BDAE /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */; };
 		E4400D721CCB5845000DFB1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D711CCB5845000DFB1A /* main.m */; };
 		E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D741CCB5845000DFB1A /* AppDelegate.m */; };
 		E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D791CCB5845000DFB1A /* Main.storyboard */; };
 		E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */; };
 		E4400D8B1CCB5845000DFB1A /* GrouperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4400D8A1CCB5845000DFB1A /* GrouperTests.m */; };
-		E44661081EE3DA0300BA4354 /* JoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E44661071EE3DA0300BA4354 /* JoinGroupViewController.m */; };
-		E446C1011DCF75E600EC5966 /* InternetResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E446C1001DCF75E600EC5966 /* InternetResponse.m */; };
 		E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */; };
 		E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B40F1CF19E1600139C4C /* EditClassificationViewController.m */; };
 		E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4121CF19E2000139C4C /* AddShopViewController.m */; };
@@ -46,7 +35,6 @@
 		E457B4321CF1A41800139C4C /* ShopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4311CF1A41800139C4C /* ShopDao.m */; };
 		E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4341CF1A42900139C4C /* ClassificationDao.m */; };
 		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
-		E458BB5A1E10EDA500699D23 /* RestoreServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E458BB591E10EDA500699D23 /* RestoreServerViewController.m */; };
 		E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516991E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m */; };
 		E465169D1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E465169B1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m */; };
 		E46516A21E31EDEB00A3E8E2 /* Classification+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E465169F1E31EDEB00A3E8E2 /* Classification+CoreDataClass.m */; };
@@ -55,13 +43,30 @@
 		E46516AD1E31F1F100A3E8E2 /* Shop+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516A71E31F1F100A3E8E2 /* Shop+CoreDataProperties.m */; };
 		E46516AE1E31F1F100A3E8E2 /* Account+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516A91E31F1F100A3E8E2 /* Account+CoreDataClass.m */; };
 		E46516AF1E31F1F100A3E8E2 /* Account+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516AB1E31F1F100A3E8E2 /* Account+CoreDataProperties.m */; };
-		E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D57671DB4D21900116C4E /* GLibFacade.c */; };
-		E46D576E1DB4D21900116C4E /* shamir.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D57691DB4D21900116C4E /* shamir.c */; };
-		E46D576F1DB4D21900116C4E /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E46D576B1DB4D21900116C4E /* strtok.c */; };
-		E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E46D57711DB4D65800116C4E /* SecretSharing.m */; };
-		E476B0A31DE3FC3700FBCB24 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */; };
-		E476B0A61DE40F5C00FBCB24 /* MultipeerConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E476B0A51DE40F5C00FBCB24 /* MultipeerConnectivityManager.m */; };
 		E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */; };
+		E486A1A11EF689C700A33AE9 /* AddMemberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1921EF689C700A33AE9 /* AddMemberViewController.m */; };
+		E486A1A21EF689C700A33AE9 /* AddServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1941EF689C700A33AE9 /* AddServerViewController.m */; };
+		E486A1A31EF689C700A33AE9 /* InitGroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1961EF689C700A33AE9 /* InitGroupTableViewController.m */; };
+		E486A1A41EF689C700A33AE9 /* JoinGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1981EF689C700A33AE9 /* JoinGroupViewController.m */; };
+		E486A1A51EF689C700A33AE9 /* MembersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A19A1EF689C700A33AE9 /* MembersTableViewController.m */; };
+		E486A1A61EF689C700A33AE9 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A19C1EF689C700A33AE9 /* UserInfoViewController.m */; };
+		E486A1A71EF689C700A33AE9 /* ServersTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A19E1EF689C700A33AE9 /* ServersTableViewController.m */; };
+		E486A1A81EF689C700A33AE9 /* RestoreServerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1A01EF689C700A33AE9 /* RestoreServerViewController.m */; };
+		E486A1B41EF68A4600A33AE9 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AA1EF68A4600A33AE9 /* GroupManager.m */; };
+		E486A1B51EF68A4600A33AE9 /* MultipeerConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AC1EF68A4600A33AE9 /* MultipeerConnectivityManager.m */; };
+		E486A1B61EF68A4600A33AE9 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AE1EF68A4600A33AE9 /* NetManager.m */; };
+		E486A1B71EF68A4600A33AE9 /* ReceiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B01EF68A4600A33AE9 /* ReceiveManager.m */; };
+		E486A1B81EF68A4600A33AE9 /* SendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B21EF68A4600A33AE9 /* SendManager.m */; };
+		E486A1B91EF68A4600A33AE9 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B31EF68A4600A33AE9 /* SyncManager.swift */; };
+		E486A1BC1EF68A7A00A33AE9 /* Init.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */; };
+		E486A1BD1EF68A7A00A33AE9 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */; };
+		E486A1CC1EF68AD800A33AE9 /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1BE1EF68AD800A33AE9 /* strtok.c */; };
+		E486A1CD1EF68AD800A33AE9 /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C11EF68AD800A33AE9 /* Defaults.m */; };
+		E486A1CE1EF68AD800A33AE9 /* GLibFacade.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C21EF68AD800A33AE9 /* GLibFacade.c */; };
+		E486A1CF1EF68AD800A33AE9 /* InternetResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C51EF68AD800A33AE9 /* InternetResponse.m */; };
+		E486A1D01EF68AD800A33AE9 /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C71EF68AD800A33AE9 /* MessageData.m */; };
+		E486A1D11EF68AD800A33AE9 /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C91EF68AD800A33AE9 /* SecretSharing.m */; };
+		E486A1D21EF68AD800A33AE9 /* shamir.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1CA1EF68AD800A33AE9 /* shamir.c */; };
 		E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */; };
 		E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA01DCC721A00B20B20 /* User+CoreDataClass.m */; };
 		E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A3EA21DCC721A00B20B20 /* User+CoreDataProperties.m */; };
@@ -72,15 +77,11 @@
 		E48DBCB61E88FBDB00EC94D1 /* Message+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DBCB21E88FBDB00EC94D1 /* Message+CoreDataProperties.m */; };
 		E48DBCB91E88FC0F00EC94D1 /* ShareDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DBCB81E88FC0F00EC94D1 /* ShareDao.m */; };
 		E48DBCBC1E88FC4200EC94D1 /* MessageDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DBCBB1E88FC4200EC94D1 /* MessageDao.m */; };
-		E48DE0711DCF660300A7A5DB /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E48DE0701DCF660300A7A5DB /* NetManager.m */; };
-		E4923E801E31DEDB003C4183 /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = E4923E7F1E31DEDB003C4183 /* MessageData.m */; };
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
 		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
 		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
-		E4BF182E1E163F3A003340FB /* ReceiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BF182D1E163F3A003340FB /* ReceiveManager.m */; };
-		E4DE20241D0D6EFC00A80E65 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */; };
 		E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4EFB6621D3A0C4800C613B0 /* AlertTool.m */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
@@ -96,7 +97,6 @@
 		E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A9B1D04121F006F5DF2 /* Model.xcdatamodeld */; };
 		E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */; };
 		E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */; };
-		E4F787031EED2ACD00A33932 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F787021EED2ACD00A33932 /* Members.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,26 +113,11 @@
 		3A5070CBDE318AFF455E23F3 /* Pods-Grouper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grouper.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grouper/Pods-Grouper.release.xcconfig"; sourceTree = "<group>"; };
 		710458120C337F8796D1E807 /* Pods_Grouper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grouper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0B7F1ED6537206984CEF56 /* Pods-Grouper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grouper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grouper/Pods-Grouper.debug.xcconfig"; sourceTree = "<group>"; };
-		E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServersTableViewController.h; path = ../Grouper/ServersTableViewController.h; sourceTree = "<group>"; };
-		E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServersTableViewController.m; path = ../Grouper/ServersTableViewController.m; sourceTree = "<group>"; };
-		E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddServerViewController.h; path = ../Grouper/AddServerViewController.h; sourceTree = "<group>"; };
-		E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddServerViewController.m; path = ../Grouper/AddServerViewController.m; sourceTree = "<group>"; };
-		E4039EDE1DE0730C00D39DDB /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Defaults.h; path = ../Grouper/Defaults.h; sourceTree = "<group>"; };
-		E4039EDF1DE0730C00D39DDB /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Defaults.m; path = ../Grouper/Defaults.m; sourceTree = "<group>"; };
-		E40A9BC51EDE81AB009B472E /* Grouper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Grouper.h; path = ../Grouper/Grouper.h; sourceTree = "<group>"; };
-		E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Init.storyboard; path = ../Grouper/Init.storyboard; sourceTree = "<group>"; };
-		E41FD0F91EE29DFC00DDDBA3 /* InitGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InitGroupTableViewController.h; path = ../Grouper/InitGroupTableViewController.h; sourceTree = "<group>"; };
-		E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InitGroupTableViewController.m; path = ../Grouper/InitGroupTableViewController.m; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MultipeerConnectivity.framework; path = System/Library/Frameworks/MultipeerConnectivity.framework; sourceTree = SDKROOT; };
-		E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MembersTableViewController.h; path = ../Grouper/MembersTableViewController.h; sourceTree = "<group>"; };
-		E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MembersTableViewController.m; path = ../Grouper/MembersTableViewController.m; sourceTree = "<group>"; };
-		E42B7DA81E1E3BD60037BAAE /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SyncManager.swift; path = ../Grouper/SyncManager.swift; sourceTree = "<group>"; };
-		E42C58D71DCC53C4009A2596 /* SendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SendManager.h; path = ../Grouper/SendManager.h; sourceTree = "<group>"; };
-		E42C58D81DCC53C4009A2596 /* SendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SendManager.m; path = ../Grouper/SendManager.m; sourceTree = "<group>"; };
 		E4305A4A1E36283D00010B52 /* Template+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataClass.h"; sourceTree = "<group>"; };
 		E4305A4B1E36283D00010B52 /* Template+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Template+CoreDataClass.m"; sourceTree = "<group>"; };
 		E4305A4C1E36283D00010B52 /* Template+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Template+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -143,8 +128,6 @@
 		E430E7641E2385D900CF9660 /* MainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableViewController.h; sourceTree = "<group>"; };
 		E430E7651E2385D900CF9660 /* MainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableViewController.m; sourceTree = "<group>"; };
 		E4355E061E3F22730000BB4B /* Model_0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.1.xcdatamodel; sourceTree = "<group>"; };
-		E43DDB8B1E404F8A00C8BDAE /* GroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GroupManager.h; path = ../Grouper/GroupManager.h; sourceTree = "<group>"; };
-		E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GroupManager.m; path = ../Grouper/GroupManager.m; sourceTree = "<group>"; };
 		E4400D6D1CCB5845000DFB1A /* Grouper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grouper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D711CCB5845000DFB1A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E4400D731CCB5845000DFB1A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -155,10 +138,6 @@
 		E4400D861CCB5845000DFB1A /* GrouperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D8A1CCB5845000DFB1A /* GrouperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouperTests.m; sourceTree = "<group>"; };
 		E4400D8C1CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E44661061EE3DA0300BA4354 /* JoinGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JoinGroupViewController.h; path = ../Grouper/JoinGroupViewController.h; sourceTree = "<group>"; };
-		E44661071EE3DA0300BA4354 /* JoinGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JoinGroupViewController.m; path = ../Grouper/JoinGroupViewController.m; sourceTree = "<group>"; };
-		E446C0FF1DCF75E600EC5966 /* InternetResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InternetResponse.h; path = ../Grouper/InternetResponse.h; sourceTree = "<group>"; };
-		E446C1001DCF75E600EC5966 /* InternetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InternetResponse.m; path = ../Grouper/InternetResponse.m; sourceTree = "<group>"; };
 		E454600E1E95DAB00099664B /* Model_0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.4.xcdatamodel; sourceTree = "<group>"; };
 		E4546A431EAC7C1E004DB5FD /* Grouper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grouper-Bridging-Header.h"; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
@@ -189,8 +168,6 @@
 		E457B4341CF1A42900139C4C /* ClassificationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationDao.m; sourceTree = "<group>"; };
 		E457B4361CF1AA6E00139C4C /* DaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoManager.h; sourceTree = "<group>"; };
 		E457B4371CF1AA6E00139C4C /* DaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoManager.m; sourceTree = "<group>"; };
-		E458BB581E10EDA500699D23 /* RestoreServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RestoreServerViewController.h; path = ../Grouper/RestoreServerViewController.h; sourceTree = "<group>"; };
-		E458BB591E10EDA500699D23 /* RestoreServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RestoreServerViewController.m; path = ../Grouper/RestoreServerViewController.m; sourceTree = "<group>"; };
 		E46516981E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncEntity+CoreDataClass.h"; sourceTree = "<group>"; };
 		E46516991E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SyncEntity+CoreDataClass.m"; sourceTree = "<group>"; };
 		E465169A1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -207,20 +184,52 @@
 		E46516A91E31F1F100A3E8E2 /* Account+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataClass.m"; sourceTree = "<group>"; };
 		E46516AA1E31F1F100A3E8E2 /* Account+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Account+CoreDataProperties.h"; sourceTree = "<group>"; };
 		E46516AB1E31F1F100A3E8E2 /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataProperties.m"; sourceTree = "<group>"; };
-		E46D57671DB4D21900116C4E /* GLibFacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = GLibFacade.c; path = ../Grouper/GLibFacade.c; sourceTree = "<group>"; };
-		E46D57681DB4D21900116C4E /* GLibFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GLibFacade.h; path = ../Grouper/GLibFacade.h; sourceTree = "<group>"; };
-		E46D57691DB4D21900116C4E /* shamir.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = shamir.c; path = ../Grouper/shamir.c; sourceTree = "<group>"; };
-		E46D576A1DB4D21900116C4E /* shamir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = shamir.h; path = ../Grouper/shamir.h; sourceTree = "<group>"; };
-		E46D576B1DB4D21900116C4E /* strtok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = strtok.c; path = ../Grouper/strtok.c; sourceTree = "<group>"; };
-		E46D576C1DB4D21900116C4E /* strtok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = strtok.h; path = ../Grouper/strtok.h; sourceTree = "<group>"; };
-		E46D57701DB4D65800116C4E /* SecretSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecretSharing.h; path = ../Grouper/SecretSharing.h; sourceTree = "<group>"; };
-		E46D57711DB4D65800116C4E /* SecretSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecretSharing.m; path = ../Grouper/SecretSharing.m; sourceTree = "<group>"; };
-		E476B0A11DE3FC3700FBCB24 /* AddMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddMemberViewController.h; path = ../Grouper/AddMemberViewController.h; sourceTree = "<group>"; };
-		E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddMemberViewController.m; path = ../Grouper/AddMemberViewController.m; sourceTree = "<group>"; };
-		E476B0A41DE40F5C00FBCB24 /* MultipeerConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MultipeerConnectivityManager.h; path = ../Grouper/MultipeerConnectivityManager.h; sourceTree = "<group>"; };
-		E476B0A51DE40F5C00FBCB24 /* MultipeerConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MultipeerConnectivityManager.m; path = ../Grouper/MultipeerConnectivityManager.m; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
+		E486A1901EF6890E00A33AE9 /* Grouper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grouper.h; sourceTree = "<group>"; };
+		E486A1911EF689C700A33AE9 /* AddMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
+		E486A1921EF689C700A33AE9 /* AddMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
+		E486A1931EF689C700A33AE9 /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
+		E486A1941EF689C700A33AE9 /* AddServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddServerViewController.m; sourceTree = "<group>"; };
+		E486A1951EF689C700A33AE9 /* InitGroupTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitGroupTableViewController.h; sourceTree = "<group>"; };
+		E486A1961EF689C700A33AE9 /* InitGroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitGroupTableViewController.m; sourceTree = "<group>"; };
+		E486A1971EF689C700A33AE9 /* JoinGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoinGroupViewController.h; sourceTree = "<group>"; };
+		E486A1981EF689C700A33AE9 /* JoinGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoinGroupViewController.m; sourceTree = "<group>"; };
+		E486A1991EF689C700A33AE9 /* MembersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MembersTableViewController.h; sourceTree = "<group>"; };
+		E486A19A1EF689C700A33AE9 /* MembersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MembersTableViewController.m; sourceTree = "<group>"; };
+		E486A19B1EF689C700A33AE9 /* RestoreServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestoreServerViewController.h; sourceTree = "<group>"; };
+		E486A19C1EF689C700A33AE9 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		E486A19D1EF689C700A33AE9 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		E486A19E1EF689C700A33AE9 /* ServersTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServersTableViewController.m; sourceTree = "<group>"; };
+		E486A19F1EF689C700A33AE9 /* ServersTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServersTableViewController.h; sourceTree = "<group>"; };
+		E486A1A01EF689C700A33AE9 /* RestoreServerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestoreServerViewController.m; sourceTree = "<group>"; };
+		E486A1A91EF68A4600A33AE9 /* GroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupManager.h; sourceTree = "<group>"; };
+		E486A1AA1EF68A4600A33AE9 /* GroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupManager.m; sourceTree = "<group>"; };
+		E486A1AB1EF68A4600A33AE9 /* MultipeerConnectivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultipeerConnectivityManager.h; sourceTree = "<group>"; };
+		E486A1AC1EF68A4600A33AE9 /* MultipeerConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerConnectivityManager.m; sourceTree = "<group>"; };
+		E486A1AD1EF68A4600A33AE9 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
+		E486A1AE1EF68A4600A33AE9 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
+		E486A1AF1EF68A4600A33AE9 /* ReceiveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveManager.h; sourceTree = "<group>"; };
+		E486A1B01EF68A4600A33AE9 /* ReceiveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveManager.m; sourceTree = "<group>"; };
+		E486A1B11EF68A4600A33AE9 /* SendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendManager.h; sourceTree = "<group>"; };
+		E486A1B21EF68A4600A33AE9 /* SendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendManager.m; sourceTree = "<group>"; };
+		E486A1B31EF68A4600A33AE9 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
+		E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Init.storyboard; sourceTree = "<group>"; };
+		E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Members.storyboard; sourceTree = "<group>"; };
+		E486A1BE1EF68AD800A33AE9 /* strtok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtok.c; sourceTree = "<group>"; };
+		E486A1BF1EF68AD800A33AE9 /* strtok.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strtok.h; sourceTree = "<group>"; };
+		E486A1C01EF68AD800A33AE9 /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
+		E486A1C11EF68AD800A33AE9 /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
+		E486A1C21EF68AD800A33AE9 /* GLibFacade.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = GLibFacade.c; sourceTree = "<group>"; };
+		E486A1C31EF68AD800A33AE9 /* GLibFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLibFacade.h; sourceTree = "<group>"; };
+		E486A1C41EF68AD800A33AE9 /* InternetResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InternetResponse.h; sourceTree = "<group>"; };
+		E486A1C51EF68AD800A33AE9 /* InternetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetResponse.m; sourceTree = "<group>"; };
+		E486A1C61EF68AD800A33AE9 /* MessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageData.h; sourceTree = "<group>"; };
+		E486A1C71EF68AD800A33AE9 /* MessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageData.m; sourceTree = "<group>"; };
+		E486A1C81EF68AD800A33AE9 /* SecretSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecretSharing.h; sourceTree = "<group>"; };
+		E486A1C91EF68AD800A33AE9 /* SecretSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretSharing.m; sourceTree = "<group>"; };
+		E486A1CA1EF68AD800A33AE9 /* shamir.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shamir.c; sourceTree = "<group>"; };
+		E486A1CB1EF68AD800A33AE9 /* shamir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shamir.h; sourceTree = "<group>"; };
 		E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
 		E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewController.m; sourceTree = "<group>"; };
 		E48A3E9F1DCC721A00B20B20 /* User+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "User+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -242,10 +251,6 @@
 		E48DBCB81E88FC0F00EC94D1 /* ShareDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDao.m; sourceTree = "<group>"; };
 		E48DBCBA1E88FC4200EC94D1 /* MessageDao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDao.h; sourceTree = "<group>"; };
 		E48DBCBB1E88FC4200EC94D1 /* MessageDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDao.m; sourceTree = "<group>"; };
-		E48DE06F1DCF660300A7A5DB /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NetManager.h; path = ../Grouper/NetManager.h; sourceTree = "<group>"; };
-		E48DE0701DCF660300A7A5DB /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NetManager.m; path = ../Grouper/NetManager.m; sourceTree = "<group>"; };
-		E4923E7E1E31DEDB003C4183 /* MessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageData.h; path = ../Grouper/MessageData.h; sourceTree = "<group>"; };
-		E4923E7F1E31DEDB003C4183 /* MessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageData.m; path = ../Grouper/MessageData.m; sourceTree = "<group>"; };
 		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		E4939F9B1D97CE36006CA612 /* Grouper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grouper.entitlements; sourceTree = "<group>"; };
@@ -263,10 +268,6 @@
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		E4BAAAA41EDD205100AFA915 /* Model_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2.0.xcdatamodel; sourceTree = "<group>"; };
 		E4BC8C511E8F808C008A4F5C /* Model_0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_0.3.xcdatamodel; sourceTree = "<group>"; };
-		E4BF182C1E163F3A003340FB /* ReceiveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReceiveManager.h; path = ../Grouper/ReceiveManager.h; sourceTree = "<group>"; };
-		E4BF182D1E163F3A003340FB /* ReceiveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReceiveManager.m; path = ../Grouper/ReceiveManager.m; sourceTree = "<group>"; };
-		E4DE20221D0D6EFC00A80E65 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = ../Grouper/UserInfoViewController.h; sourceTree = "<group>"; };
-		E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = ../Grouper/UserInfoViewController.m; sourceTree = "<group>"; };
 		E4EFB6611D3A0C4800C613B0 /* AlertTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertTool.h; sourceTree = "<group>"; };
 		E4EFB6621D3A0C4800C613B0 /* AlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertTool.m; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
@@ -296,7 +297,6 @@
 		E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateDao.m; sourceTree = "<group>"; };
 		E4F60AD11D0448FF006F5DF2 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
 		E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
-		E4F787021EED2ACD00A33932 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Members.storyboard; path = ../Grouper/Members.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,7 +453,7 @@
 		E4400D941CCB5845000DFB1A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E40A9BC51EDE81AB009B472E /* Grouper.h */,
+				E486A1901EF6890E00A33AE9 /* Grouper.h */,
 				E486A18C1EF6848500A33AE9 /* Controller */,
 				E486A18D1EF684AF00A33AE9 /* Manager */,
 				E486A18B1EF6845500A33AE9 /* Storyboard */,
@@ -494,8 +494,8 @@
 		E486A18B1EF6845500A33AE9 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				E41FD0F71EE2969A00DDDBA3 /* Init.storyboard */,
-				E4F787021EED2ACD00A33932 /* Members.storyboard */,
+				E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */,
+				E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */,
 			);
 			name = Storyboard;
 			sourceTree = "<group>";
@@ -503,22 +503,22 @@
 		E486A18C1EF6848500A33AE9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E476B0A11DE3FC3700FBCB24 /* AddMemberViewController.h */,
-				E476B0A21DE3FC3700FBCB24 /* AddMemberViewController.m */,
-				E4039EDB1DE0724F00D39DDB /* AddServerViewController.h */,
-				E4039EDC1DE0724F00D39DDB /* AddServerViewController.m */,
-				E41FD0F91EE29DFC00DDDBA3 /* InitGroupTableViewController.h */,
-				E41FD0FA1EE29DFC00DDDBA3 /* InitGroupTableViewController.m */,
-				E44661061EE3DA0300BA4354 /* JoinGroupViewController.h */,
-				E44661071EE3DA0300BA4354 /* JoinGroupViewController.m */,
-				E427764B1DD0451E00FB1D33 /* MembersTableViewController.h */,
-				E427764C1DD0451E00FB1D33 /* MembersTableViewController.m */,
-				E458BB581E10EDA500699D23 /* RestoreServerViewController.h */,
-				E458BB591E10EDA500699D23 /* RestoreServerViewController.m */,
-				E4039ED81DE0723C00D39DDB /* ServersTableViewController.h */,
-				E4039ED91DE0723C00D39DDB /* ServersTableViewController.m */,
-				E4DE20221D0D6EFC00A80E65 /* UserInfoViewController.h */,
-				E4DE20231D0D6EFC00A80E65 /* UserInfoViewController.m */,
+				E486A1911EF689C700A33AE9 /* AddMemberViewController.h */,
+				E486A1921EF689C700A33AE9 /* AddMemberViewController.m */,
+				E486A1931EF689C700A33AE9 /* AddServerViewController.h */,
+				E486A1941EF689C700A33AE9 /* AddServerViewController.m */,
+				E486A1951EF689C700A33AE9 /* InitGroupTableViewController.h */,
+				E486A1961EF689C700A33AE9 /* InitGroupTableViewController.m */,
+				E486A1971EF689C700A33AE9 /* JoinGroupViewController.h */,
+				E486A1981EF689C700A33AE9 /* JoinGroupViewController.m */,
+				E486A1991EF689C700A33AE9 /* MembersTableViewController.h */,
+				E486A19A1EF689C700A33AE9 /* MembersTableViewController.m */,
+				E486A19B1EF689C700A33AE9 /* RestoreServerViewController.h */,
+				E486A19C1EF689C700A33AE9 /* UserInfoViewController.m */,
+				E486A19D1EF689C700A33AE9 /* UserInfoViewController.h */,
+				E486A19E1EF689C700A33AE9 /* ServersTableViewController.m */,
+				E486A19F1EF689C700A33AE9 /* ServersTableViewController.h */,
+				E486A1A01EF689C700A33AE9 /* RestoreServerViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -526,17 +526,17 @@
 		E486A18D1EF684AF00A33AE9 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				E42B7DA81E1E3BD60037BAAE /* SyncManager.swift */,
-				E42C58D71DCC53C4009A2596 /* SendManager.h */,
-				E42C58D81DCC53C4009A2596 /* SendManager.m */,
-				E48DE06F1DCF660300A7A5DB /* NetManager.h */,
-				E48DE0701DCF660300A7A5DB /* NetManager.m */,
-				E4BF182C1E163F3A003340FB /* ReceiveManager.h */,
-				E4BF182D1E163F3A003340FB /* ReceiveManager.m */,
-				E43DDB8B1E404F8A00C8BDAE /* GroupManager.h */,
-				E43DDB8C1E404F8A00C8BDAE /* GroupManager.m */,
-				E476B0A41DE40F5C00FBCB24 /* MultipeerConnectivityManager.h */,
-				E476B0A51DE40F5C00FBCB24 /* MultipeerConnectivityManager.m */,
+				E486A1A91EF68A4600A33AE9 /* GroupManager.h */,
+				E486A1AA1EF68A4600A33AE9 /* GroupManager.m */,
+				E486A1AB1EF68A4600A33AE9 /* MultipeerConnectivityManager.h */,
+				E486A1AC1EF68A4600A33AE9 /* MultipeerConnectivityManager.m */,
+				E486A1AD1EF68A4600A33AE9 /* NetManager.h */,
+				E486A1AE1EF68A4600A33AE9 /* NetManager.m */,
+				E486A1AF1EF68A4600A33AE9 /* ReceiveManager.h */,
+				E486A1B01EF68A4600A33AE9 /* ReceiveManager.m */,
+				E486A1B11EF68A4600A33AE9 /* SendManager.h */,
+				E486A1B21EF68A4600A33AE9 /* SendManager.m */,
+				E486A1B31EF68A4600A33AE9 /* SyncManager.swift */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -544,20 +544,20 @@
 		E486A18E1EF684E500A33AE9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				E4039EDE1DE0730C00D39DDB /* Defaults.h */,
-				E4039EDF1DE0730C00D39DDB /* Defaults.m */,
-				E46D57671DB4D21900116C4E /* GLibFacade.c */,
-				E46D57681DB4D21900116C4E /* GLibFacade.h */,
-				E446C0FF1DCF75E600EC5966 /* InternetResponse.h */,
-				E446C1001DCF75E600EC5966 /* InternetResponse.m */,
-				E4923E7E1E31DEDB003C4183 /* MessageData.h */,
-				E4923E7F1E31DEDB003C4183 /* MessageData.m */,
-				E46D57701DB4D65800116C4E /* SecretSharing.h */,
-				E46D57711DB4D65800116C4E /* SecretSharing.m */,
-				E46D57691DB4D21900116C4E /* shamir.c */,
-				E46D576A1DB4D21900116C4E /* shamir.h */,
-				E46D576B1DB4D21900116C4E /* strtok.c */,
-				E46D576C1DB4D21900116C4E /* strtok.h */,
+				E486A1BE1EF68AD800A33AE9 /* strtok.c */,
+				E486A1BF1EF68AD800A33AE9 /* strtok.h */,
+				E486A1C01EF68AD800A33AE9 /* Defaults.h */,
+				E486A1C11EF68AD800A33AE9 /* Defaults.m */,
+				E486A1C21EF68AD800A33AE9 /* GLibFacade.c */,
+				E486A1C31EF68AD800A33AE9 /* GLibFacade.h */,
+				E486A1C41EF68AD800A33AE9 /* InternetResponse.h */,
+				E486A1C51EF68AD800A33AE9 /* InternetResponse.m */,
+				E486A1C61EF68AD800A33AE9 /* MessageData.h */,
+				E486A1C71EF68AD800A33AE9 /* MessageData.m */,
+				E486A1C81EF68AD800A33AE9 /* SecretSharing.h */,
+				E486A1C91EF68AD800A33AE9 /* SecretSharing.m */,
+				E486A1CA1EF68AD800A33AE9 /* shamir.c */,
+				E486A1CB1EF68AD800A33AE9 /* shamir.h */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -738,8 +738,8 @@
 			files = (
 				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
-				E4F787031EED2ACD00A33932 /* Members.storyboard in Resources */,
-				E41FD0F81EE2969A00DDDBA3 /* Init.storyboard in Resources */,
+				E486A1BD1EF68A7A00A33AE9 /* Members.storyboard in Resources */,
+				E486A1BC1EF68A7A00A33AE9 /* Init.storyboard in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -806,7 +806,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E46D576F1DB4D21900116C4E /* strtok.c in Sources */,
 				E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */,
 				E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */,
 				E4F2A83A1EB055F000671F90 /* BannerTool.swift in Sources */,
@@ -816,62 +815,61 @@
 				E465169D1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m in Sources */,
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
 				E48DBCB91E88FC0F00EC94D1 /* ShareDao.m in Sources */,
-				E4923E801E31DEDB003C4183 /* MessageData.m in Sources */,
-				E446C1011DCF75E600EC5966 /* InternetResponse.m in Sources */,
+				E486A1A41EF689C700A33AE9 /* JoinGroupViewController.m in Sources */,
 				E46516A31E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m in Sources */,
-				E41FD0FB1EE29DFC00DDDBA3 /* InitGroupTableViewController.m in Sources */,
+				E486A1A71EF689C700A33AE9 /* ServersTableViewController.m in Sources */,
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
-				E476B0A61DE40F5C00FBCB24 /* MultipeerConnectivityManager.m in Sources */,
 				E48A3EA71DCC724500B20B20 /* UserDao.m in Sources */,
 				E4305A511E36363000010B52 /* ContentViewController.swift in Sources */,
-				E4DE20241D0D6EFC00A80E65 /* UserInfoViewController.m in Sources */,
 				E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */,
-				E4039EDA1DE0723C00D39DDB /* ServersTableViewController.m in Sources */,
 				E48DBCB41E88FBDB00EC94D1 /* Share+CoreDataProperties.m in Sources */,
-				E42B7DA91E1E3BD60037BAAE /* SyncManager.swift in Sources */,
+				E486A1A11EF689C700A33AE9 /* AddMemberViewController.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
+				E486A1CC1EF68AD800A33AE9 /* strtok.c in Sources */,
 				E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */,
 				E430E7621E2219B400CF9660 /* CommonTool.m in Sources */,
+				E486A1D01EF68AD800A33AE9 /* MessageData.m in Sources */,
 				E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */,
 				E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */,
+				E486A1CD1EF68AD800A33AE9 /* Defaults.m in Sources */,
 				E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */,
 				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
 				E4EFB6631D3A0C4800C613B0 /* AlertTool.m in Sources */,
+				E486A1B91EF68A4600A33AE9 /* SyncManager.swift in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
-				E48DE0711DCF660300A7A5DB /* NetManager.m in Sources */,
+				E486A1B41EF68A4600A33AE9 /* GroupManager.m in Sources */,
 				E48DBCB31E88FBDB00EC94D1 /* Share+CoreDataClass.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
 				E4305A4F1E36283D00010B52 /* Template+CoreDataProperties.m in Sources */,
-				E458BB5A1E10EDA500699D23 /* RestoreServerViewController.m in Sources */,
 				E457B4131CF19E2000139C4C /* AddShopViewController.m in Sources */,
 				E48A3EA41DCC721A00B20B20 /* User+CoreDataProperties.m in Sources */,
+				E486A1A81EF689C700A33AE9 /* RestoreServerViewController.m in Sources */,
 				E46516A21E31EDEB00A3E8E2 /* Classification+CoreDataClass.m in Sources */,
 				E4400D721CCB5845000DFB1A /* main.m in Sources */,
 				E4F1CB431CFB0B0C00461B3F /* RecordDao.m in Sources */,
 				E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */,
 				E48DBCB51E88FBDB00EC94D1 /* Message+CoreDataClass.m in Sources */,
-				E46D57721DB4D65800116C4E /* SecretSharing.m in Sources */,
+				E486A1A61EF689C700A33AE9 /* UserInfoViewController.m in Sources */,
 				E457B41F1CF19E5300139C4C /* ClassificationsTableViewController.m in Sources */,
-				E44661081EE3DA0300BA4354 /* JoinGroupViewController.m in Sources */,
+				E486A1B61EF68A4600A33AE9 /* NetManager.m in Sources */,
 				E48DBCBC1E88FC4200EC94D1 /* MessageDao.m in Sources */,
+				E486A1CF1EF68AD800A33AE9 /* InternetResponse.m in Sources */,
 				E46516AF1E31F1F100A3E8E2 /* Account+CoreDataProperties.m in Sources */,
 				E4F60A9D1D04121F006F5DF2 /* Model.xcdatamodeld in Sources */,
-				E4039EDD1DE0724F00D39DDB /* AddServerViewController.m in Sources */,
-				E427764D1DD0451E00FB1D33 /* MembersTableViewController.m in Sources */,
-				E476B0A31DE3FC3700FBCB24 /* AddMemberViewController.m in Sources */,
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
-				E46D576E1DB4D21900116C4E /* shamir.c in Sources */,
-				E43DDB8D1E404F8A00C8BDAE /* GroupManager.m in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
+				E486A1D11EF68AD800A33AE9 /* SecretSharing.m in Sources */,
 				E46516AD1E31F1F100A3E8E2 /* Shop+CoreDataProperties.m in Sources */,
+				E486A1D21EF68AD800A33AE9 /* shamir.c in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
 				E46516AE1E31F1F100A3E8E2 /* Account+CoreDataClass.m in Sources */,
-				E42C58D91DCC53C4009A2596 /* SendManager.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
+				E486A1A21EF689C700A33AE9 /* AddServerViewController.m in Sources */,
+				E486A1B81EF68A4600A33AE9 /* SendManager.m in Sources */,
 				E48A3EA31DCC721A00B20B20 /* User+CoreDataClass.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */,
@@ -879,14 +877,16 @@
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E46516AC1E31F1F100A3E8E2 /* Shop+CoreDataClass.m in Sources */,
-				E46D576D1DB4D21900116C4E /* GLibFacade.c in Sources */,
-				E4039EE01DE0730C00D39DDB /* Defaults.m in Sources */,
+				E486A1A31EF689C700A33AE9 /* InitGroupTableViewController.m in Sources */,
+				E486A1B51EF68A4600A33AE9 /* MultipeerConnectivityManager.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
+				E486A1B71EF68A4600A33AE9 /* ReceiveManager.m in Sources */,
 				E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
-				E4BF182E1E163F3A003340FB /* ReceiveManager.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,
 				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
+				E486A1CE1EF68AD800A33AE9 /* GLibFacade.c in Sources */,
+				E486A1A51EF689C700A33AE9 /* MembersTableViewController.m in Sources */,
 				E48DBCB61E88FBDB00EC94D1 /* Message+CoreDataProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
