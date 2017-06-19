@@ -7,7 +7,6 @@
 //
 
 #import "UserInfoViewController.h"
-#import "DaoManager.h"
 #import "GroupManager.h"
 #import "UIViewController+Extension.h"
 
@@ -16,8 +15,6 @@
 @end
 
 @implementation UserInfoViewController {
-    DaoManager *dao;
-    NSUserDefaults *defaults;
     GroupManager *group;
 }
 
@@ -26,8 +23,6 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
-    defaults = [NSUserDefaults standardUserDefaults];
-    dao = [[DaoManager alloc] init];
     group = [GroupManager sharedInstance];
     if (group.currentUser != nil) {
         _nameTextField.text = group.currentUser.name;

@@ -73,7 +73,6 @@
 		E486A1B61EF68A4600A33AE9 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AE1EF68A4600A33AE9 /* NetManager.m */; };
 		E486A1B71EF68A4600A33AE9 /* ReceiverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B01EF68A4600A33AE9 /* ReceiverManager.m */; };
 		E486A1B81EF68A4600A33AE9 /* SenderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B21EF68A4600A33AE9 /* SenderManager.m */; };
-		E486A1B91EF68A4600A33AE9 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B31EF68A4600A33AE9 /* SyncManager.swift */; };
 		E486A1BC1EF68A7A00A33AE9 /* Init.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */; };
 		E486A1BD1EF68A7A00A33AE9 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */; };
 		E486A1CC1EF68AD800A33AE9 /* strtok.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1BE1EF68AD800A33AE9 /* strtok.c */; };
@@ -89,7 +88,8 @@
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
 		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
 		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
-		E4D0A4931EF7D1830021BFBF /* BannerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0A4921EF7D1830021BFBF /* BannerTool.swift */; };
+		E4D0A5AF1EF7F5170021BFBF /* SyncManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D0A5AE1EF7F5170021BFBF /* SyncManager.m */; };
+		E4D0A5B21EF7FA5B0021BFBF /* BannerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0A5B11EF7FA5B0021BFBF /* BannerTool.swift */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
 		E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */; };
@@ -149,8 +149,8 @@
 		E4112E4A1EF7B0E700F1298D /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		E4112E4B1EF7B0E700F1298D /* CommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
 		E4112E4C1EF7B0E700F1298D /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
-		E4112E511EF7BAAA00F1298D /* Grouper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Grouper.h; path = Core/Grouper.h; sourceTree = "<group>"; };
-		E4112E521EF7BAAA00F1298D /* Grouper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grouper.m; path = Core/Grouper.m; sourceTree = "<group>"; };
+		E4112E511EF7BAAA00F1298D /* Grouper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Grouper.h; sourceTree = "<group>"; };
+		E4112E521EF7BAAA00F1298D /* Grouper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Grouper.m; sourceTree = "<group>"; };
 		E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Grouper.podspec; sourceTree = "<group>"; };
 		E4112E901EF7CC9300F1298D /* CoreDaoTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDaoTemplate.h; sourceTree = "<group>"; };
 		E4112E911EF7CC9300F1298D /* CoreDaoTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDaoTemplate.m; sourceTree = "<group>"; };
@@ -248,7 +248,6 @@
 		E486A1B01EF68A4600A33AE9 /* ReceiverManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiverManager.m; sourceTree = "<group>"; };
 		E486A1B11EF68A4600A33AE9 /* SenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenderManager.h; sourceTree = "<group>"; };
 		E486A1B21EF68A4600A33AE9 /* SenderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenderManager.m; sourceTree = "<group>"; };
-		E486A1B31EF68A4600A33AE9 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Init.storyboard; sourceTree = "<group>"; };
 		E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Members.storyboard; sourceTree = "<group>"; };
 		E486A1BE1EF68AD800A33AE9 /* strtok.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = strtok.c; sourceTree = "<group>"; };
@@ -282,9 +281,11 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		E4D0A4921EF7D1830021BFBF /* BannerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerTool.swift; sourceTree = "<group>"; };
 		E4D0A4941EF7D2110021BFBF /* Grouper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grouper-Bridging-Header.h"; sourceTree = "<group>"; };
 		E4D0A4951EF7D2D40021BFBF /* Core-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Core-Bridging-Header.h"; sourceTree = "<group>"; };
+		E4D0A5AD1EF7F5170021BFBF /* SyncManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SyncManager.h; sourceTree = "<group>"; };
+		E4D0A5AE1EF7F5170021BFBF /* SyncManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SyncManager.m; sourceTree = "<group>"; };
+		E4D0A5B11EF7FA5B0021BFBF /* BannerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerTool.swift; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
 		E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordViewController.m; sourceTree = "<group>"; };
 		E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecordItemTableViewController.h; sourceTree = "<group>"; };
@@ -449,8 +450,6 @@
 			children = (
 				E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */,
 				E4400D941CCB5845000DFB1A /* Core */,
-				E4112E511EF7BAAA00F1298D /* Grouper.h */,
-				E4112E521EF7BAAA00F1298D /* Grouper.m */,
 				E4400D6F1CCB5845000DFB1A /* Grouper */,
 				E4400D891CCB5845000DFB1A /* GrouperTests */,
 				E4400D6E1CCB5845000DFB1A /* Products */,
@@ -510,6 +509,8 @@
 		E4400D941CCB5845000DFB1A /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				E4112E511EF7BAAA00F1298D /* Grouper.h */,
+				E4112E521EF7BAAA00F1298D /* Grouper.m */,
 				E486A18C1EF6848500A33AE9 /* Controller */,
 				E4112E231EF6987800F1298D /* Dao */,
 				E486A18D1EF684AF00A33AE9 /* Manager */,
@@ -588,7 +589,8 @@
 				E486A1B01EF68A4600A33AE9 /* ReceiverManager.m */,
 				E486A1B11EF68A4600A33AE9 /* SenderManager.h */,
 				E486A1B21EF68A4600A33AE9 /* SenderManager.m */,
-				E486A1B31EF68A4600A33AE9 /* SyncManager.swift */,
+				E4D0A5AD1EF7F5170021BFBF /* SyncManager.h */,
+				E4D0A5AE1EF7F5170021BFBF /* SyncManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -597,7 +599,6 @@
 			isa = PBXGroup;
 			children = (
 				E4D0A4951EF7D2D40021BFBF /* Core-Bridging-Header.h */,
-				E4D0A4921EF7D1830021BFBF /* BannerTool.swift */,
 				E4112E4B1EF7B0E700F1298D /* CommonTool.h */,
 				E4112E4C1EF7B0E700F1298D /* CommonTool.m */,
 				E486A1C01EF68AD800A33AE9 /* Defaults.h */,
@@ -644,6 +645,7 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
+				E4D0A5B11EF7FA5B0021BFBF /* BannerTool.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -867,9 +869,9 @@
 				E486A1CD1EF68AD800A33AE9 /* Defaults.m in Sources */,
 				E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */,
 				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
-				E486A1B91EF68A4600A33AE9 /* SyncManager.swift in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
-				E4D0A4931EF7D1830021BFBF /* BannerTool.swift in Sources */,
+				E4D0A5AF1EF7F5170021BFBF /* SyncManager.m in Sources */,
+				E4D0A5B21EF7FA5B0021BFBF /* BannerTool.swift in Sources */,
 				E486A1B41EF68A4600A33AE9 /* GroupManager.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,

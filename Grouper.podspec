@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 	s.platform     = :ios
 	s.source       = { :git => "", :tag => "0.1" }
 
-	s.source_files  = "Core/*.{h,m,swift}"
+	s.source_files  = "Core/*.*"
 
 	s.requires_arc = true
 

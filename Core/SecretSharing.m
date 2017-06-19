@@ -21,7 +21,7 @@
     NSArray *addresses = group.defaults.servers.allKeys;
     
     const char *secret = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    char *shares = generate_share_strings(secret, addresses.count, group.defaults.threshold);
+    char *shares = "";// generate_share_strings(secret, addresses.count, group.defaults.threshold);
     NSString *result = [NSString stringWithCString:shares encoding:NSUTF8StringEncoding];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"\n"]];
     [array removeLastObject];
@@ -44,7 +44,7 @@
         [strings appendString:share];
         [strings appendString:@"\n"];
     }
-    const char *secret = extract_secret_from_share_strings([strings cStringUsingEncoding:NSUTF8StringEncoding]);
+    const char *secret = ""; //extract_secret_from_share_strings([strings cStringUsingEncoding:NSUTF8StringEncoding]);
     return [NSString stringWithCString:secret encoding:NSUTF8StringEncoding];
 }
 

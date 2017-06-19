@@ -10,7 +10,7 @@
 #import "NetManager.h"
 #import "SenderManager.h"
 #import "SecretSharing.h"
-#import "Grouper-Swift.h"
+#import "SyncManager.h"
 
 @implementation ReceiverManager {
     NetManager *net;

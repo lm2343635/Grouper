@@ -6,6 +6,4 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "MessageData.h"
-
 @import Sync;
