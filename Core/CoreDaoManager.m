@@ -47,6 +47,8 @@
         return _dataStack;
     }
     _dataStack = [[DataStack alloc] initWithModelName:@"Static"];
+    
+//    _dataStack = [[DataStack alloc] initWithModel:[self model] storeType:DataStackStoreTypeSqLite];
     return _dataStack;
 }
 
@@ -79,6 +81,77 @@
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     return _dataStack;
+}
+
+- (NSManagedObjectModel *)model {
+    NSManagedObjectModel *model = [[NSManagedObjectModel alloc] init];
+    NSMutableArray *entities = [NSMutableArray array];
+    [entities addObject:[self messageEntity]];
+    [entities addObject:[self shareEntity]];
+    [entities addObject:[self userEntity]];
+    return model;
+}
+
+- (NSEntityDescription *)messageEntity {
+    NSEntityDescription *entity = [[NSEntityDescription alloc] init];
+    [entity setName:@"Message"];
+    [entity setManagedObjectClassName:@"Message"];
+    
+    NSMutableArray *properties = [NSMutableArray array];
+    [properties addObject:[self stringAttributeWithName:@"content"]];
+    [properties addObject:[self stringAttributeWithName:@"email"]];
+    [properties addObject:[self stringAttributeWithName:@"messageId"]];
+    [properties addObject:[self stringAttributeWithName:@"name"]];
+    [properties addObject:[self stringAttributeWithName:@"object"]];
+    [properties addObject:[self stringAttributeWithName:@"objectId"]];
+    [properties addObject:[self stringAttributeWithName:@"receiver"]];
+    [properties addObject:[self stringAttributeWithName:@"sender"]];
+    [properties addObject:[self int64AttributeWithName:@"sendtime"]];
+    [properties addObject:[self int64AttributeWithName:@"sequence"]];
+    [properties addObject:[self stringAttributeWithName:@"type"]];
+    [entity setProperties:properties];
+    
+    return entity;
+}
+
+- (NSEntityDescription *)userEntity {
+    NSEntityDescription *entity = [[NSEntityDescription alloc] init];
+    [entity setName:@"User"];
+    [entity setManagedObjectClassName:@"User"];
+    
+    NSMutableArray *properties = [NSMutableArray array];
+    [properties addObject:[self stringAttributeWithName:@"email"]];
+    [properties addObject:[self stringAttributeWithName:@"name"]];
+    [properties addObject:[self stringAttributeWithName:@"node"]];
+    [entity setProperties:properties];
+    
+    return entity;
+}
+
+- (NSEntityDescription *)shareEntity {
+    NSEntityDescription *entity = [[NSEntityDescription alloc] init];
+    [entity setName:@"Share"];
+    [entity setManagedObjectClassName:@"Share"];
+    
+    NSMutableArray *properties = [NSMutableArray array];
+    [properties addObject:[self stringAttributeWithName:@"shareId"]];
+    [entity setProperties:properties];
+    
+    return entity;
+}
+
+- (NSAttributeDescription *)stringAttributeWithName:(NSString *)name {
+    NSAttributeDescription *attribute = [[NSAttributeDescription alloc] init];
+    [attribute setName:name];
+    [attribute setAttributeType:NSStringAttributeType];
+    return attribute;
+}
+
+- (NSAttributeDescription *)int64AttributeWithName:(NSString *)name {
+    NSAttributeDescription *attribute = [[NSAttributeDescription alloc] init];
+    [attribute setName:name];
+    [attribute setAttributeType:NSInteger64AttributeType];
+    return attribute;
 }
 
 @end
