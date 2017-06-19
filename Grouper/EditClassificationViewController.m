@@ -7,7 +7,7 @@
 //
 
 #import "EditClassificationViewController.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface EditClassificationViewController ()
@@ -42,9 +42,7 @@
     }
     NSString *cname = _cnameTextField.text;
     if ([cname isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Classification name is empty!"
-                     inViewController:self];
+        [self showWarning:@"Classification name is empty!"];
         return;
     }
     // Update classification.

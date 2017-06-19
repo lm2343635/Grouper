@@ -8,7 +8,7 @@
 
 #import "AddTemplateViewController.h"
 #import "SelectRecordItemTableViewController.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface AddTemplateViewController ()
@@ -22,7 +22,7 @@
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
@@ -80,7 +80,7 @@
 
 #pragma mark - UITextViewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [textView resignFirstResponder];
@@ -88,7 +88,7 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if([segue.identifier isEqualToString:@"templateRecordItemSegue"]) {
@@ -103,15 +103,11 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if ([_templateNameTextField.text isEqual:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Tempate name is empty!"
-                     inViewController:self];
+        [self showWarning:@"Tempate name is empty!"];
         return;
     }
     if (_selectedClassification == nil || _selectedAccount == nil || _selectedShop == nil) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Classification, account or shop is empty!"
-                     inViewController:self];
+        [self showWarning:@"Classification, account or shop is empty!"];
         return;
     }
     Template *template = [dao.templateDao saveWithNname:_templateNameTextField.text

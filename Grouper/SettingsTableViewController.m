@@ -10,7 +10,7 @@
 #import "DaoManager.h"
 #import "GroupManager.h"
 #import "SendManager.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 
 @interface SettingsTableViewController ()
 
@@ -54,9 +54,7 @@
     if (group.defaults.groupId == nil &&
         ([identifier isEqualToString:@"templatesSegue"] || [identifier isEqualToString:@"classificationsSegue"]
          || [identifier isEqualToString:@"shopsSegue"] || [identifier isEqualToString:@"accountsSegue"])) {
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Join or create a group at first!"
-                     inViewController:self];
+        [self showTip:@"Join or create a group at first!"];
         return NO;
     }
     return YES;
@@ -92,9 +90,7 @@
         [self presentViewController:clearAlertController animated:YES completion:nil];
     } else if (indexPath.row == 11) {
         [send confirm];
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Confirm message has been sent."
-                     inViewController:self];
+        [self showTip:@"Confirm message has been sent."];
     }
 }
 

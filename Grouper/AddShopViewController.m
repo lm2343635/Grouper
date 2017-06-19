@@ -7,7 +7,7 @@
 //
 
 #import "AddShopViewController.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface AddShopViewController ()
@@ -35,9 +35,7 @@
     }
     NSString *sname=_snameTextField.text;
     if([sname isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Shop name is empty!"
-                     inViewController:self];
+        [self showWarning:@"Shop name is empty!"];
         return;
     }
     // Save shop.

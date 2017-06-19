@@ -8,7 +8,7 @@
 
 #import "RestoreServerViewController.h"
 #import "GroupManager.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 
 @interface RestoreServerViewController ()
 
@@ -37,9 +37,7 @@
                          if (success) {
                              [self.navigationController popViewControllerAnimated:YES];
                          } else {
-                             [AlertTool showAlertWithTitle:@"Tip"
-                                                andContent:message
-                                          inViewController:self];
+                             [self showTip:message];
                          }
                      }];
 }

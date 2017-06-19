@@ -7,7 +7,7 @@
 //
 
 #import "EditAccountViewController.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface EditAccountViewController ()
@@ -37,14 +37,12 @@
 
 #pragma mark - Action
 - (IBAction)save:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *aname = _anameTextField.text;
     if([aname isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Account name is empty!"
-                     inViewController:self];
+        [self showWarning:@"Account name is empty!"];
         return;
     }
     // Update account.

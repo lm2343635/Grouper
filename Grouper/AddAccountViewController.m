@@ -8,7 +8,7 @@
 
 #import "AddAccountViewController.h"
 #import "DaoManager.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface AddAccountViewController ()
@@ -35,10 +35,8 @@
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *aname = _anameTextField.text;
-    if([aname isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Account name is empty!"
-                     inViewController:self];
+    if ([aname isEqualToString:@""]) {
+        [self showTip:@"Account name is empty!"];
         return;
     }
     Account *account = [dao.accountDao saveWithName:aname creator:currentUser.email];

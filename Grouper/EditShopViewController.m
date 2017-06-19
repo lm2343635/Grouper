@@ -7,7 +7,7 @@
 //
 
 #import "EditShopViewController.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface EditShopViewController ()
@@ -41,10 +41,8 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSString *sname = _snameTextField.text;
-    if([sname isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Shop name is empty!"
-                     inViewController:self];
+    if ([sname isEqualToString:@""]) {
+        [self showWarning:@"Shop name is empty!"];
         return;
     }
     // Update shop.

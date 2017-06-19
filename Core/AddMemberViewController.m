@@ -7,8 +7,8 @@
 //
 
 #import "AddMemberViewController.h"
-#import "AlertTool.h"
 #import "Grouper.h"
+#import "UIViewController+Extension.h"
 
 @interface AddMemberViewController ()
 
@@ -108,18 +108,14 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:[NSString stringWithFormat:@"Invite user %@ successfully!", [notification.userInfo valueForKey:@"joiner"]]
-                 inViewController:self];
+    [self showTip:[NSString stringWithFormat:@"Invite user %@ successfully!", [notification.userInfo valueForKey:@"joiner"]]];
 }
 
 - (void)didReceiveInviteFailedMessage:(NSNotification *)notification {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:@"Cannot invite this new joiner, because his email is existed."
-                 inViewController:self];
+    [self showTip:@"Cannot invite this new joiner, because his email is existed."];
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "AddServerViewController.h"
 #import "GroupManager.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 
 @interface AddServerViewController ()
 
@@ -47,9 +47,7 @@
                  if (success) {
                      [weakSelf.navigationController popViewControllerAnimated:YES];
                  } else {
-                     [AlertTool showAlertWithTitle:@"Tip"
-                                        andContent:message
-                                  inViewController:weakSelf];
+                     [weakSelf showTip:message];
                  }
              }];
 }

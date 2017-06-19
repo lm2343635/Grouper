@@ -10,8 +10,8 @@
 #import "EditRecordViewController.h"
 #import "SelectRecordItemTableViewController.h"
 #import "DaoManager.h"
-#import "AlertTool.h"
 #import "DateTool.h"
+#import "UIViewController+Extension.h"
 
 @interface EditRecordViewController ()
 
@@ -33,7 +33,7 @@
     userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
-    if(_record.photo != nil) {
+    if (_record.photo != nil) {
         [_takePhotoButton setImage:[UIImage imageWithData:_record.photo.data]
                           forState:UIControlStateNormal];
     }
@@ -50,6 +50,7 @@
                                            withFormat:DateFormatYearMonthDayHourMinutes]
                        forState:UIControlStateNormal];
     [_remarkTextView setText:_record.remark];
+    
     //Set edit privilege for owner and creater
     _saveBarButtonItem.enabled = YES;
     _moneyTextFeild.enabled = YES;
@@ -63,10 +64,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_item == nil) {
+    if (_item == nil) {
         return;
     }
     switch (selectItemType) {
@@ -91,18 +92,18 @@
 }
 
 #pragma mark - UITextViewDelegate
--(void)textViewDidBeginEditing:(UITextView *)textView {
-    if(DEBUG) {
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
     }
-    if(textView == _remarkTextView) {
+    if (textView == _remarkTextView) {
         CGRect frame = textView.frame;
         int offset = frame.origin.y+textView.frame.size.height - (self.view.frame.size.height-KeyboardHeight);
         NSTimeInterval animationDuration = 0.30f;
         [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
         [UIView setAnimationDuration:animationDuration];
         //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
-        if(offset > 0) {
+        if (offset > 0) {
             self.view.frame = CGRectMake(0.0f,-offset,self.view.frame.size.width,self.view.frame.size.height);
         }
         [UIView commitAnimations];
@@ -110,23 +111,23 @@
     }
 }
 
--(void)textViewDidEndEditing:(UITextView *)textView {
-    if(DEBUG) {
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class,NSStringFromSelector(_cmd));
     }
     self.view.frame =CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
 }
 
 #pragma mark - UIImagePickerControllerDelegate
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    if(DEBUG) {
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
         NSLog(@"MediaInfo: %@",info);
     }
     // 获取用户拍摄的是照片还是视频
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
     // 判断获取类型：图片
-    if([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
+    if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         _photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
         [_takePhotoButton setImage:_photoImage forState:UIControlStateNormal];
     }
@@ -136,11 +137,11 @@
 
 #pragma mark - Navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     UIViewController *controller = [segue destinationViewController];
-    if([segue.identifier isEqualToString:@"editRecordItemSegue"]) {
+    if ([segue.identifier isEqualToString:@"editRecordItemSegue"]) {
         [controller setValue:[NSNumber numberWithInteger:selectItemType] forKey:@"selectItemType"];
     } else if([segue.identifier isEqualToString:@"showPhotoSegue"]) {
         [controller setValue:[UIImage imageWithData:_record.photo.data] forKey:@"image"];
@@ -149,11 +150,11 @@
 
 #pragma mark - Action
 -(void)save:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if(_photoImage) {
-        if(_record.photo == nil) {
+    if (_photoImage) {
+        if (_record.photo == nil) {
             NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)];
             _record.photo = (Photo *)[dao getObjectById:pid];
         } else {
@@ -163,17 +164,17 @@
     if(![_remarkTextView.text isEqualToString:@""]) {
         _record.remark = _remarkTextView.text;
     }
-    _record.money=[NSNumber numberWithInt:_moneyTextFeild.text.intValue];
-    if(_selectedClassification) {
+    _record.money = [NSNumber numberWithInt:_moneyTextFeild.text.intValue];
+    if (_selectedClassification) {
         _record.classification = _selectedClassification;
     }
-    if(_selectedAccount) {
+    if (_selectedAccount) {
         _record.account = _selectedAccount;
     }
-    if(_selectedShop) {
+    if (_selectedShop) {
         _record.shop = _selectedShop;
     }
-    if(_selectedTime) {
+    if (_selectedTime) {
         _record.time = _selectedTime;
     }
     [dao saveContext];
@@ -184,7 +185,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _item=nil;
+    _item = nil;
     selectItemType = SELECT_ITEM_TYPE_CLASSIFICATION;
     [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
@@ -193,7 +194,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _item=nil;
+    _item = nil;
     selectItemType = SELECT_ITEM_TYPE_ACCOUNT;
     [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
@@ -202,7 +203,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _item=nil;
+    _item = nil;
     selectItemType = SELECT_ITEM_TYPE_SHOP;
     [self performSegueWithIdentifier:@"editRecordItemSegue" sender:self];
 }
@@ -253,9 +254,7 @@
                                                                  if(DEBUG) {
                                                                      NSLog(@"iOS Simulator cannot open camera.");
                                                                  }
-                                                                 [AlertTool showAlertWithTitle:@"Warning"
-                                                                                    andContent:@"iOS Simulator cannot open camera."
-                                                                              inViewController:self];
+                                                                 [self showWarning:@"iOS Simulator cannot open camera."];
                                                              }
                                                              // 显示picker视图控制器
                                                              [self presentViewController:imagePickerController animated: YES completion:nil];
@@ -276,10 +275,10 @@
 }
 
 - (void)changeSaveType:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    if([sender isOn]) {
+    if ([sender isOn]) {
         _record.money = [NSNumber numberWithInt:abs(_record.money.intValue)];
         _saveTypeLabel.text = @"Save as Earn";
     } else {
@@ -290,7 +289,7 @@
 }
 
 - (IBAction)finishEditRemark:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     [_remarkTextView resignFirstResponder];
@@ -298,8 +297,8 @@
 }
 
 #pragma mark - Service
--(void)setTime:(NSDate *)time {
-    if(DEBUG) {
+- (void)setTime:(NSDate *)time {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     _selectedTime = time;

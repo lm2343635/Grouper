@@ -7,8 +7,8 @@
 //
 
 #import "JoinGroupViewController.h"
-#import "AlertTool.h"
 #import "Grouper.h"
+#import "UIViewController+Extension.h"
 
 @interface JoinGroupViewController ()
 
@@ -92,9 +92,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [AlertTool showAlertWithTitle:@"Tip"
-                       andContent:@"Cannot join this group, because your email has been registered."
-                 inViewController:self];
+    [self showTip:@"Cannot join this group, because your email has been registered."];
 }
 
 @end

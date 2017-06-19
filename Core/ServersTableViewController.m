@@ -8,8 +8,8 @@
 
 #import "ServersTableViewController.h"
 #import "GroupManager.h"
-#import "AlertTool.h"
 #import "CommonTool.h"
+#import "UIViewController+Extension.h"
 
 @interface ServersTableViewController ()
 
@@ -123,21 +123,15 @@
     // Check threshold if user is adding new servers.
     if (group.defaults.initial == AddingNewServer) {
         if ([_thresholdTextField.text isEqualToString:@""]) {
-            [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:@"Threshold cannot be empty!"
-                         inViewController:self];
+            [self showTip: @"Threshold cannot be empty!"];
             return;
         }
         if (![CommonTool isInteger:_thresholdTextField.text]) {
-            [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:@"Threshold should be an integer!"
-                         inViewController:self];
+            [self showTip:@"Threshold should be an integer!"];
             return;
         }
         if (![CommonTool isInteger:_intervalTextField.text]) {
-            [AlertTool showAlertWithTitle:@"Tip"
-                               andContent:@"Inteval time should be an integer!"
-                         inViewController:self];
+            [self showTip:@"Inteval time should be an integer!"];
             return;
         }
         threshold = _thresholdTextField.text.intValue;
@@ -179,9 +173,7 @@
             }
             
             if (message != nil) {
-                [AlertTool showAlertWithTitle:@"Tip"
-                                   andContent:message
-                             inViewController:self];
+                [self showTip:message];
             }
 
         }];

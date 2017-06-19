@@ -9,7 +9,7 @@
 #import "UserInfoViewController.h"
 #import "DaoManager.h"
 #import "GroupManager.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 
 @interface UserInfoViewController ()
 
@@ -42,9 +42,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if ([_emailTextField.text isEqualToString:@""] || [_nameTextField.text isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Tip"
-                           andContent:@"Email and user name cannot be empty!"
-                     inViewController:self];
+        [self showTip:@"Email and user name cannot be empty!"];
     }
     [group saveCurrentUserWithEmail:_emailTextField.text name:_nameTextField.text];
     [self performSegueWithIdentifier:@"initGroupSegue" sender:self];

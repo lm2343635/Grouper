@@ -9,11 +9,11 @@
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "AddRecordViewController.h"
 #import "SelectRecordItemTableViewController.h"
-#import "AlertTool.h"
 #import "DateTool.h"
 #import "SendManager.h"
 #import "GroupManager.h"
 #import "DateSelectorView.h"
+#import "UIViewController+Extension.h"
 
 @interface AddRecordViewController ()
 
@@ -151,9 +151,7 @@
     }
     if (_selectedAccount == nil || _selectedClassification == nil || _selectedShop == nil||
        [_moneyTextFeild.text isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Money, classification, account or shop is empty."
-                     inViewController:self];
+        [self showTip:@"Money, classification, account or shop is empty."];
         return;
     }
     int moneyInt = (int)_moneyTextFeild.text.doubleValue;
@@ -246,9 +244,7 @@
                                                                if (DEBUG) {
                                                                    NSLog(@"Warning: iOS Simulator cannot open camera.");
                                                                }
-                                                               [AlertTool showAlertWithTitle:@"Warning"
-                                                                                  andContent:@"iOS Simulator cannot open camera."
-                                                                            inViewController:self];
+                                                               [self showWarning:@"iOS Simulator cannot open camera."];
                                                            }
                                                            // Show picker view controller.
                                                            [self presentViewController:imagePickerController animated: YES completion:nil];
@@ -294,9 +290,7 @@
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
     if (_selectedAccount == nil || _selectedClassification == nil || _selectedShop == nil) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Classification, account or shop is empty!"
-                     inViewController:self];
+        [self showWarning:@"Classification, account or shop is empty!"];
         return;
     }
     [self performSegueWithIdentifier:@"saveAsTemplateSegue" sender:self];

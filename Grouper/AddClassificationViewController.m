@@ -8,7 +8,7 @@
 
 #import "AddClassificationViewController.h"
 #import "DaoManager.h"
-#import "AlertTool.h"
+#import "UIViewController+Extension.h"
 #import "Grouper.h"
 
 @interface AddClassificationViewController ()
@@ -20,7 +20,7 @@
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
@@ -34,9 +34,7 @@
     }
     NSString *cname = _cnameTextField.text;
     if ([cname isEqualToString:@""]) {
-        [AlertTool showAlertWithTitle:@"Warning"
-                           andContent:@"Classification name is empty!"
-                     inViewController:self];
+        [self showWarning:@"Classification name is empty!"];
         return;
     }
     User *user = [[GroupManager sharedInstance] currentUser];
