@@ -16,7 +16,7 @@
 
 @implementation AddShopViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -25,7 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
 }
 
 #pragma mark - Action
@@ -33,15 +33,15 @@
     if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *sname=_snameTextField.text;
-    if([sname isEqualToString:@""]) {
+    if ([_snameTextField.text isEqualToString:@""]) {
         [self showWarning:@"Shop name is empty!"];
         return;
     }
     // Save shop.
-    Shop *shop = [dao.shopDao saveWithName:sname creator:currentUser.email];
+    Shop *shop = [dao.shopDao saveWithName:_snameTextField.text
+                                   creator:grouper.group.currentUser.email];
     // Send shares.
-    [[SendManager sharedInstance] update:shop];
+    [grouper.sender update:shop];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

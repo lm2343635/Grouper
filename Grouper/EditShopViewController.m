@@ -16,7 +16,7 @@
 
 @implementation EditShopViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -25,7 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,12 +47,12 @@
     }
     // Update shop.
     _shop.sname = sname;
-    _shop.updater = currentUser.email;
+    _shop.updater = grouper.group.currentUser.email;
     _shop.updateAt = [NSDate date];
     [dao saveContext];
     
     // Send shares to untrusted servers.
-    [[SendManager sharedInstance] update:_shop];
+    [grouper.sender update:_shop];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

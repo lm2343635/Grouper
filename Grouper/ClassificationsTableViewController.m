@@ -8,7 +8,7 @@
 
 #import "ClassificationsTableViewController.h"
 #import "DaoManager.h"
-#import "SendManager.h"
+#import "Grouper.h"
 
 @interface ClassificationsTableViewController ()
 
@@ -78,7 +78,7 @@
     }
     Classification *classification = [classifications objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendManager sharedInstance] delete:classification];
+        [[Grouper sharedInstance].sender delete:classification];
         [classifications removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                          withRowAnimation:UITableViewRowAnimationAutomatic];

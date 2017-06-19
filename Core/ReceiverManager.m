@@ -6,17 +6,15 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "ReceiveManager.h"
+#import "ReceiverManager.h"
 #import "NetManager.h"
-#import "SendManager.h"
-#import "GroupManager.h"
-#import "DaoManager.h"
+#import "SenderManager.h"
 #import "SecretSharing.h"
 #import "Grouper-Swift.h"
 
-@implementation ReceiveManager {
+@implementation ReceiverManager {
     NetManager *net;
-    SendManager *send;
+    SenderManager *send;
     GroupManager *group;
     CoreDaoManager *dao;
     SyncManager *sync;
@@ -27,10 +25,10 @@
 }
 
 + (instancetype)sharedInstance {
-    static ReceiveManager *instance;
+    static ReceiverManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[ReceiveManager alloc] init];
+        instance = [[ReceiverManager alloc] init];
     });
     return instance;
 }
@@ -39,12 +37,19 @@
     self = [super init];
     if (self) {
         net = [NetManager sharedInstance];
-        send = [SendManager sharedInstance];
+        send = [SenderManager sharedInstance];
         group = [GroupManager sharedInstance];
         dao = [CoreDaoManager sharedInstance];
-        sync = [[SyncManager alloc] initWithDataStack:group.appDataStack];
+        
     }
     return self;
+}
+
+- (void)initSyncManager:(DataStack *)stack {
+    if(DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    sync = [[SyncManager alloc] initWithDataStack:stack];
 }
 
 // If new share content has been received, regardless of success and fail, revoke this method.

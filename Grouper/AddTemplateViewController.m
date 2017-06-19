@@ -17,7 +17,7 @@
 
 @implementation AddTemplateViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
     NSUInteger selectItemType;
 }
 
@@ -27,7 +27,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
     
     if (_recordType == nil) {
         _recordType=[NSNumber numberWithBool:NO];
@@ -115,8 +115,8 @@
                                       andClassification:_selectedClassification
                                              andAccount:_selectedAccount
                                                 andShop:_selectedShop
-                                                creator:currentUser.email];
-    [[SendManager sharedInstance] update:template];
+                                                creator:grouper.group.currentUser.email];
+    [grouper.sender update:template];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

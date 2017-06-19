@@ -14,7 +14,7 @@
 #define MessageTypeConfirm @"confirm"
 #define MessageTypeResend @"resend"
 
-@interface SendManager : NSObject
+@interface SenderManager : NSObject
 
 // Get single instance.
 + (instancetype)sharedInstance;

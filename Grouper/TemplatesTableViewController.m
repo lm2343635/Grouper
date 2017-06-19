@@ -9,7 +9,7 @@
 #import "TemplatesTableViewController.h"
 #import "AddRecordViewController.h"
 #import "DaoManager.h"
-#import "SendManager.h"
+#import "Grouper.h"
 
 @interface TemplatesTableViewController ()
 
@@ -81,7 +81,7 @@
     }
     Template *template = [templates objectAtIndex:indexPath.row];
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [[SendManager sharedInstance] delete:template];
+        [[Grouper sharedInstance].sender delete:template];
         [templates removeObjectAtIndex:indexPath.row];
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
                               withRowAnimation:UITableViewRowAnimationAutomatic];

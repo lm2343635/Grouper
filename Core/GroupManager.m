@@ -8,7 +8,6 @@
 
 #import "GroupManager.h"
 #import "NetManager.h"
-#import "ReceiveManager.h"
 
 @implementation GroupManager {
     CoreDaoManager *dao;
@@ -64,7 +63,7 @@
     return self;
 }
 
-#pragma mark - Global Config
+#pragma mark - User
 
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name {
     if (DEBUG) {
@@ -85,6 +84,9 @@
 }
 
 - (void)setupMutipeerConnectivity {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     if (_currentUser == nil) {
         return;
     }
@@ -96,6 +98,13 @@
 
     _connectedPeers = [[NSMutableArray alloc] init];
     _isOwner = [_defaults.owner isEqualToString:_currentUser.email];
+}
+
+- (User *)getUserByNodeIdentifier:(NSString *)node {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [dao.userDao getByNode:node];
 }
 
 #pragma mark - Invite Member

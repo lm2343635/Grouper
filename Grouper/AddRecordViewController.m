@@ -10,10 +10,10 @@
 #import "AddRecordViewController.h"
 #import "SelectRecordItemTableViewController.h"
 #import "DateTool.h"
-#import "SendManager.h"
-#import "GroupManager.h"
 #import "DateSelectorView.h"
 #import "UIViewController+Extension.h"
+#import "DaoManager.h"
+#import "Grouper.h"
 
 @interface AddRecordViewController ()
 
@@ -21,7 +21,8 @@
 
 @implementation AddRecordViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
+
     NSUInteger selectItemType;
     BOOL saveRecordType;
     
@@ -35,7 +36,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
     
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
@@ -95,7 +96,7 @@
         NSTimeInterval animationDuration = 0.30f;
         [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
         [UIView setAnimationDuration:animationDuration];
-        //将视图的Y坐标向上移动offset个单位，以使下面腾出地方用于软键盘的显示
+        // Move y up to show keyboard.
         if(offset > 0) {
             self.view.frame = CGRectMake(0.0f, -offset, self.view.frame.size.width, self.view.frame.size.height);
         }
@@ -117,14 +118,11 @@
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
         NSLog(@"MediaInfo: %@",info);
     }
-    // 获取用户拍摄的是照片还是视频
     NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
-    // 判断获取类型：图片
     if ([mediaType isEqualToString:(NSString *)kUTTypeImage]) {
         _photoImage = [info objectForKey:UIImagePickerControllerEditedImage];
         [_takePhotoButton setImage:_photoImage forState:UIControlStateNormal];
     }
-    // 隐藏UIImagePickerController
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -154,9 +152,11 @@
         [self showTip:@"Money, classification, account or shop is empty."];
         return;
     }
+    
     int moneyInt = (int)_moneyTextFeild.text.doubleValue;
     NSNumber *money = [NSNumber numberWithInt: saveRecordType==YES ? moneyInt: -moneyInt];
     Photo *photo = nil;
+    
     // Create new photo object if user has taken a photo.
     if (_photoImage != nil) {
         NSManagedObjectID *pid = [dao.photoDao saveWithData:UIImageJPEGRepresentation(_photoImage, 1.0)];
@@ -166,6 +166,7 @@
         photo = (Photo *)[dao getObjectById:pid];
     }
     
+    // Save record to app local persistent store.
     Record *record = [dao.recordDao saveWithMoney:money
                                         andRemark:_remarkTextView.text
                                           andTime:_selectedTime
@@ -173,13 +174,16 @@
                                        andAccount:_selectedAccount
                                           andShop:_selectedShop
                                          andPhoto:photo
-                                          creator:currentUser.email];
-    [[SendManager sharedInstance] update:record];
+                                          creator:grouper.group.currentUser.email];
+    
+    // Revoke update method in sender to send an update message.
+    [grouper.sender update:record];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)selectClassification:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _item = nil;
@@ -188,7 +192,7 @@
 }
 
 - (IBAction)selectAccount:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _item = nil;
@@ -219,7 +223,7 @@
 }
 
 - (IBAction)takePhoto:(id)sender {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Choose Photo from"

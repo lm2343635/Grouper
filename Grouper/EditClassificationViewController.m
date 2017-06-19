@@ -16,7 +16,7 @@
 
 @implementation EditClassificationViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -25,7 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -47,12 +47,12 @@
     }
     // Update classification.
     _classification.cname = cname;
-    _classification.updater = currentUser.email;
+    _classification.updater = grouper.group.currentUser.email;
     _classification.updateAt = [NSDate date];
     [dao saveContext];
     
     // Send shares to untrusted servers.
-    [[SendManager sharedInstance] update:_classification];
+    [grouper.sender update:_classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

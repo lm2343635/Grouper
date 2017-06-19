@@ -2,15 +2,23 @@
 //  Grouper.h
 //  Grouper
 //
-//  Created by 李大爷的电脑 on 31/05/2017.
+//  Created by lidaye on 19/06/2017.
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#ifndef Grouper_h
-#define Grouper_h
-
-#import "SendManager.h"
-#import "ReceiveManager.h"
+#import <Foundation/Foundation.h>
+#import "SenderManager.h"
+#import "ReceiverManager.h"
 #import "GroupManager.h"
 
-#endif /* Grouper_h */
+@interface Grouper : NSObject
+
+@property (nonatomic, strong) GroupManager *group;
+@property (nonatomic, strong) SenderManager *sender;
+@property (nonatomic, strong) ReceiverManager *receiver;
+
++ (instancetype)sharedInstance;
+
+- (void)setAppDataStack:(DataStack *)stack;
+
+@end

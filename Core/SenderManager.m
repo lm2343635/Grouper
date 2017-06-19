@@ -6,12 +6,12 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "SendManager.h"
+#import "SenderManager.h"
 #import "NetManager.h"
 #import "GroupManager.h"
 #import "SecretSharing.h"
 
-@implementation SendManager {
+@implementation SenderManager {
     NetManager *net;
     CoreDaoManager *dao;
     GroupManager *group;
@@ -24,10 +24,10 @@
 }
 
 + (instancetype)sharedInstance {
-    static SendManager *instance;
+    static SenderManager *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[SendManager alloc] init];
+        instance = [[SenderManager alloc] init];
     });
     return instance;
 }

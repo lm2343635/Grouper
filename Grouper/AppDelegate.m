@@ -16,7 +16,7 @@
 @end
 
 @implementation AppDelegate {
-    GroupManager *group;
+    Grouper *grouper;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -28,10 +28,11 @@
     [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeSound | UIUserNotificationTypeAlert | UIUserNotificationTypeBadge) categories:nil]];
     [[UIApplication sharedApplication] registerForRemoteNotifications];
     
-    group = [GroupManager sharedInstance];
-    group.appDataStack = [self dataStack];
-    
+    grouper = [Grouper sharedInstance];
+    [grouper setAppDataStack:[self dataStack]];
+
     if (DEBUG) {
+        GroupManager *group = grouper.group;
         NSLog(@"Number of group members is %ld, threshold is %ld, deletion interval time is %ldm", (long)group.members, (long)group.defaults.threshold, (long)group.defaults.interval);
         NSLog(@"Group id is %@, group name is %@, group owner is %@", group.defaults.groupId, group.defaults.groupName, group.defaults.owner);
         for (NSString *address in group.defaults.servers.allKeys) {
@@ -43,7 +44,7 @@
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:1800];
 
     // Use storyboard by init state.
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:group.defaults.initial != InitialFinished ? @"Init" : @"Main"
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:grouper.group.defaults.initial != InitialFinished ? @"Init" : @"Main"
                                                          bundle:nil];
     // Set root view controller and make windows visible
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -76,7 +77,7 @@
     if (DEBUG) {
         NSLog(@"Device token from APNs server is %@", token);
     }
-    [group sendDeviceToken:token];
+    [grouper.group sendDeviceToken:token];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -137,9 +138,9 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
+    [grouper.group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
         if (sync) {
-            [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+            [grouper.receiver receiveWithCompletion:^{
                 if (DEBUG) {
                     NSLog(@"Sync ended...");
                 }

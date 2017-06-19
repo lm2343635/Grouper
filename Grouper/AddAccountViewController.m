@@ -17,7 +17,7 @@
 
 @implementation AddAccountViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -26,7 +26,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
 }
 
 #pragma mark - Action
@@ -34,13 +34,13 @@
     if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *aname = _anameTextField.text;
-    if ([aname isEqualToString:@""]) {
+    if ([_anameTextField.text isEqualToString:@""]) {
         [self showTip:@"Account name is empty!"];
         return;
     }
-    Account *account = [dao.accountDao saveWithName:aname creator:currentUser.email];
-    [[SendManager sharedInstance] update:account];
+    Account *account = [dao.accountDao saveWithName:_anameTextField.text
+                                            creator:grouper.group.currentUser.email];
+    [grouper.sender update:account];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

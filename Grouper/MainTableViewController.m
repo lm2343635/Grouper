@@ -7,15 +7,13 @@
 //
 
 #import "MainTableViewController.h"
-#import "GroupManager.h"
-#import "SendManager.h"
-#import "ReceiveManager.h"
 #import "DaoManager.h"
 #import "CommonTool.h"
 #import "MessageData.h"
 #import "Grouper-Swift.h"
 #import "UIImageView+Extension.h"
 #import <MJRefresh/MJRefresh.h>
+#import "Grouper.h"
 
 @interface MainTableViewController ()
 
@@ -23,7 +21,7 @@
 
 @implementation MainTableViewController {
     DaoManager *dao;
-    GroupManager *group;
+    Grouper *grouper;
     
     NSDateFormatter *dateFormatter;
     int accessedServers;
@@ -42,8 +40,8 @@
     }
     [super viewDidLoad];
     
-    group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
+    grouper = [Grouper sharedInstance];
     
     // Init date formatter.
     dateFormatter = [[NSDateFormatter alloc] init];
@@ -95,7 +93,7 @@
     }
     switch (section) {
         case 0:
-            return group.defaults.initial == InitialFinished? group.defaults.serverCount: 1;
+            return grouper.group.defaults.initial == InitialFinished? grouper.group.defaults.serverCount: 1;
             break;
         case 1:
             return messages.count + 1;
@@ -153,10 +151,10 @@
     }
     UITableViewCell *cell = nil;
     if (indexPath.section == 0) {
-        if (group.defaults.initial == InitialFinished) {
+        if (grouper.group.defaults.initial == InitialFinished) {
             cell = [tableView dequeueReusableCellWithIdentifier:@"serverIdentifier" forIndexPath:indexPath];
             UILabel *serverAddressLabel = (UILabel *)[cell viewWithTag:1];
-            serverAddressLabel.text = [group.defaults.servers.allKeys objectAtIndex:indexPath.row];
+            serverAddressLabel.text = [grouper.group.defaults.servers.allKeys objectAtIndex:indexPath.row];
             
             [stateImageViews setObject:(UIImageView *)[cell viewWithTag:2]
                                 forKey:serverAddressLabel.text];
@@ -174,15 +172,12 @@
                                                    forIndexPath:indexPath];
         } else {
             MessageData *message = [messages objectAtIndex:indexPath.row];
-            
-//            User *user = [dao.userDao getByNode:message.sender];
+            // Get sender user.
+            User *user = [grouper.group getUserByNodeIdentifier:message.sender];
             cell = [tableView dequeueReusableCellWithIdentifier:@"messageIdentifier"
                                                    forIndexPath:indexPath];
-
             UILabel *sendInfoLabel = (UILabel *)[cell viewWithTag:2];
-
-//            sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
-            
+            sendInfoLabel.text = [NSString stringWithFormat:@"%@ sent at %@", user.name, [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:message.sendtime]]];
             UILabel *receiveInfoLabel = (UILabel *)[cell viewWithTag:3];
             UILabel *typeLabel = (UILabel *)[cell viewWithTag:4];
             receiveInfoLabel.text = [NSString stringWithFormat:@"%@ received at %@", message.object, [dateFormatter stringFromDate:[NSDate date]]];
@@ -219,7 +214,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
+    [grouper.group checkServerState:^(NSDictionary *serverStates, BOOL sync) {
         for (NSString *address in serverStates.allKeys) {
             [self showState:[serverStates[address] boolValue] forServer:address];
         }
@@ -227,7 +222,7 @@
         if (sync) {
             [syncImageView startRotate:2 withClockwise:NO];
             // Refresh members list before data sync
-            [[ReceiveManager sharedInstance] receiveWithCompletion:^{
+            [grouper.receiver receiveWithCompletion:^{
                 [syncImageView stopRotate];
             }];
             
@@ -235,10 +230,10 @@
             // send a confirm message to unstrusted servers.
             long now = (long)[[NSDate date] timeIntervalSince1970];
             // If client sent control message before interval time, send control message again
-            if (now - group.defaults.controlMessageSendTime > group.defaults.interval * 60) {
-                [[SendManager sharedInstance] confirm];
+            if (now - grouper.group.defaults.controlMessageSendTime > grouper.group.defaults.interval * 60) {
+                [grouper.sender confirm];
                 // Update control message sene time.
-                group.defaults.controlMessageSendTime = now;
+                grouper.group.defaults.controlMessageSendTime = now;
             }
         }
     }];

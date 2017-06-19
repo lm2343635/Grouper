@@ -17,6 +17,7 @@
 
 @implementation AddClassificationViewController {
     DaoManager *dao;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -25,6 +26,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
+    grouper = [Grouper sharedInstance];
 }
 
 #pragma mark - Action
@@ -32,14 +34,15 @@
     if (DEBUG) {
         NSLog(@"Running %@ %@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *cname = _cnameTextField.text;
-    if ([cname isEqualToString:@""]) {
+
+    if ([ _cnameTextField.text isEqualToString:@""]) {
         [self showWarning:@"Classification name is empty!"];
         return;
     }
-    User *user = [[GroupManager sharedInstance] currentUser];
-    Classification *classification = [dao.classificationDao saveWithName:cname creator:user.email];
-    [[SendManager sharedInstance] update:classification];
+
+    Classification *classification = [dao.classificationDao saveWithName: _cnameTextField.text
+                                                                 creator:grouper.group.currentUser.email];
+    [grouper.sender update:classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

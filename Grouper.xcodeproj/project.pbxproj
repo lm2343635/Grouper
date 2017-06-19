@@ -22,6 +22,7 @@
 		E4112E451EF6A51000F1298D /* UserDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E421EF6A51000F1298D /* UserDao.m */; };
 		E4112E4D1EF7B0E700F1298D /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E4A1EF7B0E700F1298D /* UIViewController+Extension.m */; };
 		E4112E4E1EF7B0E700F1298D /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E4C1EF7B0E700F1298D /* CommonTool.m */; };
+		E4112E531EF7BAAA00F1298D /* Grouper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E521EF7BAAA00F1298D /* Grouper.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
@@ -68,8 +69,8 @@
 		E486A1B41EF68A4600A33AE9 /* GroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AA1EF68A4600A33AE9 /* GroupManager.m */; };
 		E486A1B51EF68A4600A33AE9 /* MultipeerConnectivityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AC1EF68A4600A33AE9 /* MultipeerConnectivityManager.m */; };
 		E486A1B61EF68A4600A33AE9 /* NetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1AE1EF68A4600A33AE9 /* NetManager.m */; };
-		E486A1B71EF68A4600A33AE9 /* ReceiveManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B01EF68A4600A33AE9 /* ReceiveManager.m */; };
-		E486A1B81EF68A4600A33AE9 /* SendManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B21EF68A4600A33AE9 /* SendManager.m */; };
+		E486A1B71EF68A4600A33AE9 /* ReceiverManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B01EF68A4600A33AE9 /* ReceiverManager.m */; };
+		E486A1B81EF68A4600A33AE9 /* SenderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B21EF68A4600A33AE9 /* SenderManager.m */; };
 		E486A1B91EF68A4600A33AE9 /* SyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E486A1B31EF68A4600A33AE9 /* SyncManager.swift */; };
 		E486A1BC1EF68A7A00A33AE9 /* Init.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */; };
 		E486A1BD1EF68A7A00A33AE9 /* Members.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */; };
@@ -146,6 +147,8 @@
 		E4112E4A1EF7B0E700F1298D /* UIViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Extension.m"; sourceTree = "<group>"; };
 		E4112E4B1EF7B0E700F1298D /* CommonTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTool.h; sourceTree = "<group>"; };
 		E4112E4C1EF7B0E700F1298D /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
+		E4112E511EF7BAAA00F1298D /* Grouper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Grouper.h; path = Core/Grouper.h; sourceTree = "<group>"; };
+		E4112E521EF7BAAA00F1298D /* Grouper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grouper.m; path = Core/Grouper.m; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -215,7 +218,6 @@
 		E46516AB1E31F1F100A3E8E2 /* Account+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Account+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E47C4F601CDF0456005F8836 /* SynchronizationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynchronizationTableViewController.h; sourceTree = "<group>"; };
 		E47C4F611CDF0456005F8836 /* SynchronizationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SynchronizationTableViewController.m; sourceTree = "<group>"; };
-		E486A1901EF6890E00A33AE9 /* Grouper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Grouper.h; sourceTree = "<group>"; };
 		E486A1911EF689C700A33AE9 /* AddMemberViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddMemberViewController.h; sourceTree = "<group>"; };
 		E486A1921EF689C700A33AE9 /* AddMemberViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddMemberViewController.m; sourceTree = "<group>"; };
 		E486A1931EF689C700A33AE9 /* AddServerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddServerViewController.h; sourceTree = "<group>"; };
@@ -238,10 +240,10 @@
 		E486A1AC1EF68A4600A33AE9 /* MultipeerConnectivityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultipeerConnectivityManager.m; sourceTree = "<group>"; };
 		E486A1AD1EF68A4600A33AE9 /* NetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetManager.h; sourceTree = "<group>"; };
 		E486A1AE1EF68A4600A33AE9 /* NetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetManager.m; sourceTree = "<group>"; };
-		E486A1AF1EF68A4600A33AE9 /* ReceiveManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveManager.h; sourceTree = "<group>"; };
-		E486A1B01EF68A4600A33AE9 /* ReceiveManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveManager.m; sourceTree = "<group>"; };
-		E486A1B11EF68A4600A33AE9 /* SendManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendManager.h; sourceTree = "<group>"; };
-		E486A1B21EF68A4600A33AE9 /* SendManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendManager.m; sourceTree = "<group>"; };
+		E486A1AF1EF68A4600A33AE9 /* ReceiverManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiverManager.h; sourceTree = "<group>"; };
+		E486A1B01EF68A4600A33AE9 /* ReceiverManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiverManager.m; sourceTree = "<group>"; };
+		E486A1B11EF68A4600A33AE9 /* SenderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenderManager.h; sourceTree = "<group>"; };
+		E486A1B21EF68A4600A33AE9 /* SenderManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SenderManager.m; sourceTree = "<group>"; };
 		E486A1B31EF68A4600A33AE9 /* SyncManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncManager.swift; sourceTree = "<group>"; };
 		E486A1BA1EF68A7A00A33AE9 /* Init.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Init.storyboard; sourceTree = "<group>"; };
 		E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Members.storyboard; sourceTree = "<group>"; };
@@ -434,6 +436,8 @@
 			isa = PBXGroup;
 			children = (
 				E4400D941CCB5845000DFB1A /* Core */,
+				E4112E511EF7BAAA00F1298D /* Grouper.h */,
+				E4112E521EF7BAAA00F1298D /* Grouper.m */,
 				E4400D6F1CCB5845000DFB1A /* Grouper */,
 				E4400D891CCB5845000DFB1A /* GrouperTests */,
 				E4400D6E1CCB5845000DFB1A /* Products */,
@@ -493,7 +497,6 @@
 		E4400D941CCB5845000DFB1A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E486A1901EF6890E00A33AE9 /* Grouper.h */,
 				E486A18C1EF6848500A33AE9 /* Controller */,
 				E4112E231EF6987800F1298D /* Dao */,
 				E486A18D1EF684AF00A33AE9 /* Manager */,
@@ -568,10 +571,10 @@
 				E486A1AC1EF68A4600A33AE9 /* MultipeerConnectivityManager.m */,
 				E486A1AD1EF68A4600A33AE9 /* NetManager.h */,
 				E486A1AE1EF68A4600A33AE9 /* NetManager.m */,
-				E486A1AF1EF68A4600A33AE9 /* ReceiveManager.h */,
-				E486A1B01EF68A4600A33AE9 /* ReceiveManager.m */,
-				E486A1B11EF68A4600A33AE9 /* SendManager.h */,
-				E486A1B21EF68A4600A33AE9 /* SendManager.m */,
+				E486A1AF1EF68A4600A33AE9 /* ReceiverManager.h */,
+				E486A1B01EF68A4600A33AE9 /* ReceiverManager.m */,
+				E486A1B11EF68A4600A33AE9 /* SenderManager.h */,
+				E486A1B21EF68A4600A33AE9 /* SenderManager.m */,
 				E486A1B31EF68A4600A33AE9 /* SyncManager.swift */,
 			);
 			name = Manager;
@@ -893,7 +896,8 @@
 				E46516AE1E31F1F100A3E8E2 /* Account+CoreDataClass.m in Sources */,
 				E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */,
 				E486A1A21EF689C700A33AE9 /* AddServerViewController.m in Sources */,
-				E486A1B81EF68A4600A33AE9 /* SendManager.m in Sources */,
+				E4112E531EF7BAAA00F1298D /* Grouper.m in Sources */,
+				E486A1B81EF68A4600A33AE9 /* SenderManager.m in Sources */,
 				E457B4221CF19E5D00139C4C /* ShopsTableViewController.m in Sources */,
 				E4112E4D1EF7B0E700F1298D /* UIViewController+Extension.m in Sources */,
 				E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */,
@@ -904,7 +908,7 @@
 				E486A1A31EF689C700A33AE9 /* InitGroupTableViewController.m in Sources */,
 				E486A1B51EF68A4600A33AE9 /* MultipeerConnectivityManager.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
-				E486A1B71EF68A4600A33AE9 /* ReceiveManager.m in Sources */,
+				E486A1B71EF68A4600A33AE9 /* ReceiverManager.m in Sources */,
 				E4112E2A1EF6A47D00F1298D /* Static.xcdatamodeld in Sources */,
 				E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */,
 				E4112E3B1EF6A4CD00F1298D /* User+CoreDataClass.m in Sources */,

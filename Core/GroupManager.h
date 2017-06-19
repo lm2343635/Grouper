@@ -39,10 +39,13 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Get single instance.
 + (instancetype)sharedInstance;
 
-// *********************** Global Config ************************
+// *********************** User ************************
 
 // Save global user email and name.
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name;
+
+// Get a user by node
+- (User *)getUserByNodeIdentifier:(NSString *)node;
 
 // *********************** Inivte Members ************************
 

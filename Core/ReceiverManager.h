@@ -7,15 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GroupManager.h"
 
 #define ReceivedTag @"received"
 
 typedef void (^Completion)(void);
 
-@interface ReceiveManager: NSObject
+@interface ReceiverManager: NSObject
 
 // Get single instance.
 + (instancetype)sharedInstance;
+
+// Init sync manager in Grouper
+- (void)initSyncManager:(DataStack *)stack;
 
 // Receive message and do something in completion block.
 - (void)receiveWithCompletion:(Completion)completion;

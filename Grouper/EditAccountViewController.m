@@ -16,7 +16,7 @@
 
 @implementation EditAccountViewController {
     DaoManager *dao;
-    User *currentUser;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -25,7 +25,7 @@
     }
     [super viewDidLoad];
     dao = [DaoManager sharedInstance];
-    currentUser = [[GroupManager sharedInstance] currentUser];
+    grouper = [Grouper sharedInstance];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,19 +40,19 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *aname = _anameTextField.text;
-    if([aname isEqualToString:@""]) {
+    if([_anameTextField.text isEqualToString:@""]) {
         [self showWarning:@"Account name is empty!"];
         return;
     }
+    
     // Update account.
-    _account.aname = aname;
-    _account.updater = currentUser.email;
+    _account.aname = _anameTextField.text;
+    _account.updater = grouper.group.currentUser.email;
     _account.updateAt = [NSDate date];
     [dao saveContext];
     
     // Send shares.
-    [[SendManager sharedInstance] update:_account];
+    [grouper.sender update:_account];
     
     [self.navigationController popViewControllerAnimated:YES];
 }
