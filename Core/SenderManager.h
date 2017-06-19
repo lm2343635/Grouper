@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "DaoManager.h"
+#import "CoreDaoManager.h"
 
 #define MessageTypeUpdate @"update"
 #define MessageTypeDelete @"delete"

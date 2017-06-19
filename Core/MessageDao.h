@@ -6,12 +6,12 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "DaoTemplate.h"
+#import "CoreDaoTemplate.h"
 #import "MessageData.h"
 
 #define MessageEntityName @"Message"
 
-@interface MessageDao : DaoTemplate
+@interface MessageDao : CoreDaoTemplate
 
 // Save a existed message from other devices.
 - (Message *)saveWithMessageData:(MessageData *)messageData;

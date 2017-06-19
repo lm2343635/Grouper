@@ -1,14 +1,14 @@
 //
-//  DaoTemplate.m
-//  GroupFinance
+//  CoreDaoTemplate.m
+//  Grouper
 //
-//  Created by lidaye on 5/22/16.
-//  Copyright © 2016 limeng. All rights reserved.
+//  Created by lidaye on 19/06/2017.
+//  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "DaoTemplate.h"
+#import "CoreDaoTemplate.h"
 
-@implementation DaoTemplate
+@implementation CoreDaoTemplate
 
 - (instancetype)initWithManagedObjectContext:(NSManagedObjectContext *)context {
     if (DEBUG) {
@@ -38,7 +38,7 @@
 }
 
 - (NSManagedObject *)getByPredicate:(NSPredicate *)predicate
-                    withEntityName:(NSString *)entityName {
+                     withEntityName:(NSString *)entityName {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
@@ -57,8 +57,8 @@
 }
 
 - (NSManagedObject *)getByPredicate:(NSPredicate *)predicate
-                    withEntityName:(NSString *)entityName
-                           orderBy:(NSSortDescriptor *)sortDescriptor {
+                     withEntityName:(NSString *)entityName
+                            orderBy:(NSSortDescriptor *)sortDescriptor {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
@@ -91,7 +91,7 @@
 }
 
 - (NSArray *)findByPredicate:(NSPredicate *)predicate
-             withEntityName:(NSString *)entityName {
+              withEntityName:(NSString *)entityName {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
@@ -106,8 +106,8 @@
 }
 
 - (NSArray *)findByPredicate:(NSPredicate *)predicate
-             withEntityName:(NSString *)entityName
-                    orderBy:(NSSortDescriptor *)sortDescriptor {
+              withEntityName:(NSString *)entityName
+                     orderBy:(NSSortDescriptor *)sortDescriptor {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }

@@ -9,6 +9,7 @@
 #import "AddShopViewController.h"
 #import "UIViewController+Extension.h"
 #import "Grouper.h"
+#import "DaoManager.h"
 
 @interface AddShopViewController ()
 

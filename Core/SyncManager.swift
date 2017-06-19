@@ -9,8 +9,7 @@
 import Sync
 
 @objc class SyncManager: NSObject {
-    
-    let dao = DaoManager.sharedInstance()
+
     var dataStack: DataStack
     
     init(dataStack: DataStack) {

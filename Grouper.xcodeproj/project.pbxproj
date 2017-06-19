@@ -23,6 +23,10 @@
 		E4112E4D1EF7B0E700F1298D /* UIViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E4A1EF7B0E700F1298D /* UIViewController+Extension.m */; };
 		E4112E4E1EF7B0E700F1298D /* CommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E4C1EF7B0E700F1298D /* CommonTool.m */; };
 		E4112E531EF7BAAA00F1298D /* Grouper.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E521EF7BAAA00F1298D /* Grouper.m */; };
+		E4112E8F1EF7CA7C00F1298D /* Grouper.podspec in Resources */ = {isa = PBXBuildFile; fileRef = E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */; };
+		E4112E921EF7CC9300F1298D /* CoreDaoTemplate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E911EF7CC9300F1298D /* CoreDaoTemplate.m */; };
+		E4112E971EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E941EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m */; };
+		E4112E981EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E961EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m */; };
 		E42394921E475E8B00449A47 /* Record+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */; };
 		E42394931E475E8B00449A47 /* Record+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E42394911E475E8B00449A47 /* Record+CoreDataProperties.m */; };
 		E42776461DD03C1700FB1D33 /* MultipeerConnectivity.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E42776451DD03C1700FB1D33 /* MultipeerConnectivity.framework */; };
@@ -49,8 +53,6 @@
 		E457B4321CF1A41800139C4C /* ShopDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4311CF1A41800139C4C /* ShopDao.m */; };
 		E457B4351CF1A42900139C4C /* ClassificationDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4341CF1A42900139C4C /* ClassificationDao.m */; };
 		E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E457B4371CF1AA6E00139C4C /* DaoManager.m */; };
-		E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516991E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m */; };
-		E465169D1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E465169B1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m */; };
 		E46516A21E31EDEB00A3E8E2 /* Classification+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E465169F1E31EDEB00A3E8E2 /* Classification+CoreDataClass.m */; };
 		E46516A31E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516A11E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m */; };
 		E46516AC1E31F1F100A3E8E2 /* Shop+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E46516A51E31F1F100A3E8E2 /* Shop+CoreDataClass.m */; };
@@ -87,6 +89,7 @@
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
 		E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */; };
 		E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E7CD71DC7343400E9E43A /* Photo+CoreDataProperties.m */; };
+		E4D0A4931EF7D1830021BFBF /* BannerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D0A4921EF7D1830021BFBF /* BannerTool.swift */; };
 		E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */; };
 		E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */; };
 		E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */; };
@@ -94,7 +97,6 @@
 		E4F1CB461CFB0B2D00461B3F /* PhotoDao.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB451CFB0B2D00461B3F /* PhotoDao.m */; };
 		E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB481CFB13BF00461B3F /* RecordsTableViewController.m */; };
 		E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F1CB4B1CFB167200461B3F /* DateTool.m */; };
-		E4F2A83A1EB055F000671F90 /* BannerTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F2A8391EB055F000671F90 /* BannerTool.swift */; };
 		E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A921D03F036006F5DF2 /* EditRecordViewController.m */; };
 		E4F60A961D040C05006F5DF2 /* AddTemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A951D040C05006F5DF2 /* AddTemplateViewController.m */; };
 		E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */; };
@@ -149,6 +151,13 @@
 		E4112E4C1EF7B0E700F1298D /* CommonTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTool.m; sourceTree = "<group>"; };
 		E4112E511EF7BAAA00F1298D /* Grouper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Grouper.h; path = Core/Grouper.h; sourceTree = "<group>"; };
 		E4112E521EF7BAAA00F1298D /* Grouper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Grouper.m; path = Core/Grouper.m; sourceTree = "<group>"; };
+		E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Grouper.podspec; sourceTree = "<group>"; };
+		E4112E901EF7CC9300F1298D /* CoreDaoTemplate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDaoTemplate.h; sourceTree = "<group>"; };
+		E4112E911EF7CC9300F1298D /* CoreDaoTemplate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDaoTemplate.m; sourceTree = "<group>"; };
+		E4112E931EF7CDBB00F1298D /* SyncEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		E4112E941EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SyncEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		E4112E951EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		E4112E961EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SyncEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E423948E1E475E8B00449A47 /* Record+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataClass.h"; sourceTree = "<group>"; };
 		E423948F1E475E8B00449A47 /* Record+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Record+CoreDataClass.m"; sourceTree = "<group>"; };
 		E42394901E475E8B00449A47 /* Record+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Record+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -171,7 +180,6 @@
 		E4400D861CCB5845000DFB1A /* GrouperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrouperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4400D8A1CCB5845000DFB1A /* GrouperTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GrouperTests.m; sourceTree = "<group>"; };
 		E4400D8C1CCB5845000DFB1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E4546A431EAC7C1E004DB5FD /* Grouper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grouper-Bridging-Header.h"; sourceTree = "<group>"; };
 		E457B40B1CF19E0800139C4C /* AddClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddClassificationViewController.h; sourceTree = "<group>"; };
 		E457B40C1CF19E0800139C4C /* AddClassificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddClassificationViewController.m; sourceTree = "<group>"; };
 		E457B40E1CF19E1600139C4C /* EditClassificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditClassificationViewController.h; sourceTree = "<group>"; };
@@ -200,10 +208,6 @@
 		E457B4341CF1A42900139C4C /* ClassificationDao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassificationDao.m; sourceTree = "<group>"; };
 		E457B4361CF1AA6E00139C4C /* DaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DaoManager.h; sourceTree = "<group>"; };
 		E457B4371CF1AA6E00139C4C /* DaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DaoManager.m; sourceTree = "<group>"; };
-		E46516981E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncEntity+CoreDataClass.h"; sourceTree = "<group>"; };
-		E46516991E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SyncEntity+CoreDataClass.m"; sourceTree = "<group>"; };
-		E465169A1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SyncEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
-		E465169B1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SyncEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
 		E465169E1E31EDEA00A3E8E2 /* Classification+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Classification+CoreDataClass.h"; sourceTree = "<group>"; };
 		E465169F1E31EDEB00A3E8E2 /* Classification+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Classification+CoreDataClass.m"; sourceTree = "<group>"; };
 		E46516A01E31EDEB00A3E8E2 /* Classification+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Classification+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -278,6 +282,9 @@
 		E4B0FF4F1D0C24C5000F0421 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E4B0FF511D0C24D4000F0421 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		E4B0FF531D0C24E0000F0421 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		E4D0A4921EF7D1830021BFBF /* BannerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerTool.swift; sourceTree = "<group>"; };
+		E4D0A4941EF7D2110021BFBF /* Grouper-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grouper-Bridging-Header.h"; sourceTree = "<group>"; };
+		E4D0A4951EF7D2D40021BFBF /* Core-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Core-Bridging-Header.h"; sourceTree = "<group>"; };
 		E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddRecordViewController.h; sourceTree = "<group>"; };
 		E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddRecordViewController.m; sourceTree = "<group>"; };
 		E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectRecordItemTableViewController.h; sourceTree = "<group>"; };
@@ -293,7 +300,6 @@
 		E4F1CB481CFB13BF00461B3F /* RecordsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordsTableViewController.m; sourceTree = "<group>"; };
 		E4F1CB4A1CFB167200461B3F /* DateTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateTool.h; sourceTree = "<group>"; };
 		E4F1CB4B1CFB167200461B3F /* DateTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateTool.m; sourceTree = "<group>"; };
-		E4F2A8391EB055F000671F90 /* BannerTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerTool.swift; sourceTree = "<group>"; };
 		E4F60A911D03F036006F5DF2 /* EditRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditRecordViewController.h; sourceTree = "<group>"; };
 		E4F60A921D03F036006F5DF2 /* EditRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditRecordViewController.m; sourceTree = "<group>"; };
 		E4F60A941D040C05006F5DF2 /* AddTemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddTemplateViewController.h; sourceTree = "<group>"; };
@@ -390,6 +396,8 @@
 			children = (
 				E4112E241EF698BD00F1298D /* CoreDaoManager.h */,
 				E4112E251EF698BD00F1298D /* CoreDaoManager.m */,
+				E4112E901EF7CC9300F1298D /* CoreDaoTemplate.h */,
+				E4112E911EF7CC9300F1298D /* CoreDaoTemplate.m */,
 				E4112E3D1EF6A51000F1298D /* MessageDao.h */,
 				E4112E3E1EF6A51000F1298D /* MessageDao.m */,
 				E4112E3F1EF6A51000F1298D /* ShareDao.h */,
@@ -403,6 +411,10 @@
 		E4112E271EF6A44D00F1298D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E4112E931EF7CDBB00F1298D /* SyncEntity+CoreDataClass.h */,
+				E4112E941EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m */,
+				E4112E951EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.h */,
+				E4112E961EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m */,
 				E4112E281EF6A47D00F1298D /* Static.xcdatamodeld */,
 				E4112E2B1EF6A4CD00F1298D /* Message+CoreDataClass.h */,
 				E4112E2C1EF6A4CD00F1298D /* Message+CoreDataClass.m */,
@@ -435,6 +447,7 @@
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
+				E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */,
 				E4400D941CCB5845000DFB1A /* Core */,
 				E4112E511EF7BAAA00F1298D /* Grouper.h */,
 				E4112E521EF7BAAA00F1298D /* Grouper.m */,
@@ -479,7 +492,7 @@
 		E4400D701CCB5845000DFB1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E4546A431EAC7C1E004DB5FD /* Grouper-Bridging-Header.h */,
+				E4D0A4941EF7D2110021BFBF /* Grouper-Bridging-Header.h */,
 				E4400D711CCB5845000DFB1A /* main.m */,
 			);
 			name = "Supporting Files";
@@ -583,6 +596,8 @@
 		E486A18E1EF684E500A33AE9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E4D0A4951EF7D2D40021BFBF /* Core-Bridging-Header.h */,
+				E4D0A4921EF7D1830021BFBF /* BannerTool.swift */,
 				E4112E4B1EF7B0E700F1298D /* CommonTool.h */,
 				E4112E4C1EF7B0E700F1298D /* CommonTool.m */,
 				E486A1C01EF68AD800A33AE9 /* Defaults.h */,
@@ -629,7 +644,6 @@
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
-				E4F2A8391EB055F000671F90 /* BannerTool.swift */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -638,10 +652,6 @@
 			isa = PBXGroup;
 			children = (
 				E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */,
-				E46516981E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.h */,
-				E46516991E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m */,
-				E465169A1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.h */,
-				E465169B1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m */,
 				E46516A81E31F1F100A3E8E2 /* Account+CoreDataClass.h */,
 				E46516A91E31F1F100A3E8E2 /* Account+CoreDataClass.m */,
 				E46516AA1E31F1F100A3E8E2 /* Account+CoreDataProperties.h */,
@@ -766,6 +776,7 @@
 				E4400D801CCB5845000DFB1A /* LaunchScreen.storyboard in Resources */,
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
 				E486A1BD1EF68A7A00A33AE9 /* Members.storyboard in Resources */,
+				E4112E8F1EF7CA7C00F1298D /* Grouper.podspec in Resources */,
 				E486A1BC1EF68A7A00A33AE9 /* Init.storyboard in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);
@@ -835,11 +846,9 @@
 			files = (
 				E4F60ACD1D0413FF006F5DF2 /* TemplateDao.m in Sources */,
 				E49E7CE61DC7343400E9E43A /* Photo+CoreDataClass.m in Sources */,
-				E4F2A83A1EB055F000671F90 /* BannerTool.swift in Sources */,
 				E457B42F1CF1A40D00139C4C /* AccountDao.m in Sources */,
 				E47C4F621CDF0456005F8836 /* SynchronizationTableViewController.m in Sources */,
 				E4F1CB4C1CFB167200461B3F /* DateTool.m in Sources */,
-				E465169D1E31ED8C00A3E8E2 /* SyncEntity+CoreDataProperties.m in Sources */,
 				E4F1CB251CFAE58400461B3F /* AddRecordViewController.m in Sources */,
 				E486A1A41EF689C700A33AE9 /* JoinGroupViewController.m in Sources */,
 				E46516A31E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m in Sources */,
@@ -847,7 +856,6 @@
 				E4F60A931D03F036006F5DF2 /* EditRecordViewController.m in Sources */,
 				E49E7CE71DC7343400E9E43A /* Photo+CoreDataProperties.m in Sources */,
 				E4305A511E36363000010B52 /* ContentViewController.swift in Sources */,
-				E465169C1E31ED8C00A3E8E2 /* SyncEntity+CoreDataClass.m in Sources */,
 				E486A1A11EF689C700A33AE9 /* AddMemberViewController.m in Sources */,
 				E4F1CB321CFAF2D100461B3F /* DateSelectorView.m in Sources */,
 				E486A1CC1EF68AD800A33AE9 /* strtok.c in Sources */,
@@ -861,6 +869,7 @@
 				E430E7661E2385D900CF9660 /* MainTableViewController.m in Sources */,
 				E486A1B91EF68A4600A33AE9 /* SyncManager.swift in Sources */,
 				E4F60AD31D0448FF006F5DF2 /* PhotoViewController.m in Sources */,
+				E4D0A4931EF7D1830021BFBF /* BannerTool.swift in Sources */,
 				E486A1B41EF68A4600A33AE9 /* GroupManager.m in Sources */,
 				E4400D751CCB5845000DFB1A /* AppDelegate.m in Sources */,
 				E457B4161CF19E2A00139C4C /* EditShopViewController.m in Sources */,
@@ -888,6 +897,7 @@
 				E4112E391EF6A4CD00F1298D /* Share+CoreDataClass.m in Sources */,
 				E4112E451EF6A51000F1298D /* UserDao.m in Sources */,
 				E46516AD1E31F1F100A3E8E2 /* Shop+CoreDataProperties.m in Sources */,
+				E4112E921EF7CC9300F1298D /* CoreDaoTemplate.m in Sources */,
 				E486A1D21EF68AD800A33AE9 /* shamir.c in Sources */,
 				E4F1CB2B1CFAE5B900461B3F /* SelectRecordItemTableViewController.m in Sources */,
 				E457B4251CF19E6700139C4C /* AccountsTableViewController.m in Sources */,
@@ -905,6 +915,7 @@
 				E457B40D1CF19E0800139C4C /* AddClassificationViewController.m in Sources */,
 				E4F1CB491CFB13BF00461B3F /* RecordsTableViewController.m in Sources */,
 				E46516AC1E31F1F100A3E8E2 /* Shop+CoreDataClass.m in Sources */,
+				E4112E981EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m in Sources */,
 				E486A1A31EF689C700A33AE9 /* InitGroupTableViewController.m in Sources */,
 				E486A1B51EF68A4600A33AE9 /* MultipeerConnectivityManager.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
@@ -914,6 +925,7 @@
 				E4112E3B1EF6A4CD00F1298D /* User+CoreDataClass.m in Sources */,
 				E4112E131EF6975D00F1298D /* Model.xcdatamodeld in Sources */,
 				E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */,
+				E4112E971EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m in Sources */,
 				E4F60A991D040C1B006F5DF2 /* TemplatesTableViewController.m in Sources */,
 				E457B4381CF1AA6E00139C4C /* DaoManager.m in Sources */,
 				E486A1CE1EF68AD800A33AE9 /* GLibFacade.c in Sources */,

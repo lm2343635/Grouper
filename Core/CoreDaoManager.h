@@ -10,7 +10,7 @@
 #import "UserDao.h"
 #import "ShareDao.h"
 #import "MessageDao.h"
-#import "AppDelegate.h"
+#import "Core-Bridging-Header.h"
 
 @interface CoreDaoManager : NSObject
 

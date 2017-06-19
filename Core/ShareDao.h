@@ -6,11 +6,11 @@
 //  Copyright © 2017 limeng. All rights reserved.
 //
 
-#import "DaoTemplate.h"
+#import "CoreDaoTemplate.h"
 
 #define ShareEntityName @"Share"
 
-@interface ShareDao : DaoTemplate
+@interface ShareDao : CoreDaoTemplate
 
 - (Share *)saveWithShareId:(NSString *)shareId;
 

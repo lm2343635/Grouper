@@ -6,11 +6,11 @@
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "DaoTemplate.h"
+#import "CoreDaoTemplate.h"
 
 #define UserEntityName @"User"
 
-@interface UserDao : DaoTemplate
+@interface UserDao : CoreDaoTemplate
 
 // Save user info.
 - (User *)saveWithEmail:(NSString *)email
