@@ -668,6 +668,13 @@
     }
 }
 
+- (void)clearShareId {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [dao.shareDao deleteAll];
+}
+
 #pragma mark - Device Token Related
 - (void)sendDeviceToken:(NSString *)token {
     if (DEBUG) {

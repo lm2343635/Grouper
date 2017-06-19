@@ -20,15 +20,17 @@
     GroupManager *group;
     DaoManager *dao;
     SendManager *send;
-    UIAlertController *clearAlertController;
 }
 
 - (void)viewDidLoad {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     [super viewDidLoad];
+    
     group = [GroupManager sharedInstance];
     dao = [DaoManager sharedInstance];
     send = [SendManager sharedInstance];
-    [self initClearAlertController];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -83,42 +85,34 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if (indexPath.row == 2) {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (cell.reuseIdentifier == nil) {
+        return;
+    }
+    if ([cell.reuseIdentifier isEqualToString:@"members"]) {
         UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Members" bundle:nil];
         [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
-    } else if (indexPath.row == 10) {
-        [self presentViewController:clearAlertController animated:YES completion:nil];
-    } else if (indexPath.row == 11) {
+    } else if ([cell.reuseIdentifier isEqualToString:@"clear"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Clear Share ID Cache"
+                                                                   message:nil
+                                                            preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *clear = [UIAlertAction actionWithTitle:@"Clear Now!"
+                                                        style:UIAlertActionStyleDestructive
+                                                      handler:^(UIAlertAction * _Nonnull action)
+        {
+            [group clearShareId];
+        }];
+        UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+                                                         style:UIAlertActionStyleCancel
+                                                       handler:nil];
+        [alert addAction:clear];
+        [alert addAction:cancel];
+        [self presentViewController:alert animated:YES completion:nil];
+    } else if ([cell.reuseIdentifier isEqualToString:@"confirm"]) {
         [send confirm];
         [self showTip:@"Confirm message has been sent."];
     }
-}
 
-#pragma mark - Action
-- (void)initClearAlertController {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    clearAlertController = [UIAlertController alertControllerWithTitle:@"Clear Share ID Cache"
-                                                          message:nil
-                                                   preferredStyle:UIAlertControllerStyleActionSheet];
-    UIAlertAction *clear = [UIAlertAction actionWithTitle:@"Clear Now!"
-                                                    style:UIAlertActionStyleDestructive
-                                                  handler:^(UIAlertAction * _Nonnull action) {
-                                                      [self clearShareIdCache];
-                                                  }];
-    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-                                                     style:UIAlertActionStyleCancel
-                                                   handler:nil];
-    [clearAlertController addAction:clear];
-    [clearAlertController addAction:cancel];
-}
-
-- (void)clearShareIdCache {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-//    [dao.shareDao deleteAll];
 }
 
 @end
