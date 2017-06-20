@@ -81,6 +81,7 @@
 		E486A1D01EF68AD800A33AE9 /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C71EF68AD800A33AE9 /* MessageData.m */; };
 		E486A1D21EF68AD800A33AE9 /* shamir.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1CA1EF68AD800A33AE9 /* shamir.c */; };
 		E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */; };
+		E4892D581EF8FEF900E9876C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4892D571EF8FEF900E9876C /* Assets.xcassets */; };
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
 		E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E497059D1CDF22B20092B164 /* Assets.xcassets */; };
 		E49BFB5B1D379FCA00BCE598 /* MyProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E49BFB5A1D379FCA00BCE598 /* MyProfileTableViewController.m */; };
@@ -261,6 +262,7 @@
 		E486A1CB1EF68AD800A33AE9 /* shamir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shamir.h; sourceTree = "<group>"; };
 		E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
 		E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewController.m; sourceTree = "<group>"; };
+		E4892D571EF8FEF900E9876C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		E4939F9B1D97CE36006CA612 /* Grouper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grouper.entitlements; sourceTree = "<group>"; };
@@ -511,6 +513,7 @@
 				E4112E271EF6A44D00F1298D /* Model */,
 				E486A18B1EF6845500A33AE9 /* Storyboard */,
 				E486A18E1EF684E500A33AE9 /* Support */,
+				E4892D571EF8FEF900E9876C /* Assets.xcassets */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -771,6 +774,7 @@
 				E497059E1CDF22B20092B164 /* Assets.xcassets in Resources */,
 				E486A1BD1EF68A7A00A33AE9 /* Members.storyboard in Resources */,
 				E4112E8F1EF7CA7C00F1298D /* Grouper.podspec in Resources */,
+				E4892D581EF8FEF900E9876C /* Assets.xcassets in Resources */,
 				E486A1BC1EF68A7A00A33AE9 /* Init.storyboard in Resources */,
 				E4400D7B1CCB5845000DFB1A /* Main.storyboard in Resources */,
 			);

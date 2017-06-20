@@ -14,10 +14,12 @@ Pod::Spec.new do |s|
 	s.social_media_url   = "http://fczm.pw"
 
 	s.platform     = :ios
-	s.source       = { :git => "", :tag => "0.1" }
+	s.source       = { :git => "https://github.com/lm2343635/Grouper.git", :tag => "0.2" }
 
-	s.source_files  = "Core/*.*"
-
+	s.source_files  = "Core/*.{h,m,c,swift}"
+    s.resource_bundles = {
+		'Grouper' => ['Core/*.{storyboard,xib,xcassets}']
+	}
 	s.requires_arc = true
 
     s.dependency 'Sync', '~> 3'
