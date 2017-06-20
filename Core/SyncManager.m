@@ -7,6 +7,7 @@
 //
 
 #import "SyncManager.h"
+#import "DEBUG.h"
 
 @implementation SyncManager
 

@@ -10,8 +10,7 @@
 #import "SenderManager.h"
 #import "ReceiverManager.h"
 #import "GroupManager.h"
-
-#define DEBUG 1
+#import "DEBUG.h"
 
 @interface Grouper : NSObject
 

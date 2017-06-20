@@ -48,10 +48,12 @@ Grouper relys on [Sync](https://github.com/SyncDB/Sync) framework to syncrhonize
 
 Next, set your app's data stack to Grouper.
 
+```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     grouper = [Grouper sharedInstance];
     [grouper setAppDataStack:[self dataStack]];
 }
+```
 
 ### Group Management
 

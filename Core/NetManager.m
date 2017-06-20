@@ -8,6 +8,7 @@
 
 #import "NetManager.h"
 #import "GroupManager.h"
+#import "DEBUG.h"
 
 @implementation NetManager {
     Defaults *defaults;

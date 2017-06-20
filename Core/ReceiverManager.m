@@ -12,6 +12,7 @@
 #import "SyncManager.h"
 #include "GLibFacade.h"
 #include "shamir.h"
+#import "DEBUG.h"
 
 @implementation ReceiverManager {
     NetManager *net;

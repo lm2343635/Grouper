@@ -263,6 +263,7 @@
 		E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
 		E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessagesTableViewController.m; sourceTree = "<group>"; };
 		E4892D571EF8FEF900E9876C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E4892D611EF916D400E9876C /* DEBUG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DEBUG.h; sourceTree = "<group>"; };
 		E4939F981D97CD42006CA612 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E4939F991D97CD42006CA612 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		E4939F9B1D97CE36006CA612 /* Grouper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Grouper.entitlements; sourceTree = "<group>"; };
@@ -507,6 +508,7 @@
 			children = (
 				E4112E511EF7BAAA00F1298D /* Grouper.h */,
 				E4112E521EF7BAAA00F1298D /* Grouper.m */,
+				E4892D611EF916D400E9876C /* DEBUG.h */,
 				E486A18C1EF6848500A33AE9 /* Controller */,
 				E4112E231EF6987800F1298D /* Dao */,
 				E486A18D1EF684AF00A33AE9 /* Manager */,

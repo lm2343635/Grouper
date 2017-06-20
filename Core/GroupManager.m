@@ -8,6 +8,7 @@
 
 #import "GroupManager.h"
 #import "NetManager.h"
+#import "DEBUG.h"
 
 @implementation GroupManager {
     CoreDaoManager *dao;

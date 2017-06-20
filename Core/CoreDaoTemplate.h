@@ -11,6 +11,7 @@
 #import "Share+CoreDataClass.h"
 #import "Message+CoreDataClass.h"
 #import "SyncEntity+CoreDataClass.h"
+#import "DEBUG.h"
 
 @interface CoreDaoTemplate : NSObject
 

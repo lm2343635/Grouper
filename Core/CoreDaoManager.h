@@ -11,6 +11,7 @@
 #import "ShareDao.h"
 #import "MessageDao.h"
 #import "Core-Bridging-Header.h"
+#import "DEBUG.h"
 
 @interface CoreDaoManager : NSObject
 

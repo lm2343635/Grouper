@@ -7,6 +7,7 @@
 //
 
 #import "MultipeerConnectivityManager.h"
+#import "DEBUG.h"
 
 @implementation MultipeerConnectivityManager
 

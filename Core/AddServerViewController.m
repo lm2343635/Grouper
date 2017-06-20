@@ -7,7 +7,7 @@
 //
 
 #import "AddServerViewController.h"
-#import "GroupManager.h"
+#import "Grouper.h"
 #import "UIViewController+Extension.h"
 
 @interface AddServerViewController ()
@@ -15,7 +15,7 @@
 @end
 
 @implementation AddServerViewController {
-    GroupManager *group;
+    Grouper *grouper;
 }
 
 - (void)viewDidLoad {
@@ -24,12 +24,12 @@
     }
     [super viewDidLoad];
 
-    group = [GroupManager sharedInstance];
+    grouper = [Grouper sharedInstance];
     
-    //If group id and group name has been set, autofill them and disable editing.
-    if (group.defaults.groupId != nil && group.defaults.groupName != nil) {
-        _groupIdTextField.text = group.defaults.groupId;
-        _groupNameTextField.text = group.defaults.groupName;
+    // If group id and group name has been set, autofill them and disable editing.
+    if (grouper.group.defaults.groupId != nil && grouper.group.defaults.groupName != nil) {
+        _groupIdTextField.text = grouper.group.defaults.groupId;
+        _groupNameTextField.text = grouper.group.defaults.groupName;
         _groupIdTextField.enabled = NO;
         _groupNameTextField.enabled = NO;
     }
@@ -40,7 +40,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     __weak typeof(self) weakSelf = self;
-    [group addNewServer:_serverAddressTextField.text
+    [grouper.group addNewServer:_serverAddressTextField.text
           withGroupName:_groupNameTextField.text
              andGroupId:_groupIdTextField.text
              completion:^(BOOL success, NSString *message) {

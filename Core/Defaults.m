@@ -114,9 +114,6 @@
 }
 
 - (NSUInteger)addServerAddress:(NSString *)address withAccessKey:(NSString *)accessKey {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
     NSMutableDictionary *servers = [[NSMutableDictionary alloc] initWithDictionary:[self servers]];
     [servers setValue:accessKey forKey:address];
     [self setServers:servers];
@@ -191,7 +188,6 @@
     }
     return _sequence;
 }
-
 
 @synthesize initial = _initial;
 

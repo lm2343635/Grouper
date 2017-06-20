@@ -11,6 +11,7 @@
 #import "GroupManager.h"
 #include "GLibFacade.h"
 #include "shamir.h"
+#import "DEBUG.h"
 
 @implementation SenderManager {
     NetManager *net;
