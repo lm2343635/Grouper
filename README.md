@@ -64,7 +64,7 @@ All your Core Data entity should be subentity of SyncEntity, and all your NSMana
 | createAt  | Date   |
 | creator   | String |
 | remoteID  | String |
-| update    | String |
+| updater   | String |
 | updateAt  | String |
 
 ### Group Management
