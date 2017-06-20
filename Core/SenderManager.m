@@ -9,7 +9,8 @@
 #import "SenderManager.h"
 #import "NetManager.h"
 #import "GroupManager.h"
-#import "SecretSharing.h"
+#include "GLibFacade.h"
+#include "shamir.h"
 
 @implementation SenderManager {
     NetManager *net;
@@ -179,7 +180,7 @@
     // Traverse messages will be send, create shares and add them to messageId-share dictionary.
     for (Message *exsited in messages) {
         // Create shares.
-        NSDictionary *shares = [SecretSharing generateSharesWith:[self JSONStringFromObject:[exsited hyp_dictionary]]];
+        NSDictionary *shares = [self generateSharesWith:[self JSONStringFromObject:[exsited hyp_dictionary]]];
         // Add messageId and shares.
         for (NSString *address in shares.allKeys) {
             [messageIdShares[address] setValue:shares[address]
@@ -277,7 +278,7 @@
         NSLog(@"Send message to untrusted servers: %@", json);
     }
     // Create shares by secret sharing scheme.
-    NSDictionary *shares = [SecretSharing generateSharesWith:json];
+    NSDictionary *shares = [self generateSharesWith:json];
 
     sent = 0;
     // Send shares to multiple untrusted servers.
@@ -362,6 +363,28 @@
     group.defaults.sequence = group.defaults.sequence + 1;
     // Return new sequence.
     return group.defaults.sequence;
+}
+
+// Generate shares with a cleat text string.
+- (NSDictionary *)generateSharesWith:(NSString *)string {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSArray *addresses = group.defaults.servers.allKeys;
+    
+    const char *secret = [string cStringUsingEncoding:NSUTF8StringEncoding];
+    char *shares = generate_share_strings(secret, addresses.count, group.defaults.threshold);
+    NSString *result = [NSString stringWithCString:shares encoding:NSUTF8StringEncoding];
+    NSMutableArray *array = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"\n"]];
+    [array removeLastObject];
+    
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    for (int i = 0; i < addresses.count; i++) {
+        [dictionary setValue:[array objectAtIndex:i]
+                      forKey:[addresses objectAtIndex:i]];
+    }
+    
+    return dictionary;
 }
 
 @end

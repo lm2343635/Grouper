@@ -14,8 +14,9 @@
 
 @interface CoreDaoManager : NSObject
 
-@property (nonatomic, readonly) DataStack *dataStack;
-@property (nonatomic, readonly) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSManagedObjectModel *model;
+@property (strong, nonatomic) NSPersistentStoreCoordinator *coordinator;
+@property (strong, nonatomic) NSManagedObjectContext *context;
 
 @property (strong, nonatomic) UserDao *userDao;
 @property (strong, nonatomic) ShareDao *shareDao;
@@ -29,8 +30,5 @@
 
 //Save Core Data context
 - (void)saveContext;
-
-//Get data stack from dao manager
-- (DataStack *)getDataStack;
 
 @end

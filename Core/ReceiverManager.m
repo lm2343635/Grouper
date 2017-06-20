@@ -9,8 +9,9 @@
 #import "ReceiverManager.h"
 #import "NetManager.h"
 #import "SenderManager.h"
-#import "SecretSharing.h"
 #import "SyncManager.h"
+#include "GLibFacade.h"
+#include "shamir.h"
 
 @implementation ReceiverManager {
     NetManager *net;
@@ -191,7 +192,7 @@
             // Extract share from content.
             [shares addObject:[[content valueForKey:@"data"] valueForKey:@"share"]];
         }
-        NSString *messageString = [SecretSharing recoverShareWith:shares];
+        NSString *messageString = [self recoverShareWith:shares];
         if (DEBUG) {
             NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
         }
@@ -248,6 +249,7 @@
     }
 }
 
+#pragma mark - Service
 - (NSDictionary *)parseJSONString:(NSString *)string {
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
@@ -258,6 +260,20 @@
         return nil;
     }
     return dictionary;
+}
+
+// Recover shares to a clear text string.
+- (NSString *)recoverShareWith:(NSArray *)shares {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSMutableString *strings = [[NSMutableString alloc] init];
+    for (NSString *share in shares) {
+        [strings appendString:share];
+        [strings appendString:@"\n"];
+    }
+    const char *secret = extract_secret_from_share_strings([strings cStringUsingEncoding:NSUTF8StringEncoding]);
+    return [NSString stringWithCString:secret encoding:NSUTF8StringEncoding];
 }
 
 @end

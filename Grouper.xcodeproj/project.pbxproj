@@ -10,7 +10,6 @@
 		3E9BFF9DF44FD097026810A5 /* Pods_Grouper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 710458120C337F8796D1E807 /* Pods_Grouper.framework */; };
 		E4112E131EF6975D00F1298D /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */; };
 		E4112E261EF698BD00F1298D /* CoreDaoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E251EF698BD00F1298D /* CoreDaoManager.m */; };
-		E4112E2A1EF6A47D00F1298D /* Static.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E4112E281EF6A47D00F1298D /* Static.xcdatamodeld */; };
 		E4112E371EF6A4CD00F1298D /* Message+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E2C1EF6A4CD00F1298D /* Message+CoreDataClass.m */; };
 		E4112E381EF6A4CD00F1298D /* Message+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E2E1EF6A4CD00F1298D /* Message+CoreDataProperties.m */; };
 		E4112E391EF6A4CD00F1298D /* Share+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4112E301EF6A4CD00F1298D /* Share+CoreDataClass.m */; };
@@ -80,7 +79,6 @@
 		E486A1CE1EF68AD800A33AE9 /* GLibFacade.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C21EF68AD800A33AE9 /* GLibFacade.c */; };
 		E486A1CF1EF68AD800A33AE9 /* InternetResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C51EF68AD800A33AE9 /* InternetResponse.m */; };
 		E486A1D01EF68AD800A33AE9 /* MessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C71EF68AD800A33AE9 /* MessageData.m */; };
-		E486A1D11EF68AD800A33AE9 /* SecretSharing.m in Sources */ = {isa = PBXBuildFile; fileRef = E486A1C91EF68AD800A33AE9 /* SecretSharing.m */; };
 		E486A1D21EF68AD800A33AE9 /* shamir.c in Sources */ = {isa = PBXBuildFile; fileRef = E486A1CA1EF68AD800A33AE9 /* shamir.c */; };
 		E487E9201E9229F2009F8A96 /* MessagesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */; };
 		E4939F9A1D97CD42006CA612 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4939F991D97CD42006CA612 /* SettingsTableViewController.m */; };
@@ -126,7 +124,6 @@
 		E4112E121EF6975D00F1298D /* Model_2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model_2.0.xcdatamodel; sourceTree = "<group>"; };
 		E4112E241EF698BD00F1298D /* CoreDaoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDaoManager.h; sourceTree = "<group>"; };
 		E4112E251EF698BD00F1298D /* CoreDaoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDaoManager.m; sourceTree = "<group>"; };
-		E4112E291EF6A47D00F1298D /* Static.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Static.xcdatamodel; sourceTree = "<group>"; };
 		E4112E2B1EF6A4CD00F1298D /* Message+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+CoreDataClass.h"; sourceTree = "<group>"; };
 		E4112E2C1EF6A4CD00F1298D /* Message+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Message+CoreDataClass.m"; sourceTree = "<group>"; };
 		E4112E2D1EF6A4CD00F1298D /* Message+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Message+CoreDataProperties.h"; sourceTree = "<group>"; };
@@ -260,8 +257,6 @@
 		E486A1C51EF68AD800A33AE9 /* InternetResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InternetResponse.m; sourceTree = "<group>"; };
 		E486A1C61EF68AD800A33AE9 /* MessageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageData.h; sourceTree = "<group>"; };
 		E486A1C71EF68AD800A33AE9 /* MessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageData.m; sourceTree = "<group>"; };
-		E486A1C81EF68AD800A33AE9 /* SecretSharing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecretSharing.h; sourceTree = "<group>"; };
-		E486A1C91EF68AD800A33AE9 /* SecretSharing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecretSharing.m; sourceTree = "<group>"; };
 		E486A1CA1EF68AD800A33AE9 /* shamir.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = shamir.c; sourceTree = "<group>"; };
 		E486A1CB1EF68AD800A33AE9 /* shamir.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shamir.h; sourceTree = "<group>"; };
 		E487E91E1E9229F2009F8A96 /* MessagesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessagesTableViewController.h; sourceTree = "<group>"; };
@@ -416,7 +411,6 @@
 				E4112E941EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m */,
 				E4112E951EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.h */,
 				E4112E961EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m */,
-				E4112E281EF6A47D00F1298D /* Static.xcdatamodeld */,
 				E4112E2B1EF6A4CD00F1298D /* Message+CoreDataClass.h */,
 				E4112E2C1EF6A4CD00F1298D /* Message+CoreDataClass.m */,
 				E4112E2D1EF6A4CD00F1298D /* Message+CoreDataProperties.h */,
@@ -609,8 +603,6 @@
 				E486A1C51EF68AD800A33AE9 /* InternetResponse.m */,
 				E486A1C61EF68AD800A33AE9 /* MessageData.h */,
 				E486A1C71EF68AD800A33AE9 /* MessageData.m */,
-				E486A1C81EF68AD800A33AE9 /* SecretSharing.h */,
-				E486A1C91EF68AD800A33AE9 /* SecretSharing.m */,
 				E486A1CA1EF68AD800A33AE9 /* shamir.c */,
 				E486A1CB1EF68AD800A33AE9 /* shamir.h */,
 				E486A1BE1EF68AD800A33AE9 /* strtok.c */,
@@ -895,7 +887,6 @@
 				E457B4101CF19E1600139C4C /* EditClassificationViewController.m in Sources */,
 				E457B4291CF1A26A00139C4C /* DaoTemplate.m in Sources */,
 				E457B4321CF1A41800139C4C /* ShopDao.m in Sources */,
-				E486A1D11EF68AD800A33AE9 /* SecretSharing.m in Sources */,
 				E4112E391EF6A4CD00F1298D /* Share+CoreDataClass.m in Sources */,
 				E4112E451EF6A51000F1298D /* UserDao.m in Sources */,
 				E46516AD1E31F1F100A3E8E2 /* Shop+CoreDataProperties.m in Sources */,
@@ -922,7 +913,6 @@
 				E486A1B51EF68A4600A33AE9 /* MultipeerConnectivityManager.m in Sources */,
 				E457B41C1CF19E4100139C4C /* EditAccountViewController.m in Sources */,
 				E486A1B71EF68A4600A33AE9 /* ReceiverManager.m in Sources */,
-				E4112E2A1EF6A47D00F1298D /* Static.xcdatamodeld in Sources */,
 				E4305A4E1E36283D00010B52 /* Template+CoreDataClass.m in Sources */,
 				E4112E3B1EF6A4CD00F1298D /* User+CoreDataClass.m in Sources */,
 				E4112E131EF6975D00F1298D /* Model.xcdatamodeld in Sources */,
@@ -1190,16 +1180,6 @@
 			);
 			currentVersion = E4112E121EF6975D00F1298D /* Model_2.0.xcdatamodel */;
 			path = Model.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		E4112E281EF6A47D00F1298D /* Static.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				E4112E291EF6A47D00F1298D /* Static.xcdatamodel */,
-			);
-			currentVersion = E4112E291EF6A47D00F1298D /* Static.xcdatamodel */;
-			path = Static.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

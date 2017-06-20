@@ -29,27 +29,15 @@
     }
     self = [super init];
     if (self) {
-        _context = [self dataStack].mainContext;
-        //Set context for sync object dao
+        // Setup Core Data stack.
+        [self setupCoreDataStack];
+        
+        // Init dao object by managed object context.
         _userDao = [[UserDao alloc] initWithManagedObjectContext:_context];
         _shareDao = [[ShareDao alloc] initWithManagedObjectContext:_context];
         _messageDao = [[MessageDao alloc] initWithManagedObjectContext:_context];
     }
     return self;
-}
-
-#pragma mark - Grouper framework's Core Data stack
-
-@synthesize dataStack = _dataStack;
-
-- (DataStack *)dataStack {
-    if (_dataStack) {
-        return _dataStack;
-    }
-    _dataStack = [[DataStack alloc] initWithModelName:@"Static"];
-    
-//    _dataStack = [[DataStack alloc] initWithModel:[self model] storeType:DataStackStoreTypeSqLite];
-    return _dataStack;
 }
 
 - (NSManagedObject *)getObjectById:(NSManagedObjectID *)objectID {
@@ -76,11 +64,45 @@
     }
 }
 
-- (DataStack *)getDataStack {
+
+#pragma mark - Grouper Core Data Setup
+- (void)setupCoreDataStack {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
     }
-    return _dataStack;
+    
+    // Setup managed object model by code
+    _model = [[NSManagedObjectModel alloc] init];
+    [_model setEntities:[NSArray arrayWithObjects:
+                         [self messageEntity],
+                         [self shareEntity],
+                         [self userEntity],
+                         nil]];
+
+    // setup persistent store coordinator
+    _coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:_model];
+    NSDictionary *options = @{
+                            NSMigratePersistentStoresAutomaticallyOption: @YES,
+                            NSInferMappingModelAutomaticallyOption: @YES
+                            };
+    NSError *error;
+    NSURL *storeURL = [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+    storeURL = [storeURL URLByAppendingPathComponent:@"grouper.sqlite"];
+    [_coordinator addPersistentStoreWithType:NSSQLiteStoreType
+                              configuration:nil
+                                        URL:storeURL
+                                    options:options
+                                      error:&error];
+    
+    if(error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+        return;
+    }
+    
+    // Set up managed object context.
+    _context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+    _context.persistentStoreCoordinator = _coordinator;
+    _context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
 }
 
 - (NSManagedObjectModel *)model {
