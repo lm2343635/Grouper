@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *createAt;
 @property (nullable, nonatomic, copy) NSString *creator;
 @property (nullable, nonatomic, copy) NSString *remoteID;
-@property (nullable, nonatomic, copy) NSString *updater;
+@property (nullable, nonatomic, copy) NSString *update;
 @property (nullable, nonatomic, copy) NSDate *updateAt;
 
 @end

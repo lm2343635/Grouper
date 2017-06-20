@@ -55,6 +55,18 @@ Next, set your app's data stack to Grouper.
 }
 ```
 
+### Entity Design
+
+All your Core Data entity should be subentity of SyncEntity, and all your NSManagedObjects should be subclass of SyncEntity. SyncEntity class has been provied in Grouper framework. Create SyncEntity in your Model.xcdatamodeld file and set parent entity as SyncEntity for your entity.
+
+| Attribute | Type   |
+|-----------|--------|
+| createAt  | Date   |
+| creator   | String |
+| remoteID  | String |
+| update    | String |
+| updateAt  | String |
+
 ### Group Management
 
 Grouper provides group initialzation related function in Init.storyboard and member management in Members.storyboard. Use these 2 storyboards directly.

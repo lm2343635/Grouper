@@ -27,8 +27,8 @@
         <attribute name="createAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="creator" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="updateAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
-        <attribute name="updater" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="Template" representedClassName="Template" parentEntity="SyncEntity" syncable="YES">
         <attribute name="saveRecordType" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>

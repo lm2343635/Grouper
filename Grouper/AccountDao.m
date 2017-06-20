@@ -18,7 +18,7 @@
                                                      inManagedObjectContext:self.context];
     account.aname = aname;
     account.creator = creator;
-    account.updater = creator;
+    account.update = creator;
     [self saveContext];
     return account;
 }

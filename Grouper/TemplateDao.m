@@ -28,7 +28,7 @@
     template.shop = shop;
     
     template.creator = creator;
-    template.updater = creator;
+    template.update = creator;
     [self saveContext];
     return template;
 }

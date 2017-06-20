@@ -31,7 +31,7 @@
     record.shop = shop;
     record.photo = photo;
     record.creator = creator;
-    record.updater = creator;
+    record.update = creator;
     [self saveContext];
     return record;
 }

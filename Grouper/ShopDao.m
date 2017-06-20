@@ -18,7 +18,7 @@
                                                inManagedObjectContext:self.context];
     shop.sname = sname;
     shop.creator = creator;
-    shop.updater = creator;
+    shop.update = creator;
     [self saveContext];
     return shop;
 }

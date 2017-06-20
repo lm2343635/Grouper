@@ -47,7 +47,7 @@
     
     // Update account.
     _account.aname = _anameTextField.text;
-    _account.updater = grouper.group.currentUser.email;
+    _account.update = grouper.group.currentUser.email;
     _account.updateAt = [NSDate date];
     [dao saveContext];
     

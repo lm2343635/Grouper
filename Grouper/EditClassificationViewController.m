@@ -47,7 +47,7 @@
     }
     // Update classification.
     _classification.cname = cname;
-    _classification.updater = grouper.group.currentUser.email;
+    _classification.update = grouper.group.currentUser.email;
     _classification.updateAt = [NSDate date];
     [dao saveContext];
     

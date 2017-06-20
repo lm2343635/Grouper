@@ -18,7 +18,7 @@
                                                                    inManagedObjectContext:self.context];
     classification.cname = cname;
     classification.creator = creator;
-    classification.updater = creator;
+    classification.update = creator;
     [self saveContext];
     return classification;
 }

@@ -47,7 +47,7 @@
     }
     // Update shop.
     _shop.sname = sname;
-    _shop.updater = grouper.group.currentUser.email;
+    _shop.update = grouper.group.currentUser.email;
     _shop.updateAt = [NSDate date];
     [dao saveContext];
     
