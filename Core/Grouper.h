@@ -11,6 +11,8 @@
 #import "ReceiverManager.h"
 #import "GroupManager.h"
 
+#define DEBUG 1
+
 @interface Grouper : NSObject
 
 @property (nonatomic, strong) GroupManager *group;

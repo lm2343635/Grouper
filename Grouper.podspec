@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 	s.name         = "Grouper"
-	s.version      = "0.1"
+	s.version      = "0.2"
 	s.summary      = "A framework for Developing iOS app using Secret Sharing and untrusted servers."
 
 	s.description  = <<-DESC
