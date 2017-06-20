@@ -1,26 +1,26 @@
 //
-//  EditClassificationViewController.m
+//  EditAccountViewController.m
 //  GroupFinance
 //
 //  Created by lidaye on 5/22/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "EditClassificationViewController.h"
+#import "EditAccountViewController.h"
 #import "UIViewController+Extension.h"
 #import "Grouper.h"
 
-@interface EditClassificationViewController ()
+@interface EditAccountViewController ()
 
 @end
 
-@implementation EditClassificationViewController {
+@implementation EditAccountViewController {
     DaoManager *dao;
     Grouper *grouper;
 }
 
 - (void)viewDidLoad {
-    if (DEBUG) {
+    if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
@@ -32,27 +32,28 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [_cnameTextField setText:_classification.cname];
+    [_anameTextField setText:_account.aname];
 }
 
 #pragma mark - Action
-- (IBAction)save:(id)saveButton {
+- (IBAction)save:(id)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *cname = _cnameTextField.text;
-    if ([cname isEqualToString:@""]) {
-        [self showWarning:@"Classification name is empty!"];
+    if([_anameTextField.text isEqualToString:@""]) {
+        [self showWarning:@"Account name is empty!"];
         return;
     }
-    // Update classification.
-    _classification.cname = cname;
-    _classification.update = grouper.group.currentUser.email;
-    _classification.updateAt = [NSDate date];
+    
+    // Update account.
+    _account.aname = _anameTextField.text;
+    _account.updater = grouper.group.currentUser.email;
+    _account.updateAt = [NSDate date];
     [dao saveContext];
     
-    // Send shares to untrusted servers.
-    [grouper.sender update:_classification];
+    // Send shares.
+    [grouper.sender update:_account];
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 

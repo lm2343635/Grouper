@@ -388,6 +388,7 @@
 				E4F60A981D040C1B006F5DF2 /* TemplatesTableViewController.m */,
 			);
 			name = Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		E4112E231EF6987800F1298D /* Dao */ = {
@@ -405,15 +406,12 @@
 				E4112E421EF6A51000F1298D /* UserDao.m */,
 			);
 			name = Dao;
+			path = Dao;
 			sourceTree = "<group>";
 		};
 		E4112E271EF6A44D00F1298D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E4112E931EF7CDBB00F1298D /* SyncEntity+CoreDataClass.h */,
-				E4112E941EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m */,
-				E4112E951EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.h */,
-				E4112E961EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m */,
 				E4112E2B1EF6A4CD00F1298D /* Message+CoreDataClass.h */,
 				E4112E2C1EF6A4CD00F1298D /* Message+CoreDataClass.m */,
 				E4112E2D1EF6A4CD00F1298D /* Message+CoreDataProperties.h */,
@@ -422,12 +420,17 @@
 				E4112E301EF6A4CD00F1298D /* Share+CoreDataClass.m */,
 				E4112E311EF6A4CD00F1298D /* Share+CoreDataProperties.h */,
 				E4112E321EF6A4CD00F1298D /* Share+CoreDataProperties.m */,
+				E4112E931EF7CDBB00F1298D /* SyncEntity+CoreDataClass.h */,
+				E4112E941EF7CDBB00F1298D /* SyncEntity+CoreDataClass.m */,
+				E4112E951EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.h */,
+				E4112E961EF7CDBB00F1298D /* SyncEntity+CoreDataProperties.m */,
 				E4112E331EF6A4CD00F1298D /* User+CoreDataClass.h */,
 				E4112E341EF6A4CD00F1298D /* User+CoreDataClass.m */,
 				E4112E351EF6A4CD00F1298D /* User+CoreDataProperties.h */,
 				E4112E361EF6A4CD00F1298D /* User+CoreDataProperties.m */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E430E7631E2385A600CF9660 /* Main */ = {
@@ -440,18 +443,19 @@
 				E487E91F1E9229F2009F8A96 /* MessagesTableViewController.m */,
 			);
 			name = Main;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		E4400D641CCB5845000DFB1A = {
 			isa = PBXGroup;
 			children = (
-				E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */,
 				E4400D941CCB5845000DFB1A /* Core */,
+				0A96C9409F0E310C101BF950 /* Frameworks */,
 				E4400D6F1CCB5845000DFB1A /* Grouper */,
 				E4400D891CCB5845000DFB1A /* GrouperTests */,
-				E4400D6E1CCB5845000DFB1A /* Products */,
-				0A96C9409F0E310C101BF950 /* Frameworks */,
 				012B0A8F29F5D3D4BB7A3FF2 /* Pods */,
+				E4400D6E1CCB5845000DFB1A /* Products */,
+				E4112E8E1EF7CA7C00F1298D /* Grouper.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -467,20 +471,21 @@
 		E4400D6F1CCB5845000DFB1A /* Grouper */ = {
 			isa = PBXGroup;
 			children = (
-				E4939F9B1D97CE36006CA612 /* Grouper.entitlements */,
-				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E457B4261CF1A22A00139C4C /* Dao */,
 				E430E7631E2385A600CF9660 /* Main */,
+				E4F60A9A1D0411EF006F5DF2 /* Model */,
 				E4F1CB1F1CFAE4B800461B3F /* Record */,
 				E40C44141CCF25640006D208 /* Settings */,
 				E4F1CB2C1CFAF28500461B3F /* Support */,
 				E4400D701CCB5845000DFB1A /* Supporting Files */,
 				E4400D731CCB5845000DFB1A /* AppDelegate.h */,
 				E4400D741CCB5845000DFB1A /* AppDelegate.m */,
-				E4400D791CCB5845000DFB1A /* Main.storyboard */,
 				E497059D1CDF22B20092B164 /* Assets.xcassets */,
-				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
+				E4D0A4941EF7D2110021BFBF /* Grouper-Bridging-Header.h */,
+				E4939F9B1D97CE36006CA612 /* Grouper.entitlements */,
 				E4400D811CCB5845000DFB1A /* Info.plist */,
+				E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */,
+				E4400D791CCB5845000DFB1A /* Main.storyboard */,
 			);
 			path = Grouper;
 			sourceTree = "<group>";
@@ -488,10 +493,10 @@
 		E4400D701CCB5845000DFB1A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E4D0A4941EF7D2110021BFBF /* Grouper-Bridging-Header.h */,
 				E4400D711CCB5845000DFB1A /* main.m */,
 			);
 			name = "Supporting Files";
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		E4400D891CCB5845000DFB1A /* GrouperTests */ = {
@@ -506,9 +511,6 @@
 		E4400D941CCB5845000DFB1A /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				E4112E511EF7BAAA00F1298D /* Grouper.h */,
-				E4112E521EF7BAAA00F1298D /* Grouper.m */,
-				E4892D611EF916D400E9876C /* DEBUG.h */,
 				E486A18C1EF6848500A33AE9 /* Controller */,
 				E4112E231EF6987800F1298D /* Dao */,
 				E486A18D1EF684AF00A33AE9 /* Manager */,
@@ -516,6 +518,9 @@
 				E486A18B1EF6845500A33AE9 /* Storyboard */,
 				E486A18E1EF684E500A33AE9 /* Support */,
 				E4892D571EF8FEF900E9876C /* Assets.xcassets */,
+				E4892D611EF916D400E9876C /* DEBUG.h */,
+				E4112E511EF7BAAA00F1298D /* Grouper.h */,
+				E4112E521EF7BAAA00F1298D /* Grouper.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -541,6 +546,7 @@
 				E4F60ACC1D0413FF006F5DF2 /* TemplateDao.m */,
 			);
 			name = Dao;
+			path = Dao;
 			sourceTree = "<group>";
 		};
 		E486A18B1EF6845500A33AE9 /* Storyboard */ = {
@@ -550,6 +556,7 @@
 				E486A1BB1EF68A7A00A33AE9 /* Members.storyboard */,
 			);
 			name = Storyboard;
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		E486A18C1EF6848500A33AE9 /* Controller */ = {
@@ -566,13 +573,14 @@
 				E486A1991EF689C700A33AE9 /* MembersTableViewController.h */,
 				E486A19A1EF689C700A33AE9 /* MembersTableViewController.m */,
 				E486A19B1EF689C700A33AE9 /* RestoreServerViewController.h */,
-				E486A19C1EF689C700A33AE9 /* UserInfoViewController.m */,
-				E486A19D1EF689C700A33AE9 /* UserInfoViewController.h */,
-				E486A19E1EF689C700A33AE9 /* ServersTableViewController.m */,
-				E486A19F1EF689C700A33AE9 /* ServersTableViewController.h */,
 				E486A1A01EF689C700A33AE9 /* RestoreServerViewController.m */,
+				E486A19F1EF689C700A33AE9 /* ServersTableViewController.h */,
+				E486A19E1EF689C700A33AE9 /* ServersTableViewController.m */,
+				E486A19D1EF689C700A33AE9 /* UserInfoViewController.h */,
+				E486A19C1EF689C700A33AE9 /* UserInfoViewController.m */,
 			);
 			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		E486A18D1EF684AF00A33AE9 /* Manager */ = {
@@ -592,14 +600,15 @@
 				E4D0A5AE1EF7F5170021BFBF /* SyncManager.m */,
 			);
 			name = Manager;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		E486A18E1EF684E500A33AE9 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				E4D0A4951EF7D2D40021BFBF /* Core-Bridging-Header.h */,
 				E4112E4B1EF7B0E700F1298D /* CommonTool.h */,
 				E4112E4C1EF7B0E700F1298D /* CommonTool.m */,
+				E4D0A4951EF7D2D40021BFBF /* Core-Bridging-Header.h */,
 				E486A1C01EF68AD800A33AE9 /* Defaults.h */,
 				E486A1C11EF68AD800A33AE9 /* Defaults.m */,
 				E486A1C21EF68AD800A33AE9 /* GLibFacade.c */,
@@ -608,14 +617,15 @@
 				E486A1C51EF68AD800A33AE9 /* InternetResponse.m */,
 				E486A1C61EF68AD800A33AE9 /* MessageData.h */,
 				E486A1C71EF68AD800A33AE9 /* MessageData.m */,
+				E4112E491EF7B0E700F1298D /* UIViewController+Extension.h */,
+				E4112E4A1EF7B0E700F1298D /* UIViewController+Extension.m */,
 				E486A1CA1EF68AD800A33AE9 /* shamir.c */,
 				E486A1CB1EF68AD800A33AE9 /* shamir.h */,
 				E486A1BE1EF68AD800A33AE9 /* strtok.c */,
 				E486A1BF1EF68AD800A33AE9 /* strtok.h */,
-				E4112E491EF7B0E700F1298D /* UIViewController+Extension.h */,
-				E4112E4A1EF7B0E700F1298D /* UIViewController+Extension.m */,
 			);
 			name = Support;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		E4F1CB1F1CFAE4B800461B3F /* Record */ = {
@@ -623,34 +633,35 @@
 			children = (
 				E4F1CB231CFAE58300461B3F /* AddRecordViewController.h */,
 				E4F1CB241CFAE58400461B3F /* AddRecordViewController.m */,
-				E4F1CB471CFB13BF00461B3F /* RecordsTableViewController.h */,
-				E4F1CB481CFB13BF00461B3F /* RecordsTableViewController.m */,
-				E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */,
-				E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */,
 				E4F60A911D03F036006F5DF2 /* EditRecordViewController.h */,
 				E4F60A921D03F036006F5DF2 /* EditRecordViewController.m */,
 				E4F60AD11D0448FF006F5DF2 /* PhotoViewController.h */,
 				E4F60AD21D0448FF006F5DF2 /* PhotoViewController.m */,
+				E4F1CB471CFB13BF00461B3F /* RecordsTableViewController.h */,
+				E4F1CB481CFB13BF00461B3F /* RecordsTableViewController.m */,
+				E4F1CB291CFAE5B900461B3F /* SelectRecordItemTableViewController.h */,
+				E4F1CB2A1CFAE5B900461B3F /* SelectRecordItemTableViewController.m */,
 			);
 			name = Record;
+			path = Record;
 			sourceTree = "<group>";
 		};
 		E4F1CB2C1CFAF28500461B3F /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E4D0A5B11EF7FA5B0021BFBF /* BannerTool.swift */,
 				E4F1CB301CFAF2D100461B3F /* DateSelectorView.h */,
 				E4F1CB311CFAF2D100461B3F /* DateSelectorView.m */,
 				E4F1CB4A1CFB167200461B3F /* DateTool.h */,
 				E4F1CB4B1CFB167200461B3F /* DateTool.m */,
-				E4D0A5B11EF7FA5B0021BFBF /* BannerTool.swift */,
 			);
 			name = Support;
+			path = Support;
 			sourceTree = "<group>";
 		};
 		E4F60A9A1D0411EF006F5DF2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */,
 				E46516A81E31F1F100A3E8E2 /* Account+CoreDataClass.h */,
 				E46516A91E31F1F100A3E8E2 /* Account+CoreDataClass.m */,
 				E46516AA1E31F1F100A3E8E2 /* Account+CoreDataProperties.h */,
@@ -659,6 +670,7 @@
 				E465169F1E31EDEB00A3E8E2 /* Classification+CoreDataClass.m */,
 				E46516A01E31EDEB00A3E8E2 /* Classification+CoreDataProperties.h */,
 				E46516A11E31EDEB00A3E8E2 /* Classification+CoreDataProperties.m */,
+				E4112E0C1EF6975D00F1298D /* Model.xcdatamodeld */,
 				E49E7CD41DC7343400E9E43A /* Photo+CoreDataClass.h */,
 				E49E7CD51DC7343400E9E43A /* Photo+CoreDataClass.m */,
 				E49E7CD61DC7343400E9E43A /* Photo+CoreDataProperties.h */,
@@ -677,6 +689,7 @@
 				E4305A4D1E36283D00010B52 /* Template+CoreDataProperties.m */,
 			);
 			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -804,7 +817,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BFC3E39B3F2B442BBBEE9B13 /* [CP] Copy Pods Resources */ = {
@@ -956,6 +969,7 @@
 				E4400D7A1CCB5845000DFB1A /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		E4400D7E1CCB5845000DFB1A /* LaunchScreen.storyboard */ = {
@@ -964,6 +978,7 @@
 				E4400D7F1CCB5845000DFB1A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

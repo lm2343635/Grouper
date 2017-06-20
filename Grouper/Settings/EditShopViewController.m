@@ -1,26 +1,26 @@
 //
-//  EditAccountViewController.m
+//  EditShopViewController.m
 //  GroupFinance
 //
 //  Created by lidaye on 5/22/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "EditAccountViewController.h"
+#import "EditShopViewController.h"
 #import "UIViewController+Extension.h"
 #import "Grouper.h"
 
-@interface EditAccountViewController ()
+@interface EditShopViewController ()
 
 @end
 
-@implementation EditAccountViewController {
+@implementation EditShopViewController {
     DaoManager *dao;
     Grouper *grouper;
 }
 
 - (void)viewDidLoad {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [super viewDidLoad];
@@ -29,10 +29,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (DEBUG) {
+    if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [_anameTextField setText:_account.aname];
+    [_snameTextField setText:_shop.sname];
 }
 
 #pragma mark - Action
@@ -40,19 +40,19 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    if([_anameTextField.text isEqualToString:@""]) {
-        [self showWarning:@"Account name is empty!"];
+    NSString *sname = _snameTextField.text;
+    if ([sname isEqualToString:@""]) {
+        [self showWarning:@"Shop name is empty!"];
         return;
     }
-    
-    // Update account.
-    _account.aname = _anameTextField.text;
-    _account.update = grouper.group.currentUser.email;
-    _account.updateAt = [NSDate date];
+    // Update shop.
+    _shop.sname = sname;
+    _shop.updater = grouper.group.currentUser.email;
+    _shop.updateAt = [NSDate date];
     [dao saveContext];
     
-    // Send shares.
-    [grouper.sender update:_account];
+    // Send shares to untrusted servers.
+    [grouper.sender update:_shop];
     
     [self.navigationController popViewControllerAnimated:YES];
 }

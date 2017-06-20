@@ -1,20 +1,20 @@
 //
-//  EditShopViewController.m
+//  EditClassificationViewController.m
 //  GroupFinance
 //
 //  Created by lidaye on 5/22/16.
 //  Copyright © 2016 limeng. All rights reserved.
 //
 
-#import "EditShopViewController.h"
+#import "EditClassificationViewController.h"
 #import "UIViewController+Extension.h"
 #import "Grouper.h"
 
-@interface EditShopViewController ()
+@interface EditClassificationViewController ()
 
 @end
 
-@implementation EditShopViewController {
+@implementation EditClassificationViewController {
     DaoManager *dao;
     Grouper *grouper;
 }
@@ -29,31 +29,30 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    if(DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    [_snameTextField setText:_shop.sname];
-}
-
-#pragma mark - Action
-- (IBAction)save:(id)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSString *sname = _snameTextField.text;
-    if ([sname isEqualToString:@""]) {
-        [self showWarning:@"Shop name is empty!"];
+    [_cnameTextField setText:_classification.cname];
+}
+
+#pragma mark - Action
+- (IBAction)save:(id)saveButton {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSString *cname = _cnameTextField.text;
+    if ([cname isEqualToString:@""]) {
+        [self showWarning:@"Classification name is empty!"];
         return;
     }
-    // Update shop.
-    _shop.sname = sname;
-    _shop.update = grouper.group.currentUser.email;
-    _shop.updateAt = [NSDate date];
+    // Update classification.
+    _classification.cname = cname;
+    _classification.updater = grouper.group.currentUser.email;
+    _classification.updateAt = [NSDate date];
     [dao saveContext];
     
     // Send shares to untrusted servers.
-    [grouper.sender update:_shop];
-    
+    [grouper.sender update:_classification];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
