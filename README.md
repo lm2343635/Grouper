@@ -57,7 +57,7 @@ Next, set your app's data stack to Grouper.
 
 Grouper provides group initialzation related function in Init.storyboard and member management in Members.storyboard. Use these 2 storyboards directly.
 
-### Data Syncrhonzation
+### Data Synchronization
 
 Grouper use SenderManager to send data and ReceiverManager to receive data. 
 

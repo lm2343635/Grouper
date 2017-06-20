@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
 	s.description  = <<-DESC
 	# Features
     - Easy Group Management.
-    - Protected Data Syncrhonzation. 
+    - Protected Data Synchronization. 
 	DESC
 
 	s.homepage     = "https://github.com/lm2343635/Grouper"
