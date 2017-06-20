@@ -1,31 +1,97 @@
-# Grouper
-A group finance manager application: Grouper, using mutiple untrusted servers.
+# Grouper [![Build Status](https://travis-ci.org/lm2343635/Grouper.svg?branch=master)](https://travis-ci.org/lm2343635/Grouper) [![Version](https://img.shields.io/cocoapods/v/Grouper.svg?style=flat)](http://cocoapods.org/pods/Grouper) [![License](https://img.shields.io/cocoapods/l/Grouper.svg?style=flat)](http://cocoapods.org/pods/Grouper) [![Platform](https://img.shields.io/cocoapods/p/Grouper.svg?style=flat)](http://cocoapods.org/pods/Grouper)
+A framework for developing app using secret sharing and multiple untrusted servers.
 
-# Introduction
-Conventional mobile applications are built based on a client-server mode. This requires central servers for storing shared data. The users of such mobile applications must fully trust the central server and their application providers. If a central server is compromised by hackers, user information may be revealed because data is often stored on the server in cleartext. Users may lose their data when service providers shut down their services. 
+## Introduction
+Conventional client-server mode applications requires central servers for storing shared data. The users of such mobile applications must fully trust the central server and their application providers. If a central server is compromised by hackers, user information may be revealed because data is often stored on the server in cleartext. Users may lose their data when service providers shut down their services.
 
-A popular approach to address the central server problem is using P2P(Peer to Peer) to transfer user data between devices. However, there is an obvious problem in such a P2P approach. Data transfer can only be finished during two devices are online at the same time. Another problem is that the number of P2P connections becomes large  fast as the number of users increases. 
+Grouper uses secret sharing and multiple untrusted servers to solve this problem. In Grouper, a device use Secret Sharing scheme to divide a message into several shares and upload them to multiple untrusted servers. Other devices download shares and recover shares to original message by Secret Sharing scheme. Thus, user data can be protected. 
 
-We are implementing a mobile application that is not relied on trusted central servers. Concretely, we are developing a group finance manager application. We call it Grouper. Unlike P2P systems, we use multiple untrusted servers for data transfer. Data is divided into several pieces and uploaded to diverse servers. Each server can only keep a piece of data temporarily. A piece will be deleted after a period of time. Those two methods ensure that user data cannot be cracked easily. In addition, all devices of group members keep a complete data set, and data can be recovered even untrusted servers shut down.
+## Demo
+We have developed an demo app called [AccountBook](https://github.com/lm2343635/AccountBook) using Grouper framework.
 
-# Design
+## Installation
 
-We design a group finance manager application, Grouper, on mobile devices. This does not rely on trusted central servers. 
+Grouper is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
-# Group Finance Manager
- In Grouper, group members generate records about amounts of money, classifications, accounts, shops, remarks and times in their devices. For example, Alice records that she ate breakfast (classification) in the center canteen (shop) at 8:00 AM (time) on November 1st, 2016, and she paid her breakfast by her credit card (account). These items are created by users as they want. They can choose an item from existing ones when they want to add new records.
+```ruby
+pod 'Grouper', '~> 0.2'
+```
 
- With data synchronization, group members can also share their records with other group members. Therefore, group income and expenditure information are analyzed and shown to all members. Grouper uses multiple untrusted servers to synchronize and avoids relying on trusted central servers. To create a group in Grouper, the owner of this group needs to register and set access keys in untrusted servers. The owner passes the access keys to group members by a face-to-face way.
+## Documentation
 
-# Shamir's Secret Sharing
-In Grouper, secret sharing plays an indispensable role in protecting user data from getting lost or destroyed. In a secret sharing scheme, a dealer securely shares a secret with a group of members by generating $n$ shares using a cryptographic function\cite{smith2013layered}. At least $k$ or more shares can reconstruct the secret, but $k-1$ or fewer shares can obtain nothing about the secret\cite{pang2005new}. We describe this scheme as a function $f(k, n)$, where $n$ is the number of all shares, and $k$ is the threshold to combine shares.  We use Shamir's secret sharing that  is a popular technique to implement threshold schemes.
+Grouper uses its own Web service. The Web service by Java EE is here [Grouper-Server](https://github.com/lm2343635/Grouper-Server).
 
-# Data Synchronization Using Multiple Untrusted Servers
+Grouper is developed with Objective-C. Import header file into your project.
 
-We design Grouper based on data synchronization through multiple untrusted servers rather than a single server. There are three principles in our proposal. 
+```objective-c
+#import <Grouper/Grouper.h>
+```
 
-Firstly, a server transfers data as similar to a router, but does not keep it permanently. Most current popular client-server applications store their user data on several central servers, and the user's data will not be deleted unless the user deletes his account. Grouper uses untrusted servers as a bridge for transferring data. Consider that a group includes three members: Alice, Bob and Carol. Alice creates a new record in her device, this record is uploaded to untrusted servers, and the record on servers will be deleted after Bob and Carol download it from servers.
+### Prepare
+Grouper object inclueds 3 subobject, they are group(GroupManager), sender(SenderManager), receiver(ReceiverManager).
 
-Secondly, a server keeps data temporarily. We define a period of time in which data can be kept in a server. In this paper, we set this period to 1 hour for our example situations. The record Alice uploaded to untrusted servers can exist for 1 hour. After 1 hour since uploaded, this record will be deleted. Alice requires to upload this record again to serves until all of other members have downloaded successfully. The longer keeping period means the higher risk of data reveal. We will find suitable periods as the number of group members, security requirement and others. 
+Grouper relys on [Sync](https://github.com/SyncDB/Sync) framework to syncrhonize data between devices. Thus, when you setup Core Data stack in AppDelegate, you should use DataStack provided in [Sync](https://github.com/SyncDB/Sync) framework.
 
-Thirdly, servers do not know the cleartext of data. Keeping data temporarily cannot ensure data security, because servers know the cleartext of data in this temporary period. For this problem, developers often encrypt data before uploading to servers, and this needs a decryption key to decrypt data in other devices. In order to distribute the decryption key, users should share it by themselves. In Grouper, we do not encrypt data but we use a secret sharing scheme as described in Section 2.2. Servers do not know the cleartext of a share generated by a secret sharing scheme.
+```objective-c
+#pragma mark - DataStack
+@synthesize dataStack = _dataStack;
+
+- (DataStack *)dataStack {
+    if (_dataStack) {
+        return _dataStack;
+    }
+    _dataStack = [[DataStack alloc] initWithModelName:@"Model"];
+    return _dataStack;
+}
+```
+
+Next, set your app's data stack to Grouper.
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    grouper = [Grouper sharedInstance];
+    [grouper setAppDataStack:[self dataStack]];
+}
+
+### Group Management
+
+Grouper provides group initialzation related function in Init.storyboard and member management in Members.storyboard. Use these 2 storyboards directly.
+
+### Data Syncrhonzation
+
+Grouper use SenderManager to send data and ReceiverManager to receive data. 
+
+Revoke such methods to send data by grouper.sender.
+
+```objective-c
+// ******************* Create message and send shares to untrusted servers. *******************
+
+// Send update message for a sync entity.
+- (void)update:(SyncEntity *)object;
+
+// Send delete message for a sync entity.
+- (void)delete:(SyncEntity *)object;
+
+// Send confirm message;
+- (void)confirm;
+
+// Send resend message which contains not existed sequences to receiver.
+- (void)resend:(NSArray *)sequences to:(NSString *)receiver;
+```
+
+Revoke this method to receiver data by grouper.receiver.
+
+```objective-c
+// Receive message and do something in completion block.
+- (void)receiveWithCompletion:(Completion)completion;
+```
+
+More information can be found in Demo app [AccountBook](https://github.com/lm2343635/AccountBook).
+
+## Author
+
+Meng Li, http://fczm.pw, lm2343635@126.com
+
+## License
+
+Grouper is available under the MIT license. See the LICENSE file for more info.

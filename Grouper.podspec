@@ -5,7 +5,8 @@ Pod::Spec.new do |s|
 
 	s.description  = <<-DESC
 	# Features
-    - A framework for Developing iOS app using Secret Sharing and untrusted servers.
+    - Easy Group Management.
+    - Protected Data Syncrhonzation. 
 	DESC
 
 	s.homepage     = "https://github.com/lm2343635/Grouper"
