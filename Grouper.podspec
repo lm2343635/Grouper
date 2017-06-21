@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 	s.name         = "Grouper"
-	s.version      = "1.0.1"
+	s.version      = "1.0.2"
 	s.summary      = "A framework for Developing iOS app using Secret Sharing and untrusted servers."
 
 	s.description  = <<-DESC
@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
 
 	s.platform     = :ios
 	s.ios.deployment_target = '9.0'
-	s.source       = { :git => "https://github.com/lm2343635/Grouper.git", :tag => "1.0.1" }
+	s.source       = { :git => "https://github.com/lm2343635/Grouper.git", :tag => "1.0.2" }
 
 	s.source_files  = "Core/**/*.{h,m,c,swift}"
 	s.resource_bundles = {
@@ -33,7 +33,5 @@ Pod::Spec.new do |s|
 	s.requires_arc = true
 
 	s.dependency 'Sync', '~> 3'
-	s.dependency 'BRYXBanner', '~> 0.7'
-	s.dependency 'AFNetworking', '~> 3.1'
-
+	s.dependency 'AFNetworking', '~> 3'
 end
