@@ -16,6 +16,9 @@
 		E4CA14771EFBA4C800289699 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4CA14751EFBA4C800289699 /* LaunchScreen.storyboard */; };
 		E4CA14821EFBA4C800289699 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA14811EFBA4C800289699 /* ExampleTests.swift */; };
 		E4CA148D1EFBA4C800289699 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA148C1EFBA4C800289699 /* ExampleUITests.swift */; };
+		E4CA14B51EFBD3AE00289699 /* DaoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA14B31EFBD3AE00289699 /* DaoManager.swift */; };
+		E4CA14B61EFBD3AE00289699 /* DaoTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA14B41EFBD3AE00289699 /* DaoTemplate.swift */; };
+		E4CA14B81EFBD3D800289699 /* TestDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA14B71EFBD3D800289699 /* TestDao.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		E4CA14881EFBA4C800289699 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CA148C1EFBA4C800289699 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
 		E4CA148E1EFBA4C800289699 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E4CA14B31EFBD3AE00289699 /* DaoManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaoManager.swift; sourceTree = "<group>"; };
+		E4CA14B41EFBD3AE00289699 /* DaoTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaoTemplate.swift; sourceTree = "<group>"; };
+		E4CA14B71EFBD3D800289699 /* TestDao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestDao.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,7 @@
 		E4CA14681EFBA4C800289699 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				E4CA14B21EFBD39600289699 /* Dao */,
 				E4CA14691EFBA4C800289699 /* AppDelegate.swift */,
 				E4CA146B1EFBA4C800289699 /* ViewController.swift */,
 				E4CA14701EFBA4C800289699 /* Example.xcdatamodeld */,
@@ -150,6 +157,16 @@
 				E4CA148E1EFBA4C800289699 /* Info.plist */,
 			);
 			path = ExampleUITests;
+			sourceTree = "<group>";
+		};
+		E4CA14B21EFBD39600289699 /* Dao */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA14B31EFBD3AE00289699 /* DaoManager.swift */,
+				E4CA14B41EFBD3AE00289699 /* DaoTemplate.swift */,
+				E4CA14B71EFBD3D800289699 /* TestDao.swift */,
+			);
+			name = Dao;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,8 +357,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4CA14B81EFBD3D800289699 /* TestDao.swift in Sources */,
 				E4CA146C1EFBA4C800289699 /* ViewController.swift in Sources */,
 				E4CA14721EFBA4C800289699 /* Example.xcdatamodeld in Sources */,
+				E4CA14B51EFBD3AE00289699 /* DaoManager.swift in Sources */,
+				E4CA14B61EFBD3AE00289699 /* DaoTemplate.swift in Sources */,
 				E4CA146A1EFBA4C800289699 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
