@@ -629,6 +629,13 @@
     }
 }
 
+- (BOOL)isInitialized {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return _defaults.initial == InitialFinished;
+}
+
 #pragma mark - Synchronization Related.
 
 - (void)checkServerState:(CheckServerCompletion)completion {

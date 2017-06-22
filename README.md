@@ -2,7 +2,7 @@
 A framework for developing app using secret sharing and multiple untrusted servers.
 
 ## Introduction
-Conventional client-server mode applications requires central servers for storing shared data. The users of such mobile applications must fully trust the central server and their application providers. If a central server is compromised by hackers, user information may be revealed because data is often stored on the server in cleartext. Users may lose their data when service providers shut down their services.
+Conventional client-server mode applications require central servers for storing shared data. The users of such mobile applications must fully trust the central server and their application providers. If a central server is compromised by hackers, user information may be revealed because data is often stored on the server in cleartext. Users may lose their data when service providers shut down their services.
 
 Grouper uses secret sharing and multiple untrusted servers to solve this problem. In Grouper, a device use Secret Sharing scheme to divide a message into several shares and upload them to multiple untrusted servers. Other devices download shares and recover shares to original message by Secret Sharing scheme. Thus, user data can be protected. 
 

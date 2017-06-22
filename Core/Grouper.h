@@ -10,6 +10,7 @@
 #import "SenderManager.h"
 #import "ReceiverManager.h"
 #import "GroupManager.h"
+#import "UIManager.h"
 #import "DEBUG.h"
 
 @interface Grouper : NSObject
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) GroupManager *group;
 @property (nonatomic, strong) SenderManager *sender;
 @property (nonatomic, strong) ReceiverManager *receiver;
+@property (nonatomic, strong) UIManager *ui;
 
 + (instancetype)sharedInstance;
 

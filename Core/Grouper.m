@@ -28,6 +28,7 @@
         _group = [GroupManager sharedInstance];
         _sender = [SenderManager sharedInstance];
         _receiver = [ReceiverManager sharedInstance];
+        _ui = [UIManager sharedInstance];
     }
     return self;
 }

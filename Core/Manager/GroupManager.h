@@ -73,6 +73,8 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
                interval:(int)interval
          withCompletion:(SucessMessageCompletion)completion;
 
+- (BOOL)isInitialized;
+
 //************************ Synchronization Related ************************
 
 // Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.

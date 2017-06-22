@@ -125,11 +125,11 @@
 			children = (
 				E4CA14691EFBA4C800289699 /* AppDelegate.swift */,
 				E4CA146B1EFBA4C800289699 /* ViewController.swift */,
+				E4CA14701EFBA4C800289699 /* Example.xcdatamodeld */,
 				E4CA146D1EFBA4C800289699 /* Main.storyboard */,
 				E4CA14731EFBA4C800289699 /* Assets.xcassets */,
 				E4CA14751EFBA4C800289699 /* LaunchScreen.storyboard */,
 				E4CA14781EFBA4C800289699 /* Info.plist */,
-				E4CA14701EFBA4C800289699 /* Example.xcdatamodeld */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -597,6 +597,7 @@
 				E4CA14931EFBA4C800289699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4CA14941EFBA4C800289699 /* Build configuration list for PBXNativeTarget "ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -605,6 +606,7 @@
 				E4CA14961EFBA4C800289699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E4CA14971EFBA4C800289699 /* Build configuration list for PBXNativeTarget "ExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -613,6 +615,7 @@
 				E4CA14991EFBA4C800289699 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
