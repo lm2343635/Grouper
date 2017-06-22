@@ -15,7 +15,7 @@ Grouper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Grouper', '~> 0.2'
+pod 'Grouper', '~> 1.0'
 ```
 
 ## Documentation
@@ -59,23 +59,23 @@ Next, set your app's data stack to Grouper.
 
 All your Core Data entity should be subentity of SyncEntity, and all your NSManagedObjects should be subclass of SyncEntity. SyncEntity class has been provied in Grouper framework. Create SyncEntity in your Model.xcdatamodeld file and set parent entity as SyncEntity for your entity.
 
-| Attribute | Type   |
-|-----------|--------|
-| createAt  | Date   |
-| creator   | String |
-| remoteID  | String |
-| updater   | String |
-| updateAt  | String |
+| Attribute | Type   | Explanation                  |
+|-----------|--------|------------------------------|
+| createAt  | Date   | Create date of this entity   |
+| creator   | String | Creator of this entity       |
+| remoteID  | String | Remote ID for Sync framework |
+| updater   | String | Updater of this entity       |
+| updateAt  | String | Update date of this entity   | 
 
 ### Group Management
 
-Grouper provides group initialzation related function in Init.storyboard and member management in Members.storyboard. Use these 2 storyboards directly.
+Grouper provides group initialzation related function in Init.storyboard and member management in Members.storyboard. Use these 2 storyboards directly by **grouper.ui.groupInit** and **grouper.ui.members**.
 
 ### Data Synchronization
 
 Grouper use SenderManager to send data and ReceiverManager to receive data. 
 
-Revoke such methods to send data by grouper.sender.
+Use these methods to send data by grouper.sender.
 
 ```objective-c
 // ******************* Create message and send shares to untrusted servers. *******************
@@ -93,7 +93,7 @@ Revoke such methods to send data by grouper.sender.
 - (void)resend:(NSArray *)sequences to:(NSString *)receiver;
 ```
 
-Revoke this method to receiver data by grouper.receiver.
+Use this method to receiver data by grouper.receiver.
 
 ```objective-c
 // Receive message and do something in completion block.
