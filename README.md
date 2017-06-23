@@ -15,7 +15,7 @@ Grouper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Grouper', '~> 1.0'
+pod 'Grouper', '~> 1.1'
 ```
 
 ## Documentation
@@ -34,24 +34,16 @@ Grouper object inclueds 3 subobject, they are group(GroupManager), sender(Sender
 Grouper relys on [Sync](https://github.com/SyncDB/Sync) framework to syncrhonize data between devices. Thus, when you setup Core Data stack in AppDelegate, you should use DataStack provided in [Sync](https://github.com/SyncDB/Sync) framework.
 
 ```objective-c
-#pragma mark - DataStack
-@synthesize dataStack = _dataStack;
-
-- (DataStack *)dataStack {
-    if (_dataStack) {
-        return _dataStack;
-    }
-    _dataStack = [[DataStack alloc] initWithModelName:@"Model"];
-    return _dataStack;
-}
+_dataStack = [[DataStack alloc] initWithModelName:@"Model"];
 ```
 
-Next, set your app's data stack to Grouper.
+Next, setup Grouper your app's data stack and main storyboard.
 
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     grouper = [Grouper sharedInstance];
-    [grouper setAppDataStack:[self dataStack]];
+    [grouper setupWithAppDataStack:[self dataStack]
+                    mainStoryboard:storyboard];
 }
 ```
 
