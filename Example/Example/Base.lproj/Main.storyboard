@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,12 +36,61 @@
                     <navigationItem key="navigationItem" title="Test" id="bCC-3b-MYZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JcU-4H-Avd">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="3ro-7Q-c6w" kind="push" id="wdT-vl-Kgh"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hIA-GY-oEn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1263" y="285"/>
+        </scene>
+        <!--Add Test-->
+        <scene sceneID="SlO-Ms-Fy9">
+            <objects>
+                <viewController id="3ro-7Q-c6w" customClass="AddTestViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d9U-UR-2MH"/>
+                        <viewControllerLayoutGuide type="bottom" id="VDr-ZN-Waw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xpG-TH-9eT">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number of new test entity" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jab-Gi-4LH">
+                                <rect key="frame" x="0.0" y="80" width="320" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="BJe-ZR-6wG"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.95549887418746948" green="0.95622259378433228" blue="0.95561093091964722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jab-Gi-4LH" secondAttribute="trailing" constant="-16" id="510-DA-qTa"/>
+                            <constraint firstItem="Jab-Gi-4LH" firstAttribute="leading" secondItem="xpG-TH-9eT" secondAttribute="leadingMargin" constant="-16" id="i7B-BX-W9e"/>
+                            <constraint firstItem="Jab-Gi-4LH" firstAttribute="top" secondItem="d9U-UR-2MH" secondAttribute="bottom" constant="16" id="rLm-78-RT0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Test" id="dfp-gL-qKC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="qOd-Kh-7tI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="createTests:" destination="3ro-7Q-c6w" id="W99-zM-MAJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="testNumberTextField" destination="Jab-Gi-4LH" id="4lX-3h-jsF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XgU-Ul-OOD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2094.375" y="283.0985915492958"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9OL-62-D2J">

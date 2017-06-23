@@ -6,8 +6,16 @@
 //  Copyright © 2017 Softlab. All rights reserved.
 //
 
-import UIKit
+import CoreData
 
 class TestDao: DaoTemplate {
 
+    func saveWithContent(_ content: String) -> Test {
+        let test = NSEntityDescription.insertNewObject(forEntityName: NSStringFromClass(Test.self),
+                                                       into: context) as? Test
+        test?.content = content
+        self.saveContext()
+        return test!
+    }
+    
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B182E1855DC509B6E4478848 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA1423F9BB447A2D6E1ECD53 /* Pods_Example.framework */; };
+		E47FF6151EFC112D004A923A /* AddTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47FF6141EFC112D004A923A /* AddTestViewController.swift */; };
 		E4CA146A1EFBA4C800289699 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA14691EFBA4C800289699 /* AppDelegate.swift */; };
 		E4CA146C1EFBA4C800289699 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4CA146B1EFBA4C800289699 /* ViewController.swift */; };
 		E4CA146F1EFBA4C800289699 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4CA146D1EFBA4C800289699 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		72E84FA197A6B91385743287 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
 		8A64ADDAC0FF1E469C215A30 /* Pods-Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.debug.xcconfig"; sourceTree = "<group>"; };
 		BA1423F9BB447A2D6E1ECD53 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E47FF6141EFC112D004A923A /* AddTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTestViewController.swift; sourceTree = "<group>"; };
 		E4CA14661EFBA4C800289699 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4CA14691EFBA4C800289699 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E4CA146B1EFBA4C800289699 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +106,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E47FF6131EFC10FB004A923A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA146B1EFBA4C800289699 /* ViewController.swift */,
+				E47FF6141EFC112D004A923A /* AddTestViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		E4CA145D1EFBA4C800289699 = {
 			isa = PBXGroup;
 			children = (
@@ -129,9 +140,9 @@
 		E4CA14681EFBA4C800289699 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				E47FF6131EFC10FB004A923A /* Controller */,
 				E4CA14B21EFBD39600289699 /* Dao */,
 				E4CA14691EFBA4C800289699 /* AppDelegate.swift */,
-				E4CA146B1EFBA4C800289699 /* ViewController.swift */,
 				E4CA14701EFBA4C800289699 /* Example.xcdatamodeld */,
 				E4CA146D1EFBA4C800289699 /* Main.storyboard */,
 				E4CA14731EFBA4C800289699 /* Assets.xcassets */,
@@ -317,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		63BE045F50BAF07692F31476 /* [CP] Copy Pods Resources */ = {
@@ -361,6 +372,7 @@
 				E4CA146C1EFBA4C800289699 /* ViewController.swift in Sources */,
 				E4CA14721EFBA4C800289699 /* Example.xcdatamodeld in Sources */,
 				E4CA14B51EFBD3AE00289699 /* DaoManager.swift in Sources */,
+				E47FF6151EFC112D004A923A /* AddTestViewController.swift in Sources */,
 				E4CA14B61EFBD3AE00289699 /* DaoTemplate.swift in Sources */,
 				E4CA146A1EFBA4C800289699 /* AppDelegate.swift in Sources */,
 			);
