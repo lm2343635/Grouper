@@ -64,6 +64,24 @@
     return self;
 }
 
+#pragma mark - App Data Stack
+- (void)saveAppContext {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    if ([_appDataStack.mainContext hasChanges]) {
+        NSError *error = nil;
+        if([_appDataStack.mainContext save:&error]) {
+            if(DEBUG)
+                NSLog(@"_context saved changes to persistent store.");
+        } else {
+            NSLog(@"Failed to save _context : %@",error);
+        }
+    } else {
+        NSLog(@"Skipped _context save, there are no changes.");
+    }
+}
+
 #pragma mark - User
 
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name {

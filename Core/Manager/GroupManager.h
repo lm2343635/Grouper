@@ -39,6 +39,10 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Get single instance.
 + (instancetype)sharedInstance;
 
+// ******************** App Data Stack *****************
+
+- (void)saveAppContext;
+
 // *********************** User ************************
 
 // Save global user email and name.
@@ -47,7 +51,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Get a user by node
 - (User *)getUserByNodeIdentifier:(NSString *)node;
 
-// *********************** Inivte Members ************************
+// **************** Inivte Members *********************
 
 // Open device browser.
 - (void)openDeviceBroswerIn:(UIViewController *)controller;
@@ -55,7 +59,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Send invite message to a peer.
 - (void)sendInviteMessageTo:(MCPeerID *)peer;
 
-//************************ Group Init Related ************************
+// *************** Group Init Related ******************
     
 // Add a new untrusted server.
 - (void)addNewServer:(NSString *)address
@@ -75,7 +79,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 
 - (BOOL)isInitialized;
 
-//************************ Synchronization Related ************************
+// ************ Synchronization Related ****************
 
 // Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.
 - (void)checkServerState:(CheckServerCompletion)completion;
@@ -83,7 +87,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Cleat all shareId.
 - (void)clearShareId;
 
-//************************ Device Token Related ************************
+// ************** Device Token Related *****************
 
 // Send device token to untrusted servers
 - (void)sendDeviceToken:(NSString *)token;

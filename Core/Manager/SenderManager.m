@@ -48,7 +48,7 @@
 }
 
 #pragma mark - Create message and send shares to untrusted servers.
-- (void)update:(SyncEntity *)object {
+- (BOOL)update:(NSManagedObject *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -60,12 +60,33 @@
 //        [dictionary setValue:template.account.remoteID forKey:@"account_remoteID"];
 //    }
     
+    // If object is not an instance of SyncEntity's subclass,
+    // do not allow to send update message.
+    if (![object isKindOfClass:[SyncEntity class]]) {
+        return NO;
+    }
+    SyncEntity *entity = (SyncEntity *)object;
+    
+    // If this sync entity has no remoteID, it is a new created sync entity.
+    // Set remoteID, createor and create date for this entity.
+    if (entity.remoteID == nil) {
+        entity.remoteID = [[NSUUID UUID] UUIDString];
+        entity.createAt = [NSDate date];
+        entity.creator = group.currentUser.node;
+    }
+    
+    // Update update date and updater of this entity.
+    entity.updateAt = [NSDate date];
+    entity.updater = group.currentUser.node;
+    // Save entity to app's persistent store.
+    [group saveAppContext];
+    
     // Transfer sync entity to dictionary.
-    NSDictionary *dictionary = [object export]; //[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+    NSDictionary *dictionary = [entity export]; //[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
     // Create update message and save to sender entity.
     message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
-                                   objectName:NSStringFromClass(object.class)
-                                     objectId:object.remoteID
+                                   objectName:NSStringFromClass(entity.class)
+                                     objectId:entity.remoteID
                                          type:MessageTypeUpdate
                                          from:group.currentUser.node
                                            to:@"*"
@@ -74,19 +95,28 @@
                                          name:group.currentUser.name];
     // At last, we send the update message to multiple untrusted servers.
     [self sendShares];
+    return YES;
 }
 
-- (void)delete:(SyncEntity *)object {
+- (BOOL)delete:(NSManagedObject *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    // If object is not an instance of SyncEntity's subclass,
+    // do not allow to send delete message.
+    if (![object isKindOfClass:[SyncEntity class]]) {
+        return NO;
+    }
+    SyncEntity *entity = (SyncEntity *)object;
+    
     // At first, we delete the sync entity.
-    [group.appDataStack.mainContext deleteObject:object];
+    [group.appDataStack.mainContext deleteObject:entity];
+    
     // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
     // Then, we create a delete message and save to sender entity.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": object.remoteID}]
-                                   objectName:NSStringFromClass(object.class)
-                                     objectId:object.remoteID
+    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": entity.remoteID}]
+                                   objectName:NSStringFromClass(entity.class)
+                                     objectId:entity.remoteID
                                          type:MessageTypeDelete
                                          from:group.currentUser.node
                                            to:@"*"
@@ -95,6 +125,7 @@
                                          name:group.currentUser.name];
     // At last, we send the delete message to multiple untrusted servers.
     [self sendShares];
+    return YES;
 }
 
 - (void)confirm {

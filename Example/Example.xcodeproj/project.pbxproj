@@ -109,10 +109,11 @@
 		E47FF6131EFC10FB004A923A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E4CA146B1EFBA4C800289699 /* ViewController.swift */,
 				E47FF6141EFC112D004A923A /* AddTestViewController.swift */,
+				E4CA146B1EFBA4C800289699 /* ViewController.swift */,
 			);
 			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		E4CA145D1EFBA4C800289699 = {
@@ -121,9 +122,9 @@
 				E4CA14681EFBA4C800289699 /* Example */,
 				E4CA14801EFBA4C800289699 /* ExampleTests */,
 				E4CA148B1EFBA4C800289699 /* ExampleUITests */,
-				E4CA14671EFBA4C800289699 /* Products */,
-				D4F7EF31C5410134C55B586B /* Pods */,
 				653C919E9CA77FDAD1337C4A /* Frameworks */,
+				D4F7EF31C5410134C55B586B /* Pods */,
+				E4CA14671EFBA4C800289699 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,12 +143,12 @@
 			children = (
 				E47FF6131EFC10FB004A923A /* Controller */,
 				E4CA14B21EFBD39600289699 /* Dao */,
+				E4CA14CE1EFCFD5500289699 /* Model */,
 				E4CA14691EFBA4C800289699 /* AppDelegate.swift */,
-				E4CA14701EFBA4C800289699 /* Example.xcdatamodeld */,
-				E4CA146D1EFBA4C800289699 /* Main.storyboard */,
 				E4CA14731EFBA4C800289699 /* Assets.xcassets */,
-				E4CA14751EFBA4C800289699 /* LaunchScreen.storyboard */,
 				E4CA14781EFBA4C800289699 /* Info.plist */,
+				E4CA14751EFBA4C800289699 /* LaunchScreen.storyboard */,
+				E4CA146D1EFBA4C800289699 /* Main.storyboard */,
 			);
 			path = Example;
 			sourceTree = "<group>";
@@ -178,6 +179,16 @@
 				E4CA14B71EFBD3D800289699 /* TestDao.swift */,
 			);
 			name = Dao;
+			path = Dao;
+			sourceTree = "<group>";
+		};
+		E4CA14CE1EFCFD5500289699 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E4CA14701EFBA4C800289699 /* Example.xcdatamodeld */,
+			);
+			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -328,7 +339,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		63BE045F50BAF07692F31476 /* [CP] Copy Pods Resources */ = {
@@ -416,6 +427,7 @@
 				E4CA146E1EFBA4C800289699 /* Base */,
 			);
 			name = Main.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 		E4CA14751EFBA4C800289699 /* LaunchScreen.storyboard */ = {
@@ -424,6 +436,7 @@
 				E4CA14761EFBA4C800289699 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

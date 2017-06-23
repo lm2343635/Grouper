@@ -33,12 +33,14 @@
     return self;
 }
 
-- (void)setAppDataStack:(DataStack *)stack {
+- (void)setupWithAppDataStack:(DataStack *)stack mainStoryboard:(UIStoryboard *)storyboard {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     _group.appDataStack = stack;
     [_receiver initSyncManager:_group.appDataStack];
+    
+    _ui.main = storyboard;
 }
 
 @end

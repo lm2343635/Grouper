@@ -8,6 +8,7 @@
 
 #import "ServersTableViewController.h"
 #import "GroupManager.h"
+#import "UIManager.h"
 #import "CommonTool.h"
 #import "UIViewController+Extension.h"
 
@@ -17,6 +18,7 @@
 
 @implementation ServersTableViewController {
     GroupManager *group;
+    UIManager *ui;
     NSDictionary *servers;
 }
 
@@ -26,6 +28,7 @@
     }
     [super viewDidLoad];
     group = [GroupManager sharedInstance];
+    ui = [UIManager sharedInstance];
     
     //Set keyboard accessory for threshold text field
     [self setCloseKeyboardAccessoryForSender:_thresholdTextField];
@@ -114,8 +117,7 @@
     }
     // If init finished, go to main storyboard.
     if (group.defaults.initial == InitialFinished) {
-        UIStoryboard *storyborad = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        [self presentViewController:[storyborad instantiateInitialViewController] animated:true completion:nil];
+        [self presentViewController:[ui.main instantiateInitialViewController] animated:true completion:nil];
         return;
     }
     

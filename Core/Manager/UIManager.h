@@ -12,6 +12,8 @@
 
 + (instancetype)sharedInstance;
 
+@property (nonatomic, strong) UIStoryboard *main;
+
 @property (nonatomic, strong) UIStoryboard *groupInit;
 @property (nonatomic, strong) UIStoryboard *members;
 

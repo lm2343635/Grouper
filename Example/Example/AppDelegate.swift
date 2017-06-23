@@ -20,12 +20,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        grouper.setAppDataStack(dataStack)
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        grouper.setup(withAppDataStack: dataStack, mainStoryboard: storyboard)
         
         // Load storyboard.
-        let storyboard = grouper.group.isInitialized() ? UIStoryboard(name: "Main", bundle: nil) : grouper.ui.groupInit
+        if !grouper.group.isInitialized() {
+            storyboard = grouper.ui.groupInit
+        }
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = storyboard?.instantiateInitialViewController()
+        window?.rootViewController = storyboard.instantiateInitialViewController()
         window?.makeKeyAndVisible()
 
         return true

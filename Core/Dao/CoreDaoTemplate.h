@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "User+CoreDataClass.h"
-#import "Share+CoreDataClass.h"
-#import "Message+CoreDataClass.h"
-#import "SyncEntity+CoreDataClass.h"
+#import "User.h"
+#import "Share.h"
+#import "Message.h"
+#import "SyncEntity.h"
 #import "DEBUG.h"
 
 @interface CoreDaoTemplate : NSObject
