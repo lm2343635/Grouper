@@ -22,10 +22,10 @@
 // ******************* Create message and send shares to untrusted servers. *******************
 
 // Send update message for a sync entity.
-- (BOOL)update:(NSManagedObject *)object;
+- (void)update:(NSManagedObject *)object;
 
 // Send delete message for a sync entity.
-- (BOOL)delete:(NSManagedObject *)object;
+- (void)delete:(NSManagedObject *)object;
 
 // Send confirm message;
 - (void)confirm;

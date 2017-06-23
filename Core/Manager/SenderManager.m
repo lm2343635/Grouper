@@ -48,7 +48,7 @@
 }
 
 #pragma mark - Create message and send shares to untrusted servers.
-- (BOOL)update:(NSManagedObject *)object {
+- (void)update:(NSManagedObject *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -60,11 +60,6 @@
 //        [dictionary setValue:template.account.remoteID forKey:@"account_remoteID"];
 //    }
     
-    // If object is not an instance of SyncEntity's subclass,
-    // do not allow to send update message.
-    if (![object isKindOfClass:[SyncEntity class]]) {
-        return NO;
-    }
     SyncEntity *entity = (SyncEntity *)object;
     
     // If this sync entity has no remoteID, it is a new created sync entity.
@@ -95,17 +90,11 @@
                                          name:group.currentUser.name];
     // At last, we send the update message to multiple untrusted servers.
     [self sendShares];
-    return YES;
 }
 
-- (BOOL)delete:(NSManagedObject *)object {
+- (void)delete:(NSManagedObject *)object {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    // If object is not an instance of SyncEntity's subclass,
-    // do not allow to send delete message.
-    if (![object isKindOfClass:[SyncEntity class]]) {
-        return NO;
     }
     SyncEntity *entity = (SyncEntity *)object;
     
@@ -125,7 +114,6 @@
                                          name:group.currentUser.name];
     // At last, we send the delete message to multiple untrusted servers.
     [self sendShares];
-    return YES;
 }
 
 - (void)confirm {

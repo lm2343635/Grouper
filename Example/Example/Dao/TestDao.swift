@@ -18,4 +18,10 @@ class TestDao: DaoTemplate {
         return test!
     }
     
+    func findAll() -> [Test] {
+        let request = NSFetchRequest<Test>(entityName: NSStringFromClass(Test.self))
+        request.sortDescriptors = [NSSortDescriptor(key: "createAt", ascending: false)]
+        return try! context.fetch(request)
+    }
+    
 }
