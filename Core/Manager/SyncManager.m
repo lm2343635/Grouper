@@ -20,6 +20,9 @@
 }
 
 - (BOOL)syncWithMessageData:(MessageData *)message {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSDictionary *content = [NSJSONSerialization JSONObjectWithData:[message.content dataUsingEncoding:NSUTF8StringEncoding]
                                                             options:NSJSONReadingMutableContainers
                                                               error:nil];
@@ -27,10 +30,10 @@
         return NO;
     }
     if ([message.type isEqualToString:@"update"]) {
-        [Sync changes:[NSArray arrayWithObject:content]
-        inEntityNamed:message.object
-            dataStack:_dataStack
-           completion:nil];
+        [Sync changesOnlyInsertUpdate:[NSArray arrayWithObject:content]
+                        inEntityNamed:message.object
+                            dataStack:_dataStack
+                           completion:nil];
     } else if ([message.type isEqualToString:@"delete"]) {
         NSString *remoteId = [content valueForKey:@"id"];
         [Sync delete:remoteId

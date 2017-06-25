@@ -178,6 +178,8 @@
         [contentGroup addObject:content];
         [contentGroups setObject:contentGroup forKey:messageId];
     }
+    
+    NSLog(@"%@", contentGroups);
 
     for (NSString *messageId in contentGroups.allKeys) {
         NSArray *contentGroup = contentGroups[messageId];
@@ -197,7 +199,9 @@
         if (DEBUG) {
             NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
         }
-        [self handleMessage:messageString];
+        if (messageString != nil) {
+            [self handleMessage:messageString];
+        }
     }
     
     // Finish sync
@@ -209,7 +213,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Transfer JSON string to dictionary.
-    NSDictionary *messageObject =[self parseJSONString:messageString];
+    NSDictionary *messageObject = [self parseJSONString:messageString];
     // Create message data object.
     MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
     
