@@ -72,7 +72,7 @@
     
     // Update update date and updater of this entity.
     entity.updateAt = [NSDate date];
-    entity.updater = group.currentUser.node;
+    entity.updator = group.currentUser.node;
     // Save entity to app's persistent store.
     [group saveAppContext];
     

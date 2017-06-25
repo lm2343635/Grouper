@@ -13,7 +13,7 @@
 @dynamic createAt;
 @dynamic creator;
 @dynamic remoteID;
-@dynamic updater;
+@dynamic updator;
 @dynamic updateAt;
 
 @end

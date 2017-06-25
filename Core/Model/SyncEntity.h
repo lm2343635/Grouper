@@ -13,7 +13,7 @@
 @property (nullable, nonatomic, copy) NSDate *createAt;
 @property (nullable, nonatomic, copy) NSString *creator;
 @property (nullable, nonatomic, copy) NSString *remoteID;
-@property (nullable, nonatomic, copy) NSString *updater;
+@property (nullable, nonatomic, copy) NSString *updator;
 @property (nullable, nonatomic, copy) NSDate *updateAt;
 
 @end

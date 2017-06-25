@@ -121,18 +121,17 @@
     
     NSMutableArray *properties = [NSMutableArray array];
     [properties addObject:[self stringAttributeWithName:@"content"]];
-    [properties addObject:[self stringAttributeWithName:@"email"]];
     [properties addObject:[self stringAttributeWithName:@"messageId"]];
-    [properties addObject:[self stringAttributeWithName:@"name"]];
+    [properties addObject:[self stringAttributeWithName:@"type"]];
     [properties addObject:[self stringAttributeWithName:@"object"]];
     [properties addObject:[self stringAttributeWithName:@"objectId"]];
     [properties addObject:[self stringAttributeWithName:@"receiver"]];
     [properties addObject:[self stringAttributeWithName:@"sender"]];
+    [properties addObject:[self stringAttributeWithName:@"email"]];
+    [properties addObject:[self stringAttributeWithName:@"name"]];
     [properties addObject:[self int64AttributeWithName:@"sendtime"]];
     [properties addObject:[self int64AttributeWithName:@"sequence"]];
-    [properties addObject:[self stringAttributeWithName:@"type"]];
     [entity setProperties:properties];
-    
     return entity;
 }
 
