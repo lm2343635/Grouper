@@ -15,7 +15,7 @@ Grouper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Grouper', '~> 1.1'
+pod 'Grouper', '~> 1.2'
 ```
 
 ## Documentation
@@ -42,8 +42,9 @@ Next, setup Grouper your app's data stack and main storyboard.
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     grouper = [Grouper sharedInstance];
-    [grouper setupWithAppDataStack:[self dataStack]
-                    mainStoryboard:storyboard];
+    [grouper setupWithAppId:@"test-app"
+                  dataStack:[self dataStack]
+             mainStoryboard:storyboard];
 }
 ```
 
@@ -73,10 +74,10 @@ Use these methods to send data by grouper.sender.
 // ******************* Create message and send shares to untrusted servers. *******************
 
 // Send update message for a sync entity.
-- (void)update:(SyncEntity *)object;
+- (void)update:(NSManagedObject *)object;
 
 // Send delete message for a sync entity.
-- (void)delete:(SyncEntity *)object;
+- (void)delete:(NSManagedObject *)object;
 
 // Send confirm message;
 - (void)confirm;
