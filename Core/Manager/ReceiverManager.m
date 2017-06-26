@@ -178,9 +178,10 @@
         [contentGroup addObject:content];
         [contentGroups setObject:contentGroup forKey:messageId];
     }
+    if (DEBUG) {
+        NSLog(@"Content groups has been created: %@", contentGroups);
+    }
     
-    NSLog(@"%@", contentGroups);
-
     for (NSString *messageId in contentGroups.allKeys) {
         NSArray *contentGroup = contentGroups[messageId];
         // Skip if number of data is less than threshold.

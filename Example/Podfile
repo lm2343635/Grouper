@@ -1,6 +1,7 @@
 use_frameworks!
 
 target 'Example' do
+    pod 'ESPullToRefresh', '~> 2.6'
     pod 'Grouper', :path => '../'
 end
 

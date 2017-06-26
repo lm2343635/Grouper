@@ -8,6 +8,7 @@
 
 import UIKit
 import Grouper
+import ESPullToRefresh
 
 class TestsTableViewController: UITableViewController {
     
@@ -18,7 +19,14 @@ class TestsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        tableView.es_addPullToRefresh {
+            self.grouper.receiver.receive {
+                // Callback function after receiving objects successfully.
+                self.tests = self.dao.testDao.findAll()
+                self.tableView.reloadData()
+                self.tableView.es_stopPullToRefresh()
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,11 +56,7 @@ class TestsTableViewController: UITableViewController {
     }
 
     @IBAction func sync(_ sender: Any) {
-        grouper.receiver.receive {
-            // Callback function after receiving objects successfully.
-            self.tests = self.dao.testDao.findAll()
-            self.tableView.reloadData()
-        }
+        
     }
 }
 
