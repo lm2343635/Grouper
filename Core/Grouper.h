@@ -22,6 +22,11 @@
 
 + (instancetype)sharedInstance;
 
+// Core layer grouper set up method for general device(all platform).
+- (void)setupWithAppId:(NSString *)appId
+             dataStack:(DataStack *)stack;
+
+// Grouper set up method for iOS device.
 - (void)setupWithAppId:(NSString *)appId
              dataStack:(DataStack *)stack
         mainStoryboard:(UIStoryboard *)storyboard;

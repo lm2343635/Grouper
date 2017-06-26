@@ -33,18 +33,27 @@
     return self;
 }
 
+- (void)setupWithAppId:(NSString *)appId dataStack:(DataStack *)stack {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Setup appId and MC manager.
+    _group.appId = appId;
+    [_group setupMutipeerConnectivity];
+    
+    // Set up data stack and init sync manager.
+    _group.appDataStack = stack;
+    [_receiver initSyncManager:_group.appDataStack];
+}
+
 - (void)setupWithAppId:(NSString *)appId
              dataStack:(DataStack *)stack
         mainStoryboard:(UIStoryboard *)storyboard {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _group.appId = appId;
-    [_group setupMutipeerConnectivity];
-    
-    _group.appDataStack = stack;
-    [_receiver initSyncManager:_group.appDataStack];
-    
+    [self setupWithAppId:appId dataStack:stack];
+    // Set up main storyboard.
     _ui.main = storyboard;
 }
 
