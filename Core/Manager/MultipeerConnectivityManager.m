@@ -11,12 +11,13 @@
 
 @implementation MultipeerConnectivityManager
 
-- (instancetype)init {
+- (instancetype)initWithAppId:(NSString *)appId {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     self = [super init];
     if (self) {
+        _appId = appId;
         _peerID = nil;
         _session = nil;
         _browserViewController = nil;
@@ -120,7 +121,7 @@ didReceiveStream:(NSInputStream *)stream
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:ServiceType
+    _browserViewController = [[MCBrowserViewController alloc] initWithServiceType:_appId
                                                                         session:_session];
 }
 
@@ -129,7 +130,7 @@ didReceiveStream:(NSInputStream *)stream
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if (shouldAdvertise) {
-        _advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:ServiceType
+        _advertiserAssistant = [[MCAdvertiserAssistant alloc] initWithServiceType:_appId
                                                                     discoveryInfo:nil
                                                                           session:_session];
         [_advertiserAssistant start];

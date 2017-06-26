@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
 
-#define ServiceType @"grouper"
-
 #define MCDidChangeStateNotification @"MCDidChangeStateNotification"
 #define MCDidReceiveDataNotification @"MCDidReceiveDataNotification"
 #define MCDidStartReceivingResourceNotification @"MCDidStartReceivingResourceNotification"
@@ -19,10 +17,13 @@
 
 @interface MultipeerConnectivityManager : NSObject <MCSessionDelegate>
 
+@property (nonatomic, strong) NSString *appId;
 @property (nonatomic, strong) MCPeerID *peerID;
 @property (nonatomic, strong) MCSession *session;
 @property (nonatomic, strong) MCBrowserViewController *browserViewController;
 @property (nonatomic, strong) MCAdvertiserAssistant *advertiserAssistant;
+
+- (instancetype)initWithAppId:(NSString *)appId;
 
 - (void)setupPeerAndSessionWithDisplayName: (NSString *)displayName;
 - (void)setupMCBrowser;

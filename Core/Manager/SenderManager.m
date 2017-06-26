@@ -299,7 +299,9 @@
     }
     // Create shares by secret sharing scheme.
     NSDictionary *shares = [self generateSharesWith:json];
-
+    if (DEBUG) {
+        NSLog(@"Create shares successfully: %@", shares);
+    }
     sent = 0;
     // Send shares to multiple untrusted servers.
     for (NSString *address in net.managers.allKeys) {
@@ -313,9 +315,6 @@
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                             InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                             if ([response statusOK]) {
-                                if (DEBUG) {
-                                    NSLog(@"Sent share %@ in %@", shares[address], [NSDate date]);
-                                }
                                 sent ++;
                                 if (sent == net.managers.count) {
                                     if (DEBUG) {

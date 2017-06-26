@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        grouper.setup(withAppDataStack: dataStack, mainStoryboard: storyboard)
+        grouper.setup(withAppId: "test", dataStack: dataStack, mainStoryboard: storyboard)
         
         // Load storyboard.
         if !grouper.group.isInitialized() {

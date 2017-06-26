@@ -17,6 +17,9 @@
 
 @interface GroupManager : NSObject <MCBrowserViewControllerDelegate>
 
+// App identifier as service type in multipeer connectivity.
+@property (nonatomic, strong) NSString *appId;
+
 // System parameters
 @property (nonatomic, strong) Defaults *defaults;
 
@@ -44,6 +47,9 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 - (void)saveAppContext;
 
 // *********************** User ************************
+
+// Setup mutipeer connectivity so that device can be discoverd by others.
+- (void)setupMutipeerConnectivity;
 
 // Save global user email and name.
 - (void)saveCurrentUserWithEmail:(NSString *)email name:(NSString *)name;

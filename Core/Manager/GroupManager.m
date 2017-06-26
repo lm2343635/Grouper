@@ -59,7 +59,6 @@
         
         // Set up current user and multipeer connectivity related variables.
         _currentUser = [dao.userDao getByEmail:_defaults.me];
-        [self setupMutipeerConnectivity];
     }
     return self;
 }
@@ -110,7 +109,7 @@
         return;
     }
     // Init multipeerConnectivity manager.
-    multipeerConnectivity = [[MultipeerConnectivityManager alloc] init];
+    multipeerConnectivity = [[MultipeerConnectivityManager alloc] initWithAppId:_appId];
     // Set device's display name by current user's name.
     [multipeerConnectivity setupPeerAndSessionWithDisplayName:_currentUser.name];
     [multipeerConnectivity advertiseSelf:YES];

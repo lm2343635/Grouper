@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XDM-kp-XYf" id="Wye-ee-MD1">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -34,10 +33,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Test" id="bCC-3b-MYZ">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="2s1-oV-Jo0">
+                        <barButtonItem key="leftBarButtonItem" title="Members" id="2s1-oV-Jo0">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <action selector="sync:" destination="pfW-Ml-aoM" id="uQL-9E-nlc"/>
+                                <action selector="manageMemebers:" destination="pfW-Ml-aoM" id="kWk-G6-dJt"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="JcU-4H-Avd">

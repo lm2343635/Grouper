@@ -22,7 +22,8 @@
 
 + (instancetype)sharedInstance;
 
-- (void)setupWithAppDataStack:(DataStack *)stack
-               mainStoryboard:(UIStoryboard *)storyboard;
+- (void)setupWithAppId:(NSString *)appId
+             dataStack:(DataStack *)stack
+        mainStoryboard:(UIStoryboard *)storyboard;
 
 @end

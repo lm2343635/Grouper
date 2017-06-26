@@ -30,11 +30,11 @@
         return NO;
     }
     if ([message.type isEqualToString:@"update"]) {
-       [Sync objc_changes:[NSArray arrayWithObject:content]
-            inEntityNamed:message.object
-                dataStack:_dataStack
-               operations:ObjcOperationOptionsInsertUpdate
-               completion:nil];
+       [Sync compatibleChanges:[NSArray arrayWithObject:content]
+                 inEntityNamed:message.object
+                     dataStack:_dataStack
+                    operations:CompatibleOperationOptionsInsertUpdate
+                    completion:nil];
     } else if ([message.type isEqualToString:@"delete"]) {
         NSString *remoteId = [content valueForKey:@"id"];
         [Sync delete:remoteId

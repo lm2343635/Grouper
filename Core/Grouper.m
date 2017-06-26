@@ -33,10 +33,15 @@
     return self;
 }
 
-- (void)setupWithAppDataStack:(DataStack *)stack mainStoryboard:(UIStoryboard *)storyboard {
+- (void)setupWithAppId:(NSString *)appId
+             dataStack:(DataStack *)stack
+        mainStoryboard:(UIStoryboard *)storyboard {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    _group.appId = appId;
+    [_group setupMutipeerConnectivity];
+    
     _group.appDataStack = stack;
     [_receiver initSyncManager:_group.appDataStack];
     
