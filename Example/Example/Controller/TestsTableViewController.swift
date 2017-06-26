@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Grouper
 
 class TestsTableViewController: UITableViewController {
     
+    let geouper = Grouper.sharedInstance()!
     let dao = DaoManager.sharedInstance
     
     var tests: [Test] = []
@@ -40,5 +42,13 @@ class TestsTableViewController: UITableViewController {
         return cell
     }
 
+    // MARK: Action
+    @IBAction func sync(_ sender: Any) {
+        geouper.receiver.receive {
+            // Callback function after receiving objects successfully.
+            self.tests = self.dao.testDao.findAll()
+            self.tableView.reloadData()
+        }
+    }
 }
 

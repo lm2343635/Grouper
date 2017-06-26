@@ -35,6 +35,7 @@ class AddTestViewController: UIViewController {
             grouper.sender.update(test)
             testNumber = testNumber - 1
         }
+        navigationController?.popViewController(animated: true)
     }
     
 }
