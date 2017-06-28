@@ -30,11 +30,12 @@ class AddTestViewController: UIViewController {
         if testNumber < 1 {
             return
         }
+        var tests:[Test] = []
         while testNumber > 0 {
-            let test = dao.testDao.saveWithContent(Date().description)
-            grouper.sender.update(test)
+            tests.append(dao.testDao.saveWithContent(Date().description))
             testNumber = testNumber - 1
         }
+        grouper.sender.update(tests)
         navigationController?.popViewController(animated: true)
     }
     

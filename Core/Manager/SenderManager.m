@@ -20,9 +20,6 @@
     
     // Number of sent messages
     int sent;
-
-    // Current message.
-    Message *message;
 }
 
 + (instancetype)sharedInstance {
@@ -48,72 +45,71 @@
 }
 
 #pragma mark - Create message and send shares to untrusted servers.
-- (void)update:(NSManagedObject *)object {
+- (void)update:(NSArray *)entities {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-//    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithDictionary:[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeNone]];
-//    if ([NSStringFromClass(object.class) isEqualToString:@"Template"]) {
-//        Template *template = (Template *)object;
-//        [dictionary setValue:template.classification.remoteID forKey:@"classification_remoteID"];
-//        [dictionary setValue:template.shop.remoteID forKey:@"shop_remoteID"];
-//        [dictionary setValue:template.account.remoteID forKey:@"account_remoteID"];
-//    }
-    
-    SyncEntity *entity = (SyncEntity *)object;
-    
-    // If this sync entity has no remoteID, it is a new created sync entity.
-    // Set remoteID, createor and create date for this entity.
-    if (entity.remoteID == nil) {
-        entity.remoteID = [[NSUUID UUID] UUIDString];
-        entity.createAt = [NSDate date];
-        entity.creator = group.currentUser.node;
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    for (NSManagedObject *object in entities) {
+        SyncEntity *entity = (SyncEntity *)object;
+        
+        // If this sync entity has no remoteID, it is a new created sync entity.
+        // Set remoteID, createor and create date for this entity.
+        if (entity.remoteID == nil) {
+            entity.remoteID = [[NSUUID UUID] UUIDString];
+            entity.createAt = [NSDate date];
+            entity.creator = group.currentUser.node;
+        }
+        
+        // Update update date and updater of this entity.
+        entity.updateAt = [NSDate date];
+        entity.updator = group.currentUser.node;
+        // Save entity to app's persistent store.
+        [group saveAppContext];
+        
+        // Transfer sync entity to dictionary.
+        NSDictionary *dictionary = [entity export]; //[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
+        // Create update message and save to sender entity.
+        Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
+                                                objectName:NSStringFromClass(entity.class)
+                                                  objectId:entity.remoteID
+                                                      type:MessageTypeUpdate
+                                                      from:group.currentUser.node
+                                                        to:@"*"
+                                                  sequence:[self generateNewSequence]
+                                                     email:group.currentUser.email
+                                                      name:group.currentUser.name];
+        [messages addObject:message];
     }
     
-    // Update update date and updater of this entity.
-    entity.updateAt = [NSDate date];
-    entity.updator = group.currentUser.node;
-    // Save entity to app's persistent store.
-    [group saveAppContext];
-    
-    // Transfer sync entity to dictionary.
-    NSDictionary *dictionary = [entity export]; //[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
-    // Create update message and save to sender entity.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
-                                   objectName:NSStringFromClass(entity.class)
-                                     objectId:entity.remoteID
-                                         type:MessageTypeUpdate
-                                         from:group.currentUser.node
-                                           to:@"*"
-                                     sequence:[self generateNewSequence]
-                                        email:group.currentUser.email
-                                         name:group.currentUser.name];
     // At last, we send the update message to multiple untrusted servers.
-    [self sendShares];
+    [self sendShares:messages];
 }
 
-- (void)delete:(NSManagedObject *)object {
+- (void)delete:(NSArray *)entitys {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    SyncEntity *entity = (SyncEntity *)object;
-    
-    // At first, we delete the sync entity.
-    [group.appDataStack.mainContext deleteObject:entity];
-    
-    // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
-    // Then, we create a delete message and save to sender entity.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": entity.remoteID}]
-                                   objectName:NSStringFromClass(entity.class)
-                                     objectId:entity.remoteID
-                                         type:MessageTypeDelete
-                                         from:group.currentUser.node
-                                           to:@"*"
-                                     sequence:[self generateNewSequence]
-                                        email:group.currentUser.email
-                                         name:group.currentUser.name];
+    NSMutableArray *messages = [[NSMutableArray alloc] init];
+    for (SyncEntity *entity in entitys) {
+        // At first, we delete the sync entity.
+        [group.appDataStack.mainContext deleteObject:entity];
+        
+        // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
+        // Then, we create a delete message and save to sender entity.
+        Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": entity.remoteID}]
+                                                objectName:NSStringFromClass(entity.class)
+                                                  objectId:entity.remoteID
+                                                      type:MessageTypeDelete
+                                                      from:group.currentUser.node
+                                                        to:@"*"
+                                                  sequence:[self generateNewSequence]
+                                                     email:group.currentUser.email
+                                                      name:group.currentUser.name];
+        [messages addObject:message];
+    }
     // At last, we send the delete message to multiple untrusted servers.
-    [self sendShares];
+    [self sendShares:messages];
 }
 
 - (void)confirm {
@@ -130,7 +126,7 @@
         return;
     }
     // Create confirm message by sequences.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
+    Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
@@ -139,7 +135,7 @@
                                      sequence:[self generateNewSequence]
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
-    [self sendShares];
+//    [self sendShares];
 }
 
 - (void)resend:(NSArray *)sequences to:(NSString *)receiver {
@@ -151,7 +147,7 @@
         return;
     }
     // Create resend message by not existed sequences and node identifier.
-    message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
+    Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend
@@ -160,7 +156,7 @@
                                      sequence:[self generateNewSequence]
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
-    [self sendShares];
+//    [self sendShares];
 }
 
 #pragma mark - Send existed messages.
@@ -288,29 +284,38 @@
 }
 
 // Send shares by message.
-- (void)sendShares {
+- (void)sendShares:(NSArray *)messages {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    // Creat json string
-    NSString *json = [self JSONStringFromObject:[message hyp_dictionary]];
-    if (DEBUG) {
-        NSLog(@"Send message to untrusted servers: %@", json);
+
+    NSMutableArray *sharesGroup = [[NSMutableArray alloc] init];
+    for (Message *message in messages) {
+        // Creat json string
+        NSString *json = [self JSONStringFromObject:[message hyp_dictionary]];
+        // Create shares by secret sharing scheme.
+        [sharesGroup addObject:[self generateSharesWith:json]];
     }
-    // Create shares by secret sharing scheme.
-    NSDictionary *shares = [self generateSharesWith:json];
     if (DEBUG) {
-        NSLog(@"Create shares successfully: %@", shares);
+        NSLog(@"Create shares successfully: %@", sharesGroup);
     }
+    
     sent = 0;
     // Send shares to multiple untrusted servers.
     for (NSString *address in net.managers.allKeys) {
+        NSMutableArray *shares = [[NSMutableArray alloc] init];
+        // Create JSON parameter.
+        for (int i = 0; i < messages.count; i++) {
+            Message *message = [messages objectAtIndex:i];
+            [shares addObject:@{
+                                @"share": [[sharesGroup objectAtIndex:i] valueForKey:address],
+                                @"receiver": message.receiver,
+                                @"messageId": message.messageId
+                                }];
+        }
+        
         [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
-                     parameters:@{
-                                  @"share": shares[address],
-                                  @"receiver": message.receiver,
-                                  @"messageId": message.messageId
-                                  }
+                     parameters:@{@"shares": [self JSONStringFromObject:shares]}
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                             InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
@@ -320,20 +325,21 @@
                                     if (DEBUG) {
                                         NSLog(@"%ld shares sent successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
                                     }
-                                    // Push remote notification to receiver if this message is a normal message.
-                                    if ([message.type isEqualToString:@"update"]) {
-                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
-                                                                  to:@"*"];
-                                    } else if ([message.type isEqualToString:@"delete"]) {
-                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
-                                                                  to:@"*"];
-                                    } else if ([message.type isEqualToString:@"confirm"]) {
-                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
-                                                                  to:@"*"];
-                                    } else if ([message.type isEqualToString:@"resend"]) {
-                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
-                                                                  to:message.receiver];
-                                    }
+//                                    Message *message = [messages objectAtIndex:0];
+//                                    // Push remote notification to receiver if this message is a normal message.
+//                                    if ([message.type isEqualToString:@"update"]) {
+//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
+//                                                                  to:@"*"];
+//                                    } else if ([message.type isEqualToString:@"delete"]) {
+//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
+//                                                                  to:@"*"];
+//                                    } else if ([message.type isEqualToString:@"confirm"]) {
+//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
+//                                                                  to:@"*"];
+//                                    } else if ([message.type isEqualToString:@"resend"]) {
+//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
+//                                                                  to:message.receiver];
+//                                    }
                                 }
                             }
                         }
