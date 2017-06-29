@@ -323,23 +323,28 @@
                                 sent ++;
                                 if (sent == net.managers.count) {
                                     if (DEBUG) {
-                                        NSLog(@"%ld shares sent successfully in %@", (unsigned long)net.managers.count, [NSDate date]);
+                                        NSLog(@"%d shares has been sent successfully.", net.managers.count * messages.count);
                                     }
-//                                    Message *message = [messages objectAtIndex:0];
-//                                    // Push remote notification to receiver if this message is a normal message.
-//                                    if ([message.type isEqualToString:@"update"]) {
-//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
-//                                                                  to:@"*"];
-//                                    } else if ([message.type isEqualToString:@"delete"]) {
-//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
-//                                                                  to:@"*"];
-//                                    } else if ([message.type isEqualToString:@"confirm"]) {
-//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
-//                                                                  to:@"*"];
-//                                    } else if ([message.type isEqualToString:@"resend"]) {
-//                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
-//                                                                  to:message.receiver];
-//                                    }
+                                    // Push remote notification.
+                                    Message *message = [messages objectAtIndex:0];
+                                    if (messages.count == 1) {
+                                        if ([message.type isEqualToString:@"update"]) {
+                                            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
+                                                                      to:@"*"];
+                                        } else if ([message.type isEqualToString:@"delete"]) {
+                                            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
+                                                                      to:@"*"];
+                                        } else if ([message.type isEqualToString:@"confirm"]) {
+                                            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
+                                                                      to:@"*"];
+                                        } else if ([message.type isEqualToString:@"resend"]) {
+                                            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
+                                                                      to:message.receiver];
+                                        }
+                                    } else {
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"Click to receive %d messages", messages.count]
+                                                                  to:message.receiver];
+                                    }
                                 }
                             }
                         }
