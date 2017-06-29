@@ -19,6 +19,7 @@ class TestsTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         tableView.es_addPullToRefresh {
             self.grouper.receiver.receive {
                 // Callback function after receiving objects successfully.
@@ -27,6 +28,7 @@ class TestsTableViewController: UITableViewController {
                 self.tableView.es_stopPullToRefresh()
             }
         }
+        tableView.es_startPullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +36,7 @@ class TestsTableViewController: UITableViewController {
         tableView.reloadData()
     }
 
-    // MARK: UITableViewDataSource
+    // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
@@ -49,8 +51,18 @@ class TestsTableViewController: UITableViewController {
         cell.textLabel?.text = tests[indexPath.row].content
         return cell
     }
+    
+    // MARK: - UITableViewDelegate
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let test = tests[indexPath.row]
+        if editingStyle == .delete {
+            grouper.sender.delete(test)
+            tests.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
 
-    // MARK: Action
+    // MARK: - Action
     @IBAction func manageMemebers(_ sender: Any) {
         self.present(grouper.ui.members.instantiateInitialViewController()!, animated: true, completion: nil)
     }

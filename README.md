@@ -71,13 +71,17 @@ Grouper use SenderManager to send data and ReceiverManager to receive data.
 Use these methods to send data by grouper.sender.
 
 ```objective-c
-// ******************* Create message and send shares to untrusted servers. *******************
+// Send an update message for a sync entity.
+- (void)update:(NSManagedObject *)entity;
 
-// Send update message for a sync entity.
-- (void)update:(NSManagedObject *)object;
+// Delete a sync entity and send a delete message.
+- (void)delete:(NSManagedObject *)entity;
 
-// Send delete message for a sync entity.
-- (void)delete:(NSManagedObject *)object;
+// Send update messages for multiple sync entities.
+- (void)updateAll:(NSArray *)entities;
+
+// Delete multiple sync entities and send delete messages.
+- (void)deleteAll:(NSArray *)entities;
 
 // Send confirm message;
 - (void)confirm;
