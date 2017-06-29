@@ -19,7 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let grouper = Grouper.sharedInstance()!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        UIApplication.shared.registerUserNotificationSettings(UIUserNotificationSettings.init(types: [.alert, .badge, .sound], categories: nil))
+        UIApplication.shared.registerForRemoteNotifications()
+        
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
         grouper.setup(withAppId: "test", dataStack: dataStack, mainStoryboard: storyboard)
         
@@ -54,6 +56,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
 
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map {
+            String(format: "%02.2hhx", $0)
+        }.joined()
+        // If group is initialized, send device token to untrusted servers.
+        if grouper.group.isInitialized() {
+            grouper.group.sendDeviceToken(token)
+        }
     }
 
 }
