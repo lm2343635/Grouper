@@ -23,8 +23,8 @@ typedef int gboolean;
 typedef char gchar;
 
 /* This style of bool is used in shared source code */
-#define FALSE false
-#define TRUE true
+//#define FALSE false
+//#define TRUE true
 
 /** @brief Minimal replacement for GLib's GString class.
  *  

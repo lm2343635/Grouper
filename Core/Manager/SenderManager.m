@@ -45,14 +45,28 @@
 }
 
 #pragma mark - Create message and send shares to untrusted servers.
-- (void)update:(NSArray *)entities {
+
+- (void)update:(NSManagedObject *)entity {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [self updateAll:[NSArray arrayWithObject:(SyncEntity *)entity]];
+}
+
+- (void)delete:(NSManagedObject *)entity {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [self deleteAll:[NSArray arrayWithObject:(SyncEntity *)entity]];
+}
+
+- (void)updateAll:(NSArray *)entities {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSMutableArray *messages = [[NSMutableArray alloc] init];
-    for (NSManagedObject *object in entities) {
-        SyncEntity *entity = (SyncEntity *)object;
-        
+    for (SyncEntity *entity in entities) {
+
         // If this sync entity has no remoteID, it is a new created sync entity.
         // Set remoteID, createor and create date for this entity.
         if (entity.remoteID == nil) {
@@ -86,7 +100,7 @@
     [self sendShares:messages];
 }
 
-- (void)delete:(NSArray *)entitys {
+- (void)deleteAll:(NSArray *)entitys {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -135,7 +149,7 @@
                                      sequence:[self generateNewSequence]
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
-//    [self sendShares];
+    [self sendShares:[NSArray arrayWithObject:message]];
 }
 
 - (void)resend:(NSArray *)sequences to:(NSString *)receiver {
@@ -156,7 +170,7 @@
                                      sequence:[self generateNewSequence]
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
-//    [self sendShares];
+    [self sendShares:[NSArray arrayWithObject:message]];
 }
 
 #pragma mark - Send existed messages.
@@ -401,9 +415,10 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSArray *addresses = group.defaults.servers.allKeys;
-    
-    const char *secret = [string cStringUsingEncoding:NSUTF8StringEncoding];
-    char *shares = generate_share_strings(secret, addresses.count, group.defaults.threshold);
+    char *secret = (char *)[string cStringUsingEncoding:NSUTF8StringEncoding];
+    int n = (int)addresses.count;
+    int threshold = (int)group.defaults.threshold;
+    char *shares = generate_share_strings(secret, n, threshold);
     NSString *result = [NSString stringWithCString:shares encoding:NSUTF8StringEncoding];
     NSMutableArray *array = [NSMutableArray arrayWithArray:[result componentsSeparatedByString:@"\n"]];
     [array removeLastObject];

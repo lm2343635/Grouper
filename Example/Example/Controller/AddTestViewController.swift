@@ -35,7 +35,7 @@ class AddTestViewController: UIViewController {
             tests.append(dao.testDao.saveWithContent(Date().description))
             testNumber = testNumber - 1
         }
-        grouper.sender.update(tests)
+        grouper.sender.updateAll(tests)
         navigationController?.popViewController(animated: true)
     }
     

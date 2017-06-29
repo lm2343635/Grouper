@@ -21,11 +21,17 @@
 
 // ******************* Create message and send shares to untrusted servers. *******************
 
-// Send update message for a sync entity.
-- (void)update:(NSArray *)entities;
+// Send an update message for a sync entity.
+- (void)update:(NSManagedObject *)entity;
 
-// Send delete message for a sync entity.
-- (void)delete:(NSArray *)entities;
+// Delete a sync entity and send a delete message.
+- (void)delete:(NSManagedObject *)entity;
+
+// Send update messages for multiple sync entities.
+- (void)updateAll:(NSArray *)entities;
+
+// Delete multiple sync entities and send delete messages.
+- (void)deleteAll:(NSArray *)entities;
 
 // Send confirm message;
 - (void)confirm;
