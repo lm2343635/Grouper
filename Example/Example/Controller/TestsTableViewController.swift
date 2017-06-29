@@ -55,8 +55,5 @@ class TestsTableViewController: UITableViewController {
         self.present(grouper.ui.members.instantiateInitialViewController()!, animated: true, completion: nil)
     }
 
-    @IBAction func sync(_ sender: Any) {
-        
-    }
 }
 

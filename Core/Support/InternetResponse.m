@@ -7,7 +7,7 @@
 //
 
 #import "InternetResponse.h"
-#define DEBUG 0
+#import "DEBUG.h"
 
 @implementation InternetResponse
 - (instancetype) initWithResponseObject:(id)responseObject {

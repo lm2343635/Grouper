@@ -7,6 +7,7 @@
 //
 
 #import "SyncManager.h"
+#import "ReceiverManager.h"
 #import "DEBUG.h"
 
 @implementation SyncManager
@@ -19,7 +20,8 @@
     return self;
 }
 
-- (BOOL)syncWithMessageData:(MessageData *)message {
+- (BOOL)syncMessage:(MessageData *)message
+         completion:(SyncCompletion)completion {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -30,17 +32,20 @@
         return NO;
     }
     if ([message.type isEqualToString:@"update"]) {
-       [Sync compatibleChanges:[NSArray arrayWithObject:content]
-                 inEntityNamed:message.object
-                     dataStack:_dataStack
-                    operations:CompatibleOperationOptionsInsertUpdate
-                    completion:nil];
+        [Sync compatibleChanges:[NSArray arrayWithObject:content]
+                  inEntityNamed:message.object
+                      dataStack:_dataStack
+                     operations:CompatibleOperationOptionsInsertUpdate
+                     completion:^(NSError * error) {
+                         completion();
+                     }];
     } else if ([message.type isEqualToString:@"delete"]) {
         NSString *remoteId = [content valueForKey:@"id"];
         [Sync delete:remoteId
        inEntityNamed:message.object
                using:_dataStack.mainContext
                error:nil];
+        completion();
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receivedNewObject" object:message];
     return YES;

@@ -9,7 +9,7 @@
 #import "ReceiverManager.h"
 #import "NetManager.h"
 #import "SenderManager.h"
-#import "SyncManager.h"
+
 #include "GLibFacade.h"
 #include "shamir.h"
 #import "DEBUG.h"
@@ -23,7 +23,7 @@
     
     int received;
     NSMutableArray *contents;
-    Completion syncCompletion;
+    SyncCompletion syncCompletion;
 }
 
 + (instancetype)sharedInstance {
@@ -66,7 +66,7 @@
 }
 
 // Receive share and handle message.
-- (void)receiveWithCompletion:(Completion)completion {
+- (void)receiveWithCompletion:(SyncCompletion)completion {
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -204,9 +204,6 @@
             [self handleMessage:messageString];
         }
     }
-    
-    // Finish sync
-    syncCompletion();
 }
 
 - (void)handleMessage:(NSString *)messageString {
@@ -230,7 +227,7 @@
     if ([messageData.type isEqualToString:MessageTypeUpdate] ||
         [messageData.type isEqualToString:MessageTypeDelete]) {
         // If sync successfully, message data.
-        if ([sync syncWithMessageData: messageData]) {
+        if ([sync syncMessage:messageData completion:syncCompletion]) {
             // Save message data in Message eneity.
             [dao.messageDao saveWithMessageData:messageData];
         }
@@ -241,6 +238,7 @@
         [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
                                                                     withSender:messageData.sender]];
         [send resend:sequences to:messageData.sender];
+        syncCompletion();
         
     } else if ([messageData.type isEqualToString:MessageTypeResend]) {
         NSDictionary *content = [self parseJSONString:messageData.content];
@@ -252,6 +250,7 @@
             [send sendExistedMessages:[dao.messageDao findInSequences:sequences
                                                            withSender:messageData.receiver]];
         }
+        syncCompletion();
     }
 }
 
