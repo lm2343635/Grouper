@@ -48,7 +48,7 @@
 }
 
 - (void)initSyncManager:(DataStack *)stack {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     sync = [[SyncManager alloc] initWithDataStack:stack];
@@ -56,7 +56,7 @@
 
 // If new share content has been received, regardless of success and fail, revoke this method.
 - (void)receivedContent {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     received++;
@@ -67,7 +67,7 @@
 
 // Receive share and handle message.
 - (void)receiveWithCompletion:(SyncCompletion)completion {
-    if(DEBUG) {
+    if (DEBUG || PERFORMANCE_TEST) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     syncCompletion = completion;
@@ -104,7 +104,7 @@
 }
 
 - (void)downloadSharesWithIds:(NSArray *)ids fromServer:(NSString *)address {
-    if(DEBUG) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@', download share from %@", self.class, NSStringFromSelector(_cmd), address);
     }
     // If there is no share id, return and received plus 1.
@@ -178,8 +178,8 @@
         [contentGroup addObject:content];
         [contentGroups setObject:contentGroup forKey:messageId];
     }
-    if (DEBUG) {
-        NSLog(@"Content groups has been created: %@", contentGroups);
+    if (DEBUG || PERFORMANCE_TEST) {
+        NSLog(@"Start to recover shares.");
     }
     
     for (NSString *messageId in contentGroups.allKeys) {

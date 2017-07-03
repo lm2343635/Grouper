@@ -10,5 +10,6 @@
 #define DEBUG_h
 
 #define DEBUG 1
+#define PERFORMANCE_TEST 1
 
 #endif /* DEBUG_h */

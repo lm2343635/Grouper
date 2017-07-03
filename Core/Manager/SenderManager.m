@@ -61,7 +61,7 @@
 }
 
 - (void)updateAll:(NSArray *)entities {
-    if (DEBUG) {
+    if (DEBUG || PERFORMANCE_TEST) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSMutableArray *messages = [[NSMutableArray alloc] init];
@@ -299,7 +299,7 @@
 
 // Send shares by message.
 - (void)sendShares:(NSArray *)messages {
-    if (DEBUG) {
+    if (DEBUG || PERFORMANCE_TEST) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
 
@@ -310,8 +310,8 @@
         // Create shares by secret sharing scheme.
         [sharesGroup addObject:[self generateSharesWith:json]];
     }
-    if (DEBUG) {
-        NSLog(@"Create shares successfully: %@", sharesGroup);
+    if (DEBUG || PERFORMANCE_TEST) {
+        NSLog(@"Create shares successfully.");
     }
     
     sent = 0;
@@ -336,7 +336,7 @@
                             if ([response statusOK]) {
                                 sent ++;
                                 if (sent == net.managers.count) {
-                                    if (DEBUG) {
+                                    if (DEBUG || PERFORMANCE_TEST) {
                                         NSLog(@"%d shares has been sent successfully.", net.managers.count * messages.count);
                                     }
                                     // Push remote notification.
