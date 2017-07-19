@@ -202,89 +202,27 @@
         return;
     }
     
-    /**
-     Create a mutable dictionary to save messageId-share dictionary for different multiple untrusted servers.
-     It's structure should be like this:
-     {
-        "address of untrusted server 1": {
-            "messageId": "share content",
-            "messageId": "share content"
-        },
-        "address of untrusted server 2": {
-            "messageId": "share content",
-            "messageId": "share content"
-        },
-     }
-     The address is the key of the outer dictionary.
-     The messageId is the key of the inner dictionary.
-    **/
-    NSMutableDictionary *messageIdShares = [[NSMutableDictionary alloc] init];
-    for (NSString *address in group.defaults.servers.allKeys) {
-        NSMutableDictionary *messageIdShare = [[NSMutableDictionary alloc] init];
-        [messageIdShares setObject:messageIdShare forKey:address];
+    NSMutableDictionary *idMessage = [[NSMutableDictionary alloc] init];
+    for (Message *message in messages) {
+        [idMessage setObject:message forKey:message.messageId];
     }
-    // Traverse messages will be send, create shares and add them to messageId-share dictionary.
-    for (Message *exsited in messages) {
-        // Create shares.
-        NSDictionary *shares = [self generateSharesWith:[self JSONStringFromObject:[exsited hyp_dictionary]]];
-        // Add messageId and shares.
-        for (NSString *address in shares.allKeys) {
-            [messageIdShares[address] setValue:shares[address]
-                                        forKey:exsited.messageId];
-        }
-    }
-
-    // Get reveiver.
-    NSString *receiver = ((Message *)[messages objectAtIndex:0]).receiver;
     
     sent = 0;
     // Send messageId-share dictionary to multiple untrusted sercers.
-    for (NSString *address in messageIdShares) {
-        NSDictionary *messageIdShare = messageIdShares[address];
+    for (NSString *address in net.managers.allKeys) {
         [net.managers[address] POST:[NetManager createUrl:@"transfer/confirm" withServerAddress:address]
-                         parameters:[NSDictionary dictionaryWithObjectsAndKeys: [NSSet setWithArray:messageIdShare.allKeys], @"messageId", nil]
+                         parameters:[NSDictionary dictionaryWithObjectsAndKeys: idMessage.allKeys, @"messageId", nil]
                            progress:nil
                             success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                 InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                                 if ([response statusOK]) {
                                     NSObject *result = [response getResponseResult];
                                     NSArray *notExistedMessageIds = [result valueForKey:@"messageIds"];
-                                    NSMutableDictionary *sendMessageIdShare = [[NSMutableDictionary alloc] init];
+                                    NSMutableArray *notExistedMessages = [[NSMutableArray alloc] init];
                                     for (NSString *messageId in notExistedMessageIds) {
-                                        [sendMessageIdShare setValue:messageIdShare[messageId] forKey:messageId];
+                                        [notExistedMessages addObject:idMessage[messageId]];
                                     }
-                                    // Send message-share which is not existed in untrusted servers.
-                                    [net.managers[address] POST:[NetManager createUrl:@"transfer/reput" withServerAddress:address]
-                                                     parameters:@{
-                                                                  /**
-                                                                   Transfer messageId-share dictionary to JSON string like this format.
-                                                                   {
-                                                                   "messageId": "share content",
-                                                                   "messageId": "share content"
-                                                                   }
-                                                                   **/
-                                                                  @"shares": [self JSONStringFromObject:sendMessageIdShare],
-                                                                  // All messages' receiver should be same. Get a receiver from the first message.
-                                                                  @"receiver": receiver
-                                                                  }
-                                                       progress:nil
-                                                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                                                            if ([response statusOK]) {
-                                                                sent++;
-                                                                if (sent == net.managers.count) {
-                                                                    [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has resent messages to you.", group.currentUser.name]
-                                                                                              to:receiver];
-                                                                }
-                                                            }
-                                                        }
-                                                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                                                            switch ([response errorCode]) {
-                                                                default:
-                                                                    break;
-                                                            }
-                                                        }];
+                                    [self sendShares:notExistedMessages];
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
