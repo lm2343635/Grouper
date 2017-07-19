@@ -39,6 +39,9 @@
 // Send resend message which contains not existed sequences to receiver.
 - (void)resend:(NSArray *)sequences to:(NSString *)receiver;
 
+// Send unsent messages.
+- (void)unsent;
+
 // ******************* Other *******************
 
 // Send existed messages.

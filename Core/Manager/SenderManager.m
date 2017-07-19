@@ -18,8 +18,8 @@
     CoreDaoManager *dao;
     GroupManager *group;
     
-    // Number of sent messages
-    int sent;
+    // Number of sent messages and sent failed messages
+    int sent, failed;
 }
 
 + (instancetype)sharedInstance {
@@ -173,6 +173,20 @@
     [self sendShares:[NSArray arrayWithObject:message]];
 }
 
+- (void)unsent {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if (group.defaults.unsentMessageIds == nil) {
+        return;
+    }
+    // Find unsent messages by unsentMessageIds.
+    NSArray *messages = [dao.messageDao findInMessageIds:group.defaults.unsentMessageIds];
+    // Clear unsent messagesId.
+    group.defaults.unsentMessageIds = nil;
+    [self sendShares:messages];
+}
+
 #pragma mark - Send existed messages.
 
 // Send existed messages.
@@ -314,7 +328,7 @@
         NSLog(@"Create shares successfully.");
     }
     
-    sent = 0;
+    sent = failed = 0;
     // Send shares to multiple untrusted servers.
     for (NSString *address in net.managers.allKeys) {
         NSMutableArray *shares = [[NSMutableArray alloc] init];
@@ -337,7 +351,7 @@
                                 sent ++;
                                 if (sent == net.managers.count) {
                                     if (DEBUG || PERFORMANCE_TEST) {
-                                        NSLog(@"%d shares has been sent successfully.", net.managers.count * messages.count);
+                                        NSLog(@"%lu shares has been sent successfully.", net.managers.count * messages.count);
                                     }
                                     // Push remote notification.
                                     Message *message = [messages objectAtIndex:0];
@@ -356,7 +370,7 @@
                                                                       to:message.receiver];
                                         }
                                     } else {
-                                        [self pushRemoteNotification:[NSString stringWithFormat:@"Click to receive %d messages", messages.count]
+                                        [self pushRemoteNotification:[NSString stringWithFormat:@"Click to receive %lu messages", (unsigned long)messages.count]
                                                                   to:message.receiver];
                                     }
                                 }
@@ -366,6 +380,18 @@
                             InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                             switch ([response errorCode]) {
                                 default:
+                                    failed ++;
+                                    // Send shares to untrusted servers failed, save messageId to messageIdQueue
+                                    if (failed == group.defaults.threshold) {
+                                        NSMutableArray *messageIds = [NSMutableArray arrayWithArray:group.defaults.unsentMessageIds];
+                                        for (Message *message in messages) {
+                                            if (![messageIds containsObject:message.messageId]) {
+                                                [messageIds addObject:message.messageId];
+                                            }
+                                        }
+                                        group.defaults.unsentMessageIds = messageIds;
+                                        return;
+                                    }
                                     break;
                             }
                         }];

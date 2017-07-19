@@ -39,6 +39,9 @@
 // Find normal messages sent by a sender(userId).
 - (NSArray *)findNormalWithSender:(NSString *)sender;
 
+// Find message in a messageIds array.
+- (NSArray *)findInMessageIds:(NSArray *)messageIds;
+
 // Find messages in a sequences array with node identifier of sender.
 - (NSArray *)findInSequences:(NSArray *)sequences withSender:(NSString *)sender;
 

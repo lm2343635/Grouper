@@ -44,6 +44,10 @@
     // Set up data stack and init sync manager.
     _group.appDataStack = stack;
     [_receiver initSyncManager:_group.appDataStack];
+    
+    // Sent unsent messages.
+    [_sender unsent];
+
 }
 
 - (void)setupWithAppId:(NSString *)appId

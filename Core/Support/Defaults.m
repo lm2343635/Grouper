@@ -217,4 +217,18 @@
     return _controlMessageSendTime;
 }
 
+@synthesize unsentMessageIds = _unsentMessageIds;
+
+- (void)setUnsentMessageIds:(NSArray *)unsentMessageIds {
+    _unsentMessageIds = unsentMessageIds;
+    [defaults setObject:unsentMessageIds forKey:NSStringFromSelector(@selector(unsentMessageIds))];
+}
+
+- (NSArray *)unsentMessageIds {
+    if (_unsentMessageIds == nil) {
+        _unsentMessageIds = [defaults objectForKey:NSStringFromSelector(@selector(unsentMessageIds))];
+    }
+    return _unsentMessageIds;
+}
+
 @end

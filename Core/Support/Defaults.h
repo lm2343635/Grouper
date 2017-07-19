@@ -69,6 +69,8 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 // Last control message send time.
 @property (nonatomic) NSInteger controlMessageSendTime;
 
+@property (nonatomic) NSArray *unsentMessageIds;
+
 
 // ************************* Methods **************************
 

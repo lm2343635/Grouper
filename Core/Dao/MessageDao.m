@@ -93,6 +93,14 @@
     return [self findAllWithEntityName:MessageEntityName];
 }
 
+- (NSArray *)findInMessageIds:(NSArray *)messageIds {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"messageId IN %@", messageIds]
+                  withEntityName:MessageEntityName];
+}
+
 - (NSArray *)findInSequences:(NSArray *)sequences withSender:(NSString *)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
