@@ -122,6 +122,8 @@
                                                       name:group.currentUser.name];
         [messages addObject:message];
     }
+    // Save delection to persistent store.
+    [group.appDataStack.mainContext save:nil];
     // At last, we send the delete message to multiple untrusted servers.
     [self sendShares:messages];
 }

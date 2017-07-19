@@ -24,6 +24,7 @@ class TestsTableViewController: UITableViewController {
             self.grouper.receiver.receive {
                 // Callback function after receiving objects successfully.
                 self.tests = self.dao.testDao.findAll()
+                
                 self.tableView.reloadData()
                 self.tableView.es_stopPullToRefresh()
             }
