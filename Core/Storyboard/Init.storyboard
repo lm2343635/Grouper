@@ -188,7 +188,7 @@
                                                     <rect key="frame" x="13" y="10" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create a new group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXx-1j-yXN">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create group" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXx-1j-yXN">
                                                     <rect key="frame" x="53" y="14" width="234" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="4ZD-e4-TVK"/>
@@ -210,8 +210,41 @@
                                             <segue destination="7bQ-MW-xRs" kind="push" id="m9I-el-zdO"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="yfv-Ne-1fh">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="4il-nf-yHK">
                                         <rect key="frame" x="0.0" y="220" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4il-nf-yHK" id="c6P-QN-ZOr">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="49"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="servers" translatesAutoresizingMaskIntoConstraints="NO" id="02b-m0-qUC">
+                                                    <rect key="frame" x="13" y="10" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create group (multiple servers)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWu-dx-Pkl">
+                                                    <rect key="frame" x="53" y="14" width="234" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="SWx-Yb-itt"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="AWu-dx-Pkl" firstAttribute="leading" secondItem="c6P-QN-ZOr" secondAttribute="leadingMargin" constant="45" id="I5N-lj-0Vm"/>
+                                                <constraint firstItem="AWu-dx-Pkl" firstAttribute="top" secondItem="c6P-QN-ZOr" secondAttribute="topMargin" constant="6" id="WBX-vi-4hP"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="AWu-dx-Pkl" secondAttribute="trailing" constant="33" id="i15-JX-IMI"/>
+                                        </constraints>
+                                        <connections>
+                                            <segue destination="R3n-Ua-Rpx" kind="push" id="dMP-vl-f1R"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="50" id="yfv-Ne-1fh">
+                                        <rect key="frame" x="0.0" y="270" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yfv-Ne-1fh" id="KUe-J5-Ssh">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="49"/>
@@ -473,7 +506,7 @@
                                 <rect key="frame" x="0.0" y="312" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ueO-FZ-ifE" id="xVD-QM-IXb">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Server Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocy-6C-dRh">
@@ -665,6 +698,64 @@
             </objects>
             <point key="canvasLocation" x="1954" y="2459"/>
         </scene>
+        <!--Create group (multiple servers)-->
+        <scene sceneID="1bf-as-KgS">
+            <objects>
+                <viewController id="R3n-Ua-Rpx" customClass="QuickCreateGroupViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jPs-Vl-7LT"/>
+                        <viewControllerLayoutGuide type="bottom" id="BqU-v5-gqZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7x0-WA-m6J">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="AHK-bR-WGC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zji-W8-ppo">
+                                <rect key="frame" x="13" y="520" width="295" height="40"/>
+                                <color key="backgroundColor" red="0.53118181229999994" green="0.86969506740000002" blue="0.95251542330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="NyV-QT-DBu"/>
+                                </constraints>
+                                <state key="normal" title="Create">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="quickCreateGroup:" destination="R3n-Ua-Rpx" eventType="touchUpInside" id="8ve-Kb-YxQ"/>
+                                    <action selector="restore:" destination="Grb-Vu-ZwU" eventType="touchUpInside" id="e43-dV-DFx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96068316698074341" green="0.96084421873092651" blue="0.96066063642501831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Zji-W8-ppo" firstAttribute="leading" secondItem="7x0-WA-m6J" secondAttribute="leadingMargin" constant="-3" id="0LN-77-QJJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AHK-bR-WGC" secondAttribute="trailing" constant="-16" id="8TC-aG-jIf"/>
+                            <constraint firstItem="AHK-bR-WGC" firstAttribute="top" secondItem="jPs-Vl-7LT" secondAttribute="bottom" constant="-64" id="Oce-gW-LhA"/>
+                            <constraint firstItem="AHK-bR-WGC" firstAttribute="leading" secondItem="7x0-WA-m6J" secondAttribute="leadingMargin" constant="-16" id="rSk-wL-DIv"/>
+                            <constraint firstItem="BqU-v5-gqZ" firstAttribute="top" secondItem="AHK-bR-WGC" secondAttribute="bottom" constant="56" id="rbx-9F-oqE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Zji-W8-ppo" secondAttribute="trailing" constant="-4" id="slT-gz-bEQ"/>
+                            <constraint firstItem="BqU-v5-gqZ" firstAttribute="top" secondItem="Zji-W8-ppo" secondAttribute="bottom" constant="8" id="wb5-ce-xZj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create group (multiple servers)" id="dJh-v0-AdR"/>
+                    <connections>
+                        <outlet property="jsonTextView" destination="AHK-bR-WGC" id="KDc-yw-Rq0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DHH-9t-ngP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1014.375" y="3450"/>
+        </scene>
         <!--Restore Untrusted Server-->
         <scene sceneID="gos-1x-Ny4">
             <objects>
@@ -844,6 +935,7 @@
         <image name="init_join" width="30" height="30"/>
         <image name="init_reset" width="30" height="30"/>
         <image name="restore_server" width="30" height="30"/>
+        <image name="servers" width="30" height="30"/>
         <image name="threshold" width="30" height="30"/>
     </resources>
 </document>
