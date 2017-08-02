@@ -7,6 +7,8 @@
 //
 
 #import "QuickCreateGroupViewController.h"
+#import "Grouper.h"
+#import "UIViewController+Extension.h"
 
 /**
 Demo JSON String.
@@ -34,7 +36,9 @@ Demo JSON String.
 
 @end
 
-@implementation QuickCreateGroupViewController
+@implementation QuickCreateGroupViewController {
+    Grouper *grouper;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -47,11 +51,38 @@ Demo JSON String.
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     NSDictionary *config = [self parseJSONString:_jsonTextView.text];
+    if (config == nil) {
+        [self showTip:@"Wrong JSON string!"];
+    }
     NSString *groupId = [config valueForKey:kGroupId];
+    if (groupId == nil) {
+        [self showTip:@"groupId is not found."];
+    }
     NSString *groupName = [config valueForKey:kGroupName];
-    int *threshold = [[config valueForKey:kThreshold] intValue];
-    int *intervalTime = [[config valueForKey:kIntervalTime] intValue];
+    if (groupName == nil) {
+        [self showTip:@"groupName is not found."];
+    }
+    NSString *threshold = [config valueForKey:kThreshold];
+    if (threshold == nil) {
+        [self showTip:@"threshold is not found."];
+    }
+    NSString *intervalTime = [config valueForKey:kIntervalTime];
+    if (intervalTime == nil) {
+        [self showTip:@"intervalTime is not found."];
+    }
     NSArray *servers = [config valueForKey:kServers];
+    if (servers == nil) {
+        [self showTip:@"servers is not found."];
+    }
+    // Register the new group in multiple untrusted servers.
+    for (NSString *address in servers) {
+        [grouper.group addNewServer:address
+                      withGroupName:groupName
+                         andGroupId:groupId
+                         completion:^(BOOL success, NSString *message) {
+                             
+                         }];
+    }
 }
 
 #pragma mark - Service
