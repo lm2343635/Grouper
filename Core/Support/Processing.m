@@ -72,6 +72,39 @@
     return YES;
 }
 
+- (void)directFinish {
+    if (type == Sending) {
+        switch (state) {
+            case SendingStart:
+                _sync = _secret = _network = 0;
+                break;
+            case DataSync:
+                _secret = _network = 0;
+                break;
+            case SecretSharing:
+                _network = 0;
+                break;
+            default:
+                break;
+        }
+    } else if (type == Receiving) {
+        switch (state) {
+            case ReceivingStart:
+                _network = _secret = _sync = 0;
+                break;
+            case Network:
+                _secret = _sync = 0;
+                break;
+            case SecretSharing:
+                _sync = 0;
+                break;
+            default:
+                break;
+        }
+    }
+    _total = _sync + _secret + _network;
+}
+
 - (NSString *)description {
     return [NSString stringWithFormat:@"total %fs, data sync: %fs, secret sharing: %fs, network: %fs.", _total, _sync, _secret, _network];
 }

@@ -66,13 +66,13 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
         if testNumber < 1 {
             return
         }
+        startAnimating()
+        testNumberTextField.resignFirstResponder()
         var tests:[Test] = []
         while testNumber > 0 {
             tests.append(dao.testDao.saveWithContent(Date().description))
             testNumber = testNumber - 1
         }
-        testNumberTextField.resignFirstResponder()
-        startAnimating()
         grouper.sender.updateAll(tests) { (processing) in
             self.stopAnimating()
             self.processing = processing

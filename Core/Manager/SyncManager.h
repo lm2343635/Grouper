@@ -10,7 +10,7 @@
 #import "MessageData.h"
 #import "Core-Bridging-Header.h"
 
-typedef void (^SyncCompletion)(void);
+typedef void (^SyncCompletion)(BOOL);
 
 @interface SyncManager : NSObject
 
@@ -18,7 +18,7 @@ typedef void (^SyncCompletion)(void);
 
 - (instancetype)initWithDataStack:(DataStack *)dataStack;
 
-- (BOOL)syncMessage:(MessageData *)message
+- (void)syncMessage:(MessageData *)message
          completion:(SyncCompletion)completion;
 
 @end

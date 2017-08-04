@@ -20,7 +20,7 @@
     return self;
 }
 
-- (BOOL)syncMessage:(MessageData *)message
+- (void)syncMessage:(MessageData *)message
          completion:(SyncCompletion)completion {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
@@ -29,7 +29,8 @@
                                                             options:NSJSONReadingMutableContainers
                                                               error:nil];
     if (content == nil) {
-        return NO;
+        completion(NO);
+        return;
     }
     if ([message.type isEqualToString:@"update"]) {
         [Sync compatibleChanges:[NSArray arrayWithObject:content]
@@ -37,7 +38,7 @@
                       dataStack:_dataStack
                      operations:CompatibleOperationOptionsInsertUpdate
                      completion:^(NSError * error) {
-                         completion();
+                         completion(YES);
                      }];
     } else if ([message.type isEqualToString:@"delete"]) {
         NSString *remoteId = [content valueForKey:@"id"];
@@ -45,10 +46,10 @@
        inEntityNamed:message.object
                using:_dataStack.mainContext
                error:nil];
-        completion();
+        completion(YES);
     }
+    // Send notification.
     [[NSNotificationCenter defaultCenter] postNotificationName:@"receivedNewObject" object:message];
-    return YES;
 }
 
 @end

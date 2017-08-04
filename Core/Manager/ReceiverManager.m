@@ -9,7 +9,6 @@
 #import "ReceiverManager.h"
 #import "NetManager.h"
 #import "SenderManager.h"
-
 #include "GLibFacade.h"
 #include "shamir.h"
 #import "DEBUG.h"
@@ -21,11 +20,24 @@
     CoreDaoManager *dao;
     SyncManager *sync;
     
+    // Lock for data receiving.
+    // Grouper only allow one data receiving task at same time.
+    BOOL lock;
+    
     // Number of untrusted servers which are received.
     int received;
     
+    // Numbers of messages which are handled.
+    int handled;
+    
+    // Share contents received from untrusted servers.
     NSMutableArray *contents;
-    SyncCompletion syncCompletion;
+    
+    // Messages strings recovered from shares.
+    // messageStrings.count <= contents.count
+    NSMutableArray *messageStrings;
+    
+    ReceiveCompletion receiveCompletion;
     
     // Processing time statistic obejct.
     Processing *processing;
@@ -58,28 +70,21 @@
     sync = [[SyncManager alloc] initWithDataStack:stack];
 }
 
-// If new share content has been received, regardless of success and fail, revoke this method.
-- (void)receivedContent {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
-    received++;
-    if (received == net.managers.count) {
-        if (DEBUG || PERFORMANCE_TEST) {
-            NSLog(@"All shares has been received successfuly.");
-        }
-        [self recoverShares];
-    }
-}
-
 // Receive share and handle message.
-- (void)receiveWithCompletion:(SyncCompletion)completion {
+- (void)receiveWithCompletion:(ReceiveCompletion)completion {
     if (DEBUG || PERFORMANCE_TEST) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
+    if (lock) {
+        return;
+    }
     
-    syncCompletion = completion;
+    // Lock data receiving process.
+    lock = YES;
+    // Start statistic for data receiving.
+    processing = [[Processing alloc] initWithType:Receiving];
+    
+    receiveCompletion = completion;
     // Only initail finished group can receive shares.
     if (group.defaults.initial != InitialFinished) {
         return;
@@ -96,7 +101,9 @@
                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                            if ([response statusOK]) {
+                               // Get shareId list.
                                NSArray *shareIds = [[response getResponseResult] valueForKey:@"shares"];
+                               // Download share content by shareId list.
                                [self downloadSharesWithIds:shareIds fromServer:address];
                            }
                        }
@@ -104,9 +111,9 @@
                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                            switch ([response errorCode]) {
                                default:
+                                   [self received];
                                    break;
                            }
-                           [self receivedContent];
                        }];
     }
 
@@ -118,7 +125,7 @@
     }
     // If there is no share id, return and received plus 1.
     if (ids.count == 0 || ids == nil) {
-        [self receivedContent];
+        [self received];
         return;
     }
     // Compare with local share id table, discard those downloaded.
@@ -132,7 +139,7 @@
     
     // If there is no share id after checking, return and received plus 1.
     if (shareIds.count == 0 || shareIds == nil) {
-        [self receivedContent];
+        [self received];
         return;
     }
     
@@ -145,16 +152,16 @@
                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                         if ([response statusOK]) {
                             [contents addObjectsFromArray:[[response getResponseResult] valueForKey:@"contents"]];
-                            [self receivedContent];
+                            [self received];
                         }
                     }
                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                         InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                         switch ([response errorCode]) {
                             default:
+                                [self received];
                                 break;
                         }
-                        [self receivedContent];
                     }];
 }
 
@@ -167,15 +174,21 @@
     return NO;
 }
 
+// Recover shares to messages.
 - (void)recoverShares {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    // If there is not shares, finish data receving directly.
     if (contents.count == 0) {
-        syncCompletion();
+        [processing directFinish];
+        receiveCompletion(0, processing);
+        // Release data receiving lock.
+        lock = NO;
         return;
     }
     
+    // Classify shares by its messageId.
     NSMutableDictionary *contentGroups = [[NSMutableDictionary alloc] init];
     for (NSObject *content in contents) {
         NSString *messageId = [[content valueForKey:@"data"] valueForKey:@"messageId"];
@@ -187,10 +200,9 @@
         [contentGroup addObject:content];
         [contentGroups setObject:contentGroup forKey:messageId];
     }
-    if (DEBUG || PERFORMANCE_TEST) {
-        NSLog(@"Start to recover shares.");
-    }
     
+    // Start to recover shares.
+    messageStrings = [[NSMutableArray alloc] init];
     for (NSString *messageId in contentGroups.allKeys) {
         NSArray *contentGroup = contentGroups[messageId];
         // Skip if number of data is less than threshold.
@@ -206,65 +218,118 @@
             [shares addObject:[[content valueForKey:@"data"] valueForKey:@"share"]];
         }
         NSString *messageString = [self recoverShareWith:shares];
-        if (DEBUG) {
-            NSLog(@"Message is recovered at %@\n%@", [NSDate date], messageString);
-        }
+        // If message string is not nil, add it to array.
         if (messageString != nil) {
-            [self handleMessage:messageString];
+            [messageStrings addObject:messageString];
         }
     }
+    
+    // All messages has been recoverd by secret sharing.
+    [processing secretSharing];
+    [self handleMessages];
+    
 }
 
-- (void)handleMessage:(NSString *)messageString {
+- (void)handleMessages {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    // Transfer JSON string to dictionary.
-    NSDictionary *messageObject = [self parseJSONString:messageString];
-    // Create message data object.
-    MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
-    
-    // If sender is not existed in this device, save it to persistent store.
-    User *sender = [dao.userDao getByNode:messageData.sender];
-    if (sender == nil) {
-        [dao.userDao saveWithEmail:messageData.email
-                           forName:messageData.name
-                            inNode:messageData.sender];
+    if (messageStrings.count == 0) {
+        [processing directFinish];
+        receiveCompletion(0, processing);
+        // Release data receiving lock.
+        lock = NO;
+        return;
+    }
+    handled = 0;
+    for (NSString *string in messageStrings) {
+        // Transfer JSON string to dictionary.
+        NSDictionary *messageObject = [self parseJSONString:string];
+        // Create message data object.
+        MessageData *messageData = [[MessageData alloc] initWithDictionary:messageObject];
+        
+        // If sender is not existed in this device, save it to persistent store.
+        User *sender = [dao.userDao getByNode:messageData.sender];
+        if (sender == nil) {
+            [dao.userDao saveWithEmail:messageData.email
+                               forName:messageData.name
+                                inNode:messageData.sender];
+        }
+        
+        // If message contains object related info, use SyncManager to sync it to persistent store.
+        if ([messageData.type isEqualToString:MessageTypeUpdate] ||
+            [messageData.type isEqualToString:MessageTypeDelete]) {
+            [sync syncMessage:messageData completion:^(BOOL success) {
+                // If sync successfully, save message data in Message eneity..
+                if (success) {
+                    [dao.messageDao saveWithMessageData:messageData];
+                }
+                [self handled];
+            }];
+        } else if ([messageData.type isEqualToString:MessageTypeConfirm]) {
+            NSDictionary *content = [self parseJSONString:messageData.content];
+            NSMutableArray *sequences = [content valueForKey:@"sequences"];
+            // Remove exsited sequences in persistent store.
+            [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
+                                                                        withSender:messageData.sender]];
+            [send resend:sequences to:messageData.sender];
+            [self handled];
+        } else if ([messageData.type isEqualToString:MessageTypeResend]) {
+            NSDictionary *content = [self parseJSONString:messageData.content];
+            // If node identifier of receiver is equql to node identifier of current user, resend messages.
+            if ([messageData.receiver isEqualToString:group.currentUser.node]) {
+                NSArray *sequences = [content valueForKey:@"sequences"];
+                // Send existed messages to untrusted server again,
+                // so that those members who did not recevied the messages can rececied again.
+                [send sendExistedMessages:[dao.messageDao findInSequences:sequences
+                                                               withSender:messageData.receiver]];
+            }
+            [self handled];
+        }
     }
     
-    // If message contains object related info, use SyncManager to sync it to persistent store.
-    if ([messageData.type isEqualToString:MessageTypeUpdate] ||
-        [messageData.type isEqualToString:MessageTypeDelete]) {
-        // If sync successfully, message data.
-        if ([sync syncMessage:messageData completion:syncCompletion]) {
-            // Save message data in Message eneity.
-            [dao.messageDao saveWithMessageData:messageData];
+}
+
+#pragma mark - Counter
+// Invoke this method if new share content has been received from one server, regardless of success and fail.
+- (void)received {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    received++;
+    if (received == net.managers.count) {
+        if (DEBUG || PERFORMANCE_TEST) {
+            NSLog(@"All shares has been received successfuly.");
         }
-    } else if ([messageData.type isEqualToString:MessageTypeConfirm]) {
-        NSDictionary *content = [self parseJSONString:messageData.content];
-        NSMutableArray *sequences = [content valueForKey:@"sequences"];
-        // Remove exsited sequences in persistent store.
-        [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
-                                                                    withSender:messageData.sender]];
-        [send resend:sequences to:messageData.sender];
-        syncCompletion();
-        
-    } else if ([messageData.type isEqualToString:MessageTypeResend]) {
-        NSDictionary *content = [self parseJSONString:messageData.content];
-        // If node identifier of receiver is equql to node identifier of current user, resend messages.
-        if ([messageData.receiver isEqualToString:group.currentUser.node]) {
-            NSArray *sequences = [content valueForKey:@"sequences"];
-            // Send existed messages to untrusted server again,
-            // so that those members who did not recevied the messages can rececied again.
-            [send sendExistedMessages:[dao.messageDao findInSequences:sequences
-                                                           withSender:messageData.receiver]];
+        [processing networkFinished];
+        [self recoverShares];
+    }
+}
+
+// Invoke this method if one message has been handled, regardless of success and fail.
+- (void)handled {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    handled++;
+    // If all message strings has been handled, invoke the receiveCompletion callback function.
+    if (handled == messageStrings.count) {
+        if (DEBUG || PERFORMANCE_TEST) {
+            NSLog(@"All messages has been handled successfuly.");
         }
-        syncCompletion();
+        [processing dataSynchronized];
+        receiveCompletion(messageStrings.count, processing);
+        // Release data receiving lock.
+        lock = NO;
     }
 }
 
 #pragma mark - Service
+// Parse JSON string to dictionary.
 - (NSDictionary *)parseJSONString:(NSString *)string {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     NSError *error = nil;
     NSDictionary *dictionary = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding]
                                                                options:NSJSONReadingMutableContainers

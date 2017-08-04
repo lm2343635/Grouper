@@ -34,4 +34,6 @@ typedef enum : NSUInteger {
 - (BOOL)secretSharing;
 - (BOOL)networkFinished;
 
+- (void)directFinish;
+
 @end

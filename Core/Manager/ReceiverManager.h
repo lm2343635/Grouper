@@ -9,8 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "GroupManager.h"
 #import "SyncManager.h"
+#import "Processing.h"
 
 #define ReceivedTag @"received"
+
+typedef void (^ReceiveCompletion)(int, Processing *);
 
 @interface ReceiverManager: NSObject
 
@@ -21,6 +24,6 @@
 - (void)initSyncManager:(DataStack *)stack;
 
 // Receive message and do something in completion block.
-- (void)receiveWithCompletion:(SyncCompletion)completion;
+- (void)receiveWithCompletion:(ReceiveCompletion)completion;
 
 @end

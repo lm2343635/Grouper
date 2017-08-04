@@ -21,13 +21,20 @@ class TestsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.es_addPullToRefresh {
-            self.grouper.receiver.receive {
+            self.grouper.receiver.receive {(count, processing) in
                 // Callback function after receiving objects successfully.
                 self.tests = self.dao.testDao.findAll()
                 
                 self.tableView.reloadData()
                 self.tableView.es_stopPullToRefresh()
+
+                self.showAlert(withTitle: "Received \(count) Messages",
+                    andContent: "Data Sync: \(processing?.sync ?? 0)\n"
+                        + "SecretSharing: \(processing?.secret ?? 0)\n"
+                        + "Network: \(processing?.network ?? 0)\n"
+                        + "Total: \(processing?.total ?? 0)")
             }
+            
         }
         tableView.es_startPullToRefresh()
     }
