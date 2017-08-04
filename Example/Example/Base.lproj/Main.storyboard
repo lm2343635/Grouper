@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gtl-yE-fGX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="gtl-yE-fGX">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -73,12 +73,24 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LbC-v7-9K2">
+                                <rect key="frame" x="0.0" y="133" width="320" height="435"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="3ro-7Q-c6w" id="jnx-7I-Bmq"/>
+                                    <outlet property="delegate" destination="3ro-7Q-c6w" id="hIL-jk-EqQ"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.95549887418746948" green="0.95622259378433228" blue="0.95561093091964722" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="Jab-Gi-4LH" secondAttribute="trailing" constant="-16" id="510-DA-qTa"/>
+                            <constraint firstItem="LbC-v7-9K2" firstAttribute="leading" secondItem="xpG-TH-9eT" secondAttribute="leadingMargin" constant="-16" id="KLs-sm-zCY"/>
+                            <constraint firstItem="VDr-ZN-Waw" firstAttribute="top" secondItem="LbC-v7-9K2" secondAttribute="bottom" id="eHO-qr-vD5"/>
+                            <constraint firstItem="LbC-v7-9K2" firstAttribute="top" secondItem="d9U-UR-2MH" secondAttribute="bottom" constant="69" id="hiH-iB-m9l"/>
                             <constraint firstItem="Jab-Gi-4LH" firstAttribute="leading" secondItem="xpG-TH-9eT" secondAttribute="leadingMargin" constant="-16" id="i7B-BX-W9e"/>
                             <constraint firstItem="Jab-Gi-4LH" firstAttribute="top" secondItem="d9U-UR-2MH" secondAttribute="bottom" constant="16" id="rLm-78-RT0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="LbC-v7-9K2" secondAttribute="trailing" constant="-16" id="uHn-bQ-a9U"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add Test" id="dfp-gL-qKC">
@@ -90,6 +102,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="processingTableView" destination="LbC-v7-9K2" id="gmy-IG-i5o"/>
                         <outlet property="testNumberTextField" destination="Jab-Gi-4LH" id="4lX-3h-jsF"/>
                     </connections>
                 </viewController>

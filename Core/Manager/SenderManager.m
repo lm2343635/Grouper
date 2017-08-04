@@ -110,7 +110,7 @@
     }
     
     // At last, we send the update message to multiple untrusted servers.
-    [self sendShares:messages];
+    [self sendShares:messages withCompletion:completion];
 }
 
 - (void)deleteAll:(NSArray *)entitys {
@@ -269,6 +269,13 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    [self sendShares:messages withCompletion:nil];
+}
+
+- (void)sendShares:(NSArray *)messages withCompletion:(SendCompletion)completion {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
     // Finish data sync.
     [processing dataSynchronized];
     
@@ -307,6 +314,8 @@
                                 if (sent == net.managers.count) {
                                     // Network finished.
                                     [processing networkFinished];
+                                    // Callback function with processing object.
+                                    completion(processing);
                                     
                                     if (DEBUG) {
                                         NSLog(@"Data sending finished, %@", processing.description);
