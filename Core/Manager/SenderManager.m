@@ -20,6 +20,9 @@
     
     // Number of sent messages and sent failed messages
     int sent, failed;
+    
+    // Processing time statistic obejct.
+    Processing *processing;
 }
 
 + (instancetype)sharedInstance {
@@ -61,12 +64,22 @@
 }
 
 - (void)updateAll:(NSArray *)entities {
-    if (DEBUG || PERFORMANCE_TEST) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    [self updateAll:entities withCompletion:nil];
+}
+
+- (void)updateAll:(NSArray *)entities withCompletion:(SendCompletion)completion {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Init a processing object.
+    processing = [[Processing alloc] init];
+    
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     for (SyncEntity *entity in entities) {
-
+        
         // If this sync entity has no remoteID, it is a new created sync entity.
         // Set remoteID, createor and create date for this entity.
         if (entity.remoteID == nil) {
@@ -253,10 +266,12 @@
 
 // Send shares by message.
 - (void)sendShares:(NSArray *)messages {
-    if (DEBUG || PERFORMANCE_TEST) {
+    if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-
+    // Finish data sync.
+    [processing dataSynchronized];
+    
     NSMutableArray *sharesGroup = [[NSMutableArray alloc] init];
     for (Message *message in messages) {
         // Creat json string
@@ -264,9 +279,9 @@
         // Create shares by secret sharing scheme.
         [sharesGroup addObject:[self generateSharesWith:json]];
     }
-    if (DEBUG || PERFORMANCE_TEST) {
-        NSLog(@"Create shares successfully.");
-    }
+
+    // Create shares successfully.
+    [processing secretSharing];
     
     sent = failed = 0;
     // Send shares to multiple untrusted servers.
@@ -290,9 +305,13 @@
                             if ([response statusOK]) {
                                 sent ++;
                                 if (sent == net.managers.count) {
-                                    if (DEBUG || PERFORMANCE_TEST) {
-                                        NSLog(@"%lu shares has been sent successfully.", net.managers.count * messages.count);
+                                    // Network finished.
+                                    [processing networkFinished];
+                                    
+                                    if (DEBUG) {
+                                        NSLog(@"Data sending finished, %@", processing.description);
                                     }
+                                    
                                     // Push remote notification.
                                     Message *message = [messages objectAtIndex:0];
                                     if (messages.count == 1) {

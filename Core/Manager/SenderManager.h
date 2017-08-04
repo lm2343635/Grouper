@@ -8,11 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "CoreDaoManager.h"
+#import "Processing.h"
 
 #define MessageTypeUpdate @"update"
 #define MessageTypeDelete @"delete"
 #define MessageTypeConfirm @"confirm"
 #define MessageTypeResend @"resend"
+
+typedef void (^SendCompletion)(Processing *);
 
 @interface SenderManager : NSObject
 
@@ -29,6 +32,9 @@
 
 // Send update messages for multiple sync entities.
 - (void)updateAll:(NSArray *)entities;
+
+// Send update messages for multiple sync entities with callback function.
+- (void)updateAll:(NSArray *)entities withCompletion:(SendCompletion)completion;
 
 // Delete multiple sync entities and send delete messages.
 - (void)deleteAll:(NSArray *)entities;
