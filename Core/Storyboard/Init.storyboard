@@ -749,6 +749,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Create group (multiple servers)" id="dJh-v0-AdR"/>
                     <connections>
+                        <outlet property="createButton" destination="Zji-W8-ppo" id="1pw-R4-JfR"/>
                         <outlet property="jsonTextView" destination="AHK-bR-WGC" id="KDc-yw-Rq0"/>
                     </connections>
                 </viewController>

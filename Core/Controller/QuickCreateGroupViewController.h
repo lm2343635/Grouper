@@ -11,6 +11,7 @@
 @interface QuickCreateGroupViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UITextView *jsonTextView;
+@property (weak, nonatomic) IBOutlet UIButton *createButton;
 
 - (IBAction)quickCreateGroup:(id)sender;
 

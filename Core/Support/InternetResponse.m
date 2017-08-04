@@ -40,16 +40,21 @@
         _data = @{@"errorCode": [NSNumber numberWithInteger:ErrorNotConnectedToInternet]};
         return self;
     }
-    
+
     if (DEBUG) {
         NSLog(@"AFNetworkingOperationFailingURLResponseErrorKey:\n%@", error.userInfo[AFNetworkingOperationFailingURLResponseErrorKey]);
-        NSLog(@"AFNetworkingOperationFailingURLResponseDataErrorKey:\n%@", [[NSString alloc] initWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey] encoding:NSUTF8StringEncoding]);
     }
-    if(self) {
-        _data = [NSJSONSerialization JSONObjectWithData:(NSData *)error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey]
-                                                options:NSJSONReadingAllowFragments
-                                                  error:nil];
-        
+    
+    if (self) {
+        NSObject *dataErrorKey = error.userInfo[AFNetworkingOperationFailingURLResponseDataErrorKey];
+        if (dataErrorKey != nil) {
+            if (DEBUG) {
+                NSLog(@"AFNetworkingOperationFailingURLResponseDataErrorKey:\n%@", [[NSString alloc] initWithData:(NSData *)dataErrorKey encoding:NSUTF8StringEncoding]);
+            }
+            _data = [NSJSONSerialization JSONObjectWithData:(NSData *)dataErrorKey
+                                                    options:NSJSONReadingAllowFragments
+                                                      error:nil];
+        }
     }
     return self;
 }
@@ -58,6 +63,9 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    if (_data == nil) {
+        return false;
+    }
     return [[_data valueForKey:@"status"] intValue] == 200;
 }
 
@@ -65,12 +73,18 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    if (_data == nil) {
+        return nil;
+    }
     return [_data valueForKey:@"result"];
 }
 
 - (int)errorCode {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if (_data == nil) {
+        return 0;
     }
     int erroCode = [[_data valueForKey:@"errorCode"] intValue];
     return erroCode;
