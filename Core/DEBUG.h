@@ -9,7 +9,7 @@
 #ifndef DEBUG_h
 #define DEBUG_h
 
-#define DEBUG 0
+#define DEBUG 1
 #define PERFORMANCE_TEST 1
 
 #endif /* DEBUG_h */

@@ -8,56 +8,67 @@
 
 #import "Processing.h"
 
-#define ProcessingStateStart 0
-#define ProcessingStateDataSync 1
-#define ProcessingStateSecretSharing 2
-#define ProcessingStateNetwork 3
-
 @implementation Processing {
     double time;
-    int state;
+    ProcessingState state;
+    ProcessingType type;
 }
 
 - (instancetype)init {
+    return [self initWithType:Sending];
+}
+
+- (instancetype)initWithType:(ProcessingType)processingType {
     self = [super init];
     if (self) {
+        type = processingType;
         time = [[NSDate date] timeIntervalSince1970];
-        state = ProcessingStateStart;
+        if (type == Sending) {
+            state = SendingStart;
+        } else if (type == Receiving) {
+            state = ReceivingStart;
+        }
     }
     return self;
 }
 
 - (BOOL)dataSynchronized {
-    if (state >= ProcessingStateDataSync) {
+    if ((type == Sending && state != SendingStart) || (type == Receiving && state != SecretSharing)) {
         return NO;
     }
+    
     double now = [[NSDate date] timeIntervalSince1970];
     _sync = now - time;
     time = now;
-    state = ProcessingStateDataSync;
+    state = DataSync;
+    if (type == Receiving) {
+        _total = _sync + _secret + _network;
+    }
     return YES;
 }
 
 - (BOOL)secretSharing {
-    if (state >= ProcessingStateSecretSharing) {
+    if ((type == Sending && state != DataSync) || (type == Receiving && state != Network)) {
         return NO;
     }
     double now = [[NSDate date] timeIntervalSince1970];
     _secret = now - time;
     time = now;
-    state = ProcessingStateSecretSharing;
+    state = SecretSharing;
     return YES;
 }
 
 - (BOOL)networkFinished {
-    if (state >= ProcessingStateNetwork) {
+    if ((type == Sending && state != SecretSharing) || (type == Receiving && state != ReceivingStart)) {
         return NO;
     }
     double now = [[NSDate date] timeIntervalSince1970];
     _network = now - time;
     time = now;
-    state = ProcessingStateNetwork;
-    _total = _sync + _secret + _network;
+    state = Network;
+    if (type == Sending) {
+        _total = _sync + _secret + _network;
+    }
     return YES;
 }
 

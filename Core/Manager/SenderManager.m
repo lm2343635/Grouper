@@ -75,7 +75,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Init a processing object.
-    processing = [[Processing alloc] init];
+    processing = [[Processing alloc] initWithType:Sending];
     
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     for (SyncEntity *entity in entities) {

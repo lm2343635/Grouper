@@ -21,9 +21,14 @@
     CoreDaoManager *dao;
     SyncManager *sync;
     
+    // Number of untrusted servers which are received.
     int received;
+    
     NSMutableArray *contents;
     SyncCompletion syncCompletion;
+    
+    // Processing time statistic obejct.
+    Processing *processing;
 }
 
 + (instancetype)sharedInstance {
@@ -42,7 +47,6 @@
         send = [SenderManager sharedInstance];
         group = [GroupManager sharedInstance];
         dao = [CoreDaoManager sharedInstance];
-        
     }
     return self;
 }
@@ -61,6 +65,9 @@
     }
     received++;
     if (received == net.managers.count) {
+        if (DEBUG || PERFORMANCE_TEST) {
+            NSLog(@"All shares has been received successfuly.");
+        }
         [self recoverShares];
     }
 }
@@ -70,6 +77,8 @@
     if (DEBUG || PERFORMANCE_TEST) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+
+    
     syncCompletion = completion;
     // Only initail finished group can receive shares.
     if (group.defaults.initial != InitialFinished) {
