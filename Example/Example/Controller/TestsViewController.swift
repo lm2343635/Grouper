@@ -9,8 +9,11 @@
 import UIKit
 import Grouper
 import ESPullToRefresh
+import Floaty
 
-class TestsTableViewController: UITableViewController {
+class TestsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var tableView: UITableView!
     
     let grouper = Grouper.sharedInstance()!
     let dao = DaoManager.sharedInstance
@@ -45,15 +48,15 @@ class TestsTableViewController: UITableViewController {
     }
 
     // MARK: - UITableViewDataSource
-    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tests.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.selectionStyle = .none
         cell.textLabel?.text = tests[indexPath.row].content
@@ -61,7 +64,7 @@ class TestsTableViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDelegate
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let test = tests[indexPath.row]
         if editingStyle == .delete {
             grouper.sender.delete(test)
@@ -75,5 +78,9 @@ class TestsTableViewController: UITableViewController {
         self.present(grouper.ui.members.instantiateInitialViewController()!, animated: true, completion: nil)
     }
 
+    @IBAction func addTest(_ sender: Any) {
+        self.performSegue(withIdentifier: "addTestSegue", sender: self)
+    }
+    
 }
 
