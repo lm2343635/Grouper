@@ -18,6 +18,10 @@
     CoreDaoManager *dao;
     GroupManager *group;
     
+    // Lock for data sending.
+    // Grouper only allow one data sending task at same time.
+    BOOL lock;
+    
     // Number of sent messages and sent failed messages
     int sent, failed;
     
@@ -74,6 +78,12 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    // If sending task is running now, do not allow to open a new sending task.
+    if (lock) {
+        completion(nil);
+        return;
+    }
+    lock = YES;
     // Init a processing object.
     processing = [[Processing alloc] initWithType:Sending];
     
@@ -291,8 +301,10 @@
     [processing secretSharing];
     
     sent = failed = 0;
+    NSArray *addresses = net.managers.allKeys;
     // Send shares to multiple untrusted servers.
-    for (NSString *address in net.managers.allKeys) {
+    for (int i = 0; i < group.defaults.serverCount; i++) {
+        NSString *address = addresses[i];
         NSMutableArray *shares = [[NSMutableArray alloc] init];
         // Create JSON parameter.
         for (int i = 0; i < messages.count; i++) {
@@ -311,11 +323,14 @@
                             InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                             if ([response statusOK]) {
                                 sent ++;
-                                if (sent == net.managers.count) {
+                        
+                                if (sent == group.defaults.serverCount) {
                                     // Network finished.
                                     [processing networkFinished];
                                     // Callback function with processing object.
                                     completion(processing);
+                                    // Release lock.
+                                    lock = NO;
                                     
                                     if (DEBUG) {
                                         NSLog(@"Data sending finished, %@", processing.description);
@@ -410,7 +425,7 @@
     }
     NSArray *addresses = group.defaults.servers.allKeys;
     char *secret = (char *)[string cStringUsingEncoding:NSUTF8StringEncoding];
-    int n = (int)addresses.count;
+    int n = (int)group.defaults.serverCount;
     int threshold = (int)group.defaults.threshold;
     char *shares = generate_share_strings(secret, n, threshold);
     NSString *result = [NSString stringWithCString:shares encoding:NSUTF8StringEncoding];
@@ -418,7 +433,7 @@
     [array removeLastObject];
     
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    for (int i = 0; i < addresses.count; i++) {
+    for (int i = 0; i < n; i++) {
         [dictionary setValue:[array objectAtIndex:i]
                       forKey:[addresses objectAtIndex:i]];
     }

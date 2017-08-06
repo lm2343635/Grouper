@@ -76,6 +76,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     if (lock) {
+        completion(0, nil);
         return;
     }
     
@@ -93,8 +94,10 @@
     received = 0;
     contents = [[NSMutableArray alloc] init];
     
+    NSArray *addresses = net.managers.allKeys;
     // Download share id list from untrusted servers.
-    for (NSString *address in net.managers.allKeys) {
+    for (int i = 0; i < group.defaults.serverCount; i++) {
+        NSString *address = addresses[i];
         [net.managers[address] GET:[NetManager createUrl:@"transfer/list" withServerAddress:address]
                     parameters:nil
                       progress:nil
@@ -297,7 +300,7 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     received++;
-    if (received == net.managers.count) {
+    if (received == group.defaults.serverCount) {
         if (DEBUG || PERFORMANCE_TEST) {
             NSLog(@"All shares has been received successfuly.");
         }

@@ -717,7 +717,9 @@
     if (token == nil || [token isEqualToString:@""]) {
         return;
     }
-    for (NSString *address in net.managers.allKeys) {
+    NSArray *addresses = net.managers.allKeys;
+    for (int i = 0; i < _defaults.serverCount; i++) {
+        NSString *address = addresses[i];
         [net.managers[address] POST:[NetManager createUrl:@"user/deviceToken" withServerAddress:address]
                          parameters:@{@"deviceToken": token}
                            progress:nil

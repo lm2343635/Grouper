@@ -27,7 +27,7 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return processing == nil ? 0 : 4
+        return processing == nil ? 0 : 5
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -40,15 +40,18 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
         
         switch indexPath.row {
         case 0:
+            cell.textLabel?.text = "Scheme"
+            cell.detailTextLabel?.text = "f(\(grouper.group.defaults.threshold), \(grouper.group.defaults.serverCount))"
+        case 1:
             cell.textLabel?.text = "Data Sync"
             cell.detailTextLabel?.text = "\(processing?.sync ?? 0)"
-        case 1:
+        case 2:
             cell.textLabel?.text = "Secret Sharing"
             cell.detailTextLabel?.text = "\(processing?.secret ?? 0)"
-        case 2:
+        case 3:
             cell.textLabel?.text = "Network"
             cell.detailTextLabel?.text = "\(processing?.network ?? 0)"
-        case 3:
+        case 4:
             cell.textLabel?.text = "Total"
             cell.detailTextLabel?.text = "\(processing?.total ?? 0)"
         default:

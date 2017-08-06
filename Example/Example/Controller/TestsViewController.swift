@@ -32,7 +32,8 @@ class TestsViewController: UIViewController, UITableViewDataSource, UITableViewD
                 self.tableView.es_stopPullToRefresh()
 
                 self.showAlert(withTitle: "Received \(count) Messages",
-                    andContent: "Data Sync: \(processing?.sync ?? 0)\n"
+                    andContent: "Scheme: f(\(self.grouper.group.defaults.threshold), \(self.grouper.group.defaults.serverCount))\n"
+                        + "Data Sync: \(processing?.sync ?? 0)\n"
                         + "SecretSharing: \(processing?.secret ?? 0)\n"
                         + "Network: \(processing?.network ?? 0)\n"
                         + "Total: \(processing?.total ?? 0)")
