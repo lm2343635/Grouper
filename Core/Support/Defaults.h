@@ -39,13 +39,11 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 // Group name can be same in an untrusted server.
 @property (nonatomic, strong) NSString *groupName;
 
-// Server dictionary saves the server address and access key like this:
-// {
-//   "server address1": "access key1",
-//   "server address2": "access key2",
-//   "server address3": "access key3"
-// }
-@property (nonatomic, strong) NSDictionary *servers;
+// Server addresses
+@property (nonatomic, strong) NSArray *servers;
+
+// Access keys for servers
+@property (nonatomic, strong) NSArray *keys;
 
 // Number of untrusted servers.
 @property (nonatomic) NSInteger serverCount;

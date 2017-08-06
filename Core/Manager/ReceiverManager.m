@@ -94,7 +94,7 @@
     received = 0;
     contents = [[NSMutableArray alloc] init];
     
-    NSArray *addresses = net.managers.allKeys;
+    NSArray *addresses = group.defaults.servers;
     // Download share id list from untrusted servers.
     for (int i = 0; i < group.defaults.serverCount; i++) {
         NSString *address = addresses[i];

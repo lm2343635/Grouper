@@ -101,22 +101,39 @@
 
 @synthesize servers = _servers;
 
-- (void)setServers:(NSDictionary *)servers {
+- (void)setServers:(NSArray *)servers {
     _servers = servers;
     [defaults setObject:servers forKey:NSStringFromSelector(@selector(servers))];
 }
 
-- (NSDictionary *)servers {
+- (NSArray *)servers {
     if (_servers == nil) {
         _servers = [defaults objectForKey:NSStringFromSelector(@selector(servers))];
     }
     return _servers;
 }
 
+@synthesize keys = _keys;
+
+- (void)setKeys:(NSArray *)keys {
+    _keys = keys;
+    [defaults setObject:keys forKey:NSStringFromSelector(@selector(keys))];
+}
+
+- (NSArray *)keys {
+    if (_keys == nil) {
+        _keys = [defaults objectForKey:NSStringFromSelector(@selector(keys))];
+    }
+    return _keys;
+}
+
 - (NSUInteger)addServerAddress:(NSString *)address withAccessKey:(NSString *)accessKey {
-    NSMutableDictionary *servers = [[NSMutableDictionary alloc] initWithDictionary:[self servers]];
-    [servers setValue:accessKey forKey:address];
+    NSMutableArray *servers = [[NSMutableArray alloc] initWithArray:[self servers]];
+    NSMutableArray *keys = [[NSMutableArray alloc] initWithArray:[self keys]];
+    [servers addObject:address];
+    [keys addObject:accessKey];
     [self setServers:servers];
+    [self setKeys:keys];
     return servers.count;
 }
 

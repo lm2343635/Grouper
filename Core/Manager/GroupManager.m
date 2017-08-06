@@ -17,7 +17,6 @@
     
     // Invite new member related.
     MultipeerConnectivityManager *multipeerConnectivity;
-    NSMutableDictionary *serverInfoForUser;
     
     // Check server state related.
     int accessed, checked;
@@ -211,6 +210,9 @@
                             }
                        to:peerID];
     } else if ([task isEqualToString:@"sendUserInfo"] && _isOwner) {
+        // Recover the serverCount to original value when the owner wants to invite a new memeber.
+        _defaults.serverCount = _defaults.servers.count;
+        
         submitted = 0;
         // Get joiner's user info and confirm his email.
         joiner = [message valueForKey:@"userInfo"];
@@ -230,10 +232,10 @@
         }
         
         // The new joiner can be invited to this group, grouper owner register for him in multiple untrusted server.
-        // Init serverInfoForUser
-        serverInfoForUser = [[NSMutableDictionary alloc] init];
+        NSMutableArray *keys = [[NSMutableArray alloc] init];
         // Send user info to untrusted servers.
-        for (NSString *address in net.managers.allKeys) {
+        for (int i = 0; i < _defaults.servers.count; i++) {
+            NSString *address = _defaults.servers[i];
             [net.managers[address] POST:[NetManager createUrl:@"user/add" withServerAddress:address]
                              parameters:@{
                                           @"node": [joiner valueForKey:@"node"],
@@ -244,9 +246,7 @@
                                     InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                                     if ([response statusOK]) {
                                         NSObject *result = [response getResponseResult];
-                                        NSString *accesskey = [result valueForKey:@"accesskey"];
-                                        [serverInfoForUser setValue:accesskey forKey:address];
-                                        NSLog(@"%@ serverInfoForUser %@", address, serverInfoForUser);
+                                        [keys addObject:[result valueForKey:@"accesskey"]];
                                         // All task finished, submitted flag plus 1
                                         submitted ++;
                                         
@@ -254,8 +254,6 @@
                                         if (submitted == _defaults.serverCount) {
                                             if (DEBUG) {
                                                 NSLog(@"Send user's information to all untrusted servers successfully!");
-                                                //Send access keys and server information to joiner.
-                                                NSLog(@"serverInfoForUser = %@", serverInfoForUser);
                                                 NSLog(@"invitePeer = %@", invitePeer);
                                             }
                                             
@@ -273,7 +271,8 @@
                                             [self sendMessage:@{
                                                                 @"task": @"sendServerInfo",
                                                                 @"existed": @NO,
-                                                                @"servers": serverInfoForUser,
+                                                                @"servers": _defaults.servers,
+                                                                @"keys": keys,
                                                                 @"users": users,
                                                                 @"owner": _defaults.owner
                                                                 }
@@ -302,6 +301,7 @@
         
         // Receive servers and owner.
         _defaults.servers = [message valueForKey:@"servers"];
+        _defaults.keys = [message valueForKey:@"keys"];
         _defaults.owner = [message valueForKey:@"owner"];
         
         // Save other group member's user info to persistent store.
@@ -402,7 +402,7 @@
         return;
     }
     // Check the server address is existed in servers dictionary or not.
-    for (NSString *exist in _defaults.servers.allKeys) {
+    for (NSString *exist in _defaults.servers) {
         if ([address isEqualToString:exist]) {
             completion(NO, @"This server address is exist!");
             return;
@@ -465,7 +465,7 @@
         return;
     }
     // Check the server address is existed in servers dictionary or not.
-    for (NSString *exist in _defaults.servers.allKeys) {
+    for (NSString *exist in _defaults.servers) {
         if ([address isEqualToString:exist]) {
             completion(NO, @"This server is existed!");
             return;
@@ -530,7 +530,7 @@
     //Validate threshold when user wants to create a new group.
     //Threshold need not to validate when user wants to restore an existed group.
     if (_defaults.initial == AddingNewServer) {
-        if (threshold < 1 || threshold > _defaults.servers.allKeys.count) {
+        if (threshold < 1 || threshold > _defaults.servers.count) {
             completion(NO, @"Recover threshold be more than 0 and less than the number of servers.");
             return;
         }
@@ -556,7 +556,7 @@
                                     // If the number registered servers equals to the count of servers dictionary, submit server count and threshold.
                                     // DO NOT USER _defaults.serverCount DIRECTLY!!!!!!!! It has not be set before submit server count to untrusted server.
                                     // Use _defaults.servers.allKeys.count here.
-                                    if (registered == _defaults.servers.allKeys.count) {
+                                    if (registered == _defaults.servers.count) {
                                         [self submitServerThreshold:threshold
                                                            interval:interval
                                                      withCompletion:completion];
@@ -579,7 +579,7 @@
     }
     // Check the number of untrusted servers if user wants to initialize by restoring an existed group.
     else if (_defaults.initial == RestoringServer) {
-        if (_defaults.servers.allKeys.count != _defaults.serverCount) {
+        if (_defaults.servers.count != _defaults.serverCount) {
             completion(NO, [NSString stringWithFormat:@"%ld servers are necessary to initialize your group when you are restoring existed untrusted servers.", (long)_defaults.serverCount]);
             return;
         }
@@ -606,7 +606,7 @@
         [net.managers[address] POST:[NetManager createUrl:@"group/init" withServerAddress:address]
                          parameters:@{
                                       // User _defaults.servers.allKeys.count here RATHER THAN _defaults.serverCount, because group has not been initialized successfully.
-                                      @"servers": [NSNumber numberWithInteger:_defaults.servers.allKeys.count],
+                                      @"servers": [NSNumber numberWithInteger:_defaults.servers.count],
                                       @"threshold": [NSNumber numberWithInt:threshold],
                                       @"interval": [NSNumber numberWithInt:interval]
                                       }
@@ -620,9 +620,9 @@
                                 
                                 // If the number of submitted servers equals to the count of servers dictionary,
                                 // save server count, threshold, userId of owner, number of members to NSUserDefaults.
-                                if (submitted == _defaults.servers.allKeys.count) {
+                                if (submitted == _defaults.servers.count) {
                                     //Set threshold, owner and update number of group memebers
-                                    _defaults.serverCount = _defaults.servers.allKeys.count;
+                                    _defaults.serverCount = _defaults.servers.count;
                                     _defaults.threshold = threshold;
                                     _defaults.interval = interval;
                                     _defaults.owner = _currentUser.email;
@@ -717,9 +717,8 @@
     if (token == nil || [token isEqualToString:@""]) {
         return;
     }
-    NSArray *addresses = net.managers.allKeys;
     for (int i = 0; i < _defaults.serverCount; i++) {
-        NSString *address = addresses[i];
+        NSString *address = _defaults.servers[i];
         [net.managers[address] POST:[NetManager createUrl:@"user/deviceToken" withServerAddress:address]
                          parameters:@{@"deviceToken": token}
                            progress:nil

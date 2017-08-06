@@ -45,12 +45,12 @@
 - (void)refreshSessionManagers {
     NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
     
-    for (NSString *address in defaults.servers.allKeys) {
+    for (int i = 0; i < defaults.servers.count; i++) {
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         //Set access key in request header.
-        [manager.requestSerializer setValue:[defaults.servers valueForKey:address] forHTTPHeaderField:@"key"];
+        [manager.requestSerializer setValue:[defaults.keys objectAtIndex:i] forHTTPHeaderField:@"key"];
         manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
-        [managers setObject:manager forKey:address];
+        [managers setObject:manager forKey:[defaults.servers objectAtIndex:i]];
     }
     _managers = managers;
 }

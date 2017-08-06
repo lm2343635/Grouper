@@ -301,7 +301,7 @@
     [processing secretSharing];
     
     sent = failed = 0;
-    NSArray *addresses = net.managers.allKeys;
+    NSArray *addresses = group.defaults.servers;
     // Send shares to multiple untrusted servers.
     for (int i = 0; i < group.defaults.serverCount; i++) {
         NSString *address = addresses[i];
@@ -423,7 +423,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSArray *addresses = group.defaults.servers.allKeys;
+    NSArray *addresses = group.defaults.servers;
     char *secret = (char *)[string cStringUsingEncoding:NSUTF8StringEncoding];
     int n = (int)group.defaults.serverCount;
     int threshold = (int)group.defaults.threshold;
