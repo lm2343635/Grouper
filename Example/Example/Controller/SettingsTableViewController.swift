@@ -17,6 +17,7 @@ class SettingsTableViewController: UITableViewController {
     @IBOutlet weak var thresholdStepper: UIStepper!
     
     let grouper = Grouper.sharedInstance()!
+    let dao = DaoManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,16 @@ class SettingsTableViewController: UITableViewController {
         thresholdLabel.text = String(format:"%.0f", sender.value)
 
         grouper.group.defaults.threshold = Int(sender.value)
+    }
+    
+    @IBAction func clearEntites(_ sender: Any) {
+        let alertController = UIAlertController(title: "Warning", message: "Are you sure to remove all test entities?", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Clear", style: .destructive) { (action) in
+            self.dao.testDao.deleteAll()
+            self.grouper.group.clear()
+        })
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        present(alertController, animated: true, completion: nil)
     }
     
 }

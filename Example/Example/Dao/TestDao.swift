@@ -24,4 +24,10 @@ class TestDao: DaoTemplate {
         return try! context.fetch(request)
     }
     
+    func deleteAll() {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: NSStringFromClass(Test.self))
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        try! context.persistentStoreCoordinator?.execute(deleteRequest, with: context)
+    }
+    
 }
