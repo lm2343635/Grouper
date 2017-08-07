@@ -122,4 +122,18 @@
     return objects;
 }
 
+- (BOOL)deleteAllWithEntityName:(NSString *)entityName {
+    NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:entityName];
+    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchrequest];
+    NSError *error = nil;
+    [self.context.persistentStoreCoordinator executeRequest:deleteRequest
+                                                withContext:self.context
+                                                      error:&error];
+    if (error) {
+        NSLog(@"Delete all %@ with error: %@", entityName, error.localizedDescription);
+        return NO;
+    }
+    return YES;
+}
+
 @end

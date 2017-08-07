@@ -48,4 +48,7 @@
 // Find sequences in a sequences array with node identifier of sender.
 - (NSArray *)findExistedSequencesIn:(NSArray *)sequences withSender:(NSString *)sender;
 
+// Delete all messages.
+- (BOOL)deleteAll;
+
 @end

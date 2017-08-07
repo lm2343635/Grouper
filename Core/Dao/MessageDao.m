@@ -130,4 +130,11 @@
     return existedSequences;
 }
 
+- (BOOL)deleteAll {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    return [self deleteAllWithEntityName:MessageEntityName];
+}
+
 @end

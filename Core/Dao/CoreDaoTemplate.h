@@ -43,5 +43,7 @@
               withEntityName:(NSString *)entityName
                      orderBy:(NSSortDescriptor *)sortDescriptor;
 
+// Delete all entities
+- (BOOL)deleteAllWithEntityName:(NSString *)entityName; 
 
 @end

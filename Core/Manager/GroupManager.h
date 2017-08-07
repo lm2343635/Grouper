@@ -90,8 +90,14 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Check server state, if the number of connected servers is larger than or equals to the threshold, sync with untrusted servers.
 - (void)checkServerState:(CheckServerCompletion)completion;
 
-// Cleat all shareId.
+// Clear all shareId.
 - (void)clearShareId;
+
+// Clear all messages
+- (void)clearMessages;
+
+// Clear both shareId and messages.
+- (void)clear;
 
 // ************** Device Token Related *****************
 

@@ -300,8 +300,6 @@
             return;
         }
         
-        
-        
         // Receive servers, keys and owner.
         _defaults.servers = [message valueForKey:@"servers"];
         
@@ -717,6 +715,25 @@
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [dao.shareDao deleteAll];
+}
+
+- (void)clearMessages {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    if ([dao.messageDao deleteAll]) {
+        // If all messages has been deleted successfully, all unsentMessageIds should also be deleted.
+        // Because the messages cannot be found by those id anymore.
+        _defaults.unsentMessageIds = nil;
+    }
+}
+
+- (void)clear {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    [self clearShareId];
+    [self clearMessages];
 }
 
 #pragma mark - Device Token Related

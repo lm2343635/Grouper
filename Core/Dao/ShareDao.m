@@ -33,17 +33,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSFetchRequest *fetchrequest = [[NSFetchRequest alloc] initWithEntityName:ShareEntityName];
-    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchrequest];
-    NSError *error = nil;
-    [self.context.persistentStoreCoordinator executeRequest:deleteRequest
-                                                withContext:self.context
-                                                      error:&error];
-    if (error) {
-        NSLog(@"Delete all %@ with error: %@", ShareEntityName, error.localizedDescription);
-        return NO;
-    }
-    return YES;
+    return [self deleteAllWithEntityName:ShareEntityName];
 }
 
 @end
