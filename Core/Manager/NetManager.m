@@ -46,11 +46,13 @@
     NSMutableDictionary *managers = [[NSMutableDictionary alloc] init];
     
     for (int i = 0; i < defaults.servers.count; i++) {
+        NSLog(@"server %@ key %@", defaults.servers[i], defaults.keys[i]);
+
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
         //Set access key in request header.
-        [manager.requestSerializer setValue:[defaults.keys objectAtIndex:i] forHTTPHeaderField:@"key"];
+        [manager.requestSerializer setValue:defaults.keys[i] forHTTPHeaderField:@"key"];
         manager.responseSerializer = [[AFCompoundResponseSerializer alloc] init];
-        [managers setObject:manager forKey:[defaults.servers objectAtIndex:i]];
+        [managers setObject:manager forKey:defaults.servers[i]];
     }
     _managers = managers;
 }

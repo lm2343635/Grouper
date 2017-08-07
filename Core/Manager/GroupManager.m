@@ -232,7 +232,7 @@
         }
         
         // The new joiner can be invited to this group, grouper owner register for him in multiple untrusted server.
-        NSMutableArray *keys = [[NSMutableArray alloc] init];
+        NSMutableDictionary *keys = [[NSMutableDictionary alloc] init];
         // Send user info to untrusted servers.
         for (int i = 0; i < _defaults.servers.count; i++) {
             NSString *address = _defaults.servers[i];
@@ -246,7 +246,8 @@
                                     InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                                     if ([response statusOK]) {
                                         NSObject *result = [response getResponseResult];
-                                        [keys addObject:[result valueForKey:@"accesskey"]];
+                                        [keys setValue:[result valueForKey:@"accesskey"] forKey:address];
+                             
                                         // All task finished, submitted flag plus 1
                                         submitted ++;
                                         
@@ -299,9 +300,18 @@
             return;
         }
         
-        // Receive servers and owner.
+        
+        
+        // Receive servers, keys and owner.
         _defaults.servers = [message valueForKey:@"servers"];
-        _defaults.keys = [message valueForKey:@"keys"];
+        
+        NSDictionary *serverKeys = [message valueForKey:@"keys"];
+        NSMutableArray *keys = [[NSMutableArray alloc] init];
+        for (NSString *address in _defaults.servers) {
+            [keys addObject:serverKeys[address]];
+        }
+        _defaults.keys = keys;
+        
         _defaults.owner = [message valueForKey:@"owner"];
         
         // Save other group member's user info to persistent store.
@@ -318,7 +328,7 @@
         [self sendMessage:@{@"task": @"joinSuccess"} to:peerID];
         
         //Download group members and group info from server 0.
-        NSString *address0 = [net.managers.allKeys objectAtIndex:0];
+        NSString *address0 = [_defaults.servers objectAtIndex:0];
         [net.managers[address0] GET:[NetManager createUrl:@"group/info" withServerAddress:address0]
                          parameters:nil
                            progress:nil
