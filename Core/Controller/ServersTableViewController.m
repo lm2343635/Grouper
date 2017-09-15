@@ -19,7 +19,6 @@
 @implementation ServersTableViewController {
     GroupManager *group;
     UIManager *ui;
-    NSDictionary *servers;
 }
 
 - (void)viewDidLoad {
@@ -40,8 +39,6 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    // Get servers from NSUserDefault.
-    servers = group.defaults.servers;
     switch (group.defaults.initial) {
         case NotInitial:
             _noServerLabel.hidden = NO;
@@ -94,7 +91,7 @@
     if(DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return servers.count;
+    return group.defaults.servers.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -105,8 +102,8 @@
                                                             forIndexPath:indexPath];
     UILabel *addressLabel = (UILabel *)[cell viewWithTag:1];
     UILabel *accessKeyLabel = (UILabel *)[cell viewWithTag:2];
-    addressLabel.text = [[servers allKeys] objectAtIndex:indexPath.row];
-    accessKeyLabel.text = [servers valueForKey:addressLabel.text];
+    addressLabel.text = [group.defaults.servers objectAtIndex:indexPath.row];
+    accessKeyLabel.text = [group.defaults.keys objectAtIndex:indexPath.row];
     return cell;
 }
 
