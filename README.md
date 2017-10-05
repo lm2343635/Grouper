@@ -15,7 +15,7 @@ Grouper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Grouper', '~> 1.2'
+pod 'Grouper', '~> 2'
 ```
 
 ## Documentation
