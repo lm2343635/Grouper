@@ -32,6 +32,6 @@ Pod::Spec.new do |s|
 	}
 	s.requires_arc = true
 
-	s.dependency 'Sync', '~> 3'
+	s.dependency 'Sync', '~> 4'
 	s.dependency 'AFNetworking', '~> 3'
 end

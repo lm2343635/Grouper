@@ -293,6 +293,9 @@
     for (Message *message in messages) {
         // Creat json string
         NSString *json = [self JSONStringFromObject:[message hyp_dictionary]];
+        if (DEBUG) {
+            NSLog(@"Send message: %@", json);
+        }
         // Create shares by secret sharing scheme.
         [sharesGroup addObject:[self generateSharesWith:json]];
     }
