@@ -104,4 +104,8 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // Send device token to untrusted servers
 - (void)sendDeviceToken:(NSString *)token;
 
+// ************** Service *****************
+
+- (NSString *)JSONStringFromObject:(NSObject *)object;
+
 @end

@@ -107,7 +107,7 @@
         // Transfer sync entity to dictionary.
         NSDictionary *dictionary = [entity export]; //[object hyp_dictionaryUsingRelationshipType:SYNCPropertyMapperRelationshipTypeArray];
         // Create update message and save to sender entity.
-        Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:dictionary]
+        Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:dictionary]
                                                 objectName:NSStringFromClass(entity.class)
                                                   objectId:entity.remoteID
                                                       type:MessageTypeUpdate
@@ -134,7 +134,7 @@
         
         // Saving context method will be revoked in the next method, so here we need not add a saveContext method for deleting object
         // Then, we create a delete message and save to sender entity.
-        Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"id": entity.remoteID}]
+        Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{@"id": entity.remoteID}]
                                                 objectName:NSStringFromClass(entity.class)
                                                   objectId:entity.remoteID
                                                       type:MessageTypeDelete
@@ -165,7 +165,7 @@
         return;
     }
     // Create confirm message by sequences.
-    Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
+    Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{@"sequences": sequences}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
@@ -186,7 +186,7 @@
         return;
     }
     // Create resend message by not existed sequences and node identifier.
-    Message *message = [dao.messageDao saveWithContent:[self JSONStringFromObject:@{@"sequences": sequences}]
+    Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{@"sequences": sequences}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend
@@ -261,18 +261,6 @@
 
 
 #pragma mark - Service
-// Create a json string from an object.
-- (NSString *)JSONStringFromObject:(NSObject *)object {
-    NSError *error;
-    NSData *data = [NSJSONSerialization dataWithJSONObject:object
-                                                   options:NSJSONWritingPrettyPrinted
-                                                     error:&error];
-    if (error) {
-        NSLog(@"Create json with error: %@", error.localizedDescription);
-        return nil;
-    }
-    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-}
 
 // Send shares by message.
 - (void)sendShares:(NSArray *)messages {
@@ -292,7 +280,7 @@
     NSMutableArray *sharesGroup = [[NSMutableArray alloc] init];
     for (Message *message in messages) {
         // Creat json string
-        NSString *json = [self JSONStringFromObject:[message hyp_dictionary]];
+        NSString *json = [group JSONStringFromObject:[message hyp_dictionary]];
         if (DEBUG) {
             NSLog(@"Send message: %@", json);
         }
@@ -320,7 +308,7 @@
         }
         
         [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
-                     parameters:@{@"shares": [self JSONStringFromObject:shares]}
+                     parameters:@{@"shares": [group JSONStringFromObject:shares]}
                        progress:nil
                         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                             InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];

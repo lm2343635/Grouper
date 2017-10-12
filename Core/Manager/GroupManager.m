@@ -8,11 +8,12 @@
 
 #import "GroupManager.h"
 #import "NetManager.h"
+#import "SyncManager.h"
+#import "Core-Bridging-Header.h"
 #import "DEBUG.h"
 
 @implementation GroupManager {
     CoreDaoManager *dao;
-    
     NetManager *net;
     
     // Invite new member related.
@@ -44,7 +45,7 @@
     if (self) {
         net = [NetManager sharedInstance];
         dao = [CoreDaoManager sharedInstance];
-        
+
         _defaults = [Defaults sharedInstance];
         
         [[NSNotificationCenter defaultCenter] addObserver:self
@@ -289,7 +290,22 @@
                                             break;
                                     }
                                 }];
+        
         }
+        
+        // Send existing objects to the joiner.
+        NSMutableArray *objects = [[NSMutableArray alloc] init];
+        for (NSManagedObject *test in [self findAllWithEntityName:@"Test"]) {
+            NSString *json = [self JSONStringFromObject:[test hyp_dictionary]];
+            [objects addObject:json];
+        }
+
+        [self sendMessage:@{
+                            @"task": @"sendObjects",
+                            @"objects": objects
+                            }
+                       to:invitePeer];
+        
     } else if ([task isEqualToString:@"sendServerInfo"] && !_isOwner) {
         // If the new joiner is existed in owner's device,
         if ([[message valueForKey:@"existed"] boolValue]) {
@@ -361,6 +377,21 @@
                             }];
 
         
+    } else if ([task isEqualToString:@"sendObjects"] && !_isOwner) {
+        NSMutableArray *changes = [[NSMutableArray alloc] init];
+        for (NSString *json in [message valueForKey:@"objects"]) {
+            [changes addObject:[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
+                                                               options:NSJSONReadingMutableContainers
+                                                                 error:nil]];
+        }
+        [Sync compatibleChanges:changes
+                  inEntityNamed:@"Test"
+                      dataStack:_appDataStack
+                     operations:CompatibleOperationOptionsInsertUpdate
+                     completion:^(NSError * _Nullable error) {
+
+                     }];
+        
     } else if ([task isEqualToString:@"joinSuccess"] && _isOwner) {
         // Save joiner's user info to persistent store.
         [dao.userDao saveWithEmail:[joiner valueForKey:@"email"]
@@ -376,14 +407,14 @@
 }
 
 #pragma mark - MCBrowserViewControllerDelegate
--(void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
+- (void)browserViewControllerDidFinish:(MCBrowserViewController *)browserViewController {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     [multipeerConnectivity.browserViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
+- (void)browserViewControllerWasCancelled:(MCBrowserViewController *)browserViewController {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -773,5 +804,33 @@
     }
     
 }
+
+#pragma mark - Service
+- (NSArray *)findAllWithEntityName:(NSString *)entityName {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'",self.class,NSStringFromSelector(_cmd));
+    }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:entityName];
+    NSError *error = nil;
+    NSArray *objects = [_appDataStack.mainContext executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error: %@",error);
+    }
+    return objects;
+}
+
+// Create a json string from an object.
+- (NSString *)JSONStringFromObject:(NSObject *)object {
+    NSError *error;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:object
+                                                   options:NSJSONWritingPrettyPrinted
+                                                     error:&error];
+    if (error) {
+        NSLog(@"Create json with error: %@", error.localizedDescription);
+        return nil;
+    }
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+}
+
 
 @end
