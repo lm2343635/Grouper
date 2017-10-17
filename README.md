@@ -15,7 +15,7 @@ Grouper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Grouper', '~> 2'
+pod 'Grouper', '~> 2.1'
 ```
 
 ## Documentation
@@ -37,16 +37,20 @@ Grouper relys on [Sync](https://github.com/SyncDB/Sync) framework to syncrhonize
 _dataStack = [[DataStack alloc] initWithModelName:@"Model"];
 ```
 
-Next, setup Grouper your app's data stack and main storyboard.
+Next, setup Grouper witg your appId, entities, data stack and main storyboard.
 
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     grouper = [Grouper sharedInstance];
     [grouper setupWithAppId:@"test-app"
-                  dataStack:[self dataStack]
+                   entities:[NSArray arrayWithObjects:@"Test", nil]
+                  dataStack:[self dataStack]
              mainStoryboard:storyboard];
 }
 ```
+
+The attribue entities is an array which constains the names of all entities saved in Core Data.
+If an entity A which is referenced by an entity B, you need to ensure that **A should be in the front of B** in the entities array.
 
 ### Entity Design
 
