@@ -17,8 +17,11 @@
 
 @interface GroupManager : NSObject <MCBrowserViewControllerDelegate>
 
-// App identifier as service type in multipeer connectivity.
+// App identifier is used as service type in multipeer connectivity.
 @property (nonatomic, strong) NSString *appId;
+
+// Entities attributes is an array which constains the names of all entities saved in Core Data.
+@property (nonatomic, strong) NSArray *entities;
 
 // System parameters
 @property (nonatomic, strong) Defaults *defaults;

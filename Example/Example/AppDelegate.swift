@@ -23,7 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.registerForRemoteNotifications()
         
         var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        grouper.setup(withAppId: "test", dataStack: dataStack, mainStoryboard: storyboard)
+        grouper.setup(withAppId: "test",
+                      entities: ["Test"],
+                      dataStack: dataStack,
+                      mainStoryboard: storyboard)
         
         // Load storyboard.
         if !grouper.group.isInitialized() {

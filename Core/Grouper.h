@@ -24,10 +24,12 @@
 
 // Core layer grouper set up method for general device(all platform).
 - (void)setupWithAppId:(NSString *)appId
+              entities:(NSArray *)entities
              dataStack:(DataStack *)stack;
 
 // Grouper set up method for iOS device.
 - (void)setupWithAppId:(NSString *)appId
+              entities:(NSArray *)entities
              dataStack:(DataStack *)stack
         mainStoryboard:(UIStoryboard *)storyboard;
 

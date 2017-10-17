@@ -294,15 +294,19 @@
         }
         
         // Send existing objects to the joiner.
-        NSMutableArray *objects = [[NSMutableArray alloc] init];
-        for (NSManagedObject *test in [self findAllWithEntityName:@"Test"]) {
-            NSString *json = [self JSONStringFromObject:[test hyp_dictionary]];
-            [objects addObject:json];
+        NSMutableDictionary *objectsData = [[NSMutableDictionary alloc] init];
+        for (NSString *entity in _entities) {
+            NSMutableArray *objects = [[NSMutableArray alloc] init];
+            for (NSManagedObject *test in [self findAllWithEntityName:entity]) {
+                NSString *json = [self JSONStringFromObject:[test hyp_dictionary]];
+                [objects addObject:json];
+            }
+            [objectsData setObject:objects forKey:entity];
         }
-
+        
         [self sendMessage:@{
                             @"task": @"sendObjects",
-                            @"objects": objects
+                            @"objects": objectsData
                             }
                        to:invitePeer];
         
@@ -376,21 +380,26 @@
                                 }
                             }];
 
-        
     } else if ([task isEqualToString:@"sendObjects"] && !_isOwner) {
-        NSMutableArray *changes = [[NSMutableArray alloc] init];
-        for (NSString *json in [message valueForKey:@"objects"]) {
-            [changes addObject:[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
-                                                               options:NSJSONReadingMutableContainers
-                                                                 error:nil]];
+        NSDictionary *objectsData = [message valueForKey:@"objects"];
+        for (NSString *entity in _entities) {
+            NSArray *objects = [objectsData objectForKey:entity];
+            NSMutableArray *changes = [[NSMutableArray alloc] init];
+            for (NSString *json in objects) {
+                [changes addObject:[NSJSONSerialization JSONObjectWithData:[json dataUsingEncoding:NSUTF8StringEncoding]
+                                                                   options:NSJSONReadingMutableContainers
+                                                                     error:nil]];
+            }
+            [Sync compatibleChanges:changes
+                      inEntityNamed:entity
+                          dataStack:_appDataStack
+                         operations:CompatibleOperationOptionsInsertUpdate
+                         completion:^(NSError * _Nullable error) {
+                             if (DEBUG) {
+                                 NSLog(@"All data of %@ has been saved to local persistent store.", entity);
+                             }
+                         }];
         }
-        [Sync compatibleChanges:changes
-                  inEntityNamed:@"Test"
-                      dataStack:_appDataStack
-                     operations:CompatibleOperationOptionsInsertUpdate
-                     completion:^(NSError * _Nullable error) {
-
-                     }];
         
     } else if ([task isEqualToString:@"joinSuccess"] && _isOwner) {
         // Save joiner's user info to persistent store.
