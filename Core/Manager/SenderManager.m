@@ -174,16 +174,19 @@
     [self sendShares:[NSArray arrayWithObject:message]];
 }
 
-- (void)resend:(NSArray *)sequences to:(NSString *)receiver {
+- (void)resendWith:(int)min and:(int)max to:(NSString *)receiver {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
     // Skip if no sequence.
-    if (sequences.count == 0) {
+    if (max < min) {
         return;
     }
     // Create resend message by not existed sequences and node identifier.
-    Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{@"sequences": sequences}]
+    Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{
+                                                                                     @"min": [NSNumber numberWithInt:min],
+                                                                                     @"max": [NSNumber numberWithInt:max]
+                                                                                     }]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeResend

@@ -42,8 +42,8 @@ typedef void (^SendCompletion)(Processing *);
 // Send confirm message;
 - (void)confirm;
 
-// Send resend message which contains not existed sequences to receiver.
-- (void)resend:(NSArray *)sequences to:(NSString *)receiver;
+// Send resend message with a range to receiver.
+- (void)resendWith:(int)min and:(int)max to:(NSString *)receiver;
 
 // Send unsent messages.
 - (void)unsent;

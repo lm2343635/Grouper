@@ -271,11 +271,14 @@
             }];
         } else if ([messageData.type isEqualToString:MessageTypeConfirm]) {
             NSDictionary *content = [self parseJSONString:messageData.content];
-            NSMutableArray *sequences = [content valueForKey:@"sequences"];
-            // Remove exsited sequences in persistent store.
-            [sequences removeObjectsInArray:[dao.messageDao findExistedSequencesIn:sequences
-                                                                        withSender:messageData.sender]];
-            [send resend:sequences to:messageData.sender];
+            int maxSequence = [[content valueForKey:@"sequence"] intValue];
+            Message *localMessageWithMaxSequence = [dao.messageDao getNormalWithMaxSquenceForSender:group.currentUser.node];
+            int localMaxSequence = localMessageWithMaxSequence.sequence.intValue;
+            // If the remote max sequence is larger than the local max sequence number,
+            // Send a confirm message with the rage from local max sequence + 1 to remote sequence number.
+            if (maxSequence > localMaxSequence) {
+                [send resendWith:localMaxSequence + 1 and:maxSequence to:messageData.sender];
+            }
             [self handled];
         } else if ([messageData.type isEqualToString:MessageTypeResend]) {
             NSDictionary *content = [self parseJSONString:messageData.content];
