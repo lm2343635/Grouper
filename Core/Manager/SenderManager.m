@@ -168,7 +168,7 @@
                                          type:MessageTypeConfirm
                                          from:group.currentUser.node
                                            to:@"*"
-                                     sequence:[self generateNewSequence]
+                                     sequence:0
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
     [self sendShares:[NSArray arrayWithObject:message]];
@@ -189,7 +189,7 @@
                                          type:MessageTypeResend
                                          from:group.currentUser.node
                                            to:receiver
-                                     sequence:[self generateNewSequence]
+                                     sequence:0
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
     [self sendShares:[NSArray arrayWithObject:message]];
