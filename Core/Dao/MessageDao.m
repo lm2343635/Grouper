@@ -86,6 +86,25 @@
                   withEntityName:MessageEntityName];
 }
 
+- (Message *)getNormalWithMaxSquenceForSender:(NSString *)sender {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:MessageEntityName];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"sequence" ascending:NO]];
+    request.predicate = [NSPredicate predicateWithFormat:@"object!=nil and sender=%@", sender];
+    request.fetchLimit = 1;
+    NSError *error = nil;
+    NSArray *objects = [self.context executeFetchRequest:request error:&error];
+    if (error) {
+        NSLog(@"Error: %@",error);
+    }
+    if (objects.count == 0) {
+        return nil;
+    }
+    return [objects objectAtIndex:0];
+}
+
 - (NSArray *)findAll {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));

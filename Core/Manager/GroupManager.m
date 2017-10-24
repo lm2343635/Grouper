@@ -303,7 +303,9 @@
             }
             [objectsData setObject:objects forKey:entity];
         }
-        
+        if (DEBUG) {
+            NSLog(@"Sending existing objects to the new member.");
+        }
         [self sendMessage:@{
                             @"task": @"sendObjects",
                             @"objects": objectsData
@@ -381,6 +383,9 @@
                             }];
 
     } else if ([task isEqualToString:@"sendObjects"] && !_isOwner) {
+        if (DEBUG) {
+            NSLog(@"Existing objects from the group owner have been received.");
+        }
         NSDictionary *objectsData = [message valueForKey:@"objects"];
         for (NSString *entity in _entities) {
             NSArray *objects = [objectsData objectForKey:entity];

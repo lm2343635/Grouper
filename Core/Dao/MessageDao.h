@@ -27,10 +27,10 @@
                        email:(NSString *)email
                         name:(NSString *)name;
 
-// Find all message.
+// Find all messages.
 - (NSArray *)findAll;
 
-// Find all normal message.
+// Find all normal messages.
 - (NSArray *)findNormal;
 
 // Find all control message;
@@ -39,7 +39,10 @@
 // Find normal messages sent by a sender(userId).
 - (NSArray *)findNormalWithSender:(NSString *)sender;
 
-// Find message in a messageIds array.
+// Find the normal message with the max sequcne number.
+- (Message *)getNormalWithMaxSquenceForSender:(NSString *)sender;
+
+// Find the message in a messageIds array.
 - (NSArray *)findInMessageIds:(NSArray *)messageIds;
 
 // Find messages in a sequences array with node identifier of sender.

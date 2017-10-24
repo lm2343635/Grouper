@@ -155,17 +155,14 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    NSMutableArray *sequences = [[NSMutableArray alloc] init];
-    // Find normal messages sent by current user.
-    for (Message *normal in [dao.messageDao findNormalWithSender:group.currentUser.node]) {
-        [sequences addObject:normal.sequence];
-    }
-    // Skip if no sequence.
-    if (sequences.count == 0) {
+    // Find the normal message with the max sequence number sent by current user.
+    Message *normalMessageWithMaxSeq = [dao.messageDao getNormalWithMaxSquenceForSender:group.currentUser.node];
+    // Skip if no message found.
+    if (normalMessageWithMaxSeq == nil) {
         return;
     }
     // Create confirm message by sequences.
-    Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{@"sequences": sequences}]
+    Message *message = [dao.messageDao saveWithContent:[group JSONStringFromObject:@{@"sequence": normalMessageWithMaxSeq.sequence}]
                                    objectName:nil
                                      objectId:nil
                                          type:MessageTypeConfirm
