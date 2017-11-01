@@ -120,11 +120,11 @@
                   withEntityName:MessageEntityName];
 }
 
-- (NSArray *)findInSequences:(NSArray *)sequences withSender:(NSString *)sender {
+- (NSArray *)findWithSequenceFrom:(NSNumber *)min to:(NSNumber *)max for:(NSString *)sender {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    return [self findByPredicate:[NSPredicate predicateWithFormat:@"sequence IN %@ and sender = %@", sequences, sender]
+    return [self findByPredicate:[NSPredicate predicateWithFormat:@"sequence >= %@ and sequence <= %@ and sender = %@", min, max, sender]
                   withEntityName:MessageEntityName];
 }
 

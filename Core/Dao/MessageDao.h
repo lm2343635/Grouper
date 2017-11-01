@@ -45,10 +45,10 @@
 // Find the message in a messageIds array.
 - (NSArray *)findInMessageIds:(NSArray *)messageIds;
 
-// Find messages in a sequences array with node identifier of sender.
-- (NSArray *)findInSequences:(NSArray *)sequences withSender:(NSString *)sender;
+// Find messages in a range with the noder identifier of a sender.
+- (NSArray *)findWithSequenceFrom:(NSNumber *)min to:(NSNumber *)max for:(NSString *)sender;
 
-// Find sequences in a sequences array with node identifier of sender.
+// Find sequences in a sequences array with the noder identifier of a sender.
 - (NSArray *)findExistedSequencesIn:(NSArray *)sequences withSender:(NSString *)sender;
 
 // Delete all messages.
