@@ -10,6 +10,8 @@
 #import "CoreDaoManager.h"
 #import "Processing.h"
 
+#define ShareSendingStep 100
+
 #define MessageTypeUpdate @"update"
 #define MessageTypeDelete @"delete"
 #define MessageTypeConfirm @"confirm"

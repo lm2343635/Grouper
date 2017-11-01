@@ -263,7 +263,7 @@
         if ([messageData.type isEqualToString:MessageTypeUpdate] ||
             [messageData.type isEqualToString:MessageTypeDelete]) {
             [sync syncMessage:messageData completion:^(BOOL success) {
-                // If sync successfully, save message data in Message eneity..
+                // If sync successfully, save message data in Message eneity.
                 if (success) {
                     [dao.messageDao saveWithMessageData:messageData];
                 }
