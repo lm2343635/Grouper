@@ -51,6 +51,9 @@ typedef NS_OPTIONS(NSUInteger, InitialState) {
 // Threshold to recover shares from untrusted servers.
 @property (nonatomic) NSInteger threshold;
 
+// The min number of untrusted servers when a sender upload shares, k ≤ s ≤ n.
+@property (nonatomic) NSInteger safeServerCount;
+
 // Deletion interval time in untrusted servers.
 @property (nonatomic) NSInteger interval;
 

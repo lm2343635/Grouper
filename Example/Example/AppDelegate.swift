@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = storyboard.instantiateInitialViewController()
         window?.makeKeyAndVisible()
 
+        grouper.group.defaults.safeServerCount = grouper.group.defaults.threshold;
+        
         return true
     }
 

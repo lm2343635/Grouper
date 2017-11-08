@@ -9,6 +9,7 @@
 #import "SenderManager.h"
 #import "NetManager.h"
 #import "GroupManager.h"
+#import "Sent.h"
 #include "GLibFacade.h"
 #include "shamir.h"
 #import "DEBUG.h"
@@ -22,11 +23,18 @@
     // Grouper only allow one data sending task at same time.
     BOOL lock;
     
-    // Number of sent messages and sent failed messages
-    int sent, failed;
+    // Number of HTTP reqeusts which are sent successfully for each untrusted server.
+    NSDictionary *sents;
+    // Number of HTTP requests for each untrusted server.
+    int httpRequestsCount;
+    // Number of all handled HTTP request.
+    int allHandledHttpRequestCount;
     
     // Processing time statistic obejct.
     Processing *processing;
+    
+    NSArray *sendingMessages;
+    SendCompletion sendingCompletion;
 }
 
 + (instancetype)sharedInstance {
@@ -120,7 +128,8 @@
     }
     
     // At last, we send the update message to multiple untrusted servers.
-    [self sendShares:messages withCompletion:completion];
+    sendingCompletion = completion;
+    [self sendShares:messages];
 }
 
 - (void)deleteAll:(NSArray *)entitys {
@@ -229,8 +238,7 @@
     for (Message *message in messages) {
         [idMessage setObject:message forKey:message.messageId];
     }
-    
-    sent = 0;
+
     // Send messageId-share dictionary to multiple untrusted sercers.
     for (NSString *address in net.managers.allKeys) {
         [net.managers[address] POST:[NetManager createUrl:@"transfer/confirm" withServerAddress:address]
@@ -262,18 +270,12 @@
 
 #pragma mark - Service
 
-// Send shares by message.
 - (void)sendShares:(NSArray *)messages {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [self sendShares:messages withCompletion:nil];
-}
-
-- (void)sendShares:(NSArray *)messages withCompletion:(SendCompletion)completion {
-    if (DEBUG) {
-        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
-    }
+    sendingMessages = messages;
+    
     // Finish data sync.
     [processing dataSynchronized];
     
@@ -291,8 +293,17 @@
     // Create shares successfully.
     [processing secretSharing];
     
-    sent = failed = 0;
+    // Calculate the number of HTTP requests for each untrusted server.
+    httpRequestsCount = (int)messages.count / ShareSendingStep + 1;
+    
     NSArray *addresses = group.defaults.servers;
+    // Init sents dictionary.
+    for (NSString *address in addresses) {
+        [sents setValue:[[Sent alloc] initWithTarget:httpRequestsCount]
+                 forKey:address];
+    }
+    allHandledHttpRequestCount = 0;
+
     // Send shares to multiple untrusted servers.
     for (int i = 0; i < group.defaults.serverCount; i++) {
         NSString *address = addresses[i];
@@ -310,6 +321,8 @@
             // If there the number of messages in a shares array is ShareSendingStep,
             // or all messages has been added to the shares array,
             // send this shares array at first.
+            
+            // TODO List: here, HTTP request should be sent one by one.
             if (count == ShareSendingStep || i == messages.count - 1) {
                 [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
                                  parameters:@{@"shares": [group JSONStringFromObject:shares]}
@@ -317,60 +330,14 @@
                                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
                                         if ([response statusOK]) {
-                                            sent ++;
-                                            // If all POST request has been responsed from untrusted servers,
-                                            // finish the network transferring and invoke the callback function.
-                                            if (sent == group.defaults.serverCount * (messages.count / ShareSendingStep + 1)) {
-                                                // Network finished.
-                                                [processing networkFinished];
-                                                // Callback function with processing object.
-                                                completion(processing);
-                                                // Release lock.
-                                                lock = NO;
-                                                
-                                                if (DEBUG) {
-                                                    NSLog(@"Data sending finished, %@", processing.description);
-                                                }
-                                                
-                                                // Push remote notification.
-                                                Message *message = [messages objectAtIndex:0];
-                                                if (messages.count == 1) {
-                                                    if ([message.type isEqualToString:@"update"]) {
-                                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
-                                                                                  to:@"*"];
-                                                    } else if ([message.type isEqualToString:@"delete"]) {
-                                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
-                                                                                  to:@"*"];
-                                                    } else if ([message.type isEqualToString:@"confirm"]) {
-                                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
-                                                                                  to:@"*"];
-                                                    } else if ([message.type isEqualToString:@"resend"]) {
-                                                        [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
-                                                                                  to:message.receiver];
-                                                    }
-                                                } else {
-                                                    [self pushRemoteNotification:[NSString stringWithFormat:@"Click to receive %lu messages", (unsigned long)messages.count]
-                                                                              to:message.receiver];
-                                                }
-                                            }
+                                            [self sentTo:address withResult:true];
                                         }
                                     }
                                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                         InternetResponse *response = [[InternetResponse alloc] initWithError:error];
                                         switch ([response errorCode]) {
                                             default:
-                                                failed ++;
-                                                // Send shares to untrusted servers failed, save messageId to messageIdQueue
-                                                if (failed == group.defaults.threshold) {
-                                                    NSMutableArray *messageIds = [NSMutableArray arrayWithArray:group.defaults.unsentMessageIds];
-                                                    for (Message *message in messages) {
-                                                        if (![messageIds containsObject:message.messageId]) {
-                                                            [messageIds addObject:message.messageId];
-                                                        }
-                                                    }
-                                                    group.defaults.unsentMessageIds = messageIds;
-                                                    return;
-                                                }
+                                                [self sentTo:address withResult:false];
                                                 break;
                                         }
                                     }];
@@ -379,6 +346,80 @@
             }
         }
 
+    }
+}
+
+- (void)sentTo:(NSString *)address withResult:(BOOL)success {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    // Get sent object from dictionary.
+    Sent *sent = [sents objectForKey:address];
+    if (success) {
+        sent.success++;
+    } else {
+        sent.fail++;
+    }
+    
+    allHandledHttpRequestCount++;
+    if (allHandledHttpRequestCount == group.defaults.serverCount * httpRequestsCount) {
+        // Network finished.
+        [processing networkFinished];
+        // Callback function with processing object.
+        sendingCompletion(processing);
+        // Release lock.
+        lock = NO;
+        if (DEBUG) {
+            NSLog(@"Data sending finished, %@", processing.description);
+        }
+        
+        int successServersCount = 0;
+        for (NSString *address in group.defaults.servers) {
+            Sent *sent = [sents objectForKey:address];
+            if ([sent isFinished]) {
+                successServersCount++;
+            }
+        }
+        // If the number of servers which are acceessed successfully is larger than s,
+        // we regard this share uploading successful.
+        if (successServersCount >= group.defaults.safeServerCount) {
+            // Push remote notification.
+            [self pushSuccessRemoteNotification];
+        } else {
+            // Save the id of messages to unsentMessageIds.
+            NSMutableArray *messageIds = [NSMutableArray arrayWithArray:group.defaults.unsentMessageIds];
+            for (Message *message in sendingMessages) {
+                if (![messageIds containsObject:message.messageId]) {
+                    [messageIds addObject:message.messageId];
+                }
+            }
+            group.defaults.unsentMessageIds = messageIds;
+        }
+    }
+}
+
+- (void)pushSuccessRemoteNotification {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    Message *message = [sendingMessages objectAtIndex:0];
+    if (sendingMessages.count == 1) {
+        if ([message.type isEqualToString:@"update"]) {
+            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has created or updated a %@.", group.currentUser.name, message.object]
+                                      to:@"*"];
+        } else if ([message.type isEqualToString:@"delete"]) {
+            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ has delete a %@.", group.currentUser.name, message.object]
+                                      to:@"*"];
+        } else if ([message.type isEqualToString:@"confirm"]) {
+            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to confirm his/her messages.", group.currentUser.name]
+                                      to:@"*"];
+        } else if ([message.type isEqualToString:@"resend"]) {
+            [self pushRemoteNotification:[NSString stringWithFormat:@"%@ ask you to resend your messages.", group.currentUser.name]
+                                      to:message.receiver];
+        }
+    } else {
+        [self pushRemoteNotification:[NSString stringWithFormat:@"Click to receive %lu messages", (unsigned long)sendingMessages.count]
+                                  to:message.receiver];
     }
 }
 
