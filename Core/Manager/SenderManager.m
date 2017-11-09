@@ -329,9 +329,9 @@
                                    progress:nil
                                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                                        if ([response statusOK]) {
-                                            [self sentTo:address withResult:true];
-                                        }
+                                        // User the response status as the success flag.
+                                        // If the response status code is 200, we regard this share uploading successful.
+                                        [self sentTo:address withResult:[response statusOK]];
                                     }
                                     failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                                         InternetResponse *response = [[InternetResponse alloc] initWithError:error];
@@ -345,7 +345,6 @@
                 [shares removeAllObjects];
             }
         }
-
     }
 }
 
