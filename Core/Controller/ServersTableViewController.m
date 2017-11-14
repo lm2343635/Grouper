@@ -31,6 +31,7 @@
     
     //Set keyboard accessory for threshold text field
     [self setCloseKeyboardAccessoryForSender:_thresholdTextField];
+    [self setCloseKeyboardAccessoryForSender:_safeServersCountTextField];
     [self setCloseKeyboardAccessoryForSender:_intervalTextField];
     
 }
@@ -118,7 +119,7 @@
         return;
     }
     
-    int threshold = 0, interval = 0;
+    int threshold = 0, safeServersCount = 0, interval = 0;
     // Check threshold if user is adding new servers.
     if (group.defaults.initial == AddingNewServer) {
         if ([_thresholdTextField.text isEqualToString:@""]) {
@@ -129,11 +130,16 @@
             [self showTip:@"Threshold should be an integer!"];
             return;
         }
+        if (![CommonTool isInteger:_safeServersCountTextField.text]) {
+            [self showTip:@"Safe servers count should be an integer!"];
+            return;
+        }
         if (![CommonTool isInteger:_intervalTextField.text]) {
             [self showTip:@"Inteval time should be an integer!"];
             return;
         }
         threshold = _thresholdTextField.text.intValue;
+        safeServersCount = _safeServersCountTextField.text.intValue;
         interval = _intervalTextField.text.intValue;
         
         if ([_thresholdTextField isFirstResponder]) {

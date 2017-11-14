@@ -329,7 +329,7 @@
                                    progress:nil
                                     success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                         InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                                        // User the response status as the success flag.
+                                        // Use the response status as the success flag.
                                         // If the response status code is 200, we regard this share uploading successful.
                                         [self sentTo:address withResult:[response statusOK]];
                                     }

@@ -83,6 +83,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 
 // Initialize group.
 - (void)initializeGroup:(int)threshold
+       safeServersCount:(int)safeCount
                interval:(int)interval
          withCompletion:(SucessMessageCompletion)completion;
 

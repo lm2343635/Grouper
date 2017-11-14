@@ -575,6 +575,7 @@
 }
 
 - (void)initializeGroup:(int)threshold
+       safeServersCount:(int)safeCount
                interval:(int)interval
          withCompletion:(SucessMessageCompletion)completion {
     if (DEBUG) {
@@ -607,10 +608,11 @@
                                     }
                                     
                                     // If the number registered servers equals to the count of servers dictionary, submit server count and threshold.
-                                    // DO NOT USER _defaults.serverCount DIRECTLY!!!!!!!! It has not be set before submit server count to untrusted server.
+                                    // DO NOT USE _defaults.serverCount DIRECTLY!!!!!!!! It has not be set before submit server count to untrusted server.
                                     // Use _defaults.servers.allKeys.count here.
                                     if (registered == _defaults.servers.count) {
                                         [self submitServerThreshold:threshold
+                                                   safeServersCount:safeCount
                                                            interval:interval
                                                      withCompletion:completion];
                                     }
@@ -646,6 +648,7 @@
 
 // Submit server count and threshold to multiple unstruste servers.
 - (void)submitServerThreshold:(int)threshold
+             safeServersCount:(int)safeCount
                      interval:(int)interval
                withCompletion:(SucessMessageCompletion)completion {
     if (DEBUG) {
@@ -677,6 +680,7 @@
                                     //Set threshold, owner and update number of group memebers
                                     _defaults.serverCount = _defaults.servers.count;
                                     _defaults.threshold = threshold;
+                                    _defaults.safeServerCount = safeCount;
                                     _defaults.interval = interval;
                                     _defaults.owner = _currentUser.email;
                                     _defaults.members ++;
