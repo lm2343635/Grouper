@@ -157,7 +157,9 @@
         _initialGroupButton.enabled = NO;
                                                            
         // Initialize group.
-        [group initializeGroup:threshold interval:interval withCompletion:^(BOOL success, NSString *message) {
+        [group initializeGroup:threshold safeServersCount:safeServersCount interval:interval
+                withCompletion:^(BOOL success, NSString *message) {
+                    
             _initialGroupButton.enabled = YES;
             
             if (success) {
