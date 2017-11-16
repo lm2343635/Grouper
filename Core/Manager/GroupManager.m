@@ -362,8 +362,10 @@
                                     _defaults.groupName = [groupInfo valueForKey:@"name"];
                                     _defaults.members = [[groupInfo valueForKey:@"members"] integerValue];
                                     
+                                    // Save extended secret sharing scheme f(k, n, s) related parameters.
                                     _defaults.serverCount = [[groupInfo valueForKey:@"servers"] integerValue];
                                     _defaults.threshold = [[groupInfo valueForKey:@"threshold"] integerValue];
+                                    _defaults.safeServerCount = [[groupInfo valueForKey:@"safe"] integerValue];
                                     _defaults.interval = [[groupInfo valueForKey:@"interval"] integerValue];
                                     
                                     // Set initial state to InitialFinished
@@ -664,6 +666,7 @@
                                       // User _defaults.servers.allKeys.count here RATHER THAN _defaults.serverCount, because group has not been initialized successfully.
                                       @"servers": [NSNumber numberWithInteger:_defaults.servers.count],
                                       @"threshold": [NSNumber numberWithInt:threshold],
+                                      @"safe": [NSNumber numberWithInt:safeCount],
                                       @"interval": [NSNumber numberWithInt:interval]
                                       }
                            progress:nil

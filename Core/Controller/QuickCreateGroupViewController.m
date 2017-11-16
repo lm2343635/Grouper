@@ -18,6 +18,7 @@ Demo JSON String.
     "groupId": "test",
     "groupName": "Test Group",
     "threshold": "20",
+    "safe": "25",
     "intervalTime": "10",
     "servers": [
         "grouper1.softlab.cs.tsukuba.ac.jp",
@@ -54,10 +55,11 @@ Demo JSON String.
 }
  */
 
-#define DemoJSON @"{\n    \"groupId\": \"\",\n    \"groupName\": \"\", \n    \"threshold\": \"\", \n    \"intervalTime\": \"\",\n    \"servers\": [\"\", \"\"]\n}"
+#define DemoJSON @"{\n    \"groupId\": \"\",\n    \"groupName\": \"\", \n    \"threshold\": \"\", \n    \"safe\": \"\", \n    \"intervalTime\": \"\",\n    \"servers\": [\"\", \"\"]\n}"
 #define kGroupId @"groupId"
 #define kGroupName @"groupName"
 #define kThreshold @"threshold"
+#define kSafeServersCount @"safe"
 #define kIntervalTime @"intervalTime"
 #define kServers @"servers"
 
@@ -111,6 +113,10 @@ Demo JSON String.
     if (threshold == nil || [threshold isEqualToString:@""]) {
         [self showTip:@"threshold is not found."];
     }
+    NSString *safeServersCount = [config valueForKey:kSafeServersCount];
+    if (safeServersCount == nil || [safeServersCount isEqualToString:@""]) {
+        [self showTip:@"safeServersCount is not found."];
+    }
     NSString *intervalTime = [config valueForKey:kIntervalTime];
     if (intervalTime == nil || [intervalTime isEqualToString:@""]) {
         [self showTip:@"intervalTime is not found."];
@@ -142,6 +148,7 @@ Demo JSON String.
             // Initialize group
             if (registered == servers.count) {
                 [grouper.group initializeGroup:threshold.intValue
+                              safeServersCount:safeServersCount.intValue
                                       interval:intervalTime.intValue
                                 withCompletion:^(BOOL success, NSString *message)
                 {
