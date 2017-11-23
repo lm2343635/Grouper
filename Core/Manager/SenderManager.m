@@ -9,7 +9,7 @@
 #import "SenderManager.h"
 #import "NetManager.h"
 #import "GroupManager.h"
-#import "Sent.h"
+#import "SharesQueue.h"
 #include "GLibFacade.h"
 #include "shamir.h"
 #import "DEBUG.h"
@@ -23,12 +23,7 @@
     // Grouper only allow one data sending task at same time.
     BOOL lock;
     
-    // Number of HTTP reqeusts which are sent successfully for each untrusted server.
-    NSDictionary *sents;
-    // Number of HTTP requests for each untrusted server.
-    int httpRequestsCount;
-    // Number of all handled HTTP request.
-    int allHandledHttpRequestCount;
+    NSMutableDictionary *sharesQueues;
     
     // Processing time statistic obejct.
     Processing *processing;
@@ -129,7 +124,7 @@
     
     // At last, we send the update message to multiple untrusted servers.
     sendingCompletion = completion;
-    [self sendShares:messages];
+    [self sendMessages:messages];
 }
 
 - (void)deleteAll:(NSArray *)entitys {
@@ -157,7 +152,7 @@
     // Save delection to persistent store.
     [group.appDataStack.mainContext save:nil];
     // At last, we send the delete message to multiple untrusted servers.
-    [self sendShares:messages];
+    [self sendMessages:messages];
 }
 
 - (void)confirm {
@@ -180,7 +175,7 @@
                                      sequence:0
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
-    [self sendShares:[NSArray arrayWithObject:message]];
+    [self sendMessages:[NSArray arrayWithObject:message]];
 }
 
 - (void)resendWith:(int)min and:(int)max to:(NSString *)receiver {
@@ -204,7 +199,7 @@
                                      sequence:0
                                         email:group.currentUser.email
                                          name:group.currentUser.name];
-    [self sendShares:[NSArray arrayWithObject:message]];
+    [self sendMessages:[NSArray arrayWithObject:message]];
 }
 
 - (void)unsent {
@@ -218,7 +213,7 @@
     NSArray *messages = [dao.messageDao findInMessageIds:group.defaults.unsentMessageIds];
     // Clear unsent messagesId.
     group.defaults.unsentMessageIds = nil;
-    [self sendShares:messages];
+    [self sendMessages:messages];
 }
 
 #pragma mark - Send existed messages.
@@ -253,7 +248,7 @@
                                     for (NSString *messageId in notExistedMessageIds) {
                                         [notExistedMessages addObject:idMessage[messageId]];
                                     }
-                                    [self sendShares:notExistedMessages];
+                                    [self sendMessages:notExistedMessages];
                                 }
                             }
                             failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -270,7 +265,7 @@
 
 #pragma mark - Service
 
-- (void)sendShares:(NSArray *)messages {
+- (void)sendMessages:(NSArray *)messages {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
@@ -293,22 +288,17 @@
     // Create shares successfully.
     [processing secretSharing];
     
-    // Calculate the number of HTTP requests for each untrusted server.
-    httpRequestsCount = (int)messages.count / ShareSendingStep + 1;
-    
     NSArray *addresses = group.defaults.servers;
-    // Init sents dictionary.
-    for (NSString *address in addresses) {
-        [sents setValue:[[Sent alloc] initWithTarget:httpRequestsCount]
-                 forKey:address];
-    }
-    allHandledHttpRequestCount = 0;
+    // Init sharesQueues dictionary.
+    sharesQueues = [[NSMutableDictionary alloc] init];
 
     // Send shares to multiple untrusted servers.
     for (int i = 0; i < group.defaults.serverCount; i++) {
         NSString *address = addresses[i];
         NSMutableArray *shares = [[NSMutableArray alloc] init];
         int count = 0;
+        
+        NSMutableArray *sharesQueue = [[NSMutableArray alloc] init];
         // Create JSON parameter.
         for (int i = 0; i < messages.count; i++) {
             Message *message = [messages objectAtIndex:i];
@@ -321,47 +311,88 @@
             // If there the number of messages in a shares array is ShareSendingStep,
             // or all messages has been added to the shares array,
             // send this shares array at first.
-            
-            // TODO List: here, HTTP request should be sent one by one.
-            if (count == ShareSendingStep || i == messages.count - 1) {
-                [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
-                                 parameters:@{@"shares": [group JSONStringFromObject:shares]}
-                                   progress:nil
-                                    success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                                        InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
-                                        // Use the response status as the success flag.
-                                        // If the response status code is 200, we regard this share uploading successful.
-                                        [self sentTo:address withResult:[response statusOK]];
-                                    }
-                                    failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                                        InternetResponse *response = [[InternetResponse alloc] initWithError:error];
-                                        switch ([response errorCode]) {
-                                            default:
-                                                [self sentTo:address withResult:false];
-                                                break;
-                                        }
-                                    }];
+            if (count % ShareSendingStep == 0 || i == messages.count - 1) {
+                // Put the the JSON string of shares into queue.
+                [sharesQueue addObject:[group JSONStringFromObject:shares]];
                 // Clear the shares array.
                 [shares removeAllObjects];
             }
         }
+        // Prepare the sharesQueue dictionary.
+        [sharesQueues setValue:[[SharesQueue alloc] initWithQueue:sharesQueue]
+                        forKey:address];
+        
+        // Send the first JSON string of shares to the untrusted server.
+        [self sendSharesTo:address];
     }
 }
 
+- (void)sendSharesTo:(NSString *)address {
+    if (DEBUG) {
+        NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
+    }
+    SharesQueue *sharesQueue = [sharesQueues valueForKey:address];
+    NSString *share = [sharesQueue dequeue];
+    if (sharesQueue.state != SharesSending) {
+        [self sentTo:address withResult:false];
+        return;
+    }
+    [net.managers[address] POST:[NetManager createUrl:@"transfer/put" withServerAddress:address]
+                     parameters:@{@"shares": share}
+                       progress:nil
+                        success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithResponseObject:responseObject];
+                            // Use the response status as the success flag.
+                            // If the response status code is 200, we regard this share uploading successful.
+                            [self sentTo:address withResult:[response statusOK]];
+                        }
+                        failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            InternetResponse *response = [[InternetResponse alloc] initWithError:error];
+                            switch ([response errorCode]) {
+                                default:
+                                    [self sentTo:address withResult:false];
+                                    break;
+                            }
+                        }];
+}
+
+/**
+ Hanlde the result of a HTTP request.
+ 
+ The number of all HTTP requests should plus 1 after invoking this method,
+ if all requests has been sent, try to confirm the number of servers which are accessed successfully.
+ We reagrd that a server is accessed successfully only in the situation that all HTTP requests of this server have been sent sucessfully.
+ If the number of servers which are acceessed successfully is larger than s, we regard this share uploading successful.
+ **/
 - (void)sentTo:(NSString *)address withResult:(BOOL)success {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    // Get sent object from dictionary.
-    Sent *sent = [sents objectForKey:address];
-    if (success) {
-        sent.success++;
-    } else {
-        sent.fail++;
+    // Get shareQueue object from dictionary.
+    SharesQueue *sharesQueue = [sharesQueues valueForKey:address];
+    if (!success) {
+        sharesQueue.state = SharesFailed;
     }
     
-    allHandledHttpRequestCount++;
-    if (allHandledHttpRequestCount == group.defaults.serverCount * httpRequestsCount) {
+    if (sharesQueue.state == SharesSending) {
+        // If one of http requests for an untrusted server is failed, stop the the rest of requests for this server.
+        [self sendSharesTo:address];
+        return;
+    }
+    if (sharesQueue.state == SharesStop) {
+        return;
+    }
+    
+    int sendingServersCount = 0, successServersCount = 0;
+    for (NSString *address in group.defaults.servers) {
+        SharesQueue *queue = [sharesQueues valueForKey:address];
+        if (queue.state == Sending) {
+            sendingServersCount++;
+        } else if (queue.state == SharesSuccess) {
+            successServersCount++;
+        }
+    }
+    if (successServersCount == 0) {
         // Network finished.
         [processing networkFinished];
         // Callback function with processing object.
@@ -372,16 +403,9 @@
             NSLog(@"Data sending finished, %@", processing.description);
         }
         
-        int successServersCount = 0;
-        for (NSString *address in group.defaults.servers) {
-            Sent *sent = [sents objectForKey:address];
-            if ([sent isFinished]) {
-                successServersCount++;
-            }
-        }
         // If the number of servers which are acceessed successfully is larger than s,
         // we regard this share uploading successful.
-        if (successServersCount >= group.defaults.safeServerCount) {
+        if (success >= group.defaults.safeServerCount) {
             // Push remote notification.
             [self pushSuccessRemoteNotification];
         } else {
@@ -395,6 +419,7 @@
             group.defaults.unsentMessageIds = messageIds;
         }
     }
+
 }
 
 - (void)pushSuccessRemoteNotification {

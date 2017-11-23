@@ -23,13 +23,13 @@ class TestsViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.es_addPullToRefresh {
+        tableView.es.addPullToRefresh {
             self.grouper.receiver.receive {(count, processing) in
                 // Callback function after receiving objects successfully.
                 self.tests = self.dao.testDao.findAll()
                 
                 self.tableView.reloadData()
-                self.tableView.es_stopPullToRefresh()
+                self.tableView.es.stopPullToRefresh()
 
                 self.showAlert(withTitle: "Received \(count) Messages",
                     andContent: "Scheme: f(\(self.grouper.group.defaults.threshold), \(self.grouper.group.defaults.serverCount))\n"
@@ -40,7 +40,8 @@ class TestsViewController: UIViewController, UITableViewDataSource, UITableViewD
             }
             
         }
-        tableView.es_startPullToRefresh()
+        
+        tableView.es.startPullToRefresh()
     }
     
     override func viewWillAppear(_ animated: Bool) {
