@@ -221,6 +221,9 @@
     if ([_thresholdTextField isFirstResponder]) {
         [_thresholdTextField resignFirstResponder];
     }
+    if ([_safeServersCountTextField isFirstResponder]) {
+        [_safeServersCountTextField resignFirstResponder];
+    }
     if ([_intervalTextField isFirstResponder]) {
         [_intervalTextField resignFirstResponder];
     }

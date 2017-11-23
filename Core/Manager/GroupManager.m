@@ -587,7 +587,11 @@
     //Threshold need not to validate when user wants to restore an existed group.
     if (_defaults.initial == AddingNewServer) {
         if (threshold < 1 || threshold > _defaults.servers.count) {
-            completion(NO, @"Recover threshold be more than 0 and less than the number of servers.");
+            completion(NO, @"Recover threshold must be more than 0 and less than the number of servers.");
+            return;
+        }
+        if (safeCount < threshold || safeCount > _defaults.servers.count) {
+            completion(NO, @"Safe server count must be more than threshold and less than the number of servers.");
             return;
         }
         //Refresh session manager.
