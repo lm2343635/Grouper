@@ -392,7 +392,7 @@
             successServersCount++;
         }
     }
-    if (successServersCount == 0) {
+    if (sendingServersCount == 0) {
         // Network finished.
         [processing networkFinished];
         // Callback function with processing object.
