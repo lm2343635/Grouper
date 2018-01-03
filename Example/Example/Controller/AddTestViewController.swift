@@ -41,7 +41,7 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
         switch indexPath.row {
         case 0:
             cell.textLabel?.text = "Scheme"
-            cell.detailTextLabel?.text = "f(\(grouper.group.defaults.threshold), \(grouper.group.defaults.serverCount))"
+            cell.detailTextLabel?.text = "f(\(grouper.group.defaults.threshold), \(grouper.group.defaults.serverCount), \(grouper.group.defaults.safeServerCount))"
         case 1:
             cell.textLabel?.text = "Data Sync"
             cell.detailTextLabel?.text = "\(processing?.sync ?? 0)"

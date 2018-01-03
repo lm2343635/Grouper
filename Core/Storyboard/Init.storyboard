@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vLQ-kW-I5c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vLQ-kW-I5c">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -763,6 +763,9 @@
                                     <action selector="restore:" destination="Grb-Vu-ZwU" eventType="touchUpInside" id="e43-dV-DFx"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="O6o-R9-N2p">
+                                <rect key="frame" x="280" y="530" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.96068316698074341" green="0.96084421873092651" blue="0.96066063642501831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -772,13 +775,16 @@
                             <constraint firstItem="AHK-bR-WGC" firstAttribute="leading" secondItem="7x0-WA-m6J" secondAttribute="leadingMargin" constant="-16" id="rSk-wL-DIv"/>
                             <constraint firstItem="BqU-v5-gqZ" firstAttribute="top" secondItem="AHK-bR-WGC" secondAttribute="bottom" constant="56" id="rbx-9F-oqE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Zji-W8-ppo" secondAttribute="trailing" constant="-4" id="slT-gz-bEQ"/>
+                            <constraint firstItem="O6o-R9-N2p" firstAttribute="leading" secondItem="Zji-W8-ppo" secondAttribute="trailing" constant="-28" id="vQK-kd-kUg"/>
                             <constraint firstItem="BqU-v5-gqZ" firstAttribute="top" secondItem="Zji-W8-ppo" secondAttribute="bottom" constant="8" id="wb5-ce-xZj"/>
+                            <constraint firstItem="O6o-R9-N2p" firstAttribute="top" secondItem="Zji-W8-ppo" secondAttribute="bottom" constant="-30" id="xxD-9X-cb0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Create group (multiple servers)" id="dJh-v0-AdR"/>
                     <connections>
                         <outlet property="createButton" destination="Zji-W8-ppo" id="1pw-R4-JfR"/>
                         <outlet property="jsonTextView" destination="AHK-bR-WGC" id="KDc-yw-Rq0"/>
+                        <outlet property="loadingActivityIndicator" destination="O6o-R9-N2p" id="UmN-dW-SOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DHH-9t-ngP" userLabel="First Responder" sceneMemberID="firstResponder"/>

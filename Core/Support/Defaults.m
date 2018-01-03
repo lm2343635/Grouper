@@ -165,6 +165,20 @@
     return _threshold;
 }
 
+@synthesize safeServerCount = _safeServerCount;
+
+- (void)setSafeServerCount:(NSInteger)safeServerCount {
+    _safeServerCount = safeServerCount;
+    [defaults setInteger:safeServerCount forKey:NSStringFromSelector(@selector(safeServerCount))];
+}
+
+- (NSInteger)safeServerCount {
+    if (_safeServerCount == 0) {
+        _safeServerCount = [defaults integerForKey:NSStringFromSelector(@selector(safeServerCount))];
+    }
+    return _safeServerCount;
+}
+
 @synthesize interval = _interval;
 
 - (void)setInterval:(NSInteger)interval {

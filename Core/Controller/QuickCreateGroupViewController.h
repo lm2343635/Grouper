@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextView *jsonTextView;
 @property (weak, nonatomic) IBOutlet UIButton *createButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadingActivityIndicator;
 
 - (IBAction)quickCreateGroup:(id)sender;
 

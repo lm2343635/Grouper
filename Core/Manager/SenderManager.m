@@ -401,11 +401,12 @@
         lock = NO;
         if (DEBUG) {
             NSLog(@"Data sending finished, %@", processing.description);
+            NSLog(@"Data has been sent to %d servers successfully.", successServersCount);
         }
         
         // If the number of servers which are acceessed successfully is larger than s,
         // we regard this share uploading successful.
-        if (success >= group.defaults.safeServerCount) {
+        if (successServersCount >= group.defaults.safeServerCount) {
             // Push remote notification.
             [self pushSuccessRemoteNotification];
         } else {

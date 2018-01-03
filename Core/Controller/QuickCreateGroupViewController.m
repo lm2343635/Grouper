@@ -135,7 +135,8 @@ Demo JSON String.
         [self showTip:@"servers is not found."];
     }
     
-    
+    [_loadingActivityIndicator startAnimating];
+    _createButton.enabled = NO;
     // Register the new group in multiple untrusted servers.
     registered = 0;
     for (NSString *address in servers) {
@@ -152,6 +153,8 @@ Demo JSON String.
                                       interval:intervalTime.intValue
                                 withCompletion:^(BOOL success, NSString *message)
                 {
+                    [_loadingActivityIndicator stopAnimating];
+                    _createButton.enabled = YES;
                     if (success) {
                         [self showTip:@"Create group successfully!"];
                         [_createButton setTitle:@"Start Using App" forState:UIControlStateNormal];

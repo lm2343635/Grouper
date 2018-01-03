@@ -13,8 +13,10 @@ class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var serversLabel: UILabel!
     @IBOutlet weak var thresholdLabel: UILabel!
+    @IBOutlet weak var safeCountLabel: UILabel!
     @IBOutlet weak var serversStepper: UIStepper!
     @IBOutlet weak var thresholdStepper: UIStepper!
+    @IBOutlet weak var safeCountStepper: UIStepper!
     
     let grouper = Grouper.sharedInstance()!
     let dao = DaoManager()
@@ -23,10 +25,16 @@ class SettingsTableViewController: UITableViewController {
         super.viewDidLoad()
         serversLabel.text = String(grouper.group.defaults.serverCount)
         thresholdLabel.text = String(grouper.group.defaults.threshold)
+        safeCountLabel.text = String(grouper.group.defaults.safeServerCount)
+        
         serversStepper.value = Double(grouper.group.defaults.serverCount)
         thresholdStepper.value = Double(grouper.group.defaults.threshold)
+        safeCountStepper.value = Double(grouper.group.defaults.safeServerCount)
+        
         serversStepper.maximumValue = Double(grouper.group.defaults.servers.count)
         thresholdStepper.maximumValue = Double(grouper.group.defaults.serverCount)
+        safeCountStepper.maximumValue = Double(grouper.group.defaults.serverCount)
+        safeCountStepper.minimumValue = Double(grouper.group.defaults.threshold)
     }
 
     // MARK: - Table view data source
@@ -42,14 +50,22 @@ class SettingsTableViewController: UITableViewController {
         }
         serversLabel.text = String(format:"%.0f", sender.value)
         thresholdStepper.maximumValue = sender.value
+        safeCountStepper.maximumValue = sender.value
         
         grouper.group.defaults.serverCount = Int(sender.value)
     }
     
     @IBAction func changeThreshold(_ sender: UIStepper) {
         thresholdLabel.text = String(format:"%.0f", sender.value)
-
+        safeCountStepper.minimumValue = sender.value
+        
         grouper.group.defaults.threshold = Int(sender.value)
+    }
+    
+    @IBAction func changeSafeCount(_ sender: UIStepper) {
+        safeCountLabel.text = String(format:"%.0f", sender.value)
+        
+        grouper.group.defaults.safeServerCount = Int(sender.value)
     }
     
     @IBAction func clearEntites(_ sender: Any) {
