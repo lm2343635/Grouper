@@ -18,6 +18,7 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
     let dao = DaoManager.sharedInstance
     let grouper = Grouper.sharedInstance()!
     var processing: Processing?
+    var result = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,7 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return processing == nil ? 0 : 5
+        return processing == nil ? 0 : 6
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -54,6 +55,9 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
         case 4:
             cell.textLabel?.text = "Total"
             cell.detailTextLabel?.text = "\(processing?.total ?? 0)"
+        case 5:
+            cell.textLabel?.text = "Result"
+            cell.detailTextLabel?.text = result ? "success" : "fail"
         default:
             break
         }
@@ -76,10 +80,11 @@ class AddTestViewController: UIViewController, UITableViewDataSource, UITableVie
             tests.append(dao.testDao.saveWithContent(Date().description))
             testNumber = testNumber - 1
         }
-        grouper.sender.updateAll(tests) { (processing) in
+        grouper.sender.updateAll(tests) { (processing, success) in
             self.stopAnimating()
             self.processing = processing
             self.processingTableView.reloadData()
+            self.result = success
         }
     }
     

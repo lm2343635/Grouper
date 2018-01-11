@@ -30,6 +30,7 @@
     
     NSArray *sendingMessages;
     SendCompletion sendingCompletion;
+    int sendingServersCount, successServersCount;
 }
 
 + (instancetype)sharedInstance {
@@ -83,7 +84,7 @@
     }
     // If sending task is running now, do not allow to open a new sending task.
     if (lock) {
-        completion(nil);
+        completion(nil, NO);
         return;
     }
     lock = YES;
@@ -131,6 +132,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
     NSMutableArray *messages = [[NSMutableArray alloc] init];
     for (SyncEntity *entity in entitys) {
         // At first, we delete the sync entity.
@@ -159,6 +161,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
     // Find the normal message with the max sequence number sent by current user.
     Message *normalMessageWithMaxSeq = [dao.messageDao getNormalWithMaxSquenceForSender:group.currentUser.node];
     // Skip if no message found.
@@ -182,6 +185,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
     // Skip if no sequence.
     if (max < min) {
         return;
@@ -206,6 +210,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
     if (group.defaults.unsentMessageIds == nil) {
         return;
     }
@@ -291,6 +296,8 @@
     NSArray *addresses = group.defaults.servers;
     // Init sharesQueues dictionary.
     sharesQueues = [[NSMutableDictionary alloc] init];
+    sendingServersCount = group.defaults.serverCount;
+    successServersCount = 0;
 
     // Send shares to multiple untrusted servers.
     for (int i = 0; i < group.defaults.serverCount; i++) {
@@ -333,6 +340,13 @@
     }
     SharesQueue *sharesQueue = [sharesQueues valueForKey:address];
     NSString *share = [sharesQueue dequeue];
+    // NSLog(@"share = %@, state = %d", share, sharesQueue.state);
+    if (share == nil) {
+        sharesQueue.state = SharesSuccess;
+        [sharesQueues setValue:sharesQueue forKey:address];
+        [self sentTo:address withResult:true];
+        return;
+    }
     if (sharesQueue.state != SharesSending) {
         [self sentTo:address withResult:false];
         return;
@@ -368,10 +382,17 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
+    
     // Get shareQueue object from dictionary.
     SharesQueue *sharesQueue = [sharesQueues valueForKey:address];
+    
+    // NSLog(@"sendingServersCount = %d, successServersCount = %d, success = %d, state = %d", sendingServersCount, successServersCount, success, sharesQueue.state);
+    
     if (!success) {
         sharesQueue.state = SharesFailed;
+        [sharesQueues setValue:sharesQueue forKey:address];
+        sendingServersCount--;
+        return;
     }
     
     if (sharesQueue.state == SharesSending) {
@@ -383,25 +404,18 @@
         return;
     }
     
-    int sendingServersCount = 0, successServersCount = 0;
-    for (NSString *address in group.defaults.servers) {
-        SharesQueue *queue = [sharesQueues valueForKey:address];
-        if (queue.state == Sending) {
-            sendingServersCount++;
-        } else if (queue.state == SharesSuccess) {
-            successServersCount++;
-        }
-    }
+    // In this situation, sharesQueue.state == SharesSuccess.
+    sendingServersCount--;
+    successServersCount++;
     if (sendingServersCount == 0) {
         // Network finished.
         [processing networkFinished];
-        // Callback function with processing object.
-        sendingCompletion(processing);
+    
         // Release lock.
         lock = NO;
         if (DEBUG) {
             NSLog(@"Data sending finished, %@", processing.description);
-            NSLog(@"Data has been sent to %d servers successfully.", successServersCount);
+            NSLog(@"Data has been sent to %d servers, f(k, n, s) scheme requires %d servers.", successServersCount, group.defaults.safeServerCount);
         }
         
         // If the number of servers which are acceessed successfully is larger than s,
@@ -409,6 +423,11 @@
         if (successServersCount >= group.defaults.safeServerCount) {
             // Push remote notification.
             [self pushSuccessRemoteNotification];
+            // Callback function with processing object.
+            if (sendingCompletion != nil) {
+                sendingCompletion(processing, YES);
+            }
+            
         } else {
             // Save the id of messages to unsentMessageIds.
             NSMutableArray *messageIds = [NSMutableArray arrayWithArray:group.defaults.unsentMessageIds];
@@ -418,6 +437,9 @@
                 }
             }
             group.defaults.unsentMessageIds = messageIds;
+            if (sendingCompletion != nil) {
+                sendingCompletion(processing, NO);
+            }
         }
     }
 

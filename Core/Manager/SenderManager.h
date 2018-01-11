@@ -17,7 +17,7 @@
 #define MessageTypeConfirm @"confirm"
 #define MessageTypeResend @"resend"
 
-typedef void (^SendCompletion)(Processing *);
+typedef void (^SendCompletion)(Processing *, BOOL success);
 
 @interface SenderManager : NSObject
 
