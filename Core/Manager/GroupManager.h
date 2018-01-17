@@ -63,7 +63,7 @@ typedef void (^SucessMessageCompletion)(BOOL, NSString *);
 // **************** Inivte Members *********************
 
 // Open device browser.
-- (void)openDeviceBroswerIn:(UIViewController *)controller;
+- (void)openDeviceBrowserIn:(UIViewController *)controller;
 
 // Send invite message to a peer.
 - (void)sendInviteMessageTo:(MCPeerID *)peer;

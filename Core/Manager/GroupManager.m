@@ -127,7 +127,7 @@
 
 #pragma mark - Invite Member
 
-- (void)openDeviceBroswerIn:(UIViewController *)controller {
+- (void)openDeviceBrowserIn:(UIViewController *)controller {
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }

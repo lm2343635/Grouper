@@ -75,7 +75,7 @@
     if (DEBUG) {
         NSLog(@"Running %@ '%@'", self.class, NSStringFromSelector(_cmd));
     }
-    [group openDeviceBroswerIn:self];
+    [group openDeviceBrowserIn:self];
 }
 
 #pragma mark - Notification
