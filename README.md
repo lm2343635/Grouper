@@ -6,6 +6,12 @@ Conventional client-server mode applications require central servers for storing
 
 Grouper uses secret sharing and multiple untrusted servers to solve this problem. In Grouper, a device use Secret Sharing scheme to divide a message into several shares and upload them to multiple untrusted servers. Other devices download shares and recover shares to original message by Secret Sharing scheme. Thus, user data can be protected. 
 
+## Features
+
+- A self-destruction system with data recovery.
+- Protected data synchronization using the extend secret sharing scheme.
+- Easy group management for the iOS platform.
+
 ## Demo
 We have developed an demo app called [AccountBook](https://github.com/lm2343635/AccountBook) using Grouper framework.
 
@@ -15,7 +21,7 @@ Grouper is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Grouper', '~> 2.1'
+pod 'Grouper', '~> 2.2'
 ```
 
 ## Documentation

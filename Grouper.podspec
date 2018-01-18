@@ -8,13 +8,14 @@
 
 Pod::Spec.new do |s|
 	s.name         = "Grouper"
-	s.version      = "2.1"
+	s.version      = "2.2"
 	s.summary      = "A framework for Developing iOS app using a secret sharing scheme and untrusted servers."
 
 	s.description  = <<-DESC
 	# Features
-	- Easy Group Management.
-	- Protected Data Synchronization. 
+	- A self-destruction system with data recovery.
+	- Protected data synchronization using the extend secret sharing scheme.
+	- Easy group management for the iOS platform.
 	DESC
 
 	s.homepage     = "https://github.com/lm2343635/Grouper"
